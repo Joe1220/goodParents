@@ -1,15 +1,20 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 
-import About from '../client/components/About';
-import Home from '../client/components/Home';
+import About from './About';
+import Home from './Home';
+import Nav from './Nav';
+import Footer from './Footer';
+
 
 class App extends Component {
   render() {
     return (
       <div>
-        <Route path="/about" component={About} />
+        <Nav />
         <Route path="/" component={Home} />
+        <Route path="/about" component={About} />
+        <Footer />
       </div>
     );
   }
