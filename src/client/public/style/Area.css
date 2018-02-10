@@ -1,0 +1,17 @@
+.jumbotron {
+  position: relative;
+  z-index: 1;
+}
+
+.jumbotron::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: .5;
+  z-index: -1;
+  background-image: url(../img/area_jumbotron.jpg);
+  background-size: cover;
+}
