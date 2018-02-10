@@ -5,7 +5,7 @@ import About from './About';
 import Home from './Home';
 import Nav from './Nav';
 import Footer from './Footer';
-
+import 'bootstrap/dist/css/bootstrap.css';
 
 class App extends Component {
   render() {
