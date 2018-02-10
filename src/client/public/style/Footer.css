@@ -1,4 +1,5 @@
 .footer {
+  background-color: rgb(224, 224, 224);
   border-width: 0px, 0px, 1px;
   bottom: 0;
   font-family: HanSans;
@@ -6,8 +7,4 @@
   color: #333;
   padding: 25px 20px;
   /* position: fixed; */
-}
-
-.test {
-  text-align: left;
 }
