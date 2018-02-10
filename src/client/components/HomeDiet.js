@@ -4,6 +4,12 @@ const HomeDiet = () => {
   return(
     <div>
     <h1>HomeDiet</h1>
+    <h1>HomeDiet</h1>
+    <h1>HomeDiet</h1>
+    <h1>HomeDiet</h1>
+    <h1>HomeDiet</h1>
+    <h1>HomeDiet</h1>
+    <h1>HomeDiet</h1>
     </div>
   )
 };

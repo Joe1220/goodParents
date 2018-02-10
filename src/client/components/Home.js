@@ -7,8 +7,6 @@ import HomeDiet from './HomeDiet';
 
 import '../public/style/Home.css';
 
-
-
 const Home = () => {
   return(
     <Container className="Home">

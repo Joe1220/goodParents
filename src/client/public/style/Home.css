@@ -1,0 +1,41 @@
+/* HomeCarousel img */
+img {
+  width: 100%;
+}
+/* HomeDatepicker */
+.datepicker {
+  padding-top: 30px;
+}
+.material-icons.md-36 { 
+  font-size: 36px; 
+}
+
+.material-icons.left { 
+  padding-left: 500px;
+  padding-top: 13px;
+  position: absolute;
+
+}
+
+.material-icons.right { 
+  padding-left: 1080px;
+  padding-top: 15px;
+  position: absolute;
+}
+th {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+#day {
+  font-size: medium;
+  font-weight: normal;
+  text-align: center;
+  font-family: HanSans;
+  color: #333;
+}
+
+#date {
+  font-size: x-large;
+  text-align: center;
+  font-weight: bold;
+}
