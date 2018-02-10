@@ -12,7 +12,7 @@ const Nav = () => {
             <NavbarBrand  href="/"><p id="my_head">goodparents</p></NavbarBrand>
             <Link to="/about" ><p className="head_obtions">About</p></Link>
             <Link to="/login" ><p className="head_obtions">로그인</p></Link>
-            <Link to="/cart" ><i class="material-icons cart">add_shopping_cart</i></Link>
+            <Link to="/cart" ><i className="material-icons cart">add_shopping_cart</i></Link>
           </Navbar>
         </div>
     );
