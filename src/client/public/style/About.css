@@ -1,0 +1,12 @@
+#about_first {
+  background-color: rgb(255, 240, 223);
+  height: 500px;
+}
+
+#about_img_first {
+  background-image: url("../img/baby.png");
+  width: 100%;
+  height: 500px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
