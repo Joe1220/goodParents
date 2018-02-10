@@ -16,10 +16,10 @@ class App extends Component {
     return (
       <div id="wrapper">
         <Nav />
-        <Route exac path="/" component={Home} />
-        <Route exac path="/about" component={About} />
-        <Route exac path="/terms" component={Terms} />
-        <Route exac path="/privacy" component={Privacy} />
+        <Route exact path="/" component={Home} />
+        <Route exact path="/about" component={About} />
+        <Route exact path="/terms" component={Terms} />
+        <Route exact path="/privacy" component={Privacy} />
         <Footer />
       </div>
     );
