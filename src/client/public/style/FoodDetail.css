@@ -4,8 +4,44 @@
 }
 
 .foodDetailInnerContainer {
-  font-size: 100px;
-  border: 1px solid grey;
   margin: 0 auto;
   width: 60rem;
+}
+
+.foodDetailInnerContainer .row .col{
+  padding-top: 15px;
+  padding-left: 50px;
+  padding-bottom: 15px;
+}
+
+.foodDetailimg {
+  width: auto;
+}
+
+.foodDetailDate {
+  font-size: 21px;
+  font-weight: bold;
+}
+
+.foodDetailTime {
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+.foodDetailTime hr{
+  width: 50%;
+  border: solid 1px grey;
+}
+
+.foodDetailItem {
+  font-size: 21px;
+  font-weight: bold;
+}
+.foodDetailItemPrice {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 35px;
+}
+.foodDetailItem button{
+  margin-top: 30px;
 }
