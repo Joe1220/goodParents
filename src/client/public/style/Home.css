@@ -4,25 +4,25 @@
   max-height: 350px !important;
 }
 
-img {  
+img {
   margin: 0 auto;
 }
 /* HomeDatepicker */
 .datepicker {
   padding-top: 30px;
 }
-.material-icons.md-36 { 
-  font-size: 36px; 
+.material-icons.md-36 {
+  font-size: 36px;
 }
 
-.material-icons.left { 
+.material-icons.left {
   padding-left: 500px;
   padding-top: 13px;
   position: absolute;
 
 }
 
-.material-icons.right { 
+.material-icons.right {
   padding-left: 1080px;
   padding-top: 15px;
   position: absolute;
