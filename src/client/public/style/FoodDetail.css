@@ -1,0 +1,11 @@
+.foodDetailContainer {
+  margin-top: 55px;
+  margin-bottom: 80px;
+}
+
+.foodDetailInnerContainer {
+  font-size: 100px;
+  border: 1px solid grey;
+  margin: 0 auto;
+  width: 60rem;
+}

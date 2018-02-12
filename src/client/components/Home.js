@@ -11,7 +11,7 @@ const Home = () => {
   return(
     <Container className="Home">
       <HomeCarousel />
-      <HomeDatepicker />   
+      <HomeDatepicker />
       <HomeDiet />
     </Container>
   )
