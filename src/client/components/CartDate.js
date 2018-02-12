@@ -1,21 +1,22 @@
 import React from 'react';
 
-const CartDate = () => {
-  const showCurrentDate = () => {
-    var date = new Date().getDate();
-    var month = new Date().getMonth() + 1;
-    var year = new Date().getFullYear();
-    return [date, month, year];
+class CartDate extends React.Component {
+  constructor(props) {
+    super(props);
+
+    var today = new Date(),
+    myDate = `${(today.getMonth() + 1)}월 ${today.getDate()}일`;
+
+
+    this.state = {
+      myDate: myDate
+    };
   }
-  return (
-    <div>
-      {this.showCurrentDate.map(val => {
-        return (
-          <p>val</p>
-        )
-      })}
-    </div>
-  )
+  render() {
+    return (
+      <p className="font-weight-bold">오늘, {this.state.myDate}</p>
+    )
+  }
 }
 
 export default CartDate;

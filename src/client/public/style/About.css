@@ -55,11 +55,13 @@
   height: 300px;
 }
 
-img {
-  height: auto;
+img.about_image {
+  height: 200px;
+  margin: auto;
+  width: auto;
 }
 
-p {
+.abouts_text {
   margin-left: 20px;
 }
 
