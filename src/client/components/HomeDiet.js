@@ -1,15 +1,15 @@
 import React from 'react';
 
+import HomeDietDate from './HomeDietDate'
+import HomeDietFood from './HomeDietFood'
+
 const HomeDiet = () => {
   return(
-    <div>
-    <h1>HomeDiet</h1>
-    <h1>HomeDiet</h1>
-    <h1>HomeDiet</h1>
-    <h1>HomeDiet</h1>
-    <h1>HomeDiet</h1>
-    <h1>HomeDiet</h1>
-    <h1>HomeDiet</h1>
+    <div className="HomeDiet">
+      <div className="HomeDietContainer">
+        <HomeDietDate />
+        <HomeDietFood />
+      </div>
     </div>
   )
 };

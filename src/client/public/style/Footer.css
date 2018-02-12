@@ -8,3 +8,13 @@
   padding: 25px 20px;
   /* position: fixed; */
 }
+
+.footer .row {
+  padding: 0px 80px;
+  line-height: 20px;
+}
+
+.footer .row .col a{
+  text-decoration: none;
+  color: black;
+}

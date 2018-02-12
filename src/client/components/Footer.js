@@ -7,7 +7,7 @@ import '../public/style/Footer.css';
 const Footer = () => {
   return (
     <Container className="footer">
-      <Row>
+      <Row >
           <Col>
             <Link to="/terms">이용약관</Link><br />
             <Link to="/about">About</Link><br />

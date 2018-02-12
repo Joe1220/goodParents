@@ -16,14 +16,14 @@ img {
 }
 
 .material-icons.left { 
-  padding-left: 500px;
-  padding-top: 13px;
+  padding-left: 245px;
+  padding-top: 17px;
   position: absolute;
 
 }
 
 .material-icons.right { 
-  padding-left: 1080px;
+  padding-left: 830px;
   padding-top: 15px;
   position: absolute;
 }
@@ -43,4 +43,44 @@ th {
   font-size: x-large;
   text-align: center;
   font-weight: bold;
+}
+/* HomeDiet */
+.HomeDiet {
+  margin: 0 auto;
+  width: 50rem;
+  margin-top: 50px;
+}
+.HomeDietContainer {
+  padding: 15px;
+}
+
+.HomeDietDate {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.HomeDietFood {
+  margin-top: 20px;
+}
+
+.HomeDietFood .row .col {
+  padding: 0 8px 0 8px;
+  font-weight: bold;
+  font-size: 17px;
+}
+.HomeDietFood .row .col .foodName {
+  font-size: 21px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.HomeDietFood .row .col img{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 80%;
+  padding: 30px 0 60px 0;
+}
+
+.foodPrice {
+  margin-top: 15px;
 }
