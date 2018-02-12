@@ -7,7 +7,6 @@ class CartDate extends React.Component {
     var today = new Date(),
     myDate = `${(today.getMonth() + 1)}월 ${today.getDate()}일`;
 
-
     this.state = {
       myDate: myDate
     };

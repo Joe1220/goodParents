@@ -17,7 +17,7 @@ class HomeDietFood extends Component {
             <Badge color="danger">한우</Badge>
             <Badge color="info">국산 표고 버섯</Badge>
             <Badge color="success">현미</Badge>
-            <Badge color="success">미국산 감자</Badge>  
+            <Badge color="success">미국산 감자</Badge>
             </div>
             <div className="foodPrice">
               4,500
