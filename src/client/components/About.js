@@ -10,7 +10,7 @@ const About = () => {
     <div>
       <Container>
         <Row className="about_row">
-          <Col sm="6" className="about_color_box">
+          <Col sm="6" className="about_color_box"> 
             <p className="header">매일 새로워지는 영양 맞춤</p>
             <p className="header">맛있는 설계 식단</p>
             <p className="header_des">굿페런트는 매월 신선한 재료를 적극 활용한 맛있는 식단을 제공합니다.</p>

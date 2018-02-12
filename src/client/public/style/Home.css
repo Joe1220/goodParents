@@ -4,23 +4,24 @@
   max-height: 350px !important;
 }
 
-img {  
+img {
   margin: 0 auto;
 }
 /* HomeDatepicker */
 .datepicker {
   padding-top: 30px;
 }
-.material-icons.md-36 { 
-  font-size: 36px; 
+.material-icons.md-36 {
+  font-size: 36px;
 }
+
 
 .material-icons.left { 
   padding-left: 245px;
   padding-top: 17px;
   position: absolute;
-
 }
+
 
 .material-icons.right { 
   padding-left: 830px;
@@ -84,3 +85,4 @@ th {
 .foodPrice {
   margin-top: 15px;
 }
+
