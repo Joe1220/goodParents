@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { Row, Col, Container, Badge } from 'reactstrap';
 
 import image from '../public/img/home_food.png'
@@ -10,13 +11,13 @@ class HomeDietFood extends Component {
         <Row>
           <Col >
             아침<hr />
-            <img src={image} alt="food"/>
+            <Link to="/fooddetail"><img src={image} alt="food"/></Link>
             <div className="foodName">정크푸드</div>
             <div className="foodMaterial">
             <Badge color="danger">한우</Badge>
             <Badge color="info">국산 표고 버섯</Badge>
             <Badge color="success">현미</Badge>
-            <Badge color="success">미국산 감자   </Badge>  
+            <Badge color="success">미국산 감자</Badge>  
             </div>
             <div className="foodPrice">
               4,500
@@ -24,7 +25,7 @@ class HomeDietFood extends Component {
           </Col>
           <Col >
             점심<hr />
-            <img src={image} />
+            <Link to="/fooddetail"><img src={image} alt="food"/></Link>
             <div className="foodName">정크푸드</div>
             <div className="foodMaterial">
             <Badge color="danger">한우</Badge>
@@ -38,7 +39,7 @@ class HomeDietFood extends Component {
           </Col>
           <Col >
             저녁<hr />
-            <img src={image} />
+            <Link to="/fooddetail"><img src={image} alt="food"/></Link>
             <div className="foodName">정크푸드</div>
             <div className="foodMaterial">
             <Badge color="danger">한우</Badge>

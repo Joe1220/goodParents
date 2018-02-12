@@ -10,6 +10,7 @@ import Terms from './Terms'
 import Privacy from './Privacy';
 import Prime from './Prime';
 import Cart from './Cart';
+import FoodDetail from './FoodDetail'
 
 class App extends Component {
   render() {
@@ -23,6 +24,7 @@ class App extends Component {
         <Route exact path="/privacy" component={Privacy} />
         <Route exact path="/prime" component={Prime} />
         <Route exact path="/cart" component={Cart} />
+        <Route exact path="/fooddetail" component={FoodDetail} />
         <Footer />
       </div>
     );
