@@ -15,7 +15,7 @@ const items = [
   }
 ];
 
-class HomeCarousel extends Component {
+class HomeCarousel extends Component {   
   render(){
     return(
       <UncontrolledCarousel items={items} />

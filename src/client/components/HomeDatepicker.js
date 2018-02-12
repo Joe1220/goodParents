@@ -19,7 +19,7 @@ class HomeDatepicker extends Component {
               <th>10</th>
               <th>11</th>
               <th>12</th>
-              <th>13</th>
+              <th>13</th>   
               <th>14</th>
               <th>15</th>
             </tr>

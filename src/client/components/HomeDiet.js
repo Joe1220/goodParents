@@ -8,7 +8,7 @@ const HomeDiet = () => {
     <div className="HomeDiet">
       <div className="HomeDietContainer">
         <HomeDietDate />
-        <HomeDietFood />
+        <HomeDietFood />  
       </div>
     </div>
   )

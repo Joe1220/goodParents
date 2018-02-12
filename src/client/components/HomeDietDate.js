@@ -9,4 +9,4 @@ const HomeDietDate = () => {
   )
 };
 
-export default HomeDietDate;
+export default HomeDietDate;  
