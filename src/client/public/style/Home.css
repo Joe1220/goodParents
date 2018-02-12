@@ -16,16 +16,16 @@ img {
 }
 
 
-.material-icons.left { 
+.material-icons.left {
   padding-left: 245px;
   padding-top: 17px;
   position: absolute;
 }
 
 
-.material-icons.right { 
+.material-icons.right {
   padding-left: 830px;
-  padding-top: 15px;  
+  padding-top: 15px;
   position: absolute;
 }
 th {
@@ -85,4 +85,3 @@ th {
 .foodPrice {
   margin-top: 15px;
 }
-

@@ -5,18 +5,16 @@ class CartDate extends React.Component {
     super(props);
 
     var today = new Date(),
-      myDate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+    myDate = `${(today.getMonth() + 1)}월 ${today.getDate()}일`;
 
     this.state = {
       myDate: myDate
     };
   }
 
-
-
   render() {
     return (
-      <p>{this.state.myDate}</p>
+      <p className="font-weight-bold">오늘, {this.state.myDate}</p>
     );
   }
 }
