@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { UncontrolledCarousel, Container } from 'reactstrap';
+import { UncontrolledCarousel } from 'reactstrap';
 
 import images from '../public/img/main_carousel-1.jpg'
 

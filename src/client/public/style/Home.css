@@ -4,7 +4,7 @@
   max-height: 350px !important;
 }
 
-img {
+img.img-fluid {
   margin: 0 auto;
 }
 /* HomeDatepicker */
@@ -50,6 +50,7 @@ th {
   margin: 0 auto;
   width: 50rem;
   margin-top: 50px;
+  margin-bottom: 100px;
 }
 .HomeDietContainer {
   padding: 15px;
@@ -58,16 +59,22 @@ th {
 .HomeDietDate {
   font-size: 22px;
   font-weight: bold;
+  padding: 0 30px 0 30px;
 }
 
 .HomeDietFood {
   margin-top: 20px;
 }
 
+.HomeDietFood > .row > .col > hr {
+  width: 150px;
+  border: 0.5px solid gray;
+}
+
 .HomeDietFood .row .col {
-  padding: 0 8px 0 8px;
+  padding: 0 30px 0 30px;
   font-weight: bold;
-  font-size: 17px;
+  font-size: 18px;
 }
 .HomeDietFood .row .col .foodName {
   font-size: 21px;
@@ -76,15 +83,29 @@ th {
 }
 .HomeDietFood .row .col img{
   display: block;
-  margin-left: auto;
+  margin-left: 0;
   margin-right: auto;
   max-width: 80%;
-  padding: 30px 0 60px 0;
+  padding: 30px 0 35px 0;
 }
 
-.foodPrice {
-  margin-top: 15px;
-}
 .badge {
-  margin-right: 3px;
+  margin-right: 9px;
+  margin-bottom: 5px;
 }
+
+span.badge {
+  font-size: 12px;
+  padding: 7px 15px 6px 15px;
+  font-family: Han Sans;
+}
+span.badge-danger {
+  background-color: rgb(211, 84, 0);
+}
+span.badge-info {
+  background-color: rgb(39, 174, 96);
+}
+span.badge-success {
+  background-color: rgb(243, 156, 18);
+}
+
