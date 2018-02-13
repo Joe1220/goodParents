@@ -9,7 +9,7 @@ import Footer from './Footer';
 import Terms from './Terms'
 import Privacy from './Privacy';
 import Prime from './Prime';
-import Cart from './Cart';
+import Payment from './Payment';
 import FoodDetail from './FoodDetail'
 
 class App extends Component {
@@ -23,7 +23,7 @@ class App extends Component {
         <Route exact path="/terms" component={Terms} />
         <Route exact path="/privacy" component={Privacy} />
         <Route exact path="/prime" component={Prime} />
-        <Route exact path="/cart" component={Cart} />
+        <Route exact path="/payment" component={Payment} />
         <Route exact path="/fooddetail" component={FoodDetail} />
         <Footer />
       </div>

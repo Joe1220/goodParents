@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Container, Popover, PopoverHeader, PopoverBody, Navbar, NavbarBrand } from 'reactstrap';
+import { Popover, PopoverHeader, PopoverBody, Navbar, NavbarBrand } from 'reactstrap';
 import CartPop from './CartPop';
 import CartDate from './CartDate';
 import '../public/style/Nav.css';

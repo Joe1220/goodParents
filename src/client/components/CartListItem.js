@@ -1,8 +1,7 @@
 import React from 'react';
 import image from '../public/img/about_rice.jpg';
 import "../public/style/CartListItem.css";
-import { Row, Col, Card, CardImg, CardBody, CardText,
-         InputGroup, Input, Button } from 'reactstrap';
+import { Row, Col, CardImg, Input } from 'reactstrap';
 
 class CartListItem extends React.Component {
   constructor(props) {
@@ -34,13 +33,6 @@ class CartListItem extends React.Component {
           </Col>
         </Row>
         <hr />
-        <Row>
-          <Col sm="2"><p>총</p></Col>
-          <Col sm="10"><p>4,500</p></Col>
-        </Row>
-        <Row>
-          <Button color="primary" size="md" block>장바구니</Button>
-        </Row>
       </div>
     );
   }
