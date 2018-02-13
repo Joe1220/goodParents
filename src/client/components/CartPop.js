@@ -14,7 +14,7 @@ class Cart extends React.Component {
         </Row>
 
         <Row>
-          <Button href="payment" color="primary" size="md" block>장바구니</Button>
+          <Button href="cartmain" color="primary" size="md" block>장바구니</Button>
         </Row>
       </Container>
     );

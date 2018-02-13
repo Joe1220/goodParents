@@ -11,6 +11,7 @@ import Privacy from './Privacy';
 import Prime from './Prime';
 import Payment from './Payment';
 import FoodDetail from './FoodDetail'
+import CartMain from './CartMain';
 
 class App extends Component {
   render() {
@@ -24,7 +25,7 @@ class App extends Component {
         <Route exact path="/privacy" component={Privacy} />
         <Route exact path="/prime" component={Prime} />
         <Route exact path="/payment" component={Payment} />
-        <Route exact path="/fooddetail" component={FoodDetail} />
+        <Route exact path="/cartmain" component={CartMain} />
         <Footer />
       </div>
     );

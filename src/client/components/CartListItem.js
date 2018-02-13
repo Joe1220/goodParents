@@ -21,13 +21,13 @@ class CartListItem extends React.Component {
             <Row><p className="cart_list_dec_text">클래식 한우버섯</p></Row>
             <Row>
               <Col sm="3">
-                <i class="material-icons">add_circle</i>
+                <i class="material-icons">remove_circle</i>
               </Col>
               <Col sm="4" className="cart_list_count">
-                <Input placeholder={this.state.tempNum} />
+                <Input size="sm" placeholder={this.state.tempNum} />
               </Col>
               <Col sm="3">
-                <i class="material-icons">remove_circle</i>
+                <i class="material-icons">add_circle</i>
               </Col>
             </Row>
           </Col>
