@@ -30,7 +30,7 @@ export const Area = (props) => {
             </div>
           </Col>
           <Col>
-            <img src={mapImage} width="100%" />
+            <img src={mapImage} width="100%" alt="pp"/>
           </Col>
         </Row>
       </Container>
