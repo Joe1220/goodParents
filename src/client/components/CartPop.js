@@ -10,7 +10,7 @@ class Cart extends React.Component {
 
         <Row>
           <Col sm="2"><p>총</p></Col>
-          <Col sm="10"><p>4,500</p></Col>
+          <Col sm="10"><p className="text-right">4,500</p></Col>
         </Row>
 
         <Row>
