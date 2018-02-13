@@ -17,8 +17,8 @@ class CartListItem extends React.Component {
           <Col sm="4" className="cart_list_img">
             <CardImg width="100%" src={image} alt="this is food cart image"/>
           </Col>
-          <Col sm="8">
-            <Row>클래식 한우버섯</Row>
+          <Col sm="8" className="cart_list_dec">
+            <Row><p className="cart_list_dec_text">클래식 한우버섯</p></Row>
             <Row>
               <Col sm="3">
                 <i class="material-icons">add_circle</i>

@@ -1,0 +1,7 @@
+.payment_result_text {
+  font-size: 11px;
+  color: rgb(158, 158, 158);
+  flex-wrap: wrap;
+  margin-right: 0;
+  margin-left: 15px;
+}
