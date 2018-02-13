@@ -22,3 +22,13 @@
   padding-right: 0 !important;
   padding-left: 15px !important;
 }
+
+.cart_list_dec {
+  align-self: center;
+}
+
+.cart_list_dec_text {
+  font-weight: bold;
+  font-size: 12px;
+  text-align: left;
+}
