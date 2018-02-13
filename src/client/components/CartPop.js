@@ -1,6 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Container } from 'reactstrap';
+import { Container,  Row, Col, Button } from 'reactstrap';
 import CartListItem from './CartListItem';
 
 class Cart extends React.Component {
@@ -8,6 +7,15 @@ class Cart extends React.Component {
     return (
       <Container>
         <CartListItem />
+
+        <Row>
+          <Col sm="2"><p>총</p></Col>
+          <Col sm="10"><p>4,500</p></Col>
+        </Row>
+
+        <Row>
+          <Button href="payment" color="primary" size="md" block>장바구니</Button>
+        </Row>
       </Container>
     );
   }

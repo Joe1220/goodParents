@@ -1,10 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Container, Row, Col, Jumbotron,
-          Card, CardImg, CardText, CardBody,
-          CardTitle, CardSubtitle, Button} from 'reactstrap';
+import { Container, Row, Col, Jumbotron, Card, CardText, Button} from 'reactstrap';
 import "../public/style/Prime.css";
-import mapImage from "../public/img/area_map.gif";
 
 const Prime = () => {
   return(
