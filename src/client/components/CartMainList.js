@@ -1,6 +1,6 @@
 import React from 'react';
 import { Col, Row, FormGroup, Label, Input,
-        Card, CardImg } from 'reactstrap';
+        CardImg } from 'reactstrap';
 import "../public/style/CartMainList.css";
 import image from '../public/img/about_rice.jpg';
 

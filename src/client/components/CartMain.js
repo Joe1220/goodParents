@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Container, Col, Row,
-         Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+         FormGroup, Label, Input, FormText } from 'reactstrap';
 import CartMainList from './CartMainList';
 import "../public/style/CartMain.css";
 
