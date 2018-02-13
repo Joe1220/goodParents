@@ -32,7 +32,6 @@
   width: 50%;
   border: solid 1px grey;
 }
-
 .foodDetailItem {
   font-size: 21px;
   font-weight: bold;
@@ -40,8 +39,29 @@
 .foodDetailItemPrice {
   font-size: 18px;
   font-weight: bold;
-  margin-top: 35px;
+  margin-top: 25px;
 }
 .foodDetailItem button{
-  margin-top: 30px;
+  margin-top: 20px;
+}
+button.btn-primary {
+  background-color: rgb(25, 25, 221);
+}
+
+.foodDetailDescriptionButton{
+  margin-top: 15px;
+  font-family: Han Sans;
+  font-weight: bold;
+}
+
+.foodDetailDescriptionButton button{
+  display: inline-block;
+  margin-right: 35px;
+  text-align: left;
+  padding: 6px 0;
+  text-decoration: none;
+  color: black;
+}
+.foodDetailDescriptionButton button:hover{
+  color: rgb(25, 25, 221);
 }
