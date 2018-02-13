@@ -26,6 +26,7 @@ class App extends Component {
         <Route exact path="/prime" component={Prime} />
         <Route exact path="/payment" component={Payment} />
         <Route exact path="/cartmain" component={CartMain} />
+        <Route exact path="/fooddetail" component={FoodDetail} />
         <Footer />
       </div>
     );
