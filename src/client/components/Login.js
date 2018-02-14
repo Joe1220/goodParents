@@ -14,8 +14,8 @@ const Login = () => {
           <Input placeholder="비밀번호" type="password" />
         </InputGroup>
         <hr />
-        <Button color="primary" size="lg" block>로그인하기</Button>
-        <Button color="primary" size="lg" block>카카오 계정으로 로그인하기</Button>
+        <Button color="primary" size="md" block>로그인하기</Button>
+        <Button color="primary" size="md" block>카카오 계정으로 로그인하기</Button>
         <br />
         <p><a href="/signup">아직 회원이 아니신가요?</a></p>
       </CardBody>
