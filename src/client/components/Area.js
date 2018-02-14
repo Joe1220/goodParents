@@ -6,7 +6,7 @@ import "../public/style/Area.css";
 
 const style ={
   width: '450px',
-  height: '350px'
+  height: '360px'
 }
 
 export class Area extends Component {
