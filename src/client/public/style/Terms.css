@@ -1,0 +1,16 @@
+.Terms {
+  margin: 50px;
+  font-family: "나눔 고딕", "Nanum Gothic", "맑은 고딕", "Malgum Gothic", "Apple Gothic", "Dotum"
+}
+.Terms h1 {
+  font-size: 44px;
+  font-weight: normal;
+}
+div.TermsWarnig {
+  margin: 50px;
+}
+p.TermsUpdateDate,
+p.TermsThanks {
+  font-size: 14px;
+  line-height: 1.43;
+}
