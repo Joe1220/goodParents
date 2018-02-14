@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Container, Collapse, CardBody, Popover, PopoverHeader, PopoverBody, Navbar, NavbarBrand } from 'reactstrap';
+import { Container, Collapse, Card, CardBody, Popover, PopoverHeader, PopoverBody, Navbar, NavbarBrand } from 'reactstrap';
 import CartPop from './CartPop';
 import CartDate from './CartDate';
 import '../public/style/Nav.css';
@@ -23,12 +23,12 @@ class Nav extends React.Component {
 
   loginToggle() {
     this.setState({ collapse: !this.state.collapse });
-  }
+  } 
 
   render() {
     return (
       <div className="container navigation">
-        <Navbar color="faded" expand="lg">
+        <Navbar color="faded">
           <Link to="/area"><p className="head_obtions">배달구역</p></Link>
           <Link to="/prime"><p className="head_obtions">프라임</p></Link>
           <NavbarBrand href="/"><p id="my_head">goodparents</p></NavbarBrand>
@@ -36,12 +36,15 @@ class Nav extends React.Component {
 
           <p onClick={this.loginToggle} className="head_obtions">로그인</p>
           <Collapse isOpen={this.state.collapse}>
-            <CardBody>
-              Anim pariatur cliche reprehenderit,
-             enim eiusmod high life accusamus terry richardson ad squid. Nihil
-             anim keffiyeh helvetica, craft beer labore wes anderson cred
-             nesciunt sapiente ea proident.
-            </CardBody>
+            <Card>
+              <CardBody>
+                Anim pariatur cliche reprehenderit,
+               enim eiusmod high life accusamus terry richardson ad squid. Nihil
+               anim keffiyeh helvetica, craft beer labore wes anderson cred
+               nesciunt sapiente ea proident.
+              </CardBody>
+
+            </Card>
 
           </Collapse>
 
