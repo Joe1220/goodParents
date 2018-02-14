@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardBody, CardTitle, InputGroup, Input, Button } from "reactstrap";
+import { CardBody, CardTitle, InputGroup, Input, Button } from "reactstrap";
 
 const Signup = () => {
   return (
