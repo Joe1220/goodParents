@@ -13,7 +13,7 @@ import Payment from './Payment';
 import FoodDetail from './FoodDetail'
 import CartMain from './CartMain';
 import Login from './Login';
-import SignUp from './SignUp';
+import Signup from './Signup';
 
 class App extends Component {
   render() {
@@ -30,7 +30,7 @@ class App extends Component {
         <Route exact path="/cartmain" component={CartMain} />
         <Route exact path="/fooddetail" component={FoodDetail} />
         <Route exact path="/login" component={Login} />
-        <Route exact path="/signup" component={SignUp} />
+        <Route exact path="/signup" component={Signup} />
         <Footer />
       </div>
     );
