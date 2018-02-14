@@ -1,9 +1,9 @@
-/* .jumbotron {
+.prime_jumbo {
   position: relative;
   z-index: 1;
 }
 
-.jumbotron::before {
+.prime_jumbo::before {
   content: "";
   position: absolute;
   top: 0;
@@ -14,7 +14,7 @@
   z-index: -1;
   background-image: url(../img/about_baby.jpg);
   background-size: cover;
-} */
+}
 
 .prime_header {
   font-size: 30px;

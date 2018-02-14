@@ -5,9 +5,14 @@ import "../public/style/Prime.css";
 const Prime = () => {
   return(
     <div>
-      <Jumbotron className="container">
-        <p className="prime_header font-weight-bold">프라임 멤버</p>
-        <p className="prime_header_dec font-weight-bold">간편한 관리와 매 주문시 10% 할인혜택을 누리세요</p>
+      <Jumbotron className="prime_jumbo container">
+        <div className="mx-5" style={{width: 30 + 'em'}}>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <p className="prime_header font-weight-bold">프라임 멤버</p>
+          <p className="prime_header_dec font-weight-bold">간편한 관리와 매 주문시 10% 할인혜택을 누리세요</p>
+        </div>
       </Jumbotron>
 
       <Container>
