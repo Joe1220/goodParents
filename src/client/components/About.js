@@ -9,7 +9,7 @@ const About = () => {
   return(
     <div>
       <Container>
-        <Row className="about_row">
+        <Row className="about_image_row">
           <Col sm="6" className="about_color_box">
             <p className="header abouts_text">매일 새로워지는 영양 맞춤</p>
             <p className="header abouts_text">맛있는 설계 식단</p>
