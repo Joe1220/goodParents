@@ -4,6 +4,31 @@ import { Button, Container, Col, Row,
 import CartMainList from './CartMainList';
 import "../public/style/CartMain.css";
 
+//장바구니 라는 데이터 모음을 만들어서, foodDetail에서 제품을 클릭할 때 data가 만들어지도록 한뒤.... CartListItem으로 데이터를 넘겨준다.
+var foodData = [
+  '클래식 한우버섯': {
+    'id': '한우버섯이 뭐냐',
+    'foodName': '클래식 한우버섯',
+    'foodPrice': 4500,
+    'img': 'http://pds.joins.com/news/component/joongang_jplus/201706/05/27239-162653-1.jpg',
+    'count': 0
+  },
+  '김치찌개': {
+    'id': '한우버섯이 뭐냐',
+    'foodName': '김치찌개',
+    'foodPrice': 6000,
+    'img': 'http://pds.joins.com/news/component/joongang_jplus/201706/05/27239-162653-1.jpg',
+    'count': 0
+  },
+  '부대찌개': {
+    'id': '부대찌개를 먹어야겠다',
+    'foodName': '부대찌개',
+    'foodPrice': 7000,
+    'img': 'http://pds.joins.com/news/component/joongang_jplus/201706/05/27239-162653-1.jpg',
+    'count': 0
+  }
+];
+
 class CartMain extends React.Component {
   render() {
     return (
