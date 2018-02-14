@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 
 import About from './About';
-import { Area } from "./Area";
+import Area from "./Area";
 import Home from './Home';
 import Nav from './Nav';
 import Footer from './Footer';
