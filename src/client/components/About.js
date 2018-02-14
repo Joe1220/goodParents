@@ -13,6 +13,7 @@ const About = () => {
           <Col sm="6" className="about_color_box">
             <p className="header abouts_text">매일 새로워지는 영양 맞춤</p>
             <p className="header abouts_text">맛있는 설계 식단</p>
+            <p>&nbsp;</p>
             <p className="header_des abouts_text">굿페런트는 매월 신선한 재료를 적극 활용한 맛있는 식단을 제공합니다.</p>
           </Col>
           <Col sm="6" id="about_img_first">
