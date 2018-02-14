@@ -78,3 +78,7 @@ img.about_image {
   text-align: left;
   color: rgb(25, 25, 221);
 }
+
+div.about_row.row {
+  height: 345px;
+}
