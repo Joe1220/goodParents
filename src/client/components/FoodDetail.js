@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { Container, Row, Col, Button, Fade } from 'reactstrap';
 
-import '../public/style/FoodDetail.css'
-import image from '../public/img/food_detail_2.jpg'
-
+import '../public/style/FoodDetail.css';
+import image from '../public/img/food_detail_2.jpg';
 
 class FoodDetail extends Component {
   constructor(props){
@@ -24,7 +23,7 @@ class FoodDetail extends Component {
         {name: '양파', amount: 150, img: ''},
         {name: '당근', amount: 150, img: ''},
         {name: '오이', amount: 150, img: ''}
-      ], 
+      ],
       nutrient: [
         {name: '비타민', icon: ''},
         {name: '칼슘', icon: ''},
@@ -78,7 +77,7 @@ class FoodDetail extends Component {
     this.setState({
         fadeIn: !this.state.fadeIn
     });
-}
+  }
 }
 
 export default FoodDetail;
