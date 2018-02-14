@@ -9,8 +9,6 @@ class Nav extends React.Component {
   constructor(props) {
     super(props);
     this.cartToggle = this.cartToggle.bind(this);
-    this.loginToggle = this.loginToggle.bind(this);
-    this.state = { collapse: false, status: 'Closed' };
 
     this.state = {
       popOpen: false
@@ -20,10 +18,6 @@ class Nav extends React.Component {
   cartToggle() {
     this.setState({ popOpen: !this.state.popOpen });
   }
-
-  loginToggle() {
-    this.setState({ collapse: !this.state.collapse });
-  } 
 
   render() {
     return (
