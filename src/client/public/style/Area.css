@@ -1,9 +1,9 @@
-.jumbotron {
+.jumbo {
   position: relative;
   z-index: 1;
 }
 
-.jumbotron::before {
+.jumbo::before {
   content: "";
   position: absolute;
   top: 0;
