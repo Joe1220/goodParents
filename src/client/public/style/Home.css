@@ -1,0 +1,111 @@
+/* HomeCarousel img */
+.carousel-inner{
+  width:100%;
+  max-height: 350px !important;
+}
+
+img.img-fluid {
+  margin: 0 auto;
+}
+/* HomeDatepicker */
+.datepicker {
+  padding-top: 30px;
+}
+.material-icons.md-36 {
+  font-size: 36px;
+}
+
+
+.material-icons.left {
+  padding-left: 245px;
+  padding-top: 17px;
+  position: absolute;
+}
+
+
+.material-icons.right {
+  padding-left: 830px;
+  padding-top: 15px;
+  position: absolute;
+}
+th {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+#day {
+  font-size: medium;
+  font-weight: normal;
+  text-align: center;
+  font-family: HanSans;
+  color: #333;
+}
+
+#date {
+  font-size: x-large;
+  text-align: center;
+  font-weight: bold;
+}
+/* HomeDiet */
+.HomeDiet {
+  margin: 0 auto;
+  width: 50rem;
+  margin-top: 50px;
+  margin-bottom: 100px;
+}
+.HomeDietContainer {
+  padding: 15px;
+}
+
+.HomeDietDate {
+  font-size: 22px;
+  font-weight: bold;
+  padding: 0 30px 0 30px;
+}
+
+.HomeDietFood {
+  margin-top: 20px;
+}
+
+.HomeDietFood > .row > .col > hr {
+  width: 150px;
+  border: 0.5px solid gray;
+}
+
+.HomeDietFood .row .col {
+  padding: 0 30px 0 30px;
+  font-weight: bold;
+  font-size: 18px;
+}
+.HomeDietFood .row .col .foodName {
+  font-size: 21px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.HomeDietFood .row .col img{
+  display: block;
+  margin-left: 0;
+  margin-right: auto;
+  max-width: 80%;
+  padding: 30px 0 35px 0;
+}
+
+.badge {
+  margin-right: 9px;
+  margin-bottom: 5px;
+}
+
+span.badge {
+  font-size: 12px;
+  padding: 7px 15px 6px 15px;
+  font-family: Han Sans;
+}
+span.badge-danger {
+  background-color: rgb(211, 84, 0);
+}
+span.badge-info {
+  background-color: rgb(39, 174, 96);
+}
+span.badge-success {
+  background-color: rgb(243, 156, 18);
+}
+

@@ -1,24 +1,24 @@
 import React, { Component } from 'react';
 import { UncontrolledCarousel } from 'reactstrap';
 
+import images from '../public/img/main_carousel-1.jpg'
+
 const items = [
   {
-    src: 'https://i.ytimg.com/vi/Xcyz3noyozU/maxresdefault.jpg',
+    src: `${images}`,
   },
   {
-    src: 'https://i.ytimg.com/vi/Xx0YGEniC4w/maxresdefault.jpg',
+    src: `${images}`,
   },
   {
-    src: 'https://occ-0-2433-444.1.nflxso.net/art/70308/cdd4454607902d841e9a4d16dc0af2b95ee70308.jpg',
+    src: `${images}`,
   }
 ];
 
-class HomeCarousel extends Component {
+class HomeCarousel extends Component {   
   render(){
     return(
-      <div>
-        <UncontrolledCarousel items={items} />
-      </div>
+      <UncontrolledCarousel items={items} />
     )
   }
 };

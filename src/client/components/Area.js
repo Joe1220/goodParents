@@ -6,7 +6,7 @@ import mapImage from "../public/img/area_map.gif"; // 추후 삭제 및 구글 �
 export const Area = (props) => {
   return (
     <div>
-      <Jumbotron>
+      <Jumbotron className="container">
         <div className="mx-5" style={{width: 25 + 'em'}}>
           <h3 className="display-5 font-weight-bold">신선한 재료를<br />문 앞에서 만나세요</h3>
           <p>&nbsp;</p>
@@ -30,7 +30,7 @@ export const Area = (props) => {
             </div>
           </Col>
           <Col>
-            <img src={mapImage} width="100%" />
+            <img src={mapImage} width="100%" alt="pp"/>
           </Col>
         </Row>
       </Container>
