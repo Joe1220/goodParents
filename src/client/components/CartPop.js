@@ -2,7 +2,7 @@ import React from 'react';
 import { Container,  Row, Col, Button } from 'reactstrap';
 import CartListItem from './CartListItem';
 
-class Cart extends React.Component {
+class CartPop extends React.Component {
   render() {
     return (
       <Container>
@@ -21,4 +21,4 @@ class Cart extends React.Component {
   }
 };
 
-export default Cart;
+export default CartPop;
