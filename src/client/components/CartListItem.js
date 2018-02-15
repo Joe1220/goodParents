@@ -1,5 +1,4 @@
 import React from 'react';
-import image from '../public/img/about_rice.jpg';
 import "../public/style/CartListItem.css";
 import { Row, Col, CardImg, Input } from 'reactstrap';
 
@@ -15,10 +14,10 @@ class CartListItem extends React.Component {
       <div>
         <Row>
           <Col sm="4" className="cart_list_img">
-            <CardImg width="100%" src={image} alt="this is food cart image"/>
+            <CardImg width="100%" src={this.props.img} alt="this is food cart image"/>
           </Col>
           <Col sm="8" className="cart_list_dec">
-            <Row><p className="cart_list_dec_text">클래식 한우버섯</p></Row>
+            <Row><p className="cart_list_dec_text">{this.props.name}</p></Row>
             <Row>
               <Col sm="3">
                 <i class="material-icons">remove_circle</i>
