@@ -32,8 +32,10 @@ class CartPop extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      tempData: tempCartList
+      tempData: tempCartList,
+      totalPrice: this.totalPrice()
     }
+    this.totalPrice = this.totalPrice.bind(this);
   }
 
   renderCartListItem() {
@@ -44,6 +46,16 @@ class CartPop extends React.Component {
     });
   }
 
+  totalPrice() {
+    let total = 0;
+    let data = tempCartList;
+    for (let i = 0; i < data.length; i++) {
+      total += data[i].price;
+    }
+    // total += cart[i].price * parseInt(cart[i].quantity);
+    return Number(total).toLocaleString('en');
+  }
+
   render() {
     return (
       <Container>
@@ -51,7 +63,7 @@ class CartPop extends React.Component {
 
         <Row>
           <Col sm="2"><p>총</p></Col>
-          <Col sm="10"><p className="text-right">4,500</p></Col>
+          <Col sm="10"><p className="text-right">{this.state.totalPrice}원</p></Col>
         </Row>
 
         <Row>
