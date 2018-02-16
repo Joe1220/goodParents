@@ -7,7 +7,8 @@ import HomeDiet from './HomeDiet';
 
 import '../public/style/Home.css';
 
-const Home = () => {
+const Home = ({products}) => {
+  {console.log(products)}
   return(
     <Container className="Home">
       <HomeCarousel />
