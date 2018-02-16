@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 
+import tempData from '../products.json';
+
 import About from './About';
 import Area from "./Area";
 import Home from './Home';
@@ -16,6 +18,13 @@ import Login from './Login';
 import Signup from './Signup';
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      products: tempData
+    };
+  };
+
   render() {
     return (
       <div>

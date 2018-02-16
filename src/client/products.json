@@ -1,0 +1,56 @@
+[
+    {
+        "id": 1,
+        "name": "클래식 한우버거",
+        "price": 4500,
+        "image": "../public/img/home_food.png",
+        "Ingredients": [
+          "한우", "국산 표고 버섯", "당근"
+        ]
+    },
+    {
+        "id": 2,
+        "name": "클래식 한우 소고기",
+        "price": 6000,
+        "image": "../public/img/about_rice.jpg",
+        "Ingredients": [
+          "한우", "국산 표고 버섯", "당근"
+        ]
+    },
+    {
+        "id": 3,
+        "name": "진짜 햄버거",
+        "price": 4800,
+        "image": "https://res.cloudinary.com/sivadass/image/upload/v1493620046/dummy-products/cucumber.jpg",
+        "Ingredients": [
+          "한우", "국산 표고 버섯", "당근"
+        ]
+    },
+    {
+        "id": 4,
+        "name": "한우버거",
+        "price": 6000,
+        "image": "https://res.cloudinary.com/sivadass/image/upload/v1493620045/dummy-products/beetroot.jpg",
+        "Ingredients": [
+          "한우", "국산 표고 버섯", "당근"
+        ]
+    },
+    {
+        "id": 5,
+        "name": "갈비 햄버거",
+        "price": 5600,
+        "image": "https://res.cloudinary.com/sivadass/image/upload/v1493620046/dummy-products/carrots.jpg",
+        "Ingredients": [
+          "한우", "국산 표고 버섯", "당근"
+        ]
+    },
+    {
+        "id": 6,
+        "name": "토마토 햄버거",
+        "price": 1600,
+        "image": "https://res.cloudinary.com/sivadass/image/upload/v1493620045/dummy-products/tomato.jpg",
+        "Ingredients": [
+          "한우", "국산 표고 버섯", "당근"
+        ]
+    }
+]

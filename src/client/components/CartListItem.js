@@ -6,7 +6,7 @@ class CartListItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      tempNum: 0
+      tempNum: 1
     }
   }
   render() {
