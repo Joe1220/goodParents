@@ -29,7 +29,9 @@ class App extends Component {
     return (
       <div>
         <Nav />
-        <Route exact path="/" component={Home} />
+        <Route exact path="/" render={ props => {
+          return <Home products={this.state.products}/>
+        }} />
         <Route exact path="/about" component={About} />
         <Route exact path="/area" component={Area} />
         <Route exact path="/terms" component={Terms} />
