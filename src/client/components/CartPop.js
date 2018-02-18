@@ -39,7 +39,6 @@ class CartPop extends React.Component {
   }
 
   renderCartListItem() {
-
     return this.state.cart.map((item) => {
       return (
         <CartListItem img={item.img} name={item.name} key={item.name} />
@@ -59,21 +58,36 @@ class CartPop extends React.Component {
   }
 
   render() {
-    return (
-      <Container>
-        {this.renderCartListItem()}
+    if(this.state.cart.length <= 0) {
+      return (
+        <Container>
+          <Row>
+            <Col>
+              <h4>You cart is empty!</h4>
+              <br />
+              <p>제품을 담아주세요</p>
+            </Col>
+          </Row>
+        </Container>
+      )
+    } else {
+      return (
+        <Container>
+          {this.renderCartListItem()}
+          <Row>
+            <Col sm="2"><p>총</p></Col>
+            <Col sm="10"><p className="text-right">{this.state.totalPrice}원</p></Col>
+          </Row>
 
-        <Row>
-          <Col sm="2"><p>총</p></Col>
-          <Col sm="10"><p className="text-right">{this.state.totalPrice}원</p></Col>
-        </Row>
-
-        <Row>
-          <Button href="cartmain" color="primary" size="md" block>장바구니</Button>
-        </Row>
-      </Container>
-    );
+          <Row>
+            <Button href="cartmain" color="primary" size="md" block>장바구니</Button>
+          </Row>
+        </Container>
+      )
+    }
   }
 };
+
+
 
 export default CartPop;
