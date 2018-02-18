@@ -14,12 +14,12 @@ import HomeDietFood from './HomeDietFood'
 //   )
 // };
 
-const HomeDiet = ({products}) => {
+const HomeDiet = ({products, addToCart}) => {
   return(
     <div className="HomeDiet">
       <div className="HomeDietContainer">
         <HomeDietDate />
-        <HomeDietFood products={products}/>
+        <HomeDietFood products={products} addToCart={addToCart}/>
       </div>
     </div>
   )
