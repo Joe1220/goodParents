@@ -21,16 +21,34 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      products: tempData
+      products: tempData,
+      cart: [],
+      cartBounce: false
     };
+    this.handleAddToCart = this.handleAddToCart.bind(this);
   };
+
+  handleAddToCart(selectedProducts) {
+    let cartItem = this.state.cart;
+    cartItem.push(selectedProducts);
+    this.setState({
+      cart : cartItem,
+			cartBounce: true
+    });
+    setTimeout(() => {
+      this.setState({
+        cartBounce: false
+      })
+    }, 1000);
+    console.log(this.state.cart);
+  }
 
   render() {
     return (
       <div>
-        <Nav />
+        <Nav cartItems={this.state.cart}/>
         <Route exact path="/" render={ props => {
-          return <Home products={this.state.products}/>
+          return <Home products={this.state.products} />
         }} />
         <Route exact path="/about" component={About} />
         <Route exact path="/area" component={Area} />
@@ -39,7 +57,10 @@ class App extends Component {
         <Route exact path="/prime" component={Prime} />
         <Route exact path="/payment" component={Payment} />
         <Route exact path="/cartmain" component={CartMain} />
-        <Route exact path="/fooddetail" component={FoodDetail} />
+        {/* <Route exact path="/fooddetail" component={FoodDetail} /> */}
+        <Route exact path="/FoodDetail" render={ props => {
+          return <FoodDetail addToCart={this.handleAddToCart} />
+        }} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
         <Footer />
