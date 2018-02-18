@@ -76,7 +76,7 @@ class CartPop extends React.Component {
           {this.renderCartListItem()}
           <Row>
             <Col sm="2"><p>총</p></Col>
-            <Col sm="10"><p className="text-right">{this.state.totalPrice}원</p></Col>
+            <Col sm="10"><p className="text-right">{this.totalPrice()} 원</p></Col>
           </Row>
 
           <Row>
