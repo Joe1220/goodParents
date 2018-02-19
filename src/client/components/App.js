@@ -31,6 +31,7 @@ class App extends Component {
     this.updateQuantity = this.updateQuantity.bind(this);
   };
 
+  //add to cart
   handleAddToCart(selectedProducts) {
     let cartItem = this.state.cart;
     cartItem.push(selectedProducts);
