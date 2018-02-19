@@ -13,8 +13,9 @@ class HomeDietFood extends Component {
           {mealTime[index]}<hr align="left"/>
           <Link to={{
             pathname: `/foodDetail/${product.id.$oid}`,
-            query: { the: 'query' }
+            state: { fromDashboard: true }
           }}><img src={product.image} alt="food"/></Link>
+          {/* <Link to={`/foodDetail/${product.id.$oid}`} state="hello"><img src={product.image} alt="food"/></Link> */}
 
           <div className="foodName">{product.name}</div>
           <div className="foodMaterial">
@@ -23,7 +24,7 @@ class HomeDietFood extends Component {
           <Badge color="success">현미</Badge> */}
           <HomeDietFoodBadge ingredients={product.ingredients}/>
           </div>
-          <div className="foodPrice">{Number(product.price).toLocaleString()}</div>
+          <div className="foodPrice">{product.price.toLocaleString()}</div>
         </Col>
       );
     })

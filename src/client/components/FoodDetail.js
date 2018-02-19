@@ -36,7 +36,7 @@ class FoodDetail extends Component {
       selectedProduct: {}
     }
     this.toggle = this.toggle.bind(this);
-    console.log('이름입니다:',this);
+    console.log('디스입니다:',this.props);
   }
   //본래 최상단 데이터에서 quantity 를 받아야 하나, foodDetail자체가 분리되어 있으므로, 임시적으로 해당 파일에서 state로 수량을 관리한다.
   addToCart(img, name, price, quantity) {
@@ -78,7 +78,7 @@ class FoodDetail extends Component {
               </div>
               <div className="foodDetailItem">
                 {this.state.mealItem[1].name}
-                <div className="foodDetailItemPrice">{this.state.mealItem[1].price}</div>
+                <div className="foodDetailItemPrice">{this.state.mealItem[1].price.toLocaleString()}원</div>
                 <Button color="primary" onClick={this.addToCart.bind(this, image, name, price, quantity)}>장바구니에 담기</Button>
               </div>
               <div className="foodDetailDescriptionButton">

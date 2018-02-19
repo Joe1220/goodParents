@@ -71,6 +71,16 @@ class App extends Component {
     this.sumTotalAmount();
 	}
 
+  renderFoodDetail() {
+    return this.state.products.map(product => {
+      return (
+        <Route exact path={`/foodDetail/${product.id.$oid}`} render={ props => {
+          return <FoodDetail data={product} />
+        }} />
+      );
+    })
+  }
+
   render() {
     console.log(this.state.products)
     return (
@@ -92,9 +102,7 @@ class App extends Component {
         <Route exact path="/payment" component={Payment} />
         <Route exact path="/cartmain" component={CartMain} />
         {/* <Route exact path="/fooddetail" component={FoodDetail} /> */}
-        <Route exact path="/FoodDetail/:id" render={ props => {
-          return <FoodDetail addToCart={this.handleAddToCart} />
-        }} />
+        {this.renderFoodDetail()}
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
         <Footer />
