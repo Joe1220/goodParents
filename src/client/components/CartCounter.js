@@ -11,16 +11,12 @@ class CartCounter extends React.Component {
     this.decrement = this.decrement.bind(this);
   }
 
-  increment(){
-    this.setState({
-      value: Number(this.state.value) + 1
-    });
-    this.props.updateQuantity(this.state.value);
-    // 	this.setState(prevState => ({
-    //   	value: Number(prevState.value) + 1
-    // 	}), function(){
-		// 		this.props.updateQuantity(this.state.value);
-		// });
+  increment(e){
+    	this.setState(prevState => ({
+      	value: Number(prevState.value) + 1
+    	}), function(){
+				this.props.updateQuantity(this.state.value);
+		});
   };
 
 	decrement(e){

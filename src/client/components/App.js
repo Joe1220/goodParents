@@ -29,6 +29,7 @@ class App extends Component {
     this.sumTotalAmount = this.sumTotalAmount.bind(this);
     this.updateQuantity = this.updateQuantity.bind(this);
   };
+
   componentDidMount() {
     axios.get('/foodDetail')
     .then((response)=>{
@@ -37,6 +38,7 @@ class App extends Component {
       console.log('Error axios', error);
     })
   }
+
   handleAddToCart(selectedProducts) {
     let cartItem = this.state.cart;
     cartItem.push(selectedProducts);
