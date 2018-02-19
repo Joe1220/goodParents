@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
-
-import tempData from '../products.json';
+import axios from 'axios';
 
 import About from './About';
 import Area from "./Area";
@@ -21,7 +20,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      products: tempData,
+      products: [],
       cart: [],
       quantity: 1,
       totalAmount: 0
@@ -30,7 +29,14 @@ class App extends Component {
     this.sumTotalAmount = this.sumTotalAmount.bind(this);
     this.updateQuantity = this.updateQuantity.bind(this);
   };
-
+  componentDidMount() {
+    axios.get('/foodDetail')
+    .then((response)=>{
+        this.setState({products: response.data})
+    }).catch((error)=>{
+      console.log('Error axios', error);
+    })
+  }
   handleAddToCart(selectedProducts) {
     let cartItem = this.state.cart;
     cartItem.push(selectedProducts);
@@ -57,8 +63,9 @@ class App extends Component {
       quantity: qty
     });
   }
-
+  
   render() {
+    console.log(this.state.products)
     return (
       <div>
         <Nav
