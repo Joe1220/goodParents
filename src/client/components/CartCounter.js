@@ -17,12 +17,15 @@ class CartCounter extends React.Component {
     	}), function(){
 				this.props.updateQuantity(this.state.value);
 		});
+		e.preventDefault();
   };
 
 	decrement(e){
+		e.preventDefault();
 		if(this.state.value <= 1){
 			return this.state.value;
-		} else{
+		}
+		else{
 			this.setState(prevState => ({
 				value: Number(prevState.value) - 1
 			}), function(){
@@ -35,13 +38,13 @@ class CartCounter extends React.Component {
     return (
       <Row>
         <Col sm="3">
-          <i class="material-icons" onClick={this.decrement}>remove_circle</i>
+          <i className="material-icons" onClick={this.decrement}>remove_circle</i>
         </Col>
         <Col sm="4" className="cart_list_count">
           <Input size="sm"  placeholder={this.state.value} disabled="disabled" />
         </Col>
         <Col sm="3">
-          <i class="material-icons" onClick={this.increment}>add_circle</i>
+          <i className="material-icons" onClick={this.increment}>add_circle</i>
         </Col>
       </Row>
     )

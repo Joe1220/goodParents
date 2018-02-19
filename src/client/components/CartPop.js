@@ -45,7 +45,6 @@ class CartPop extends React.Component {
     });
   }
 
-
   render() {
     if(this.state.cart.length <= 0) {
       return (
