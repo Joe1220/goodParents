@@ -23,22 +23,50 @@ class App extends Component {
     this.state = {
       products: tempData,
       cart: [],
+      quantity: 1,
+      totalAmount: 0
     };
     this.handleAddToCart = this.handleAddToCart.bind(this);
+    this.sumTotalAmount = this.sumTotalAmount.bind(this);
+    this.updateQuantity = this.updateQuantity.bind(this);
   };
 
   handleAddToCart(selectedProducts) {
     let cartItem = this.state.cart;
     cartItem.push(selectedProducts);
     this.setState({
-      cart : cartItem
+      cart : cartItem,
+      quantity: 1
+    });
+    this.sumTotalAmount();
+  }
+
+  sumTotalAmount() {
+    let cart = this.state.cart;
+    let total = 0;
+    for(let i = 0; i < cart.length; i++) {
+      total += cart[i].price * parseInt(cart[i].quantity);
+    }
+    this.setState({
+      totalAmount: total
+    })
+  }
+
+  updateQuantity(qty) {
+    this.setState({
+      quantity: qty
     });
   }
 
   render() {
     return (
       <div>
-        <Nav cartItems={this.state.cart} />
+        <Nav
+          cartItems={this.state.cart}
+          productQuantity={this.state.quantity}
+          totalAmount={this.state.totalAmount}
+          updateQuantity={this.updateQuantity}
+        />
         <Route exact path="/" render={ props => {
           return <Home products={this.state.products} />
         }} />
@@ -51,7 +79,7 @@ class App extends Component {
         <Route exact path="/cartmain" component={CartMain} />
         {/* <Route exact path="/fooddetail" component={FoodDetail} /> */}
         <Route exact path="/FoodDetail" render={ props => {
-          return <FoodDetail addToCart={this.handleAddToCart} />
+          return <FoodDetail addToCart={this.handleAddToCart} productQuantity={this.state.quantity}/>
         }} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />

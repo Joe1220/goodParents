@@ -58,7 +58,7 @@ class FoodDetail extends Component {
     // let id = this.props.id;
     let name = this.state.mealItem[1].name;
     let price = this.state.mealItem[1].price;
-    let quantity = 1;
+    let quantity = this.props.productQuantity;
     return (
       <Container className="foodDetailContainer">
         <div className="foodDetailInnerContainer">
