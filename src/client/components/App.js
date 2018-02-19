@@ -92,8 +92,8 @@ class App extends Component {
         <Route exact path="/payment" component={Payment} />
         <Route exact path="/cartmain" component={CartMain} />
         {/* <Route exact path="/fooddetail" component={FoodDetail} /> */}
-        <Route exact path="/FoodDetail" render={ props => {
-          return <FoodDetail addToCart={this.handleAddToCart} productQuantity={this.state.quantity}/>
+        <Route exact path="/FoodDetail/:id" render={ props => {
+          return <FoodDetail addToCart={this.handleAddToCart} />
         }} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
