@@ -7,12 +7,12 @@ import HomeDiet from './HomeDiet';
 
 import '../public/style/Home.css';
 
-const Home = () => {
+const Home = ({products, addToCart}) => {
   return(
     <Container className="Home">
       <HomeCarousel />
       <HomeDatepicker />
-      <HomeDiet />
+      <HomeDiet products={products} addToCart={addToCart} />
     </Container>
   )
 };

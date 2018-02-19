@@ -4,7 +4,17 @@ import { Button, Container, Col, Row,
 import CartMainList from './CartMainList';
 import "../public/style/CartMain.css";
 
+//장바구니 라는 데이터 모음을 만들어서, foodDetail에서 제품을 클릭할 때 data가 만들어지도록 한뒤....
+//CartListItem으로 데이터를 넘겨준다.
+//*추가: main page에서 add버튼을 주고, detail 페이지에서 click될 경우 위에 cartpop까지 연동되려면
+//* cartmain 상위 페이지에서 cart와 add버튼을 작성하여야 할듯...
 class CartMain extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state= {
+
+    }
+  }
   render() {
     return (
       <Container>

@@ -31,12 +31,34 @@ class FoodDetail extends Component {
         {name: '마그네슘', icon: ''}
       ],
       calories: 500,
-      fadeIn: false
+      fadeIn: false,
+
+      selectedProduct: {}
     }
     this.toggle = this.toggle.bind(this);
   }
+  //본래 최상단 데이터에서 quantity 를 받아야 하나, foodDetail자체가 분리되어 있으므로, 임시적으로 해당 파일에서 state로 수량을 관리한다.
+  addToCart(img, name, price, quantity) {
+    this.setState({
+      selectedProduct: {
+        img: img,
+        name: name,
+        price: price,
+        quantity: quantity
+      }
+    }, function() {
+      this.props.addToCart(this.state.selectedProduct);
+    })
+  }
 
   render(){
+    // let image = this.props.image;
+    // let name = this.props.name;
+    // let price = this.props.price;
+    // let id = this.props.id;
+    let name = this.state.mealItem[1].name;
+    let price = this.state.mealItem[1].price;
+    let quantity = 1;
     return (
       <Container className="foodDetailContainer">
         <div className="foodDetailInnerContainer">
@@ -56,7 +78,7 @@ class FoodDetail extends Component {
               <div className="foodDetailItem">
                 {this.state.mealItem[1].name}
                 <div className="foodDetailItemPrice">{this.state.mealItem[1].price}</div>
-                <Button color="primary">장바구니에 담기</Button>
+                <Button color="primary" onClick={this.addToCart.bind(this, image, name, price, quantity)}>장바구니에 담기</Button>
               </div>
               <div className="foodDetailDescriptionButton">
                 <Button color="link" onClick={this.toggle}>재료</Button>

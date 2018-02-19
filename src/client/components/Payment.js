@@ -6,9 +6,6 @@ import PaymentInfo from './PaymentInfo';
 import PaymentInfoResult from './PaymentInfoResult';
 
 class Payment extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     return (
       <div>
