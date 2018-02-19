@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { Row, Col, Container, Badge } from 'reactstrap';
+import React from 'react';
+import { Badge } from 'reactstrap';
 
 class HomeDietFoodBadge extends React.Component {
   renderFoodBadge() {
