@@ -1,3 +1,18 @@
+.areaRowContainer_1 {
+  padding-top: 70px;
+}
+.areaRowContainer_1 > h4 {
+  font-weight: bold;
+  padding-bottom: 20px;
+}
+.areaRowContainer_1 > p {
+  padding-top: 20px;
+}
+.areaRowContainer_1,
+.areaRowContainer_2 {
+  margin-bottom: 150px;
+  margin-top: 15px;
+}
 .jumbo {
   position: relative;
   z-index: 1;
