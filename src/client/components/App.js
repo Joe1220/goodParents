@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
-
-import tempData from '../products.json';
+import axios from 'axios';
 
 import About from './About';
 import Area from "./Area";
@@ -21,12 +20,19 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      products: tempData,
+      products: [],
       cart: [],
     };
     this.handleAddToCart = this.handleAddToCart.bind(this);
   };
-
+  componentDidMount() {
+    axios.get('/foodDetail')
+    .then((response)=>{
+        this.setState({products: response.data})
+    }).catch((error)=>{
+      console.log('Error axios', error);
+    })
+  }
   handleAddToCart(selectedProducts) {
     let cartItem = this.state.cart;
     cartItem.push(selectedProducts);
@@ -34,8 +40,9 @@ class App extends Component {
       cart : cartItem
     });
   }
-
+  
   render() {
+    console.log(this.state.products)
     return (
       <div>
         <Nav cartItems={this.state.cart} />
