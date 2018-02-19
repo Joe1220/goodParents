@@ -53,19 +53,24 @@ class App extends Component {
     let cart = this.state.cart;
     let total = 0;
     for(let i = 0; i < cart.length; i++) {
-      total += cart[i].price * parseInt(cart[i].quantity);
+      total += cart[i].price * cart[i].quantity;
+      console.log(total, cart);
     }
+    // console.log(total);
     this.setState({
       totalAmount: total
-    })
-  }
-
-  updateQuantity(qty) {
-    this.setState({
-      quantity: qty
     });
   }
-  
+
+  updateQuantity(qty, id){
+		for(let i = 0; i < this.state.cart; i++) {
+      if(this.state.cart[i].id === id) {
+        this.state.cart[i].quantity = qty;
+      }
+    }
+    this.sumTotalAmount();
+	}
+
   render() {
     console.log(this.state.products)
     return (
