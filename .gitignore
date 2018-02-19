@@ -112,5 +112,6 @@ $RECYCLE.BIN/
 
 # others
 package-lock.json
+tempfolder
 
 # End of https://www.gitignore.io/api/node,macos,windows
