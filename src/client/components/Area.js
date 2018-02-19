@@ -4,13 +4,10 @@ import { Map, GoogleApiWrapper } from 'google-maps-react';
 
 import "../public/style/Area.css";
 
-const style ={
-  width: '640px',
-  height: '350px'
-}
-
 export class Area extends Component {
   render(){
+    const myLatLng = {lat: 37.552600, lng: 127.001412};
+    const style = { width: '635px', height: '350px', position: 'relative'};
     return (
       <Container>
         <Jumbotron className="jumbo container">
@@ -29,8 +26,9 @@ export class Area extends Component {
               </Col>
               <Col className="areaRowContainer_2" lg="7" md="7" sm="7">
                 <Map google={this.props.google}
-                    zoom={14} 
-                    style={style}></Map>
+                     zoom={11} 
+                     style={style}
+                     center={myLatLng}></Map>
               </Col>
             </Row>
         </Container>
