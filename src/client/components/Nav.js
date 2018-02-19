@@ -32,7 +32,12 @@ class Nav extends React.Component {
           <i id="Popover1" onClick={this.cartToggle} className="material-icons cart">add_shopping_cart</i>
           <Popover placement="bottom-end" isOpen={this.state.popOpen} target="Popover1" toggle={this.cartToggles}>
             <PopoverHeader><CartDate /></PopoverHeader>
-            <PopoverBody><CartPop productQuantity={this.props.productQuantity} cartList={this.props.cartItems} totalAmount={this.props.totalAmount} updateQuantity={this.props.updateQuantity}/></PopoverBody>
+            <PopoverBody><CartPop
+              productQuantity={this.props.productQuantity}
+              cartList={this.props.cartItems}
+              totalAmount={this.props.totalAmount}
+              updateQuantity={this.props.updateQuantity}/>
+            </PopoverBody>
           </Popover>
         </Navbar>
       </div>

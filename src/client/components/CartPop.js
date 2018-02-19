@@ -1,8 +1,6 @@
 import React from 'react';
 import { Container,  Row, Col, Button } from 'reactstrap';
 import CartListItem from './CartListItem';
-import image1 from '../public/img/about_rice.jpg';
-import image2 from '../public/img/home_food.png';
 
 //cartpop 이후 cartmainList이 나오므로, cartPop이 보다 상위.
 //cart라는 전체 state가 이쪽 props로 와야할듯.
@@ -44,7 +42,6 @@ class CartPop extends React.Component {
       )
     });
   }
-
 
   render() {
     if(this.state.cart.length <= 0) {
