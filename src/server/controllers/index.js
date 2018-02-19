@@ -1,10 +1,11 @@
-var models = require('../models');
+var models = require("../models");
 
 module.exports = {
-  idol: {
-    get: function (req, res) {
-      models.idol.get(function (err, results) {
-          res.json(results);
+  foodDetail: {
+    get: function(req, res) {
+      models.food.get(function(error, results) {
+        if (error) console.error(error);
+        res.json(results);
       });
     }
   }

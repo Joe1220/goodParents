@@ -1,8 +1,8 @@
-const express = require('express');
-const routes = require('./routes/routes');
+const express = require("express");
+const router = require("./routes/routes");
 
-const app = express()
+const app = express();
 
-// app.get('/idol', router);
+app.get("/foodDetail", router);
 
-app.listen(3001, () => console.log('Example app listening on port 3001'))
+app.listen(3001, () => console.log("Example app listening on port 3001"));
