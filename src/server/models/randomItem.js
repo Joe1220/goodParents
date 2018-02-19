@@ -20,4 +20,12 @@ const randomPick = function() {
   return list[idx];
 };
 
-module.exports = randomPick;
+const randomPick3 = function() {
+  const result = [];
+  for (let i = 0; i < 3; i++) {
+    result.push(randomPick());
+  }
+  return result;
+};
+
+module.exports = randomPick3;
