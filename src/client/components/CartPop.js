@@ -34,27 +34,17 @@ class CartPop extends React.Component {
     this.state = {
       cart: this.props.cartList
     }
-    this.totalPrice = this.totalPrice.bind(this);
     this.renderCartListItem = this.renderCartListItem.bind(this);
   }
 
   renderCartListItem() {
     return this.state.cart.map((item) => {
       return (
-        <CartListItem img={item.img} name={item.name} quantity={item.quantity} key={item.name} />
+        <CartListItem img={item.img} name={item.name} productQuantity={this.props.productQuantity} updateQuantity={this.props.updateQuantity} key={item.name} />
       )
     });
   }
 
-  totalPrice() {
-    let total = 0;
-    let data = this.state.cart;
-    for (let i = 0; i < data.length; i++) {
-      total += data[i].price;
-    }
-    // total += cart[i].price * parseInt(cart[i].quantity);
-    return Number(total).toLocaleString('en');
-  }
 
   render() {
     if(this.state.cart.length <= 0) {
@@ -75,7 +65,7 @@ class CartPop extends React.Component {
           {this.renderCartListItem()}
           <Row>
             <Col sm="2"><p>총</p></Col>
-            <Col sm="10"><p className="text-right">{this.totalPrice()} 원</p></Col>
+            <Col sm="10"><p className="text-right">{this.props.totalAmount} 원</p></Col>
           </Row>
 
           <Row>
