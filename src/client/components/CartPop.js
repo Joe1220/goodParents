@@ -41,10 +41,9 @@ class CartPop extends React.Component {
   renderCartListItem() {
     return this.state.cart.map((item) => {
       return (
-        <CartListItem img={item.img} name={item.name} key={item.name} />
+        <CartListItem img={item.img} name={item.name} quantity={item.quantity} key={item.name} />
       )
     });
-
   }
 
   totalPrice() {
@@ -63,7 +62,7 @@ class CartPop extends React.Component {
         <Container>
           <Row>
             <Col>
-              <h4>You cart is empty!</h4>
+              <h4>Your cart is empty!</h4>
               <br />
               <p>제품을 담아주세요</p>
             </Col>

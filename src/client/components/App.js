@@ -23,7 +23,6 @@ class App extends Component {
     this.state = {
       products: tempData,
       cart: [],
-      cartBounce: false
     };
     this.handleAddToCart = this.handleAddToCart.bind(this);
   };
@@ -32,21 +31,14 @@ class App extends Component {
     let cartItem = this.state.cart;
     cartItem.push(selectedProducts);
     this.setState({
-      cart : cartItem,
-			cartBounce: true
+      cart : cartItem
     });
-    setTimeout(() => {
-      this.setState({
-        cartBounce: false
-      })
-    }, 1000);
-    console.log(this.state.cart);
   }
 
   render() {
     return (
       <div>
-        <Nav cartItems={this.state.cart}/>
+        <Nav cartItems={this.state.cart} />
         <Route exact path="/" render={ props => {
           return <Home products={this.state.products} />
         }} />
