@@ -1,24 +1,22 @@
 import React, { Component } from 'react';
-import { UncontrolledCarousel } from 'reactstrap';
+import Slider from 'react-slick';
 
 import images from '../public/img/main_carousel-1.jpg'
 
-const items = [
-  {
-    src: `${images}`,
-  },
-  {
-    src: `${images}`,
-  },
-  {
-    src: `${images}`,
-  }
-];
-
 class HomeCarousel extends Component {   
   render(){
+    var settings = {
+      dots: false,
+      arrows: false,
+      slidesToShow: 1,
+      slidesToScroll: 1
+    };
     return(
-      <UncontrolledCarousel items={items} />
+      <div>
+        <Slider {...settings}>
+          <div className="carousel-inner"><img src={images} /></div>
+        </Slider>
+      </div>
     )
   }
 };
