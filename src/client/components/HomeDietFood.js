@@ -11,12 +11,7 @@ class HomeDietFood extends Component {
       return (
         <Col>
           {mealTime[index]}<hr align="left"/>
-          <Link to={{
-            pathname: `/foodDetail/${product.id.$oid}`,
-            state: { fromDashboard: true }
-          }}><img src={product.image} alt="food"/></Link>
-          {/* <Link to={`/foodDetail/${product.id.$oid}`} state="hello"><img src={product.image} alt="food"/></Link> */}
-
+          <Link to={`/foodDetail/${product.id.$oid}`}><img src={product.image} alt="food"/></Link>
           <div className="foodName">{product.name}</div>
           <div className="foodMaterial">
           {/* <Badge color="danger">한우</Badge>

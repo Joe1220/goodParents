@@ -75,7 +75,15 @@ class App extends Component {
     return this.state.products.map(product => {
       return (
         <Route exact path={`/foodDetail/${product.id.$oid}`} render={ props => {
-          return <FoodDetail data={product} />
+          return <FoodDetail
+            addToCart={this.handleAddToCart}
+            productQuantity={this.state.productQuantity}
+            image={product.image}
+            name={product.name}
+            price={product.price}
+            id={product.id.$oid}
+            ingredients={product.ingredients}
+            key={product.id}/>
         }} />
       );
     })
