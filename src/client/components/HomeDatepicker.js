@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Slider from 'react-slick';
-import { redA400 } from 'material-ui/styles/colors';
 
 class HomeDatepicker extends Component {
   constructor(props) {
