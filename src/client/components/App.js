@@ -23,12 +23,16 @@ class App extends Component {
       products: [],
       cart: [],
       quantity: 1,
-      totalAmount: 0
+      totalAmount: 0,
+      ckSelected: []
     };
     this.handleAddToCart = this.handleAddToCart.bind(this);
+    this.handleRemoveProduct = this.handleRemoveProduct.bind(this);
     this.sumTotalAmount = this.sumTotalAmount.bind(this);
     this.updateQuantity = this.updateQuantity.bind(this);
     this.checkProduct = this.checkProduct.bind(this);
+    this.onCheckboxBtnClick = this.onCheckboxBtnClick.bind(this);
+    console.log(this.state.ckSelected);
   };
 
   componentDidMount() {
@@ -61,6 +65,18 @@ class App extends Component {
     this.sumTotalAmount();
   }
 
+  handleRemoveProduct(id) {
+    let cart = this.state.cart;
+    let index = cart.findIndex(item => {
+      return item.id === id;
+    })
+    cart.splice(index, 1);
+    this.setState({
+      cart: cart
+    });
+    this.sumTotalAmount();
+  }
+
   sumTotalAmount() {
     let cart = this.state.cart;
     let total = 0;
@@ -90,6 +106,26 @@ class App extends Component {
     return cart.some((item) => {
       return item.id === id;
     })
+  }
+
+  onCheckboxBtnClick(id) {
+    let ckSelectedList = this.state.ckSelected;
+    let cart = this.state.cart;
+    let index = ckSelectedList.findIndex(item => {
+      return item.id === id;
+    })
+    if(index < 0) {
+      for (let i = 0; i < cart.length; i++) {
+        if(cart[i].id === id) {
+          ckSelectedList.push(cart[i]);
+        }
+      }
+    } else {
+      ckSelectedList.splice(index, 1);
+    }
+    this.setState({
+      ckSelected: ckSelectedList
+    });
   }
 
   renderFoodDetail() {
@@ -130,7 +166,14 @@ class App extends Component {
         <Route exact path="/payment" component={Payment} />
         {/* <Route exact path="/cartmain" component={CartMain} /> */}
         <Route exact path="/cartmain" render = { props => {
-          return <CartMain cartItems={this.state.cart} updateQuantity={this.updateQuantity}/>
+          return (
+            <CartMain
+              totalAmount={this.state.totalAmount}
+              cartItems={this.state.cart}
+              updateQuantity={this.updateQuantity}
+              handleRemoveProduct={this.handleRemoveProduct}
+              onCheckboxBtnClick={this.onCheckboxBtnClick} />
+          );
         }} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
