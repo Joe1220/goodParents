@@ -8,7 +8,33 @@ img.img-fluid {
   margin: 0 auto;
 }
 /* HomeDatepicker */
+.HomeDatePickerContainer { 
+  margin: 0 auto; 
+  padding: 25px; 
+  width: 90%; 
+}
+.slick-next:before,
+.slick-prev:before {
+  font-size: 20px;
+  line-height: 1;
+  opacity: .75;
+  color: rgb(25,25,221);
+}
+div.HomeDatePickerDay {
+  text-align: center;
+  font-family: SofiaProLight;
+}
+.HomeDatePickerDay p {
+  text-transform: uppercase;
+  color: #8b898d;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
 
+.HomeDatePickerDay h3 {
+  color: black;
+  font-size: 18px;
+}
 
 /* HomeDiet */
 .HomeDiet {
