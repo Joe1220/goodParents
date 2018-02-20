@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Container,  Row, Col, Button } from 'reactstrap';
 import CartListItem from './CartListItem';
 
@@ -38,7 +39,13 @@ class CartPop extends React.Component {
   renderCartListItem() {
     return this.state.cart.map((item) => {
       return (
-        <CartListItem id={item.id} image={item.image} name={item.name} quantity={item.quantity} updateQuantity={this.props.updateQuantity} key={item.name} />
+        <CartListItem
+          id={item.id}
+          image={item.image}
+          name={item.name}
+          quantity={item.quantity}
+          updateQuantity={this.props.updateQuantity}
+          key={item.name} />
       )
     });
   }
@@ -66,7 +73,7 @@ class CartPop extends React.Component {
           </Row>
 
           <Row>
-            <Button href="cartmain" color="primary" size="md" block>장바구니</Button>
+            <Link to="/cartmain"><Button color="primary" size="md" block>장바구니</Button></Link>
           </Row>
         </Container>
       )

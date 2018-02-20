@@ -128,11 +128,13 @@ class App extends Component {
         <Route exact path="/privacy" component={Privacy} />
         <Route exact path="/prime" component={Prime} />
         <Route exact path="/payment" component={Payment} />
-        <Route exact path="/cartmain" component={CartMain} />
-        {/* <Route exact path="/fooddetail" component={FoodDetail} /> */}
-        {this.renderFoodDetail()}
+        {/* <Route exact path="/cartmain" component={CartMain} /> */}
+        <Route exact path="/cartmain" render = { props => {
+          return <CartMain cartItems={this.state.cart} updateQuantity={this.updateQuantity}/>
+        }} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
+        {this.renderFoodDetail()}
         <Footer />
       </div>
     );
