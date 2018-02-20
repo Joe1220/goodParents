@@ -1,6 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Button, Container, Col, Row,
-         FormGroup, Label, Input, FormText } from 'reactstrap';
+         Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import CartMainList from './CartMainList';
 import "../public/style/CartMain.css";
 
@@ -9,10 +10,6 @@ import "../public/style/CartMain.css";
 //*추가: main page에서 add버튼을 주고, detail 페이지에서 click될 경우 위에 cartpop까지 연동되려면
 //* cartmain 상위 페이지에서 cart와 add버튼을 작성하여야 할듯...
 class CartMain extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   renderCartMainList() {
     return this.props.cartItems.map(cartItem => {
       return (
@@ -23,6 +20,8 @@ class CartMain extends React.Component {
           price={cartItem.price}
           quantity={cartItem.quantity}
           updateQuantity={this.props.updateQuantity}
+          handleRemoveProduct={this.props.handleRemoveProduct}
+          onCheckboxBtnClick={this.props.onCheckboxBtnClick}
           key={cartItem.id} />
       )
     })
@@ -30,85 +29,87 @@ class CartMain extends React.Component {
   render() {
     return (
       <Container>
-        <Row>
-          <Col sm="2"></Col>
-          {/* 첫번째 라인 */}
-          <Col sm="8">
-            <p className="text-center cart_header">결제 페이지</p>
-            <p className="text-center cart_header_dec">주문하실 상품평 및 수량을 정확하게 확인해 주세요</p>
-            <hr />
-            <Row >
-              <Col sm="6">
-                <FormGroup check>
-                  <Label check>
-                    <Input type="checkbox" />{' '}
-                    <FormText className="text-center Cart_first_line_text">전체선택</FormText>
-                  </Label>
-                </FormGroup>
-              </Col>
-              <Col sm="3"><FormText className="text-center Cart_first_line_text">수량</FormText></Col>
-              <Col sm="3"><FormText className="text-center Cart_first_line_text">상품금액</FormText></Col>
-            </Row>
-            <hr />
-            {/* 두번째 라인 */}
-            {this.renderCartMainList()}
-            {/* 세번째 라인 */}
-            <hr />
-            <Row className="Cart_second_line_text">
-              <Col sm="2">
-                <p>상품금액</p>
-              </Col>
-              <Col sm="2">
-                <p>상품할인금액</p>
-              </Col>
-              <Col sm="2">
-                <p>멤버할인금액</p>
-              </Col>
-              <Col sm="1">
-                <p></p>
-              </Col>
-              <Col sm="2">
-                <p>배송비</p>
-              </Col>
-              <Col sm="1">
-                <p></p>
-              </Col>
-              <Col sm="2">
-                <p>결제예정금액</p>
-              </Col>
-            </Row>
-            <Row className="Cart_second_line_text">
-              <Col sm="2">
-                <p>4,500원</p>
-              </Col>
-              <Col sm="2">
-                <p>0원</p>
-              </Col>
-              <Col sm="2">
-                <p>0원</p>
-              </Col>
-              <Col sm="1">
-                <p>+</p>
-              </Col>
-              <Col sm="2">
-                <p>2500원</p>
-              </Col>
-              <Col sm="1">
-                <p>=</p>
-              </Col>
-              <Col sm="2">
-                <p>7,000원</p>
-              </Col>
-            </Row>
-            <Row id="cart_main_button">
-              <Button color="primary" href="/payment">선택상품 주문하기</Button>
-            </Row>
 
-          </Col>
+          <Row>
+            <Col sm="2"></Col>
+            {/* 첫번째 라인 */}
+            <Col sm="8">
+              <p className="text-center cart_header">장바구니</p>
+              <p className="text-center cart_header_dec">주문하실 상품평 및 수량을 정확하게 확인해 주세요</p>
+              <hr />
+              <Form>
+              <Row>
+                <Col sm="6">
+                  <FormGroup check>
+                    <Label check>
+                      <Input type="checkbox" />{' '}
+                      <FormText className="text-center Cart_first_line_text">전체선택</FormText>
+                    </Label>
+                  </FormGroup>
+                </Col>
+                <Col sm="3"><FormText className="text-center Cart_first_line_text">수량</FormText></Col>
+                <Col sm="3"><FormText className="text-center Cart_first_line_text">상품금액</FormText></Col>
+              </Row>
+              <hr />
+              {/* 두번째 라인 */}
+              {this.renderCartMainList()}
+              {/* 세번째 라인 */}
+              <hr />
+              <Row className="Cart_second_line_text">
+                <Col sm="2">
+                  <p>상품금액</p>
+                </Col>
+                <Col sm="2">
+                  <p>상품할인금액</p>
+                </Col>
+                <Col sm="2">
+                  <p>멤버할인금액</p>
+                </Col>
+                <Col sm="1">
+                  <p></p>
+                </Col>
+                <Col sm="2">
+                  <p>배송비</p>
+                </Col>
+                <Col sm="1">
+                  <p></p>
+                </Col>
+                <Col sm="2">
+                  <p>결제예정금액</p>
+                </Col>
+              </Row>
+              <Row className="Cart_second_line_text">
+                <Col sm="2">
+                  <p>{this.props.totalAmount.toLocaleString()}원</p>
+                </Col>
+                <Col sm="2">
+                  <p>0원</p>
+                </Col>
+                <Col sm="2">
+                  <p>0원</p>
+                </Col>
+                <Col sm="1">
+                  <p>+</p>
+                </Col>
+                <Col sm="2">
+                  <p>2,500원</p>
+                </Col>
+                <Col sm="1">
+                  <p>=</p>
+                </Col>
+                <Col sm="2">
+                  <p>{(this.props.totalAmount + 2500).toLocaleString() }원</p>
+                </Col>
+              </Row>
+              <Row id="cart_main_button">
+                <Link to="/payment"><Button color="primary" type="submit">선택상품 주문하기</Button></Link>
+              </Row>
+              </Form>
+            </Col>
 
-          <Col sm="2"></Col>
+            <Col sm="2"></Col>
 
-        </Row>
+          </Row>
 
       </Container>
     );

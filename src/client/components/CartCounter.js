@@ -40,7 +40,7 @@ class CartCounter extends React.Component {
 
   render() {
     return (
-      <Row>
+      <Row className="text-center cart_main_list_option">
         <Col sm="3">
           <i className="material-icons" onClick={this.decrement}>remove_circle</i>
         </Col>

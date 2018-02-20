@@ -1,12 +1,18 @@
 import React from 'react';
 import { Col, Row, FormGroup, Label, Input,
-        CardImg } from 'reactstrap';
+        CardImg, Button } from 'reactstrap';
 import "../public/style/CartMainList.css";
 import CartCounter from './CartCounter';
 
 class CartMainList extends React.Component {
   constructor(props) {
     super(props);
+  }
+  handleRemoveProduct(id) {
+    this.props.handleRemoveProduct(id);
+  }
+  onCheckboxBtnClick(id) {
+    this.props.onCheckboxBtnClick(id);
   }
   render() {
     return (
@@ -16,7 +22,7 @@ class CartMainList extends React.Component {
             <Label check>
               <Row>
                 <Col sm="1" className="cart_main_list_option">
-                  <Input type="checkbox" />{' '}
+                  <Input type="checkbox" onClick={this.onCheckboxBtnClick.bind(this, this.props.id)}/>{' '}
                 </Col>
                 <Col sm="3" className="cart_main_list_img">
                   <CardImg width="100%" src={this.props.image} alt="this is food cart image"/>
@@ -43,7 +49,7 @@ class CartMainList extends React.Component {
           <CartCounter id={this.props.id} quantity={this.props.quantity} updateQuantity={this.props.updateQuantity}/>
         </Col>
         <Col sm="2"><p className="text-center cart_main_list_option">{(this.props.price * this.props.quantity).toLocaleString()}원</p></Col>
-        <Col sm="1"><p className="text-center cart_main_list_option">x</p></Col>
+        <Col sm="1"><Button className="text-center cart_main_list_option" onClick={this.handleRemoveProduct.bind(this, this.props.id)}>x</Button></Col>
       </Row>
     );
   }
