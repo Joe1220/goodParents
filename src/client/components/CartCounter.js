@@ -7,7 +7,6 @@ class CartCounter extends React.Component {
     this.state = {
       value: this.props.quantity
     }
-    console.log(this.state.value)
     this.increment = this.increment.bind(this);
     this.decrement = this.decrement.bind(this);
   }

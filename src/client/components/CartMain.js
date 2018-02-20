@@ -11,9 +11,21 @@ import "../public/style/CartMain.css";
 class CartMain extends React.Component {
   constructor(props) {
     super(props);
-    this.state= {
+  }
 
-    }
+  renderCartMainList() {
+    return this.props.cartItems.map(cartItem => {
+      return (
+        <CartMainList
+          id={cartItem.id}
+          image={cartItem.image}
+          name={cartItem.name}
+          price={cartItem.price}
+          quantity={cartItem.quantity}
+          updateQuantity={this.props.updateQuantity}
+          key={cartItem.id} />
+      )
+    })
   }
   render() {
     return (
@@ -22,7 +34,7 @@ class CartMain extends React.Component {
           <Col sm="2"></Col>
           {/* 첫번째 라인 */}
           <Col sm="8">
-            <p className="text-center cart_header">장바구니</p>
+            <p className="text-center cart_header">결제 페이지</p>
             <p className="text-center cart_header_dec">주문하실 상품평 및 수량을 정확하게 확인해 주세요</p>
             <hr />
             <Row >
@@ -39,7 +51,7 @@ class CartMain extends React.Component {
             </Row>
             <hr />
             {/* 두번째 라인 */}
-            <CartMainList />
+            {this.renderCartMainList()}
             {/* 세번째 라인 */}
             <hr />
             <Row className="Cart_second_line_text">
