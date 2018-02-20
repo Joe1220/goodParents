@@ -13,7 +13,7 @@ class CartListItem extends React.Component {
           </Col>
           <Col sm="8" className="cart_list_dec">
             <Row><p className="cart_list_dec_text">{this.props.name}</p></Row>
-            <CartCounter id={this.props.id} productQuantity={this.props.productQuantity} updateQuantity={this.props.updateQuantity}/>
+            <CartCounter id={this.props.id} quantity={this.props.quantity} updateQuantity={this.props.updateQuantity}/>
           </Col>
         </Row>
         <hr />

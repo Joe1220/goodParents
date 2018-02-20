@@ -28,6 +28,7 @@ class App extends Component {
     this.handleAddToCart = this.handleAddToCart.bind(this);
     this.sumTotalAmount = this.sumTotalAmount.bind(this);
     this.updateQuantity = this.updateQuantity.bind(this);
+    this.checkProduct = this.checkProduct.bind(this);
   };
 
   componentDidMount() {
@@ -41,12 +42,22 @@ class App extends Component {
 
   handleAddToCart(selectedProducts) {
     let cartItem = this.state.cart;
-    let productId = selectedProducts.id;
-    cartItem.push(selectedProducts);
-    this.setState({
-      cart : cartItem,
-      quantity: 1
-    });
+    let productID = selectedProducts.id;
+    if(this.checkProduct(productID)) {
+      let index = cartItem.findIndex(item => {
+        return item.id === productID;
+      });
+      cartItem[index].quantity += 1;
+      this.setState({
+        cart: cartItem
+      })
+    } else {
+      cartItem.push(selectedProducts);
+      this.setState({
+        cart : cartItem,
+        quantity: 1
+      });
+    }
     this.sumTotalAmount();
   }
 
@@ -74,6 +85,13 @@ class App extends Component {
     this.sumTotalAmount();
 	}
 
+  checkProduct(id) {
+    let cart = this.state.cart;
+    return cart.some((item) => {
+      return item.id === id;
+    })
+  }
+
   renderFoodDetail() {
     return this.state.products.map(product => {
       return (
@@ -98,7 +116,6 @@ class App extends Component {
       <div>
         <Nav
           cartItems={this.state.cart}
-          productQuantity={this.state.quantity}
           totalAmount={this.state.totalAmount}
           updateQuantity={this.updateQuantity}
         />
