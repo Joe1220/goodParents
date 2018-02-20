@@ -15,7 +15,7 @@ class CartCounter extends React.Component {
     	this.setState(prevState => ({
       	value: Number(prevState.value) + 1
     	}), function(){
-				this.props.updateQuantity(this.state.value);
+				this.props.updateQuantity(this.state.value, this.props.id);
 		});
 		e.preventDefault();
   };
@@ -29,10 +29,14 @@ class CartCounter extends React.Component {
 			this.setState(prevState => ({
 				value: Number(prevState.value) - 1
 			}), function(){
-				this.props.updateQuantity(this.state.value);
+				this.props.updateQuantity(this.state.value, this.props.id);
 			});
 		}
 	};
+
+  updateQuantity(qty, id) {
+    this.props.updateQuantity(qty, id);
+  }
 
   render() {
     return (

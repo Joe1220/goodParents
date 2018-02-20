@@ -30,7 +30,7 @@ class CartPop extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      cart: this.props.cartList
+      cart: this.props.cartItems
     }
     this.renderCartListItem = this.renderCartListItem.bind(this);
   }
@@ -38,7 +38,7 @@ class CartPop extends React.Component {
   renderCartListItem() {
     return this.state.cart.map((item) => {
       return (
-        <CartListItem img={item.img} name={item.name} productQuantity={this.props.productQuantity} updateQuantity={this.props.updateQuantity} key={item.name} />
+        <CartListItem id={item.id} image={item.image} name={item.name} productQuantity={this.props.productQuantity} updateQuantity={this.props.updateQuantity} key={item.name} />
       )
     });
   }
