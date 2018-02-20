@@ -41,6 +41,7 @@ class App extends Component {
 
   handleAddToCart(selectedProducts) {
     let cartItem = this.state.cart;
+    let productId = selectedProducts.id;
     cartItem.push(selectedProducts);
     this.setState({
       cart : cartItem,
@@ -53,21 +54,23 @@ class App extends Component {
     let cart = this.state.cart;
     let total = 0;
     for(let i = 0; i < cart.length; i++) {
-      total += cart[i].price * cart[i].quantity;
-      console.log(total, cart);
+      total += cart[i].price * Number(cart[i].quantity);
     }
-    // console.log(total);
     this.setState({
       totalAmount: total
     });
   }
 
   updateQuantity(qty, id){
-		for(let i = 0; i < this.state.cart; i++) {
-      if(this.state.cart[i].id === id) {
-        this.state.cart[i].quantity = qty;
+    let cart = this.state.cart;
+    for (let i = 0; i < cart.length; i++) {
+      if(cart[i].id === id) {
+        cart[i].quantity = qty;
       }
     }
+    this.setState({
+      cart: cart
+    })
     this.sumTotalAmount();
 	}
 
@@ -75,7 +78,15 @@ class App extends Component {
     return this.state.products.map(product => {
       return (
         <Route exact path={`/foodDetail/${product.id.$oid}`} render={ props => {
-          return <FoodDetail data={product} />
+          return <FoodDetail
+            addToCart={this.handleAddToCart}
+            productQuantity={this.state.quantity}
+            image={product.image}
+            name={product.name}
+            price={product.price}
+            id={product.id.$oid}
+            ingredients={product.ingredients}
+            key={product.id}/>
         }} />
       );
     })
