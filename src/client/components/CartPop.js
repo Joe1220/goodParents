@@ -38,7 +38,7 @@ class CartPop extends React.Component {
   renderCartListItem() {
     return this.state.cart.map((item) => {
       return (
-        <CartListItem id={item.id} image={item.image} name={item.name} productQuantity={this.props.productQuantity} updateQuantity={this.props.updateQuantity} key={item.name} />
+        <CartListItem id={item.id} image={item.image} name={item.name} quantity={item.quantity} updateQuantity={this.props.updateQuantity} key={item.name} />
       )
     });
   }
