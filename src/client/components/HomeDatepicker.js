@@ -4,14 +4,10 @@ import Slider from 'react-slick';
 class HomeDatepicker extends Component {
   constructor(props) {
     super(props)
-    const today = new Date().getDay();
-    this.state = {
-      clicked: today
-    }
     this.toggleClick = this.toggleClick.bind(this);
   }
   toggleClick(e){
-    this.setState({ clicked: parseInt(e.currentTarget.dataset.index) });
+    this.props.onDayDayChange(parseInt(e.currentTarget.dataset.index));
   }
 
   render() {
@@ -39,7 +35,7 @@ class HomeDatepicker extends Component {
     // 각 날짜 뿌리기
     const result = slider().map(function (item, idx) {
       return (
-        <a className={`HomeDatePickerDay ${ upperThis.state.clicked === idx ? "clicked" : "" }`}
+        <a className={`HomeDatePickerDay ${ upperThis.props.clicked === idx ? "clicked" : "" }`}
            onClick={upperThis.toggleClick}
         >
           <p>{item[0]}</p>
