@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Row, Col, Button } from 'reactstrap';
 import "../public/style/PaymentInfoResult.css";
 
-const PaymentInfoResult = () => {
+const PaymentInfoResult = ({totalAmount}) => {
   return (
     <Container>
       <Row>
@@ -12,7 +12,7 @@ const PaymentInfoResult = () => {
           <p>배송비</p>
         </Col>
         <Col sm="5" className="text-right payment_result_text">
-          <p>4,500원</p>
+          <p>{(totalAmount).toLocaleString()} 원</p>
           <p>0원</p>
           <p>2,500원</p>
         </Col>
