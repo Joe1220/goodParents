@@ -11,10 +11,22 @@
 .HomeDatePickerContainer { 
   margin: 0 auto; 
   padding: 0 25px 0 25px; 
-  width: 90%; 
+  width: 90%;
 }
 .HomeDatePickerContainer hr.HomeDatePickerHr_1 {
   margin-top: 0;
+  margin-bottom: 10px;
+}
+.HomeDatePickerContainer hr.HomeDatePickerHr_2 {
+  margin-top: 0;
+}
+.HomeDatePickerDay {
+  margin-top: 0px;
+}
+.HomeDatePickerDay h3:hover,
+.HomeDatePickerDay p:hover
+{
+  color: rgb(25,25,221);
 }
 .slick-next:before,
 .slick-prev:before {
@@ -23,8 +35,15 @@
   opacity: .75;
   color: rgb(25,25,221);
 }
-/* .HomeDatePickerDay {
-  background-color: #f3f3f3;
+/* p.Mon:hover,
+p.Tue:hover,
+p.Wen:hover,
+p.Thu:hover,
+p.Fri:hover,
+p.Sat:hover,
+p.Sun:hover
+{
+  color: rgb(25,25,221);
 } */
 div.HomeDatePickerDay {
   text-align: center;
