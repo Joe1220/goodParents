@@ -12,9 +12,7 @@ import "../public/style/CartMain.css";
 class CartMain extends React.Component {
   constructor(props){
     super(props);
-    this.state = {
-      allChecked: true
-    }
+    this.state = { allChecked: true }
     this.updateCheckedAll = this.updateCheckedAll.bind(this);
   }
 
@@ -43,6 +41,7 @@ class CartMain extends React.Component {
       )
     })
   }
+  
   render() {
     return (
       <Container>

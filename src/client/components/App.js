@@ -141,7 +141,7 @@ class App extends Component {
   renderFoodDetail() {
     return this.state.products.map(product => {
       return (
-        <Route exact path={`/foodDetail/${product.id.$oid}`} render={ props => {
+        <Route exact path={`/foodDetail/${product._id.$oid}`} render={ props => {
           return <FoodDetail
             addToCart={this.handleAddToCart}
             productQuantity={this.state.quantity}
@@ -149,7 +149,7 @@ class App extends Component {
             image={product.image}
             name={product.name}
             price={product.price}
-            id={product.id.$oid}
+            id={product._id.$oid}
             ingredients={product.ingredients}
             key={product.id}/>
         }} />
@@ -158,7 +158,7 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state.products)
+    console.log('임시데이터: ',this.state.products)
     return (
       <div>
         <Nav
@@ -174,8 +174,10 @@ class App extends Component {
         <Route exact path="/terms" component={Terms} />
         <Route exact path="/privacy" component={Privacy} />
         <Route exact path="/prime" component={Prime} />
-        <Route exact path="/payment" component={Payment} />
-        {/* <Route exact path="/cartmain" component={CartMain} /> */}
+        {/* <Route exact path="/payment" component={Payment} /> */}
+        <Route exact path="/payment" render={ props => {
+          return <Payment cartItems={this.state.cart} totalAmount={this.state.totalAmount}/>
+        }} />
         <Route exact path="/cartmain" render = { props => {
           return (
             <CartMain
