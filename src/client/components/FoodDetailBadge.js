@@ -7,7 +7,7 @@ class FoodDetailBadge extends React.Component {
       if(index < 3) {
         return (
           <Col sm="4">
-            <Badge color="danger">{ingredient.name}</Badge>
+            <Badge color="primary">{ingredient.name}</Badge>
             <img src={ingredient.image} alt={ingredient.name} key={index} />
           </Col>
         );

@@ -5,7 +5,7 @@ class HomeDietFoodBadge extends React.Component {
   renderFoodBadge() {
     return this.props.ingredients.map(ingredient => {
       return (
-        <Badge color="danger">{ingredient.name}</Badge>
+        <Badge color="primary">{ingredient.name}</Badge>
       );
     })
   }
