@@ -28,6 +28,9 @@ a.slick-slide.slick-active.HomeDatePickerDay {
 }
 .HomeDatePickerDay.clicked {
   background-color: #f3f3f3;
+  border-width: 0px 0px 4px 0;
+  border-style: solid;
+  border-color: rgb(25, 25, 221);
 }
 .HomeDatePickerDay h3:hover,
 .HomeDatePickerDay p:hover
