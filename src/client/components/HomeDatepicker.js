@@ -13,6 +13,7 @@ class HomeDatepicker extends Component {
   toggleClick(e){
     this.setState({ clicked: parseInt(e.currentTarget.dataset.index) });
   }
+
   render() {
     const upperThis = this;
     // react-slick 옵션
