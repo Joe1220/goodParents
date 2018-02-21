@@ -8,9 +8,9 @@
   margin: 0 auto;
 }
 /* HomeDatepicker */
-.HomeDatePickerContainer { 
-  margin: 0 auto; 
-  padding: 0 25px 0 25px; 
+.HomeDatePickerContainer {
+  margin: 0 auto;
+  padding: 0 25px 0 25px;
   width: 90%;
 }
 .HomeDatePickerContainer hr.HomeDatePickerHr_1 {
@@ -28,6 +28,9 @@ a.slick-slide.slick-active.HomeDatePickerDay {
 }
 .HomeDatePickerDay.clicked {
   background-color: #f3f3f3;
+  border-width: 0px 0px 4px 0;
+  border-style: solid;
+  border-color: rgb(25, 25, 221);
 }
 .HomeDatePickerDay h3:hover,
 .HomeDatePickerDay p:hover
@@ -93,8 +96,8 @@ a.HomeDatePickerDay {
 }
 .HomeDietFood .row .col {
   padding: 0 30px 0 30px;
-  font-weight: bold;
-  font-size: 18px;
+  /* font-weight: bold; */
+  /* font-size: 18px; */
 }
 .HomeDietFood .row .col .foodName {
   font-size: 21px;
@@ -128,4 +131,3 @@ span.badge-info {
 span.badge-success {
   background-color: rgb(243, 156, 18);
 }
-
