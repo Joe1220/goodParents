@@ -38,4 +38,3 @@ const pickByDate = function(date) {
 };
 
 module.exports = pickByDate;
-// console.log(pickByDate("2018-02-23"));
