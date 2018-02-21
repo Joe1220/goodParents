@@ -5,7 +5,7 @@ class CartCounter extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: this.props.productQuantity
+      value: this.props.quantity
     }
     this.increment = this.increment.bind(this);
     this.decrement = this.decrement.bind(this);
@@ -15,7 +15,7 @@ class CartCounter extends React.Component {
     	this.setState(prevState => ({
       	value: Number(prevState.value) + 1
     	}), function(){
-				this.props.updateQuantity(this.state.value);
+				this.props.updateQuantity(this.state.value, this.props.id);
 		});
 		e.preventDefault();
   };
@@ -29,19 +29,23 @@ class CartCounter extends React.Component {
 			this.setState(prevState => ({
 				value: Number(prevState.value) - 1
 			}), function(){
-				this.props.updateQuantity(this.state.value);
+				this.props.updateQuantity(this.state.value, this.props.id);
 			});
 		}
 	};
 
+  updateQuantity(qty, id) {
+    this.props.updateQuantity(qty, id);
+  }
+
   render() {
     return (
-      <Row>
+      <Row className="text-center cart_main_list_option">
         <Col sm="3">
           <i className="material-icons" onClick={this.decrement}>remove_circle</i>
         </Col>
         <Col sm="4" className="cart_list_count">
-          <Input size="sm"  placeholder={this.state.value} disabled="disabled" />
+          <Input size="sm"  placeholder={this.props.quantity} disabled="disabled" />
         </Col>
         <Col sm="3">
           <i className="material-icons" onClick={this.increment}>add_circle</i>

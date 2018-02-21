@@ -4,12 +4,62 @@
   max-height: 350px !important;
 }
 
-img.img-fluid {
+.carousel-inner img {
   margin: 0 auto;
 }
 /* HomeDatepicker */
+.HomeDatePickerContainer { 
+  margin: 0 auto; 
+  padding: 0 25px 0 25px; 
+  width: 90%;
+}
+.HomeDatePickerContainer hr.HomeDatePickerHr_1 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+.HomeDatePickerContainer hr.HomeDatePickerHr_2 {
+  margin-top: 0;
+}
+.HomeDatePickerDay {
+  margin-top: 0px;
+}
+.HomeDatePickerDay h3:hover,
+.HomeDatePickerDay p:hover
+{
+  color: rgb(25,25,221);
+}
+.slick-next:before,
+.slick-prev:before {
+  font-size: 20px;
+  line-height: 1;
+  opacity: .75;
+  color: rgb(25,25,221);
+}
+/* p.Mon:hover,
+p.Tue:hover,
+p.Wen:hover,
+p.Thu:hover,
+p.Fri:hover,
+p.Sat:hover,
+p.Sun:hover
+{
+  color: rgb(25,25,221);
+} */
+div.HomeDatePickerDay {
+  text-align: center;
+  font-family: SofiaProLight;
+}
+.HomeDatePickerDay p {
+  text-transform: uppercase;
+  color: #8b898d;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
 
-
+.HomeDatePickerDay h3 {
+  color: black;
+  font-size: 18px;
+}
 /* HomeDiet */
 .HomeDiet {
   margin: 0 auto;
@@ -20,22 +70,18 @@ img.img-fluid {
 .HomeDietContainer {
   padding: 15px;
 }
-
 .HomeDietDate {
   font-size: 22px;
   font-weight: bold;
   padding: 0 30px 0 30px;
 }
-
 .HomeDietFood {
   margin-top: 20px;
 }
-
 .HomeDietFood > .row > .col > hr {
   width: 150px;
   border: 0.5px solid gray;
 }
-
 .HomeDietFood .row .col {
   padding: 0 30px 0 30px;
   font-weight: bold;

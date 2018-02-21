@@ -23,11 +23,16 @@ class App extends Component {
       products: [],
       cart: [],
       quantity: 1,
-      totalAmount: 0
+      totalAmount: 0,
+      ckSelected: []
     };
     this.handleAddToCart = this.handleAddToCart.bind(this);
+    this.handleRemoveProduct = this.handleRemoveProduct.bind(this);
     this.sumTotalAmount = this.sumTotalAmount.bind(this);
     this.updateQuantity = this.updateQuantity.bind(this);
+    this.checkProduct = this.checkProduct.bind(this);
+    this.onCheckboxBtnClick = this.onCheckboxBtnClick.bind(this);
+    console.log(this.state.ckSelected);
   };
 
   componentDidMount() {
@@ -41,10 +46,33 @@ class App extends Component {
 
   handleAddToCart(selectedProducts) {
     let cartItem = this.state.cart;
-    cartItem.push(selectedProducts);
+    let productID = selectedProducts.id;
+    if(this.checkProduct(productID)) {
+      let index = cartItem.findIndex(item => {
+        return item.id === productID;
+      });
+      cartItem[index].quantity += 1;
+      this.setState({
+        cart: cartItem
+      })
+    } else {
+      cartItem.push(selectedProducts);
+      this.setState({
+        cart : cartItem,
+        quantity: 1
+      });
+    }
+    this.sumTotalAmount();
+  }
+
+  handleRemoveProduct(id) {
+    let cart = this.state.cart;
+    let index = cart.findIndex(item => {
+      return item.id === id;
+    })
+    cart.splice(index, 1);
     this.setState({
-      cart : cartItem,
-      quantity: 1
+      cart: cart
     });
     this.sumTotalAmount();
   }
@@ -53,23 +81,70 @@ class App extends Component {
     let cart = this.state.cart;
     let total = 0;
     for(let i = 0; i < cart.length; i++) {
-      total += cart[i].price * cart[i].quantity;
-      console.log(total, cart);
+      total += cart[i].price * Number(cart[i].quantity);
     }
-    // console.log(total);
     this.setState({
       totalAmount: total
     });
   }
 
   updateQuantity(qty, id){
-		for(let i = 0; i < this.state.cart; i++) {
-      if(this.state.cart[i].id === id) {
-        this.state.cart[i].quantity = qty;
+    let cart = this.state.cart;
+    for (let i = 0; i < cart.length; i++) {
+      if(cart[i].id === id) {
+        cart[i].quantity = qty;
       }
     }
+    this.setState({
+      cart: cart
+    })
     this.sumTotalAmount();
 	}
+
+  checkProduct(id) {
+    let cart = this.state.cart;
+    return cart.some((item) => {
+      return item.id === id;
+    })
+  }
+
+  onCheckboxBtnClick(id) {
+    let ckSelectedList = this.state.ckSelected;
+    let cart = this.state.cart;
+    let index = ckSelectedList.findIndex(item => {
+      return item.id === id;
+    })
+    if(index < 0) {
+      for (let i = 0; i < cart.length; i++) {
+        if(cart[i].id === id) {
+          ckSelectedList.push(cart[i]);
+        }
+      }
+    } else {
+      ckSelectedList.splice(index, 1);
+    }
+    this.setState({
+      ckSelected: ckSelectedList
+    });
+  }
+
+  renderFoodDetail() {
+    return this.state.products.map(product => {
+      return (
+        <Route exact path={`/foodDetail/${product.id.$oid}`} render={ props => {
+          return <FoodDetail
+            addToCart={this.handleAddToCart}
+            productQuantity={this.state.quantity}
+            image={product.image}
+            name={product.name}
+            price={product.price}
+            id={product.id.$oid}
+            ingredients={product.ingredients}
+            key={product.id}/>
+        }} />
+      );
+    })
+  }
 
   render() {
     console.log(this.state.products)
@@ -77,7 +152,6 @@ class App extends Component {
       <div>
         <Nav
           cartItems={this.state.cart}
-          productQuantity={this.state.quantity}
           totalAmount={this.state.totalAmount}
           updateQuantity={this.updateQuantity}
         />
@@ -90,13 +164,20 @@ class App extends Component {
         <Route exact path="/privacy" component={Privacy} />
         <Route exact path="/prime" component={Prime} />
         <Route exact path="/payment" component={Payment} />
-        <Route exact path="/cartmain" component={CartMain} />
-        {/* <Route exact path="/fooddetail" component={FoodDetail} /> */}
-        <Route exact path="/FoodDetail/:id" render={ props => {
-          return <FoodDetail addToCart={this.handleAddToCart} />
+        {/* <Route exact path="/cartmain" component={CartMain} /> */}
+        <Route exact path="/cartmain" render = { props => {
+          return (
+            <CartMain
+              totalAmount={this.state.totalAmount}
+              cartItems={this.state.cart}
+              updateQuantity={this.updateQuantity}
+              handleRemoveProduct={this.handleRemoveProduct}
+              onCheckboxBtnClick={this.onCheckboxBtnClick} />
+          );
         }} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
+        {this.renderFoodDetail()}
         <Footer />
       </div>
     );

@@ -2,7 +2,7 @@
   font-family: HanSans;
   align: center;
   color: rgb(25, 25, 221);
-  font-size: 19px;
+  font-size: 21px;
   font-weight: bold;
   margin: 0 180px;
 }
@@ -11,9 +11,9 @@
   margin: 0px 40px;
   font-family: HanSans;
   font-weight: normal;
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.4em;
-  color: rgb(190, 190, 190);
+  color: black;
   text-align: right;
 }
 
