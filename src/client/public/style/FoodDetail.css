@@ -10,12 +10,13 @@
 
 .foodDetailInnerContainer .row .col{
   padding-top: 15px;
-  /* padding-left: 50px; */
+  padding-left: auto;
   padding-bottom: 15px;
 }
 
 .foodDetailimg {
   width: auto;
+  height: 65%;
 }
 
 .foodDetailDate {

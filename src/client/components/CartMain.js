@@ -41,7 +41,7 @@ class CartMain extends React.Component {
       )
     })
   }
-  
+
   render() {
     return (
       <Container>
@@ -114,11 +114,11 @@ class CartMain extends React.Component {
                   <p>=</p>
                 </Col>
                 <Col sm="2">
-                  <p>{(this.props.totalAmount + 2500).toLocaleString() }원</p>
+                  <p>{(this.props.totalAmount + 2500).toLocaleString()} 원</p>
                 </Col>
               </Row>
               <Row id="cart_main_button">
-                <Link to="/payment"><Button color="primary" type="submit">선택상품 주문하기</Button></Link>
+                <Link to="/payment"><Button color="primary" type="submit" disabled={this.props.totalAmount <= 0 ? true : false}>선택상품 주문하기</Button></Link>
               </Row>
               </Form>
             </Col>

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Row, Col, Container } from 'reactstrap';
-import HomeDietFoodBadge from './HomeDietFoodBadge';
 
 class HomeDietFood extends Component {
   renderHomeDietFoodList() {
@@ -10,9 +9,6 @@ class HomeDietFood extends Component {
         <Col sm="4">
           <Link to={`/foodDetail/${product._id.$oid}`}><img src={product.image} alt="food"/></Link>
           <div className="foodName">{product.name}</div>
-          {/* <div className="foodMaterial">
-          <HomeDietFoodBadge ingredients={product.ingredients}/>
-          </div> */}
           <div>
             <p>{product.subname}</p>
           </div>

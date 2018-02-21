@@ -37,7 +37,6 @@ class FoodDetail extends Component {
     }
     this.toggle = this.toggle.bind(this);
   }
-  //본래 최상단 데이터에서 quantity 를 받아야 하나, foodDetail자체가 분리되어 있으므로, 임시적으로 해당 파일에서 state로 수량을 관리한다.
   addToCart(image, name, price, id,  quantity, checked) {
     this.setState({
       selectedProduct: {
@@ -51,6 +50,12 @@ class FoodDetail extends Component {
     }, function() {
       this.props.addToCart(this.state.selectedProduct);
     })
+  }
+
+  toggle() {
+    this.setState({
+        fadeIn: !this.state.fadeIn
+    });
   }
 
   render(){
@@ -94,11 +99,6 @@ class FoodDetail extends Component {
         </div>
       </Container>
     )
-  }
-  toggle() {
-    this.setState({
-        fadeIn: !this.state.fadeIn
-    });
   }
 }
 

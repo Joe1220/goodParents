@@ -4,7 +4,7 @@
   padding: 0 !important;
   margin: 0 !important;
 }
-
+/*
 .className {
   padding: 6px 12px;
   width: 100%;
@@ -16,7 +16,7 @@
   box-sizing: border-box;
   resize: none;
   font-size: 14px;
-}
+} */
 
 .cart_list_count {
   padding-right: 0 !important;
@@ -30,5 +30,5 @@
 .cart_list_dec_text {
   font-weight: bold;
   font-size: 12px;
-  text-align: left;
+  margin-left: 16px;
 }
