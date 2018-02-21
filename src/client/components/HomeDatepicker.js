@@ -5,21 +5,21 @@ class HomeDatepicker extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      hover: false
+      // hover: false
     }
-    this.toggleHover = this.toggleHover.bind(this);
+    // this.toggleHover = this.toggleHover.bind(this);
   }
-  toggleHover() {
-    this.setState({ hover: !this.state.hover })
-  }
+  // toggleHover() {
+  //   this.setState({ hover: !this.state.hover })
+  // }
 
-  style() {
-    if (this.state.hover) {
-      return { color: "rgb(25, 25, 221)" }
-    } else {
-      return { color: "black" }
-    }
-  }
+  // style() {
+  //   if (this.state.hover) {
+  //     return { color: "rgb(25, 25, 221)" }
+  //   } else {
+  //     return { color: "black" }
+  //   }
+  // }
 
   render() {
     const upperThis = this;
@@ -44,15 +44,14 @@ class HomeDatepicker extends Component {
       return data;
     }
     // 날짜 별 뿌리기
-    const result = slider().map(function (item, index) {
+    const result = slider().map(function (item) {
       return (
         <div className="HomeDatePickerDay"
-          key={index}
-          onMouseOver={upperThis.toggleHover}
-          onMouseOut={upperThis.toggleHover}
+          // onMouseOver={upperThis.toggleHover}
+          // onMouseOut={upperThis.toggleHover}
         >
-          <p style={upperThis.style()}>{item[0]}</p>
-          <h3 style={upperThis.style()}>{item[1]}</h3>
+          <p /*style={upperThis.style()}*/>{item[0]}</p>
+          <h3 /*tyle={upperThis.style()}*/>{item[1]}</h3>
         </div>
       )
     })
@@ -62,7 +61,7 @@ class HomeDatepicker extends Component {
         <Slider {...settings} >
           {result}
         </Slider>
-        <hr />
+        <hr className="HomeDatePickerHr_2"/>
       </div>
     );
   }
