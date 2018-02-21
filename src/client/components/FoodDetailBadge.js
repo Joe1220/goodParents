@@ -10,8 +10,11 @@ class FoodDetailBadge extends React.Component {
             <Badge color="danger">{ingredient.name}</Badge>
             <img src={ingredient.image} alt={ingredient.name} key={index} />
           </Col>
-
         );
+      } else {
+        return (
+          <div>{" "}</div>
+        )
       }
     })
   }

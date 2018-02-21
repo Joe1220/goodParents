@@ -24,15 +24,15 @@ class App extends Component {
       cart: [],
       quantity: 1,
       totalAmount: 0,
-      ckSelected: []
+      checked: true
     };
     this.handleAddToCart = this.handleAddToCart.bind(this);
     this.handleRemoveProduct = this.handleRemoveProduct.bind(this);
     this.sumTotalAmount = this.sumTotalAmount.bind(this);
     this.updateQuantity = this.updateQuantity.bind(this);
     this.checkProduct = this.checkProduct.bind(this);
-    this.onCheckboxBtnClick = this.onCheckboxBtnClick.bind(this);
-    console.log(this.state.ckSelected);
+    this.updateChecked = this.updateChecked.bind(this);
+    this.updateCheckedAll = this.updateCheckedAll.bind(this);
   };
 
   componentDidMount() {
@@ -81,7 +81,9 @@ class App extends Component {
     let cart = this.state.cart;
     let total = 0;
     for(let i = 0; i < cart.length; i++) {
-      total += cart[i].price * Number(cart[i].quantity);
+      if(cart[i].checked === true) {
+        total += cart[i].price * Number(cart[i].quantity);
+      }
     }
     this.setState({
       totalAmount: total
@@ -90,42 +92,50 @@ class App extends Component {
 
   updateQuantity(qty, id){
     let cart = this.state.cart;
-    for (let i = 0; i < cart.length; i++) {
-      if(cart[i].id === id) {
-        cart[i].quantity = qty;
-      }
-    }
+    let index = cart.findIndex(item => {
+      return item.id === id;
+    })
+    cart[index].quantity = qty;
     this.setState({
       cart: cart
     })
     this.sumTotalAmount();
 	}
 
+  updateChecked(id, checked) {
+    let cart = this.state.cart;
+    let index = cart.findIndex(item => {
+      return item.id === id;
+    })
+    cart[index].checked = checked;
+    this.setState({
+      cart: cart
+    })
+    this.sumTotalAmount();
+  }
+
+  updateCheckedAll(allChecked) {
+    let cart = this.state.cart;
+    if(allChecked === true) {
+      for (let i = 0; i < cart.length; i++) {
+        cart[i].checked = true;
+      }
+    } else {
+      for (let i = 0; i < cart.length; i++) {
+        cart[i].checked = false;
+      }
+    }
+    this.setState({
+      cart: cart
+    })
+    this.sumTotalAmount();
+  }
+
   checkProduct(id) {
     let cart = this.state.cart;
     return cart.some((item) => {
       return item.id === id;
     })
-  }
-
-  onCheckboxBtnClick(id) {
-    let ckSelectedList = this.state.ckSelected;
-    let cart = this.state.cart;
-    let index = ckSelectedList.findIndex(item => {
-      return item.id === id;
-    })
-    if(index < 0) {
-      for (let i = 0; i < cart.length; i++) {
-        if(cart[i].id === id) {
-          ckSelectedList.push(cart[i]);
-        }
-      }
-    } else {
-      ckSelectedList.splice(index, 1);
-    }
-    this.setState({
-      ckSelected: ckSelectedList
-    });
   }
 
   renderFoodDetail() {
@@ -135,6 +145,7 @@ class App extends Component {
           return <FoodDetail
             addToCart={this.handleAddToCart}
             productQuantity={this.state.quantity}
+            checked={this.state.checked}
             image={product.image}
             name={product.name}
             price={product.price}
@@ -172,7 +183,8 @@ class App extends Component {
               cartItems={this.state.cart}
               updateQuantity={this.updateQuantity}
               handleRemoveProduct={this.handleRemoveProduct}
-              onCheckboxBtnClick={this.onCheckboxBtnClick} />
+              updateChecked={this.updateChecked}
+              updateCheckedAll={this.updateCheckedAll}/>
           );
         }} />
         <Route exact path="/login" component={Login} />

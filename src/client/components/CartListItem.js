@@ -1,6 +1,6 @@
 import React from 'react';
 import "../public/style/CartListItem.css";
-import { Row, Col, CardImg, Input } from 'reactstrap';
+import { Row, Col, CardImg } from 'reactstrap';
 import CartCounter from './CartCounter';
 
 class CartListItem extends React.Component {

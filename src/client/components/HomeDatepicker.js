@@ -7,7 +7,7 @@ class HomeDatepicker extends Component {
     this.state = {
     }
   }
-  
+
   render() {
     const settings = {
       dots: false,

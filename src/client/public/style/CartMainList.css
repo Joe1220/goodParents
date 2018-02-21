@@ -9,6 +9,12 @@
 
 .cart_main_list_img {
   width: 100%;
+  margin-top: auto;
   padding: 0 !important;
-  margin: 0 !important;
+  /* margin: 0 !important; */
+}
+
+.cart_main_list_remove {
+  width: 100%;
+  vertical-align: middle;
 }
