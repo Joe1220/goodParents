@@ -36,7 +36,8 @@ class App extends Component {
   };
 
   componentDidMount() {
-    axios.get('/foodDetail')
+    let today = new Date().toISOString().slice(0, 10);
+    axios.get(`/foodDetail?date=${today}`)
     .then((response)=>{
         this.setState({products: response.data})
     }).catch((error)=>{
