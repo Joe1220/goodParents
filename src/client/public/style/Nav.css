@@ -22,7 +22,7 @@
 }
 
 .navigation {
-  border-width: 0px 0px 1px;
+  border-width: 0px 0px 0px 0;
   border-style: solid;
   border-color: rgb(51, 51, 51) rgb(51, 51, 51) rgb(224, 224, 224);
   display: flex;
