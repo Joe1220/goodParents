@@ -10,18 +10,35 @@ import "../public/style/CartMain.css";
 //*추가: main page에서 add버튼을 주고, detail 페이지에서 click될 경우 위에 cartpop까지 연동되려면
 //* cartmain 상위 페이지에서 cart와 add버튼을 작성하여야 할듯...
 class CartMain extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      allChecked: true
+    }
+    this.updateCheckedAll = this.updateCheckedAll.bind(this);
+  }
+
+  updateCheckedAll() {
+    this.setState(prevState => ({
+      allChecked: !prevState.allChecked
+    }), function() {
+      this.props.updateCheckedAll(this.state.allChecked);
+    })
+  }
+
   renderCartMainList() {
     return this.props.cartItems.map(cartItem => {
       return (
         <CartMainList
           id={cartItem.id}
+          checked={cartItem.checked}
           image={cartItem.image}
           name={cartItem.name}
           price={cartItem.price}
           quantity={cartItem.quantity}
           updateQuantity={this.props.updateQuantity}
           handleRemoveProduct={this.props.handleRemoveProduct}
-          onCheckboxBtnClick={this.props.onCheckboxBtnClick}
+          updateChecked={this.props.updateChecked}
           key={cartItem.id} />
       )
     })
@@ -37,12 +54,12 @@ class CartMain extends React.Component {
               <p className="text-center cart_header">장바구니</p>
               <p className="text-center cart_header_dec">주문하실 상품평 및 수량을 정확하게 확인해 주세요</p>
               <hr />
-              <Form>
+              <Form >
               <Row>
                 <Col sm="6">
                   <FormGroup check>
                     <Label check>
-                      <Input type="checkbox" />{' '}
+                      <Input type="checkbox" checked={this.state.allChecked} onChange={this.updateCheckedAll}/>{' '}
                       <FormText className="text-center Cart_first_line_text">전체선택</FormText>
                     </Label>
                   </FormGroup>

@@ -9,17 +9,6 @@ class HomeDatepicker extends Component {
     }
     // this.toggleHover = this.toggleHover.bind(this);
   }
-  // toggleHover() {
-  //   this.setState({ hover: !this.state.hover })
-  // }
-
-  // style() {
-  //   if (this.state.hover) {
-  //     return { color: "rgb(25, 25, 221)" }
-  //   } else {
-  //     return { color: "black" }
-  //   }
-  // }
 
   render() {
     const upperThis = this;
