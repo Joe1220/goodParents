@@ -12,10 +12,7 @@ class Home extends Component {
     super(props)
     let today = new Date().getDay();
     this.state = {
-      clicked: today,
-      year: new Date().getFullYear(),
-      month: new Date().getMonth(),
-      date: new Date().getDate()
+      clicked: today
     }
     this.onDayDayChange = this.onDayDayChange.bind(this);
     this.onChangeDate = this.onChangeDate.bind(this);
@@ -24,14 +21,13 @@ class Home extends Component {
     this.setState({clicked: day})
   }
   onChangeDate(target){
-    this.setState({
-      year: target.getAttribute('year'),
-      month: target.getAttribute('month'),
-      date: target.getAttribute('date')
-    })
+    const localDate = new Date(target.getAttribute('year'), target.getAttribute('month'), target.getAttribute('date'));
+    const localOffset = localDate.getTimezoneOffset() * 60000;
+    const fullDate = new Date(localDate.getTime()-localOffset).toISOString().slice(0,10);
+    this.props.onChangeFullDate(fullDate);
   }
+  
   render(){
-    console.log(this.state)
     return(
       <Container className="Home">
         <HomeCarousel />

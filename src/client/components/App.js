@@ -24,7 +24,8 @@ class App extends Component {
       cart: [],
       quantity: 1,
       totalAmount: 0,
-      checked: true
+      checked: true,
+      fullDate: new Date().toISOString().slice(0, 10)
     };
     this.handleAddToCart = this.handleAddToCart.bind(this);
     this.handleRemoveProduct = this.handleRemoveProduct.bind(this);
@@ -33,22 +34,35 @@ class App extends Component {
     this.checkProduct = this.checkProduct.bind(this);
     this.updateChecked = this.updateChecked.bind(this);
     this.updateCheckedAll = this.updateCheckedAll.bind(this);
+    this.onChangeFullDate = this.onChangeFullDate.bind(this);
   };
 
+  foodDetailFetch() {
+    fetch(`/foodDetail?date=${this.state.fullDate}`)
+      .then(response => response.json())
+      .then(data => this.setState({ products: data }))
+      .catch(error => console.error(error));
+  }
+    // axios.get("/foodDetail", {params: {date: this.state.fullDate}})
+    // .then((response)=>{
+    //     console.log(response.data);
+    //     this.setState({products: response.data})
+    // }).catch((error)=>{
+    //   console.log('Error axios', error);
+    // })
   componentDidMount() {
-    let today = new Date().toISOString().slice(0, 10);
-    axios.get(`/foodDetail?date=${today}`)
-    .then((response)=>{
-        this.setState({products: response.data})
-    }).catch((error)=>{
-      console.log('Error axios', error);
-    })
+    this.foodDetailFetch();
+  }
+  componentDidUpdate(prevProps, prevState) {
+    if(prevState.fullDate !== this.state.fullDate){
+      this.foodDetailFetch();
+    }
   }
 
   handleAddToCart(selectedProducts) {
     let cartItem = this.state.cart;
     let productID = selectedProducts.id;
-    if(this.checkProduct(productID)) {
+    if (this.checkProduct(productID)) {
       let index = cartItem.findIndex(item => {
         return item.id === productID;
       });
@@ -59,7 +73,7 @@ class App extends Component {
     } else {
       cartItem.push(selectedProducts);
       this.setState({
-        cart : cartItem,
+        cart: cartItem,
         quantity: 1
       });
     }
@@ -81,8 +95,8 @@ class App extends Component {
   sumTotalAmount() {
     let cart = this.state.cart;
     let total = 0;
-    for(let i = 0; i < cart.length; i++) {
-      if(cart[i].checked === true) {
+    for (let i = 0; i < cart.length; i++) {
+      if (cart[i].checked === true) {
         total += cart[i].price * Number(cart[i].quantity);
       }
     }
@@ -91,7 +105,7 @@ class App extends Component {
     });
   }
 
-  updateQuantity(qty, id){
+  updateQuantity(qty, id) {
     let cart = this.state.cart;
     let index = cart.findIndex(item => {
       return item.id === id;
@@ -101,7 +115,7 @@ class App extends Component {
       cart: cart
     })
     this.sumTotalAmount();
-	}
+  }
 
   updateChecked(id, checked) {
     let cart = this.state.cart;
@@ -117,7 +131,7 @@ class App extends Component {
 
   updateCheckedAll(allChecked) {
     let cart = this.state.cart;
-    if(allChecked === true) {
+    if (allChecked === true) {
       for (let i = 0; i < cart.length; i++) {
         cart[i].checked = true;
       }
@@ -142,7 +156,7 @@ class App extends Component {
   renderFoodDetail() {
     return this.state.products.map(product => {
       return (
-        <Route exact path={`/foodDetail/${product._id.$oid}`} render={ props => {
+        <Route exact path={`/foodDetail/${product._id.$oid}`} render={props => {
           return <FoodDetail
             addToCart={this.handleAddToCart}
             productQuantity={this.state.quantity}
@@ -152,14 +166,15 @@ class App extends Component {
             price={product.price}
             id={product._id.$oid}
             ingredients={product.ingredients}
-            key={product.id}/>
+            key={product.id} />
         }} />
       );
     })
   }
-
+  onChangeFullDate(fullDate) {
+    this.setState({ fullDate: fullDate });
+  }
   render() {
-    console.log('임시데이터: ',this.state.products)
     return (
       <div>
         <Nav
@@ -167,8 +182,10 @@ class App extends Component {
           totalAmount={this.state.totalAmount}
           updateQuantity={this.updateQuantity}
         />
-        <Route exact path="/" render={ props => {
-          return <Home products={this.state.products} />
+        <Route exact path="/" render={props => {
+          return <Home
+            products={this.state.products}
+            onChangeFullDate={this.onChangeFullDate} />
         }} />
         <Route exact path="/about" component={About} />
         <Route exact path="/area" component={Area} />
@@ -176,10 +193,10 @@ class App extends Component {
         <Route exact path="/privacy" component={Privacy} />
         <Route exact path="/prime" component={Prime} />
         {/* <Route exact path="/payment" component={Payment} /> */}
-        <Route exact path="/payment" render={ props => {
-          return <Payment cartItems={this.state.cart} totalAmount={this.state.totalAmount}/>
+        <Route exact path="/payment" render={props => {
+          return <Payment cartItems={this.state.cart} totalAmount={this.state.totalAmount} />
         }} />
-        <Route exact path="/cartmain" render = { props => {
+        <Route exact path="/cartmain" render={props => {
           return (
             <CartMain
               totalAmount={this.state.totalAmount}
@@ -187,7 +204,7 @@ class App extends Component {
               updateQuantity={this.updateQuantity}
               handleRemoveProduct={this.handleRemoveProduct}
               updateChecked={this.updateChecked}
-              updateCheckedAll={this.updateCheckedAll}/>
+              updateCheckedAll={this.updateCheckedAll} />
           );
         }} />
         <Route exact path="/login" component={Login} />

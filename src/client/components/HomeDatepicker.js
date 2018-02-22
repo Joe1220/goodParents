@@ -7,12 +7,11 @@ class HomeDatepicker extends Component {
     this.toggleClick = this.toggleClick.bind(this);
   }
   toggleClick(e){
-    console.log(e.currentTarget)
     this.props.onDayDayChange(parseInt(e.currentTarget.dataset.index));
     this.passProps(e);
   }
   passProps(e){
-    this.props.onChangeDate(e.currentTarget)
+    this.props.onChangeDate(e.currentTarget);
   }
   render() {
     const upperThis = this;
