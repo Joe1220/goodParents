@@ -25,17 +25,19 @@ class Nav extends React.Component {
         <Navbar color="faded">
           <Link to="/area"><p className="head_obtions">배달구역</p></Link>
           <Link to="/prime"><p className="head_obtions">프라임</p></Link>
-          <NavbarBrand href="/"><p id="my_head">goodparents</p></NavbarBrand>
+          <Link to="/"><NavbarBrand><p id="my_head">goodparents</p></NavbarBrand></Link>
           <Link to="/about" ><p className="head_obtions">About</p></Link>
           <Link to="/login" ><p className="head_obtions">Log in</p></Link>
 
           <i id="Popover1" onClick={this.cartToggle} className="material-icons cart">add_shopping_cart</i>
-          <Popover placement="bottom-end" isOpen={this.state.popOpen} target="Popover1" toggle={this.cartToggles}>
+          <Popover placement="bottom-end" isOpen={this.state.popOpen} target="Popover1" toggle={this.cartToggle}>
             <PopoverHeader><CartDate /></PopoverHeader>
-            <PopoverBody><CartPop
-              cartItems={this.props.cartItems}
-              totalAmount={this.props.totalAmount}
-              updateQuantity={this.props.updateQuantity}/>
+            <PopoverBody>
+              <CartPop
+                cartItems={this.props.cartItems}
+                totalAmount={this.props.totalAmount}
+                updateQuantity={this.props.updateQuantity}
+              />
             </PopoverBody>
           </Popover>
         </Navbar>

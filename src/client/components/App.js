@@ -168,6 +168,8 @@ class App extends Component {
             id={product._id.$oid}
             ingredients={product.ingredients}
             key={product.id} />
+            nutrients={product.nutrients}
+            key={product.id}/>
         }} />
       );
     })
