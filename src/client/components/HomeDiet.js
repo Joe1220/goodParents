@@ -6,10 +6,8 @@ import HomeDietFood from './HomeDietFood'
 const HomeDiet = ({products, addToCart, fullDate}) => {
   return(
     <div className="HomeDiet">
-      <div className="HomeDietContainer">
-        <HomeDietDate fullDate={fullDate}/>
-        <HomeDietFood products={products} addToCart={addToCart}/>
-      </div>
+      <HomeDietDate fullDate={fullDate}/>
+      <HomeDietFood products={products} addToCart={addToCart}/>
     </div>
   )
 };
