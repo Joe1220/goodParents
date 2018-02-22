@@ -1,30 +1,27 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Row, Col, Container } from 'reactstrap';
 
 class HomeDietFood extends Component {
   renderHomeDietFoodList() {
     return this.props.products.map((product, index) => {
       return (
-        <Col sm="4">
-          <Link to={`/foodDetail/${product._id.$oid}`}><img src={product.image} alt="food"/></Link>
-          <div className="foodName">{product.name}</div>
-          <div>
-            <p>{product.subname}</p>
+        <div className="HomeDietFood">
+          <Link className="HomeDietFoodImg" to={`/foodDetail/${product._id.$oid}`}><img src={product.image} alt="food"/></Link>
+          <div className="HomeDietFoodFullText">
+            <p className="HomeDietFoodFullTextTitle">{product.name}</p>
+            <p className="HomeDietFoodFullTextSubtitle">{product.subname}</p>
           </div>
-          <div className="foodPrice"><p>{product.price.toLocaleString()}</p></div>
-        </Col>
+          <hr />
+          <p className="HomeDietFoodPrice">{product.price.toLocaleString()} 원</p>
+        </div>
       );
     })
   }
-
   render(){
     return (
-      <Container className="HomeDietFood">
-        <Row>
-          {this.renderHomeDietFoodList()}
-        </Row>
-      </Container>
+      <div>
+        {this.renderHomeDietFoodList()}
+      </div> 
     )
   }
 };
