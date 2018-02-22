@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
-import axios from 'axios';
+// import axios from 'axios';
 
 import About from './About';
 import Area from "./Area";
