@@ -4,16 +4,15 @@ import Slider from 'react-slick';
 class HomeDatepicker extends Component {
   constructor(props) {
     super(props)
-    const today = new Date().getDay();
-    this.state = {
-      clicked: today
-    }
     this.toggleClick = this.toggleClick.bind(this);
   }
   toggleClick(e){
-    this.setState({ clicked: parseInt(e.currentTarget.dataset.index) });
+    this.props.onDayDayChange(parseInt(e.currentTarget.dataset.index));
+    this.passProps(e);
   }
-
+  passProps(e){
+    this.props.onChangeDate(e.currentTarget);
+  }
   render() {
     const upperThis = this;
     // react-slick 옵션
@@ -23,27 +22,32 @@ class HomeDatepicker extends Component {
       slidesToScroll: 7
     };
     // 날짜 배열 뽑아내는 로직
-    let days = ["Sun", "Mon", "Tue", "Wen", "Thu", "Fri", "Sat"];
-    let data = [];
     const slider = function () {
+      let days = ["Sun", "Mon", "Tue", "Wen", "Thu", "Fri", "Sat"];
+      let data = [];
       let currentDate = new Date();
       currentDate.setDate(currentDate.getDate() - currentDate.getDay() + 1)
       for (var i = 1; i <= 14; i += 1) {
         let newValue = [];
-        newValue = [days[currentDate.getDay()], currentDate.getDate()]
+        newValue = [currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(), currentDate.getDay(), days[currentDate.getDay()]]
         data.push(newValue);
         currentDate.setDate(currentDate.getDate() + 1);
       }
       return data;
     }
+
     // 각 날짜 뿌리기
     const result = slider().map(function (item, idx) {
       return (
-        <a className={`HomeDatePickerDay ${ upperThis.state.clicked === idx ? "clicked" : "" }`}
+        <a className={`HomeDatePickerDay ${ upperThis.props.clicked === idx ? "clicked" : "" }`}
            onClick={upperThis.toggleClick}
+           year={item[0]}
+           month={item[1]}
+           date={item[2]}
+           day={item[3]}
         >
-          <p>{item[0]}</p>
-          <h3>{item[1]}</h3>
+          <p>{item[4]}</p>
+          <h3>{item[2]}</h3>
         </a>
       )
     })

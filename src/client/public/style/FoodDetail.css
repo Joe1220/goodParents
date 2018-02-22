@@ -10,26 +10,29 @@
 
 .foodDetailInnerContainer .row .col{
   padding-top: 15px;
-  /* padding-left: 50px; */
+  /* padding-left: auto; */
   padding-bottom: 15px;
 }
 
 .foodDetailimg {
-  width: auto;
+  width: 400px;
+  height: 400px;
 }
 
 .foodDetailDate {
   font-size: 21px;
-  font-weight: bold;
+  opacity: 0.7;
+  /* font-weight: bold; */
 }
 
 .foodDetailTime {
   margin-top: 20px;
-  font-weight: bold;
+  opacity: 0.7;
+  /* font-weight: bold; */
 }
 
-.foodDetailTime hr{
-  width: 50%;
+.foodDetailContainer hr{
+  width: 60%;
   border: solid 1px grey;
 }
 .foodDetailItem {
@@ -38,7 +41,7 @@
 }
 .foodDetailItemPrice {
   font-size: 18px;
-  font-weight: bold;
+  /* font-weight: bold; */
   margin-top: 25px;
 }
 .foodDetailItem button{
@@ -49,18 +52,18 @@ button.btn-primary {
 }
 
 .foodDetailDescriptionButton{
-  margin-top: 15px;
+  margin-top: 35px;
   font-family: Han Sans;
   font-weight: bold;
 }
 
 .foodDetailDescriptionButton button{
-  display: inline-block;
-  margin-right: 35px;
-  text-align: left;
-  padding: 6px 0;
-  text-decoration: none;
-  color: black;
+  /* display: inline-block; */
+  /* margin-right: 35px; */
+  /* text-align: left; */
+  /* padding: 6px 0; */
+  /* text-decoration: none; */
+  /* color: black; */
 }
 .foodDetailDescriptionButton button:hover{
   color: rgb(25, 25, 221);
