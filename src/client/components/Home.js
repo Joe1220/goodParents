@@ -37,7 +37,8 @@ class Home extends Component {
           onChangeDate={ this.onChangeDate } />
         <HomeDiet 
           products={ this.props.products }
-          addToCart={ this.props.addToCart } />
+          addToCart={ this.props.addToCart }
+          fullDate={ this.props.fullDate} />
       </Container>
     )
   }

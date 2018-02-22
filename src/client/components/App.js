@@ -54,6 +54,7 @@ class App extends Component {
     this.foodDetailFetch();
   }
   componentDidUpdate(prevProps, prevState) {
+    console.log('1')
     if(prevState.fullDate !== this.state.fullDate){
       this.foodDetailFetch();
     }
@@ -185,7 +186,8 @@ class App extends Component {
         <Route exact path="/" render={props => {
           return <Home
             products={this.state.products}
-            onChangeFullDate={this.onChangeFullDate} />
+            onChangeFullDate={this.onChangeFullDate}
+            fullDate={this.state.fullDate} />
         }} />
         <Route exact path="/about" component={About} />
         <Route exact path="/area" component={Area} />
