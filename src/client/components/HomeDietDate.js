@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const HomeDietDate = () => {
-  return(
-    <div className="HomeDietDate">
-      오늘<br />
-      3월 12일 수요일
-    </div>
-  )
+class HomeDietDate extends Component {
+  render(){
+    let fullDate = new Date(this.props.fullDate).toString();
+    let day = fullDate.slice(0,4);
+    let month = fullDate.slice(4,8);
+    let date = fullDate.slice(8,10);
+    return(
+      <div className="HomeDietDate">
+        {month}, {date}, {day}
+      </div>
+    )
+  }
 };
 
 export default HomeDietDate;
