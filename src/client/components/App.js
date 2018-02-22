@@ -54,7 +54,6 @@ class App extends Component {
     this.foodDetailFetch();
   }
   componentDidUpdate(prevProps, prevState) {
-    console.log('1')
     if(prevState.fullDate !== this.state.fullDate){
       this.foodDetailFetch();
     }
@@ -168,8 +167,6 @@ class App extends Component {
             id={product._id.$oid}
             ingredients={product.ingredients}
             key={product.id} />
-            nutrients={product.nutrients}
-            key={product.id}/>
         }} />
       );
     })
