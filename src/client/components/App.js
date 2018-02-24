@@ -52,11 +52,24 @@ class App extends Component {
     // })
   componentDidMount() {
     this.foodDetailFetch();
+    //cart state가 local storage에 있으면 불러오기
+    let cart = localStorage.cart;
+    if(cart){
+      this.setState({
+         cart: JSON.parse(cart)
+      });
+    }
   }
+
   componentDidUpdate(prevProps, prevState) {
     if(prevState.fullDate !== this.state.fullDate){
       this.foodDetailFetch();
     }
+
+    // if(prevState.cart !== this.state.cart) {
+    //   localStorage.cart = JSON.stringify(this.state.cart);
+    // }
+    localStorage.cart = JSON.stringify(this.state.cart);
   }
 
   handleAddToCart(selectedProducts) {
@@ -194,7 +207,6 @@ class App extends Component {
         <Route exact path="/terms" component={Terms} />
         <Route exact path="/privacy" component={Privacy} />
         <Route exact path="/prime" component={Prime} />
-        {/* <Route exact path="/payment" component={Payment} /> */}
         <Route exact path="/payment" render={props => {
           return <Payment cartItems={this.state.cart} totalAmount={this.state.totalAmount} />
         }} />
