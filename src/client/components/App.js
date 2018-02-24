@@ -27,6 +27,7 @@ class App extends Component {
       checked: true,
       fullDate: new Date().toISOString().slice(0, 10)
     };
+    this.resetCart = this.resetCart.bind(this);
     this.handleAddToCart = this.handleAddToCart.bind(this);
     this.handleRemoveProduct = this.handleRemoveProduct.bind(this);
     this.sumTotalAmount = this.sumTotalAmount.bind(this);
@@ -54,10 +55,12 @@ class App extends Component {
     this.foodDetailFetch();
     //cart state가 local storage에 있으면 불러오기
     let cart = localStorage.cart;
-    if(cart){
-      this.setState({
-         cart: JSON.parse(cart)
-      });
+    if(cart) {
+      this.setState(prevState => ({
+        cart: JSON.parse(cart)
+      }), function() {
+        this.sumTotalAmount();
+      })
     }
   }
 
@@ -65,11 +68,16 @@ class App extends Component {
     if (prevState.fullDate !== this.state.fullDate) {
       this.foodDetailFetch();
     }
-
     // if(prevState.cart !== this.state.cart) {
     //   localStorage.cart = JSON.stringify(this.state.cart);
     // }
     localStorage.cart = JSON.stringify(this.state.cart);
+  }
+
+  resetCart() {
+    this.setState({
+      cart: []
+    })
   }
 
   handleAddToCart(selectedProducts) {
@@ -223,7 +231,7 @@ class App extends Component {
         <Route exact path="/prime" component={Prime} />
 
         <Route exact path="/payment" render={props => {
-          return <Payment cartItems={this.state.cart} totalAmount={this.state.totalAmount} />
+          return <Payment cartItems={this.state.cart} totalAmount={this.state.totalAmount} resetCart={this.resetCart}/>
         }} />
         <Route exact path="/cartmain" render={props => {
           return (
