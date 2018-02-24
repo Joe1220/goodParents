@@ -3,7 +3,7 @@ import Slider from 'react-slick';
 
 import images from '../public/img/main_carousel-1.jpg'
 
-class HomeCarousel extends Component {   
+class HomeCarousel extends Component {
   render(){
     var settings = {
       dots: false,
@@ -14,7 +14,7 @@ class HomeCarousel extends Component {
     return(
       <div>
         <Slider {...settings}>
-          <div className="carousel-inner"><img src={images} /></div>
+          <div className="carousel-inner"><img src={images} alt="temp"/></div>
         </Slider>
       </div>
     )
