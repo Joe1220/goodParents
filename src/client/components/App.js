@@ -78,6 +78,7 @@ class App extends Component {
     this.setState({
       cart: []
     })
+    alert('결제 완료');
   }
 
   handleAddToCart(selectedProducts) {

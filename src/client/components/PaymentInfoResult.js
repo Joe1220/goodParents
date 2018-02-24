@@ -1,8 +1,9 @@
 import React from 'react';
 import { Container, Row, Col, Button } from 'reactstrap';
+import { Link } from 'react-router-dom';
 import "../public/style/PaymentInfoResult.css";
 
-const PaymentInfoResult = ({totalAmount}) => {
+const PaymentInfoResult = ({totalAmount, resetCart}) => {
   return (
     <Container>
       <Row>
@@ -17,7 +18,7 @@ const PaymentInfoResult = ({totalAmount}) => {
           <p>2,500원</p>
         </Col>
       </Row>
-      <Button color="primary" block>결제하기</Button>
+      <Link to="/"><Button color="primary" block onClick={resetCart}>결제하기</Button></Link>
     </Container>
   );
 }
