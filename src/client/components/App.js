@@ -1,20 +1,20 @@
-import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
-// import axios from 'axios';
+import React, { Component } from "react";
+import { Route } from "react-router-dom";
+// import axios from "axios";
 
-import About from './About';
+import About from "./About";
 import Area from "./Area";
-import Home from './Home';
-import Nav from './Nav';
-import Footer from './Footer';
-import Terms from './Terms'
-import Privacy from './Privacy';
-import Prime from './Prime';
-import Payment from './Payment';
-import FoodDetail from './FoodDetail'
-import CartMain from './CartMain';
-import Login from './Login';
-import Signup from './Signup';
+import Home from "./Home";
+import Nav from "./Nav";
+import Footer from "./Footer";
+import Terms from "./Terms";
+import Privacy from "./Privacy";
+import Prime from "./Prime";
+import Payment from "./Payment";
+import FoodDetail from "./FoodDetail";
+import CartMain from "./CartMain";
+import Login from "./Login";
+import Signup from "./Signup";
 
 class App extends Component {
   constructor() {
@@ -35,7 +35,7 @@ class App extends Component {
     this.updateChecked = this.updateChecked.bind(this);
     this.updateCheckedAll = this.updateCheckedAll.bind(this);
     this.onChangeFullDate = this.onChangeFullDate.bind(this);
-  };
+  }
 
   foodDetailFetch() {
     fetch(`/foodDetail?date=${this.state.fullDate}`)
@@ -43,13 +43,13 @@ class App extends Component {
       .then(data => this.setState({ products: data }))
       .catch(error => console.error(error));
   }
-    // axios.get("/foodDetail", {params: {date: this.state.fullDate}})
-    // .then((response)=>{
-    //     console.log(response.data);
-    //     this.setState({products: response.data})
-    // }).catch((error)=>{
-    //   console.log('Error axios', error);
-    // })
+  // axios.get("/foodDetail", {params: {date: this.state.fullDate}})
+  // .then((response)=>{
+  //     console.log(response.data);
+  //     this.setState({products: response.data})
+  // }).catch((error)=>{
+  //   console.log('Error axios', error);
+  // })
   componentDidMount() {
     this.foodDetailFetch();
     //cart state가 local storage에 있으면 불러오기
@@ -62,7 +62,7 @@ class App extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if(prevState.fullDate !== this.state.fullDate){
+    if (prevState.fullDate !== this.state.fullDate) {
       this.foodDetailFetch();
     }
 
@@ -82,7 +82,7 @@ class App extends Component {
       cartItem[index].quantity += 1;
       this.setState({
         cart: cartItem
-      })
+      });
     } else {
       cartItem.push(selectedProducts);
       this.setState({
@@ -97,7 +97,7 @@ class App extends Component {
     let cart = this.state.cart;
     let index = cart.findIndex(item => {
       return item.id === id;
-    })
+    });
     cart.splice(index, 1);
     this.setState({
       cart: cart
@@ -122,11 +122,11 @@ class App extends Component {
     let cart = this.state.cart;
     let index = cart.findIndex(item => {
       return item.id === id;
-    })
+    });
     cart[index].quantity = qty;
     this.setState({
       cart: cart
-    })
+    });
     this.sumTotalAmount();
   }
 
@@ -134,11 +134,11 @@ class App extends Component {
     let cart = this.state.cart;
     let index = cart.findIndex(item => {
       return item.id === id;
-    })
+    });
     cart[index].checked = checked;
     this.setState({
       cart: cart
-    })
+    });
     this.sumTotalAmount();
   }
 
@@ -155,35 +155,42 @@ class App extends Component {
     }
     this.setState({
       cart: cart
-    })
+    });
     this.sumTotalAmount();
   }
 
   checkProduct(id) {
     let cart = this.state.cart;
-    return cart.some((item) => {
+    return cart.some(item => {
       return item.id === id;
-    })
+    });
   }
 
   renderFoodDetail() {
     return this.state.products.map(product => {
       return (
-        <Route exact path={`/foodDetail/${product._id.$oid}`} render={props => {
-          return <FoodDetail
-            addToCart={this.handleAddToCart}
-            productQuantity={this.state.quantity}
-            checked={this.state.checked}
-            image={product.image}
-            name={product.name}
-            price={product.price}
-            id={product._id.$oid}
-            ingredients={product.ingredients}
-            nutrients={product.nutrients}
-            key={product.id} />
-        }} />
+        <Route
+          exact
+          path={`/foodDetail/${product._id.$oid}`}
+          render={props => {
+            return (
+              <FoodDetail
+                addToCart={this.handleAddToCart}
+                productQuantity={this.state.quantity}
+                checked={this.state.checked}
+                image={product.image}
+                name={product.name}
+                price={product.price}
+                id={product._id.$oid}
+                ingredients={product.ingredients}
+                nutrients={product.nutrients}
+                key={product.id}
+              />
+            );
+          }}
+        />
       );
-    })
+    });
   }
   onChangeFullDate(fullDate) {
     this.setState({ fullDate: fullDate });
@@ -196,17 +203,25 @@ class App extends Component {
           totalAmount={this.state.totalAmount}
           updateQuantity={this.updateQuantity}
         />
-        <Route exact path="/" render={props => {
-          return <Home
-            products={this.state.products}
-            onChangeFullDate={this.onChangeFullDate}
-            fullDate={this.state.fullDate} />
-        }} />
+        <Route
+          exact
+          path="/"
+          render={props => {
+            return (
+              <Home
+                products={this.state.products}
+                onChangeFullDate={this.onChangeFullDate}
+                fullDate={this.state.fullDate}
+              />
+            );
+          }}
+        />
         <Route exact path="/about" component={About} />
         <Route exact path="/area" component={Area} />
         <Route exact path="/terms" component={Terms} />
         <Route exact path="/privacy" component={Privacy} />
         <Route exact path="/prime" component={Prime} />
+
         <Route exact path="/payment" render={props => {
           return <Payment cartItems={this.state.cart} totalAmount={this.state.totalAmount} />
         }} />
@@ -221,6 +236,7 @@ class App extends Component {
               updateCheckedAll={this.updateCheckedAll} />
           );
         }} />
+
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
         {this.renderFoodDetail()}

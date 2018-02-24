@@ -112,6 +112,7 @@ $RECYCLE.BIN/
 
 # others
 package-lock.json
+yarn.lock
 tempfolder
 
 # End of https://www.gitignore.io/api/node,macos,windows
