@@ -113,7 +113,7 @@ const Payment = ({cartItems, totalAmount}) => {
               <br />
               <p className="font-weight-bold">결제 정보</p>
               <hr />
-              <PaymentInfoResult totalAmount={totalAmount} />
+              <PaymentInfoResult totalAmount={totalAmount} resetCart={this.props.resetCart}/>
             </Container>
           </Col>
 
