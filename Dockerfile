@@ -8,4 +8,4 @@ WORKDIR /var/www/
 RUN npm init -y && npm install -g express
 
 EXPOSE ${PORT}
-ENTRYPOINT [ "npm", "start" ]
+ENTRYPOINT [ "node", "server.js" ]
