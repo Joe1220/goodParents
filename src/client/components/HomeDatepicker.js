@@ -6,8 +6,9 @@ class HomeDatepicker extends Component {
     super(props);
     this.toggleClick = this.toggleClick.bind(this);
   }
+
   toggleClick(e) {
-    this.props.onDayDayChange(parseInt(e.currentTarget.dataset.index));
+    this.props.onDayDayChange(parseInt(e.currentTarget.dataset.index, 10));
     this.passProps(e);
   }
   passProps(e) {

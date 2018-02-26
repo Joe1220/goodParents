@@ -5,7 +5,7 @@ import "../public/style/Payment.css";
 import PaymentInfo from './PaymentInfo';
 import PaymentInfoResult from './PaymentInfoResult';
 
-const Payment = ({cartItems, totalAmount}) => {
+const Payment = ({cartItems, totalAmount, resetCart}) => {
   return (
     <div>
       <Container>
@@ -113,7 +113,7 @@ const Payment = ({cartItems, totalAmount}) => {
               <br />
               <p className="font-weight-bold">결제 정보</p>
               <hr />
-              <PaymentInfoResult totalAmount={totalAmount} />
+              <PaymentInfoResult totalAmount={totalAmount} resetCart={resetCart}/>
             </Container>
           </Col>
 

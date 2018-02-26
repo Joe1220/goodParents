@@ -27,6 +27,7 @@ class App extends Component {
       checked: true,
       fullDate: new Date().toISOString().slice(0, 10)
     };
+    this.resetCart = this.resetCart.bind(this);
     this.handleAddToCart = this.handleAddToCart.bind(this);
     this.handleRemoveProduct = this.handleRemoveProduct.bind(this);
     this.sumTotalAmount = this.sumTotalAmount.bind(this);
@@ -52,11 +53,32 @@ class App extends Component {
   // })
   componentDidMount() {
     this.foodDetailFetch();
+    //cart state가 local storage에 있으면 불러오기
+    let cart = localStorage.cart;
+    if(cart) {
+      this.setState(prevState => ({
+        cart: JSON.parse(cart)
+      }), function() {
+        this.sumTotalAmount();
+      })
+    }
   }
+
   componentDidUpdate(prevProps, prevState) {
     if (prevState.fullDate !== this.state.fullDate) {
       this.foodDetailFetch();
     }
+    // if(prevState.cart !== this.state.cart) {
+    //   localStorage.cart = JSON.stringify(this.state.cart);
+    // }
+    localStorage.cart = JSON.stringify(this.state.cart);
+  }
+
+  resetCart() {
+    this.setState({
+      cart: []
+    })
+    alert('결제 완료');
   }
 
   handleAddToCart(selectedProducts) {
@@ -208,35 +230,22 @@ class App extends Component {
         <Route exact path="/terms" component={Terms} />
         <Route exact path="/privacy" component={Privacy} />
         <Route exact path="/prime" component={Prime} />
-        {/* <Route exact path="/payment" component={Payment} /> */}
-        <Route
-          exact
-          path="/payment"
-          render={props => {
-            return (
-              <Payment
-                cartItems={this.state.cart}
-                totalAmount={this.state.totalAmount}
-              />
-            );
-          }}
-        />
-        <Route
-          exact
-          path="/cartmain"
-          render={props => {
-            return (
-              <CartMain
-                totalAmount={this.state.totalAmount}
-                cartItems={this.state.cart}
-                updateQuantity={this.updateQuantity}
-                handleRemoveProduct={this.handleRemoveProduct}
-                updateChecked={this.updateChecked}
-                updateCheckedAll={this.updateCheckedAll}
-              />
-            );
-          }}
-        />
+
+        <Route exact path="/payment" render={props => {
+          return <Payment cartItems={this.state.cart} totalAmount={this.state.totalAmount} resetCart={this.resetCart}/>
+        }} />
+        <Route exact path="/cartmain" render={props => {
+          return (
+            <CartMain
+              totalAmount={this.state.totalAmount}
+              cartItems={this.state.cart}
+              updateQuantity={this.updateQuantity}
+              handleRemoveProduct={this.handleRemoveProduct}
+              updateChecked={this.updateChecked}
+              updateCheckedAll={this.updateCheckedAll} />
+          );
+        }} />
+
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
         {this.renderFoodDetail()}
