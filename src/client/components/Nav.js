@@ -19,6 +19,16 @@ class Nav extends React.Component {
     this.setState({ popOpen: !this.state.popOpen });
   }
 
+  renderUserRolePage() {
+    if(this.props.userRole === 1) {
+      return <Link to="/adminpage">admin</Link>
+    } else if (this.props.userRole === 2) {
+      return <Link to="/userpage">user</Link>
+    } else {
+      return <p></p>
+    }
+  }
+
   render() {
     return (
       <div className="container navigation">
@@ -40,7 +50,7 @@ class Nav extends React.Component {
               />
             </PopoverBody>
           </Popover>
-          { this.props.userRole === 'admin' ? <Link to="/adminpage">admin</Link> : <Link to="/userpage">user</Link> }
+          { this.renderUserRolePage() }
         </Navbar>
       </div>
     );
