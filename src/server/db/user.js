@@ -6,6 +6,9 @@ const userSchema = new mongoose.Schema({
   Telephone: Number,
   Email: String,
   UserImg: { data: Buffer, contentType: String },
+  Id: String,
+  Password: String,
+  Authority: Number,
   // 마이 질문 확인
   CounselingService: String,
   CounselingType: String,
