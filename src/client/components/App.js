@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 // import axios from "axios";
 
 import About from "./About";
@@ -15,6 +15,10 @@ import FoodDetail from "./FoodDetail";
 import CartMain from "./CartMain";
 import Login from "./Login";
 import Signup from "./Signup";
+import AdminPage from "./AdminPage";
+import AdminPageUsers from "./AdminPageUsers";
+import UserPage from "./UserPage";
+import NotFoundComponent from "./NotFoundComponent";
 
 class App extends Component {
   constructor() {
@@ -26,7 +30,7 @@ class App extends Component {
       totalAmount: 0,
       checked: true,
       fullDate: new Date().toISOString().slice(0, 10),
-      users: []
+      userRole: 'admin'
     };
     this.resetCart = this.resetCart.bind(this);
     this.handleAddToCart = this.handleAddToCart.bind(this);
@@ -76,9 +80,6 @@ class App extends Component {
     if (prevState.fullDate !== this.state.fullDate) {
       this.foodDetailFetch();
     }
-    // if(prevState.cart !== this.state.cart) {
-    //   localStorage.cart = JSON.stringify(this.state.cart);
-    // }
     localStorage.cart = JSON.stringify(this.state.cart);
   }
 
@@ -219,44 +220,58 @@ class App extends Component {
           cartItems={this.state.cart}
           totalAmount={this.state.totalAmount}
           updateQuantity={this.updateQuantity}
+          userRole={this.state.userRole}
         />
-        <Route
-          exact
-          path="/"
-          render={props => {
+        <Switch>
+          <Route
+            exact
+            path="/"
+            render={props => {
+              return (
+                <Home
+                  products={this.state.products}
+                  onChangeFullDate={this.onChangeFullDate}
+                  fullDate={this.state.fullDate}
+                />
+              );
+            }}
+          />
+          <Route exact path="/about" component={About} />
+          <Route exact path="/area" component={Area} />
+          <Route exact path="/terms" component={Terms} />
+          <Route exact path="/privacy" component={Privacy} />
+          <Route exact path="/prime" component={Prime} />
+
+          <Route exact path="/payment" render={props => {
+            return <Payment cartItems={this.state.cart} totalAmount={this.state.totalAmount} resetCart={this.resetCart}/>
+          }} />
+          <Route exact path="/cartmain" render={props => {
             return (
-              <Home
-                products={this.state.products}
-                onChangeFullDate={this.onChangeFullDate}
-                fullDate={this.state.fullDate}
-              />
+              <CartMain
+                totalAmount={this.state.totalAmount}
+                cartItems={this.state.cart}
+                updateQuantity={this.updateQuantity}
+                handleRemoveProduct={this.handleRemoveProduct}
+                updateChecked={this.updateChecked}
+                updateCheckedAll={this.updateCheckedAll} />
             );
-          }}
-        />
-        <Route exact path="/about" component={About} />
-        <Route exact path="/area" component={Area} />
-        <Route exact path="/terms" component={Terms} />
-        <Route exact path="/privacy" component={Privacy} />
-        <Route exact path="/prime" component={Prime} />
+          }} />
 
-        <Route exact path="/payment" render={props => {
-          return <Payment cartItems={this.state.cart} totalAmount={this.state.totalAmount} resetCart={this.resetCart}/>
-        }} />
-        <Route exact path="/cartmain" render={props => {
-          return (
-            <CartMain
-              totalAmount={this.state.totalAmount}
-              cartItems={this.state.cart}
-              updateQuantity={this.updateQuantity}
-              handleRemoveProduct={this.handleRemoveProduct}
-              updateChecked={this.updateChecked}
-              updateCheckedAll={this.updateCheckedAll} />
-          );
-        }} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/signup" component={Signup} />
 
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/signup" component={Signup} />
-        {this.renderFoodDetail()}
+          { this.state.userRole === 'admin' ?
+            (
+              <Route exact path="/adminpage" component={AdminPage} />
+            ) :
+            (
+              <Route exact path="/userpage" component={UserPage} />
+            )
+          }
+
+          {this.renderFoodDetail()}
+          <Route component={NotFoundComponent} />
+        </Switch>
         <Footer />
       </div>
     );
