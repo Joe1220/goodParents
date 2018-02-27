@@ -1,0 +1,30 @@
+version: "3"
+
+services:
+  front:
+    build: .
+    ports:
+      - 80:80
+    networks:
+      - services
+    restart: on-failure
+    depends_on:
+      - mongodb
+
+  mongodb:
+    build: ./docker-mongo
+    ports:
+      - 27017:27017
+    volumes:
+      - db:/data/db
+      - configdb:/data/configdb
+    networks:
+      - services
+    restart: on-failure
+
+networks:
+  services: {}
+
+volumes:
+  db: {}
+  configdb: {}
