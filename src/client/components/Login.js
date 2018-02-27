@@ -20,11 +20,20 @@ class Login extends Component {
     this.setState({password: e.target.value})
   }
   onSubmit(){
-    fetch(`/login?email=${this.state.email}?password=${this.state.password}`)
+    const url = `/login`;
+    const data = {email:this.state.email, password: this.state.password}
+    fetch(url, {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      })
+    })
     .then(response => response.json())
     .then(data => this.setState({ authrize: data }))
     .catch(error => console.error(error));
   }
+
   render(){
     return (
       <div className="mx-auto" style={{width: 20 + 'em', textAlign: "center"}}>
