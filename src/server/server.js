@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const port = parseInt(process.env.PORT) || 3001;
 
 const UsersRouter = require("./routes/users");
 const ProductsRouter = require("./routes/products");
@@ -7,16 +8,19 @@ const LoginRouter = require("./routes/login");
 
 const app = express();
 
-mongoose.connect('mongodb://localhost:27017/users')
-  .then(()=>{
-    console.log('connected mongodb')
+mongoose
+  .connect("mongodb://services:27017/goodParents")
+  .then(() => {
+    console.log("connected mongodb");
   })
-  .catch(()=>{
-    console.error('error');
-  })
+  .catch(() => {
+    console.error("DB connect error");
+  });
 
 app.get("/users", UsersRouter);
 app.get("/products", ProductsRouter);
 app.get("/login", LoginRouter);
 
-app.listen(3001, () => console.log("Example app listening on port 3001"));
+app.listen(port, () => {
+  console.log("App listening on port " + port);
+});
