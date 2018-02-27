@@ -9,6 +9,16 @@ services:
       - services
     restart: on-failure
     depends_on:
+      - back
+
+  back:
+    build: ./src
+    ports:
+      - 3001:3001
+    networks:
+      - services
+    restart: on-failure
+    depends_on:
       - mongodb
 
   mongodb:
