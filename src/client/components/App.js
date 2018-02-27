@@ -25,7 +25,8 @@ class App extends Component {
       quantity: 1,
       totalAmount: 0,
       checked: true,
-      fullDate: new Date().toISOString().slice(0, 10)
+      fullDate: new Date().toISOString().slice(0, 10),
+      users: []
     };
     this.resetCart = this.resetCart.bind(this);
     this.handleAddToCart = this.handleAddToCart.bind(this);
@@ -39,10 +40,16 @@ class App extends Component {
   }
 
   foodDetailFetch() {
-    fetch(`/foodDetail?date=${this.state.fullDate}`)
+    fetch(`/products?date=${this.state.fullDate}`)
       .then(response => response.json())
       .then(data => this.setState({ products: data }))
       .catch(error => console.error(error));
+  }
+  UsersFetch() {
+    fetch(`/users`)
+      .then(response => response.json())
+      .then(data => console.log(data))
+      // .catch(error => console.error(error));
   }
   // axios.get("/foodDetail", {params: {date: this.state.fullDate}})
   // .then((response)=>{
@@ -53,6 +60,7 @@ class App extends Component {
   // })
   componentDidMount() {
     this.foodDetailFetch();
+    this.UsersFetch();
     //cart state가 local storage에 있으면 불러오기
     let cart = localStorage.cart;
     if(cart) {
