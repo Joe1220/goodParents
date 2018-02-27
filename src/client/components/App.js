@@ -30,7 +30,7 @@ class App extends Component {
       totalAmount: 0,
       checked: true,
       fullDate: new Date().toISOString().slice(0, 10),
-      userRole: 'admin'
+      userRole: 2
     };
     this.resetCart = this.resetCart.bind(this);
     this.handleAddToCart = this.handleAddToCart.bind(this);
@@ -44,16 +44,10 @@ class App extends Component {
   }
 
   foodDetailFetch() {
-    fetch(`/products?date=${this.state.fullDate}`)
+    fetch(`/foodDetail?date=${this.state.fullDate}`)
       .then(response => response.json())
       .then(data => this.setState({ products: data }))
       .catch(error => console.error(error));
-  }
-  UsersFetch() {
-    fetch(`/users`)
-      .then(response => response.json())
-      .then(data => console.log(data))
-      // .catch(error => console.error(error));
   }
   // axios.get("/foodDetail", {params: {date: this.state.fullDate}})
   // .then((response)=>{
@@ -64,7 +58,6 @@ class App extends Component {
   // })
   componentDidMount() {
     this.foodDetailFetch();
-    this.UsersFetch();
     //cart state가 local storage에 있으면 불러오기
     let cart = localStorage.cart;
     if(cart) {
@@ -210,9 +203,42 @@ class App extends Component {
       );
     });
   }
+
   onChangeFullDate(fullDate) {
     this.setState({ fullDate: fullDate });
   }
+
+  renderUserRole() {
+      //admin
+      if(this.state.userRole === 1) {
+        return this.renderAdminPages()
+        //user
+      } else if(this.state.userRole === 2) {
+        return this.renderUserPages()
+        //guest
+      } else {
+        return <p></p>
+      }
+  }
+
+  //admin 권한을 가졌을때 접근 가능한 route
+  renderAdminPages() {
+    return (
+      <div>
+        <Route exact path="/adminpage" component={AdminPage} />
+        <Route exact path="/adminpage/users" component={AdminPageUsers} />
+      </div>
+    )
+  }
+  //일반 권한을 가졌을때 접근 가능한 route
+  renderUserPages() {
+    return (
+      <div>
+        <Route exact path="/userpage" component={UserPage} />
+      </div>
+    )
+  }
+
   render() {
     return (
       <div>
@@ -259,19 +285,13 @@ class App extends Component {
 
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
-
-          { this.state.userRole === 'admin' ?
-            (
-              <Route exact path="/adminpage" component={AdminPage} />
-            ) :
-            (
-              <Route exact path="/userpage" component={UserPage} />
-            )
-          }
-
+          {/* {this.state.userRole === 1 ? <Route exact path="/adminpage" component={AdminPage}/> : <Route exact path="/userpage" component={UserPage}/>} */}
+          {/* 유저 권한별 렌더링 함수 */}
+          {this.renderUserRole()}
+          {/* 각 음식들의 detail 페이지  */}
           {this.renderFoodDetail()}
           <Route component={NotFoundComponent} />
-        </Switch>
+          </Switch>
         <Footer />
       </div>
     );
