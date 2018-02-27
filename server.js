@@ -9,4 +9,6 @@ app.get('/', function (req, res) {
   res.sendFile(build + '/index.html');
 });
 
-app.listen(process.env.PORT);
+app.listen(process.env.PORT, () => {
+  console.log("App listening port " + process.env.PORT);
+});
