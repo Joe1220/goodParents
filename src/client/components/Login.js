@@ -3,7 +3,7 @@ import { CardBody, CardTitle, InputGroup, Input, Button } from "reactstrap";
 
 class Login extends Component {
   constructor(props){
-    super(props)
+    super(props);
     this.state = {
       email: '',
       password: '',
