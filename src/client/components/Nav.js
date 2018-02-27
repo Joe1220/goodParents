@@ -40,6 +40,7 @@ class Nav extends React.Component {
               />
             </PopoverBody>
           </Popover>
+          { this.props.userRole === 'admin' ? <Link to="/adminpage">admin</Link> : <Link to="/userpage">user</Link> }
         </Navbar>
       </div>
     );
