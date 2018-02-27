@@ -22,6 +22,5 @@ try {
     }]
   });  
 } catch (error) {
-  console.log("Already inserted.");
-  console.error(error);
+  // empty.
 }
