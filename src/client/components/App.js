@@ -15,8 +15,7 @@ import FoodDetail from "./FoodDetail";
 import CartMain from "./CartMain";
 import Login from "./Login";
 import Signup from "./Signup";
-import AdminPage from "./AdminPage";
-import AdminPageUsers from "./AdminPageUsers";
+import MyPage from "./myPage/MyPage";
 import UserPage from "./UserPage";
 import NotFoundComponent from "./NotFoundComponent";
 
@@ -30,7 +29,7 @@ class App extends Component {
       totalAmount: 0,
       checked: true,
       fullDate: new Date().toISOString().slice(0, 10),
-      userRole: 2
+      authorize: ['Guest', 3]
     };
     this.resetCart = this.resetCart.bind(this);
     this.handleAddToCart = this.handleAddToCart.bind(this);
@@ -41,6 +40,7 @@ class App extends Component {
     this.updateChecked = this.updateChecked.bind(this);
     this.updateCheckedAll = this.updateCheckedAll.bind(this);
     this.onChangeFullDate = this.onChangeFullDate.bind(this);
+    this.onChangeAuth = this.onChangeAuth.bind(this);
   }
 
   foodDetailFetch() {
@@ -49,13 +49,7 @@ class App extends Component {
       .then(data => this.setState({ products: data }))
       .catch(error => console.error(error));
   }
-  // axios.get("/foodDetail", {params: {date: this.state.fullDate}})
-  // .then((response)=>{
-  //     console.log(response.data);
-  //     this.setState({products: response.data})
-  // }).catch((error)=>{
-  //   console.log('Error axios', error);
-  // })
+
   componentDidMount() {
     this.foodDetailFetch();
     //cart state가 local storage에 있으면 불러오기
@@ -210,47 +204,55 @@ class App extends Component {
   onChangeFullDate(fullDate) {
     this.setState({ fullDate: fullDate });
   }
+  onChangeAuth(auth) {
+    this.setState({ authorize: auth });
+  }
 
   renderUserRole() {
-    //admin
-    if (this.state.userRole === 1) {
-      return this.renderAdminPages();
-      //user
-    } else if (this.state.userRole === 2) {
-      return this.renderUserPages();
-      //guest
-    } else {
-      return <p />;
-    }
+      //admin
+      if(this.state.authorize[1] === 0) {
+        return this.renderAdminPages()
+        //user
+      } else if(this.state.authorize[1] === 1) {
+        return this.renderUserPages()
+        //guest
+      } else {
+        return <p></p>
+      }
   }
 
   //admin 권한을 가졌을때 접근 가능한 route
-  renderAdminPages() {
+  renderMyPage() {
     return (
-      <div>
-        <Route exact path="/adminpage" component={AdminPage} />
-        <Route exact path="/adminpage/users" component={AdminPageUsers} />
-      </div>
-    );
+      [
+        <Route exact path="/mypage" component={MyPage} />,
+      ]
+    )
   }
+
   //일반 권한을 가졌을때 접근 가능한 route
   renderUserPages() {
     return (
-      <div>
+      [
         <Route exact path="/userpage" component={UserPage} />
-      </div>
-    );
+      ]
+    )
   }
 
   render() {
+    const isHeaderRoute = (window.location.pathname.includes('mypage') && this.state.userRole === 1);
+
     return (
       <div>
-        <Nav
-          cartItems={this.state.cart}
-          totalAmount={this.state.totalAmount}
-          updateQuantity={this.updateQuantity}
-          userRole={this.state.userRole}
-        />
+        {!isHeaderRoute ? (
+          <Nav
+            cartItems={this.state.cart}
+            totalAmount={this.state.totalAmount}
+            updateQuantity={this.updateQuantity}
+            userRole={this.state.userRole}
+          />
+        ) : null }
+
         <Switch>
           <Route
             exact
@@ -301,16 +303,20 @@ class App extends Component {
             }}
           />
 
-          <Route exact path="/login" component={Login} />
+          <Route exact 
+                 path="/login" 
+                 render={props => {
+                   return <Login onAuth={ this.onChangeAuth }/>
+                 }}
+                 />
           <Route exact path="/signup" component={Signup} />
-          {/* {this.state.userRole === 1 ? <Route exact path="/adminpage" component={AdminPage}/> : <Route exact path="/userpage" component={UserPage}/>} */}
           {/* 유저 권한별 렌더링 함수 */}
           {this.renderUserRole()}
           {/* 각 음식들의 detail 페이지  */}
           {this.renderFoodDetail()}
           <Route component={NotFoundComponent} />
         </Switch>
-        <Footer />
+        {!isHeaderRoute ? <Footer /> : null}
       </div>
     );
   }

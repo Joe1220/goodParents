@@ -21,7 +21,7 @@ class Nav extends React.Component {
 
   renderUserRolePage() {
     if(this.props.userRole === 1) {
-      return <Link to="/adminpage">admin</Link>
+      return <Link to="/mypage">mypage</Link>
     } else if (this.props.userRole === 2) {
       return <Link to="/userpage">user</Link>
     } else {
