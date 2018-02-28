@@ -19,7 +19,7 @@ class Login extends Component {
     this.setState({password: e.target.value})
   }
   onSubmit(){
-    let upperThis = this;
+    const upperThis = this;
     const url = `/login`;
     const data = {email:this.state.email, password: this.state.password}
     fetch(url, {
@@ -31,7 +31,7 @@ class Login extends Component {
       })
     })
     .then(response => response.json())
-    .then(data => this.props.onAuth(data))
+    .then(data => upperThis.props.onAuth(data))
     .catch(error => console.error(error));
   }
 

@@ -30,7 +30,7 @@ class App extends Component {
       totalAmount: 0,
       checked: true,
       fullDate: new Date().toISOString().slice(0, 10),
-      authrize: ['Guest', 3]
+      authorize: ['Guest', 3]
     };
     this.resetCart = this.resetCart.bind(this);
     this.handleAddToCart = this.handleAddToCart.bind(this);
@@ -203,15 +203,15 @@ class App extends Component {
     this.setState({ fullDate: fullDate });
   }
   onChangeAuth(auth) {
-    this.setState({ authrize: auth });
+    this.setState({ authorize: auth });
   }
 
   renderUserRole() {
       //admin
-      if(this.state.userRole === 1) {
+      if(this.state.authorize[1] === 0) {
         return this.renderAdminPages()
         //user
-      } else if(this.state.userRole === 2) {
+      } else if(this.state.authorize[1] === 1) {
         return this.renderUserPages()
         //guest
       } else {
@@ -238,7 +238,7 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state.authrize)
+    console.log(this.state.authorize)
     return (
       <div>
         <Nav
@@ -284,8 +284,10 @@ class App extends Component {
 
           <Route exact 
                  path="/login" 
-                 component={ Login }
-                 onAuth={ this.onChangeAuth } />
+                 render={props => {
+                   return <Login onAuth={ this.onChangeAuth }/>
+                 }}
+                 />
           <Route exact path="/signup" component={Signup} />
           {/* {this.state.userRole === 1 ? <Route exact path="/adminpage" component={AdminPage}/> : <Route exact path="/userpage" component={UserPage}/>} */}
           {/* 유저 권한별 렌더링 함수 */}
