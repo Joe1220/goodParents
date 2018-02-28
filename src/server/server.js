@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const helmet = require('helmet');
 const cookieParser = require("cookie-parser");
 
-const port = parseInt(process.env.PORT) || 3001;
+const port = process.env.PORT || 3001;
 
 const UsersRouter = require("./routes/users");
 const ProductsRouter = require("./routes/products");
@@ -22,7 +22,7 @@ app.disable('x-powered-by');
 app.use(cookieParser());
 // 몽고디비 커넥션
 mongoose
-  .connect("mongodb://localhost:27017/goodparents")
+  .connect("mongodb://goodparents_mongodb_1:27017/goodParents")
   .then(() => {
     console.log("connected mongodb");
   })
@@ -31,9 +31,9 @@ mongoose
   });
 
 // 라우팅 연결
-app.use("/users", UsersRouter);
-app.use("/products", ProductsRouter);
-app.use("/login", LoginRouter);
+app.use("/api/users", UsersRouter);
+app.use("/api/products", ProductsRouter);
+app.use("/api/login", LoginRouter);
 
 app.listen(port, () => {
   console.log("App listening on port " + port);
