@@ -15,8 +15,7 @@ import FoodDetail from "./FoodDetail";
 import CartMain from "./CartMain";
 import Login from "./Login";
 import Signup from "./Signup";
-import AdminPage from "./AdminPage";
-import AdminPageUsers from "./AdminPageUsers";
+import adminpage from "./adminPage/adminpage";
 import UserPage from "./UserPage";
 import NotFoundComponent from "./NotFoundComponent";
 
@@ -228,8 +227,7 @@ class App extends Component {
   renderAdminPages() {
     return (
       [
-        <Route exact path="/adminpage" component={AdminPage} />,
-        <Route exact path="/adminpage/users" component={AdminPageUsers} />
+        <Route exact path="/adminpage" component={adminpage} />,
       ]
     )
   }
@@ -255,9 +253,7 @@ class App extends Component {
             updateQuantity={this.updateQuantity}
             userRole={this.state.userRole}
           />
-        ) : (
-          <p>hello</p>
-        )}
+        ) : null }
 
         <Switch>
           <Route
