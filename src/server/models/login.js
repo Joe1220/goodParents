@@ -1,5 +1,6 @@
 const User = require("../db/user.js");
 
+
 module.exports = {
   post: async (req, callback) => {
     const email = req.body.email;
