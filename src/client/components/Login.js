@@ -24,6 +24,7 @@ class Login extends Component {
     const data = {email:this.state.email, password: this.state.password}
     fetch(url, {
       method: 'POST',
+      credentials: 'include',
       body: JSON.stringify(data),
       headers: new Headers({
         'Content-Type': 'application/json'

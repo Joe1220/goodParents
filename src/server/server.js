@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const helmet = require('helmet');
-const session = require('cookie-session');
+const cookieParser = require("cookie-parser");
 
 const port = parseInt(process.env.PORT) || 3001;
 
@@ -10,6 +10,7 @@ const UsersRouter = require("./routes/users");
 const ProductsRouter = require("./routes/products");
 const LoginRouter = require("./routes/login");
 
+// 익스프래스 연결
 const app = express();
 // 바디파서 연결
 app.use(bodyParser.json());
@@ -17,19 +18,8 @@ app.use(bodyParser.json());
 app.use(helmet());
 // X-Powered-By 헤더는 사용하지 않도록 설정
 app.disable('x-powered-by');
-// 쿠키 설정
-const expiryDate = new Date( Date.now() + 60 * 60 * 1000 ); // 1 hour
-app.use(session({
-  name: 'session',
-  keys: ['key1', 'key2'],
-  cookie: { secure: true,
-            httpOnly: true,
-            domain: 'http://localhost:3001',
-            path: '/',
-            expires: expiryDate
-          }
-  })
-);
+// 쿠키파서 미들웨어 연결
+app.use(cookieParser());
 // 몽고디비 커넥션
 mongoose
   .connect("mongodb://localhost:27017/goodparents")
