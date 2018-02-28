@@ -228,7 +228,7 @@ class App extends Component {
   renderAdminPages() {
     return (
       [
-        <Route exact path="/adminpage" component={AdminPage} Nav={false} />,
+        <Route exact path="/adminpage" component={AdminPage} />,
         <Route exact path="/adminpage/users" component={AdminPageUsers} />
       ]
     )
@@ -244,14 +244,21 @@ class App extends Component {
   }
 
   render() {
+    const isHeaderRoute = (window.location.pathname.includes('adminpage') && this.state.userRole === 1);
+
     return (
       <div>
-        <Nav
-          cartItems={this.state.cart}
-          totalAmount={this.state.totalAmount}
-          updateQuantity={this.updateQuantity}
-          userRole={this.state.userRole}
-        />
+        {!isHeaderRoute ? (
+          <Nav
+            cartItems={this.state.cart}
+            totalAmount={this.state.totalAmount}
+            updateQuantity={this.updateQuantity}
+            userRole={this.state.userRole}
+          />
+        ) : (
+          <p>hello</p>
+        )}
+
         <Switch>
           <Route
             exact
@@ -310,7 +317,7 @@ class App extends Component {
           {this.renderFoodDetail()}
           <Route component={NotFoundComponent} />
         </Switch>
-        <Footer />
+        {!isHeaderRoute ? <Footer /> : null}
       </div>
     );
   }
