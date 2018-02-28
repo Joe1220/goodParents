@@ -6,8 +6,7 @@ class Login extends Component {
     super(props);
     this.state = {
       email: '',
-      password: '',
-      authrize: [] // 회원인지 아닌지 불린, 권한 인트
+      password: ''
     }
     this.onChangeEmail = this.onChangeEmail.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
@@ -20,17 +19,19 @@ class Login extends Component {
     this.setState({password: e.target.value})
   }
   onSubmit(){
+    const upperThis = this;
     const url = `/login`;
     const data = {email:this.state.email, password: this.state.password}
     fetch(url, {
       method: 'POST',
+      credentials: 'include',
       body: JSON.stringify(data),
       headers: new Headers({
         'Content-Type': 'application/json'
       })
     })
     .then(response => response.json())
-    .then(data => this.setState({ authrize: data }))
+    .then(data => upperThis.props.onAuth(data))
     .catch(error => console.error(error));
   }
 
