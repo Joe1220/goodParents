@@ -34,6 +34,7 @@ services:
       - ${APIPORT}:${APIPORT}
     environment:
       - PORT=${APIPORT}
+      - MONGOPORT=${MONGOPORT}
     networks:
       - services
     restart: on-failure
@@ -43,7 +44,9 @@ services:
   mongodb:
     build: ./docker-mongo
     ports:
-      - 27017:27017
+      - ${MONGOPORT}:${MONGOPORT}
+    environment:
+      - PORT=${MONGOPORT}
     volumes:
       - db:/data/db
       - configdb:/data/configdb
