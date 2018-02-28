@@ -1,10 +1,27 @@
 version: "3"
 
 services:
+  proxy:
+    build: ./proxy
+    ports:
+      - ${PROXYPORT}:${PROXYPORT}
+    environment:
+      - PORT=${PROXYPORT}
+      - FRONTPORT=${FRONTPORT}
+      - APIPORT=${APIPORT}
+    networks:
+      - services
+    restart: on-failure
+    depends_on:
+      - front
+      - back
+
   front:
     build: .
     ports:
-      - 80:80
+      - ${FRONTPORT}:${FRONTPORT}
+    environment:
+      - PORT=${FRONTPORT}
     networks:
       - services
     restart: on-failure
@@ -14,7 +31,9 @@ services:
   back:
     build: ./src
     ports:
-      - 3001:3001
+      - ${APIPORT}:${APIPORT}
+    environment:
+      - PORT=${APIPORT}
     networks:
       - services
     restart: on-failure
