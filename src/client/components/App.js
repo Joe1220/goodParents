@@ -30,7 +30,7 @@ class App extends Component {
       totalAmount: 0,
       checked: true,
       fullDate: new Date().toISOString().slice(0, 10),
-      userRole: 2
+      userRole: 1
     };
     this.resetCart = this.resetCart.bind(this);
     this.handleAddToCart = this.handleAddToCart.bind(this);
@@ -228,16 +228,17 @@ class App extends Component {
   renderAdminPages() {
     return (
       [
-        <Route exact path="/adminpage" component={AdminPage} />,
+        <Route exact path="/adminpage" component={AdminPage} Nav={false} />,
         <Route exact path="/adminpage/users" component={AdminPageUsers} />
       ]
     )
+  }
 
   //일반 권한을 가졌을때 접근 가능한 route
   renderUserPages() {
     return (
       [
-        <Route exact path="/userpage" component={UserPage} />,
+        <Route exact path="/userpage" component={UserPage} />
       ]
     )
   }
