@@ -29,7 +29,7 @@ class App extends Component {
       totalAmount: 0,
       checked: true,
       fullDate: new Date().toISOString().slice(0, 10),
-      userRole: 1
+      authorize: ['Guest', 3]
     };
     this.resetCart = this.resetCart.bind(this);
     this.handleAddToCart = this.handleAddToCart.bind(this);
@@ -40,6 +40,7 @@ class App extends Component {
     this.updateChecked = this.updateChecked.bind(this);
     this.updateCheckedAll = this.updateCheckedAll.bind(this);
     this.onChangeFullDate = this.onChangeFullDate.bind(this);
+    this.onChangeAuth = this.onChangeAuth.bind(this);
   }
 
   foodDetailFetch() {
@@ -48,13 +49,7 @@ class App extends Component {
       .then(data => this.setState({ products: data }))
       .catch(error => console.error(error));
   }
-  // axios.get("/foodDetail", {params: {date: this.state.fullDate}})
-  // .then((response)=>{
-  //     console.log(response.data);
-  //     this.setState({products: response.data})
-  // }).catch((error)=>{
-  //   console.log('Error axios', error);
-  // })
+
   componentDidMount() {
     this.foodDetailFetch();
     //cart state가 local storage에 있으면 불러오기
@@ -209,18 +204,21 @@ class App extends Component {
   onChangeFullDate(fullDate) {
     this.setState({ fullDate: fullDate });
   }
+  onChangeAuth(auth) {
+    this.setState({ authorize: auth });
+  }
 
   renderUserRole() {
-    //admin
-    if (this.state.userRole === 1) {
-      return this.renderAdminPages();
-      //user
-    } else if (this.state.userRole === 2) {
-      return this.renderUserPages();
-      //guest
-    } else {
-      return <p />;
-    }
+      //admin
+      if(this.state.authorize[1] === 0) {
+        return this.renderAdminPages()
+        //user
+      } else if(this.state.authorize[1] === 1) {
+        return this.renderUserPages()
+        //guest
+      } else {
+        return <p></p>
+      }
   }
 
   //admin 권한을 가졌을때 접근 가능한 route
@@ -243,7 +241,6 @@ class App extends Component {
 
   render() {
     const isHeaderRoute = (window.location.pathname.includes('adminpage') && this.state.userRole === 1);
-
     return (
       <div>
         {!isHeaderRoute ? (
@@ -305,7 +302,12 @@ class App extends Component {
             }}
           />
 
-          <Route exact path="/login" component={Login} />
+          <Route exact 
+                 path="/login" 
+                 render={props => {
+                   return <Login onAuth={ this.onChangeAuth }/>
+                 }}
+                 />
           <Route exact path="/signup" component={Signup} />
           {/* 유저 권한별 렌더링 함수 */}
           {this.renderUserRole()}
