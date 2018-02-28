@@ -5,3 +5,15 @@
   font-weight: bold;
   margin: 0;
 }
+
+.admin_sidebar_main {
+  border: thin none #444444;
+  background-color: rgb(38, 50, 56);
+  display: table;
+  width: 20%;
+}
+
+.admin_sidebar_main_text {
+  color: white;
+  margin-left: 20px;
+}
