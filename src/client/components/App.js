@@ -30,7 +30,7 @@ class App extends Component {
       totalAmount: 0,
       checked: true,
       fullDate: new Date().toISOString().slice(0, 10),
-      userRole: 2
+      authrize: ['Guest', 3]
     };
     this.resetCart = this.resetCart.bind(this);
     this.handleAddToCart = this.handleAddToCart.bind(this);
@@ -41,6 +41,7 @@ class App extends Component {
     this.updateChecked = this.updateChecked.bind(this);
     this.updateCheckedAll = this.updateCheckedAll.bind(this);
     this.onChangeFullDate = this.onChangeFullDate.bind(this);
+    this.onChangeAuth = this.onChangeAuth.bind(this);
   }
 
   foodDetailFetch() {
@@ -49,13 +50,7 @@ class App extends Component {
       .then(data => this.setState({ products: data }))
       .catch(error => console.error(error));
   }
-  // axios.get("/foodDetail", {params: {date: this.state.fullDate}})
-  // .then((response)=>{
-  //     console.log(response.data);
-  //     this.setState({products: response.data})
-  // }).catch((error)=>{
-  //   console.log('Error axios', error);
-  // })
+
   componentDidMount() {
     this.foodDetailFetch();
     //cart state가 local storage에 있으면 불러오기
@@ -207,6 +202,9 @@ class App extends Component {
   onChangeFullDate(fullDate) {
     this.setState({ fullDate: fullDate });
   }
+  onChangeAuth(auth) {
+    this.setState({ authrize: auth });
+  }
 
   renderUserRole() {
       //admin
@@ -240,6 +238,7 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.state.authrize)
     return (
       <div>
         <Nav
@@ -283,7 +282,10 @@ class App extends Component {
             );
           }} />
 
-          <Route exact path="/login" component={Login} />
+          <Route exact 
+                 path="/login" 
+                 component={ Login }
+                 onAuth={ this.onChangeAuth } />
           <Route exact path="/signup" component={Signup} />
           {/* {this.state.userRole === 1 ? <Route exact path="/adminpage" component={AdminPage}/> : <Route exact path="/userpage" component={UserPage}/>} */}
           {/* 유저 권한별 렌더링 함수 */}
