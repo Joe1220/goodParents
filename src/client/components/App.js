@@ -15,8 +15,7 @@ import FoodDetail from "./FoodDetail";
 import CartMain from "./CartMain";
 import Login from "./Login";
 import Signup from "./Signup";
-import AdminPage from "./AdminPage";
-import AdminPageUsers from "./AdminPageUsers";
+import adminpage from "./adminPage/adminpage";
 import UserPage from "./UserPage";
 import NotFoundComponent from "./NotFoundComponent";
 
@@ -55,12 +54,15 @@ class App extends Component {
     this.foodDetailFetch();
     //cart state가 local storage에 있으면 불러오기
     let cart = localStorage.cart;
-    if(cart) {
-      this.setState(prevState => ({
-        cart: JSON.parse(cart)
-      }), function() {
-        this.sumTotalAmount();
-      })
+    if (cart) {
+      this.setState(
+        prevState => ({
+          cart: JSON.parse(cart)
+        }),
+        function() {
+          this.sumTotalAmount();
+        }
+      );
     }
   }
 
@@ -74,8 +76,8 @@ class App extends Component {
   resetCart() {
     this.setState({
       cart: []
-    })
-    alert('결제 완료');
+    });
+    alert("결제 완료");
   }
 
   handleAddToCart(selectedProducts) {
@@ -222,31 +224,34 @@ class App extends Component {
   //admin 권한을 가졌을때 접근 가능한 route
   renderAdminPages() {
     return (
-      <div>
-        <Route exact path="/adminpage" component={AdminPage} />
-        <Route exact path="/adminpage/users" component={AdminPageUsers} />
-      </div>
+      [
+        <Route exact path="/adminpage" component={adminpage} />,
+      ]
     )
   }
+
   //일반 권한을 가졌을때 접근 가능한 route
   renderUserPages() {
     return (
-      <div>
+      [
         <Route exact path="/userpage" component={UserPage} />
-      </div>
+      ]
     )
   }
 
   render() {
-    console.log(this.state.authorize)
+    const isHeaderRoute = (window.location.pathname.includes('adminpage') && this.state.userRole === 1);
     return (
       <div>
-        <Nav
-          cartItems={this.state.cart}
-          totalAmount={this.state.totalAmount}
-          updateQuantity={this.updateQuantity}
-          userRole={this.state.userRole}
-        />
+        {!isHeaderRoute ? (
+          <Nav
+            cartItems={this.state.cart}
+            totalAmount={this.state.totalAmount}
+            updateQuantity={this.updateQuantity}
+            userRole={this.state.userRole}
+          />
+        ) : null }
+
         <Switch>
           <Route
             exact
@@ -267,20 +272,35 @@ class App extends Component {
           <Route exact path="/privacy" component={Privacy} />
           <Route exact path="/prime" component={Prime} />
 
-          <Route exact path="/payment" render={props => {
-            return <Payment cartItems={this.state.cart} totalAmount={this.state.totalAmount} resetCart={this.resetCart}/>
-          }} />
-          <Route exact path="/cartmain" render={props => {
-            return (
-              <CartMain
-                totalAmount={this.state.totalAmount}
-                cartItems={this.state.cart}
-                updateQuantity={this.updateQuantity}
-                handleRemoveProduct={this.handleRemoveProduct}
-                updateChecked={this.updateChecked}
-                updateCheckedAll={this.updateCheckedAll} />
-            );
-          }} />
+          <Route
+            exact
+            path="/payment"
+            render={props => {
+              return (
+                <Payment
+                  cartItems={this.state.cart}
+                  totalAmount={this.state.totalAmount}
+                  resetCart={this.resetCart}
+                />
+              );
+            }}
+          />
+          <Route
+            exact
+            path="/cartmain"
+            render={props => {
+              return (
+                <CartMain
+                  totalAmount={this.state.totalAmount}
+                  cartItems={this.state.cart}
+                  updateQuantity={this.updateQuantity}
+                  handleRemoveProduct={this.handleRemoveProduct}
+                  updateChecked={this.updateChecked}
+                  updateCheckedAll={this.updateCheckedAll}
+                />
+              );
+            }}
+          />
 
           <Route exact 
                  path="/login" 
@@ -289,14 +309,13 @@ class App extends Component {
                  }}
                  />
           <Route exact path="/signup" component={Signup} />
-          {/* {this.state.userRole === 1 ? <Route exact path="/adminpage" component={AdminPage}/> : <Route exact path="/userpage" component={UserPage}/>} */}
           {/* 유저 권한별 렌더링 함수 */}
           {this.renderUserRole()}
           {/* 각 음식들의 detail 페이지  */}
           {this.renderFoodDetail()}
           <Route component={NotFoundComponent} />
-          </Switch>
-        <Footer />
+        </Switch>
+        {!isHeaderRoute ? <Footer /> : null}
       </div>
     );
   }
