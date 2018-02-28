@@ -224,18 +224,20 @@ class App extends Component {
   //admin 권한을 가졌을때 접근 가능한 route
   renderAdminPages() {
     return (
-      <div>
-        <Route exact path="/adminpage" component={AdminPage} />
+      [
+        <Route exact path="/adminpage" component={AdminPage} />,
         <Route exact path="/adminpage/users" component={AdminPageUsers} />
-      </div>
+      ]
     )
   }
+
   //일반 권한을 가졌을때 접근 가능한 route
   renderUserPages() {
     return (
-      <div>
+      [
+        <Route exact path="/userpage" component={UserPage} />,
         <Route exact path="/userpage" component={UserPage} />
-      </div>
+      ]
     )
   }
 
@@ -285,7 +287,6 @@ class App extends Component {
 
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
-          {/* {this.state.userRole === 1 ? <Route exact path="/adminpage" component={AdminPage}/> : <Route exact path="/userpage" component={UserPage}/>} */}
           {/* 유저 권한별 렌더링 함수 */}
           {this.renderUserRole()}
           {/* 각 음식들의 detail 페이지  */}
