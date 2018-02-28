@@ -15,7 +15,7 @@ import FoodDetail from "./FoodDetail";
 import CartMain from "./CartMain";
 import Login from "./Login";
 import Signup from "./Signup";
-import adminpage from "./adminPage/adminpage";
+import MyPage from "./myPage/MyPage";
 import UserPage from "./UserPage";
 import NotFoundComponent from "./NotFoundComponent";
 
@@ -213,7 +213,7 @@ class App extends Component {
   renderUserRole() {
     //admin
     if (this.state.userRole === 1) {
-      return this.renderAdminPages();
+      return this.renderMyPage();
       //user
     } else if (this.state.userRole === 2) {
       return this.renderUserPages();
@@ -224,10 +224,10 @@ class App extends Component {
   }
 
   //admin 권한을 가졌을때 접근 가능한 route
-  renderAdminPages() {
+  renderMyPage() {
     return (
       [
-        <Route exact path="/adminpage" component={adminpage} />,
+        <Route exact path="/mypage" component={MyPage} />,
       ]
     )
   }
@@ -242,7 +242,7 @@ class App extends Component {
   }
 
   render() {
-    const isHeaderRoute = (window.location.pathname.includes('adminpage') && this.state.userRole === 1);
+    const isHeaderRoute = (window.location.pathname.includes('mypage') && this.state.userRole === 1);
 
     return (
       <div>
