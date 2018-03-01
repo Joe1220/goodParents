@@ -20,13 +20,10 @@ class Nav extends React.Component {
   }
 
   renderUserRolePage() {
-    if(this.props.userRole === 1) {
+    if(this.props.authorize[1] === 1) {
       return <Link to="/mypage">mypage</Link>
-    } else if (this.props.userRole === 2) {
-      return <Link to="/userpage">user</Link>
-    } else {
-      return <p></p>
     }
+    return <p></p>
   }
 
   render() {
