@@ -211,7 +211,7 @@ class App extends Component {
   renderUserRole() {
       //admin
       if(this.state.authorize[1] === 0) {
-        return this.renderAdminPages()
+        return this.renderMyPage()
         //user
       } else if(this.state.authorize[1] === 1) {
         return this.renderUserPages()
@@ -225,7 +225,7 @@ class App extends Component {
   renderMyPage() {
     return (
       [
-        <Route exact path="/mypage" component={MyPage} />,
+        // <Route exact path="/mypage" component={MyPage} />,
       ]
     )
   }
@@ -234,7 +234,7 @@ class App extends Component {
   renderUserPages() {
     return (
       [
-        <Route exact path="/userpage" component={UserPage} />
+        <Route exact path="/mypage" component={UserPage} />
       ]
     )
   }
@@ -303,8 +303,8 @@ class App extends Component {
             }}
           />
 
-          <Route exact 
-                 path="/login" 
+          <Route exact
+                 path="/login"
                  render={props => {
                    return <Login onAuth={ this.onChangeAuth }/>
                  }}
