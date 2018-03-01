@@ -16,7 +16,6 @@ import CartMain from "./CartMain";
 import Login from "./Login";
 import Signup from "./Signup";
 import MyPage from "./myPage/MyPage";
-import UserPage from "./UserPage";
 import NotFoundComponent from "./NotFoundComponent";
 
 class App extends Component {
@@ -29,7 +28,7 @@ class App extends Component {
       totalAmount: 0,
       checked: true,
       fullDate: new Date().toISOString().slice(0, 10),
-      authorize: ['Guest', 3]
+      authorize: ['Guest', 1]
     };
     this.resetCart = this.resetCart.bind(this);
     this.handleAddToCart = this.handleAddToCart.bind(this);
@@ -234,13 +233,13 @@ class App extends Component {
   renderUserPages() {
     return (
       [
-        <Route exact path="/mypage" component={UserPage} />
+        <Route exact path="/mypage" component={MyPage} />
       ]
     )
   }
 
   render() {
-    const isHeaderRoute = (window.location.pathname.includes('mypage') && this.state.userRole === 1);
+    const isHeaderRoute = (window.location.pathname.includes('mypage') && this.state.authorize[1] === 1);
 
     return (
       <div>
@@ -249,7 +248,7 @@ class App extends Component {
             cartItems={this.state.cart}
             totalAmount={this.state.totalAmount}
             updateQuantity={this.updateQuantity}
-            userRole={this.state.userRole}
+            authorize={this.state.authorize}
           />
         ) : null }
 
