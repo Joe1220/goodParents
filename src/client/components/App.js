@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 // import axios from "axios";
 
 import About from "./About";
@@ -16,7 +16,6 @@ import CartMain from "./CartMain";
 import Login from "./Login";
 import Signup from "./Signup";
 import MyPage from "./myPage/MyPage";
-import UserPage from "./UserPage";
 import NotFoundComponent from "./NotFoundComponent";
 
 class App extends Component {
@@ -29,7 +28,7 @@ class App extends Component {
       totalAmount: 0,
       checked: true,
       fullDate: new Date().toISOString().slice(0, 10),
-      authorize: ['Guest', 3]
+      authorize: ['Guest', 1]
     };
     this.resetCart = this.resetCart.bind(this);
     this.handleAddToCart = this.handleAddToCart.bind(this);
@@ -206,41 +205,20 @@ class App extends Component {
   }
   onChangeAuth(auth) {
     this.setState({ authorize: auth });
-  }
-
-  renderUserRole() {
-      //admin
-      if(this.state.authorize[1] === 0) {
-        return this.renderAdminPages()
-        //user
-      } else if(this.state.authorize[1] === 1) {
-        return this.renderUserPages()
-        //guest
-      } else {
-        return <p></p>
-      }
-  }
-
-  //admin 권한을 가졌을때 접근 가능한 route
-  renderMyPage() {
-    return (
-      [
-        <Route exact path="/mypage" component={MyPage} />,
-      ]
-    )
+    <Redirect to="/" />
   }
 
   //일반 권한을 가졌을때 접근 가능한 route
-  renderUserPages() {
+  renderMyPage() {
     return (
       [
-        <Route exact path="/userpage" component={UserPage} />
+        <Route exact path="/mypage" component={MyPage} />
       ]
     )
   }
 
   render() {
-    const isHeaderRoute = (window.location.pathname.includes('mypage') && this.state.userRole === 1);
+    const isHeaderRoute = (window.location.pathname.includes('mypage') && this.state.authorize[1] === 1);
 
     return (
       <div>
@@ -249,7 +227,7 @@ class App extends Component {
             cartItems={this.state.cart}
             totalAmount={this.state.totalAmount}
             updateQuantity={this.updateQuantity}
-            userRole={this.state.userRole}
+            authorize={this.state.authorize}
           />
         ) : null }
 
@@ -303,15 +281,15 @@ class App extends Component {
             }}
           />
 
-          <Route exact 
-                 path="/login" 
+          <Route exact
+                 path="/login"
                  render={props => {
                    return <Login onAuth={ this.onChangeAuth }/>
                  }}
                  />
           <Route exact path="/signup" component={Signup} />
           {/* 유저 권한별 렌더링 함수 */}
-          {this.renderUserRole()}
+          { this.state.authorize[1] === 1 ?  this.renderMyPage() : null }
           {/* 각 음식들의 detail 페이지  */}
           {this.renderFoodDetail()}
           <Route component={NotFoundComponent} />

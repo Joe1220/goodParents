@@ -1,25 +1,31 @@
 import React from 'react';
 import "../../public/style/MyPage.css";
-import {  Navbar, Nav, NavbarBrand, NavItem, NavLink, DropdownToggle, DropdownMenu , DropdownItem, UncontrolledDropdown, Collapse, NavbarToggler } from 'reactstrap';
+import {  Navbar, Nav, NavbarBrand, NavItem, DropdownToggle, DropdownMenu , DropdownItem, UncontrolledDropdown, Collapse, NavbarToggler } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 class MyPage extends React.Component {
   constructor() {
     super();
     this.state = {
+      collapsedUp: true,
       collapsed1: true,
       collapsed2: true,
       collapsed3: true,
       collapsed4: true,
       collapsed5: true
     }
+    this.toggleNavbarUpper = this.toggleNavbarUpper.bind(this);
     this.toggleNavbar1 = this.toggleNavbar1.bind(this);
     this.toggleNavbar2 = this.toggleNavbar2.bind(this);
     this.toggleNavbar3 = this.toggleNavbar3.bind(this);
     this.toggleNavbar4 = this.toggleNavbar4.bind(this);
     this.toggleNavbar5 = this.toggleNavbar5.bind(this);
   }
-
+  toggleNavbarUpper() {
+    this.setState({
+      collapsedUp: !this.state.collapsedUp
+    });
+  }
   toggleNavbar1() {
     this.setState({
       collapsed1: !this.state.collapsed1
@@ -54,18 +60,17 @@ class MyPage extends React.Component {
           <Nav className="ml-auto" navbar>
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>
-                <i class="material-icons">face</i>조진식님
+                <i className="material-icons">face</i>조진식님
               </DropdownToggle>
               <DropdownMenu>
                 <div>
-                  <DropdownItem onClick={this.toggleNavbar}>
+                  <DropdownItem onClick={this.toggleNavbarUpper}>
                     <p>계정관리</p>
                   </DropdownItem>
                   <DropdownItem>
                     <p>로그아웃</p>
                   </DropdownItem>
                 </div>
-
               </DropdownMenu>
             </UncontrolledDropdown>
           </Nav>
@@ -82,7 +87,7 @@ class MyPage extends React.Component {
                 className="admin_sidebar_main_toggle_button"
                 onClick={this.toggleNavbar1}>
                 <NavItem className="admin_sidebar_main_text">
-                  <i class="material-icons">autorenew</i><p className="admin_sidebar_main_text_vertical">교환신청</p>
+                  <i className="material-icons">autorenew</i><p className="admin_sidebar_main_text_vertical">교환신청</p>
                   {this.state.collapsed1 ? <i className="material-icons">keyboard_arrow_right</i> : <i className="material-icons">keyboard_arrow_down</i> }
                 </NavItem>
               </NavbarToggler>
@@ -142,7 +147,7 @@ class MyPage extends React.Component {
                 className="admin_sidebar_main_toggle_button"
                 onClick={this.toggleNavbar4}>
                 <NavItem className="admin_sidebar_main_text">
-                  <i class="material-icons">account_balance_wallet</i><p className="admin_sidebar_main_text_vertical">결제정보관리</p>
+                  <i className="material-icons">account_balance_wallet</i><p className="admin_sidebar_main_text_vertical">결제정보관리</p>
                   {this.state.collapsed4 ? <i className="material-icons">keyboard_arrow_right</i> : <i className="material-icons">keyboard_arrow_down</i> }
                 </NavItem>
               </NavbarToggler>
