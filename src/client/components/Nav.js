@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Popover, PopoverHeader, PopoverBody, Navbar, NavbarBrand,
-         DropdownToggle, DropdownMenu , DropdownItem, UncontrolledDropdown,
+         DropdownToggle, DropdownMenu , DropdownItem,
          Dropdown} from 'reactstrap';
 import CartPop from './CartPop';
 import CartDate from './CartDate';
@@ -65,7 +65,7 @@ class Nav extends React.Component {
           버튼
         </DropdownToggle>
         <DropdownMenu>
-          <DropdownItem>마이페이지</DropdownItem>
+          <DropdownItem><Link to="/mypage/ordercheck">마이페이지</Link></DropdownItem>
           <DropdownItem divider />
           <DropdownItem>계정관리</DropdownItem>
         </DropdownMenu>
