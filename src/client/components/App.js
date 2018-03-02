@@ -16,6 +16,7 @@ import CartMain from "./CartMain";
 import Login from "./Login";
 import Signup from "./Signup";
 import MyPage from "./myPage/MyPage";
+import MyPageOrderCheck from './myPage/MyPageOrderCheck';
 import NotFoundComponent from "./NotFoundComponent";
 
 class App extends Component {
@@ -212,7 +213,8 @@ class App extends Component {
   renderMyPage() {
     return (
       [
-        <Route exact path="/mypage" component={MyPage} />
+        // <Route exact path="/mypage" component={MyPage} />,
+        <Route exact path="/mypage/ordercheck" component={MyPageOrderCheck} />
       ]
     )
   }
@@ -229,7 +231,7 @@ class App extends Component {
             updateQuantity={this.updateQuantity}
             authorize={this.state.authorize}
           />
-        ) : null }
+        ) : <MyPage /> }
 
         <Switch>
           <Route
@@ -284,7 +286,7 @@ class App extends Component {
           <Route exact
                  path="/login"
                  render={props => {
-                   return <Login onAuth={ this.onChangeAuth }/>
+                   return <Login onAuth={ this.onChangeAuth } />
                  }}
                  />
           <Route exact path="/signup" component={Signup} />
