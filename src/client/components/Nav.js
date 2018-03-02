@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Popover, PopoverHeader, PopoverBody, Navbar, NavbarBrand,
-        DropdownToggle, DropdownMenu , DropdownItem, UncontrolledDropdown } from 'reactstrap';
+         DropdownToggle, DropdownMenu , DropdownItem, UncontrolledDropdown,
+         Dropdown} from 'reactstrap';
 import CartPop from './CartPop';
 import CartDate from './CartDate';
 import '../public/style/Nav.css';
@@ -13,10 +14,12 @@ class Nav extends React.Component {
 
     this.state = {
       collapsedUp: true,
-      popOpen: false
+      popOpen: false,
+      dropdownOpen: false
     };
     this.toggleNavbarUpper = this.toggleNavbarUpper.bind(this);
     this.renderUserRolePage = this.renderUserRolePage.bind(this);
+    this.toggle = this.toggle.bind(this);
   }
   toggleNavbarUpper() {
     this.setState({
@@ -27,11 +30,16 @@ class Nav extends React.Component {
   cartToggle() {
     this.setState({ popOpen: !this.state.popOpen });
   }
+  toggle() {
+    this.setState({
+      dropdownOpen: !this.state.dropdownOpen
+    });
+  }
 
   renderUserRolePage() {
-    return (
-      <Link to="/mypage"><p className="head_obtions"><i className="material-icons">face</i>{this.props.authorize[0]}님</p></Link>
-    )
+    // return (
+    //   <Link to="/mypage"><p className="head_obtions"><i className="material-icons">face</i>{this.props.authorize[0]}님</p></Link>
+    // )
     // return (
     //   <Nav className="ml-auto" navbar>
     //     <UncontrolledDropdown nav inNavbar>
@@ -51,6 +59,18 @@ class Nav extends React.Component {
     //     </UncontrolledDropdown>
     //   </Nav>
     // )
+    return (
+      <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+        <DropdownToggle caret>
+          버튼
+        </DropdownToggle>
+        <DropdownMenu>
+          <DropdownItem>마이페이지</DropdownItem>
+          <DropdownItem divider />
+          <DropdownItem>계정관리</DropdownItem>
+        </DropdownMenu>
+      </Dropdown>
+    );
   }
 
   renderLoginPart() {
