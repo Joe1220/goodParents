@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 // import axios from "axios";
 
 import About from "./About";
@@ -205,32 +205,11 @@ class App extends Component {
   }
   onChangeAuth(auth) {
     this.setState({ authorize: auth });
-  }
-
-  renderUserRole() {
-      //admin
-      if(this.state.authorize[1] === 0) {
-        return this.renderMyPage()
-        //user
-      } else if(this.state.authorize[1] === 1) {
-        return this.renderUserPages()
-        //guest
-      } else {
-        return <p></p>
-      }
-  }
-
-  //admin 권한을 가졌을때 접근 가능한 route
-  renderMyPage() {
-    return (
-      [
-        // <Route exact path="/mypage" component={MyPage} />,
-      ]
-    )
+    <Redirect to="/" />
   }
 
   //일반 권한을 가졌을때 접근 가능한 route
-  renderUserPages() {
+  renderMyPage() {
     return (
       [
         <Route exact path="/mypage" component={MyPage} />
@@ -310,7 +289,7 @@ class App extends Component {
                  />
           <Route exact path="/signup" component={Signup} />
           {/* 유저 권한별 렌더링 함수 */}
-          {this.renderUserRole()}
+          { this.state.authorize[1] === 1 ?  this.renderMyPage() : null }
           {/* 각 음식들의 detail 페이지  */}
           {this.renderFoodDetail()}
           <Route component={NotFoundComponent} />
