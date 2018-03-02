@@ -1,0 +1,20 @@
+[
+  {
+    "id": "aaa",
+    "password": "aaa",
+    "authority": 0,
+    "name": "aaa",
+    "telephone": "01000000000",
+    "email": "aaa@aaa.net",
+    "userimg": {}
+  },
+  {
+    "id": "bbb",
+    "password": "bbb",
+    "authority": 1,
+    "name": "bbb",
+    "telephone": "01011110000",
+    "email": "bbb@bbb.net",
+    "userimg": {}
+  }
+]
