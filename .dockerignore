@@ -1,0 +1,4 @@
+# .dockerignore file
+*
+!build
+!server.js
