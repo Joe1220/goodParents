@@ -31,7 +31,17 @@ class Login extends Component {
       })
     })
     .then(response => response.json())
-    .then(data => upperThis.props.onAuth(data))
+    // .then(data => upperThis.props.onAuth(data))
+    .then(data => {
+      if(data) {
+        upperThis.props.onAuth(data);
+      } else {
+				this.setState({
+					email:'',
+					password:''
+				});
+      }
+    })
     .catch(error => console.error(error));
   }
 
