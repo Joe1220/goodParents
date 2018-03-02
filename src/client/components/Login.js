@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { CardBody, CardTitle, InputGroup, Input, Button } from "reactstrap";
+import { CardBody, CardTitle, InputGroup, Input, Button, FormFeedback } from "reactstrap";
 
 class Login extends Component {
   constructor(props){
@@ -36,6 +36,7 @@ class Login extends Component {
       if(data) {
         upperThis.props.onAuth(data);
       } else {
+        <FormFeedback>Oh noes! that name is already taken</FormFeedback>
 				this.setState({
 					email:'',
 					password:''

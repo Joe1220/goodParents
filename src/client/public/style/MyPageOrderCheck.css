@@ -20,3 +20,43 @@
   border: 2px solid white;
   border-radius: 5px;
 }
+
+.mypage_ordercheck_main_row {
+  height: 50px;
+}
+
+hr.mypage_ordercheck_main_hr{
+  border-top: 1px solid #8c8b8b;
+  border-width: 2px;
+}
+
+.mypage_ordercheck_main_table {
+  margin-top: 20px;
+  height: 40%;
+}
+
+.mypage_ordercheck_main_table tr {
+  line-height: 16px;
+  font-size: 13px;
+  text-align: center;
+  opacity: 0.6;
+}
+
+.mypage_ordercheck_main_table thead tr {
+  background-color: rgb(158, 158, 158);
+}
+
+.mypage_ordercheck_main_orderlist {
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.mypage_ordercheck_main_orderlist p{
+  line-height: 2px;
+  font-size: 11px;
+}
+
+.mypage_ordercheck_main_item_list {
+  font-size: 12px;
+  line-height: 16px;
+}
