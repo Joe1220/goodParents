@@ -10,6 +10,7 @@ const mongoPort = process.env.MONGOPORT || 27017;
 const UsersRouter = require("./routes/users");
 const ProductsRouter = require("./routes/products");
 const AuthRouter = require("./routes/auth");
+const AuthMiddleware = require("./middleware/auth");
 
 // jwt config
 const config = require('./config');
@@ -47,6 +48,7 @@ mongoose
   });
 
 // 라우팅 연결
+app.use("/api/users", AuthMiddleware);
 app.use("/api/users", UsersRouter);
 app.use("/api/products", ProductsRouter);
 app.use("/api/auth", AuthRouter);
