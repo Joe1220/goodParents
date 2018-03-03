@@ -55,7 +55,7 @@ class App extends Component {
   }
 
   foodDetailFetch() {
-    fetch(`/api/products?date=${this.state.fullDate}`)
+    fetch(`/api/products/list?date=${this.state.fullDate}`)
       .then(response => response.json())
       .then(data => this.setState({ products: data }))
       .catch(error => console.error(error));

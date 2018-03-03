@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 
-const Babyschema = new mongoose.Schema({
+const BabySchema = new mongoose.Schema({
   MyBabyName: String,
-  MyBabyOld: [String], //[2년,11개월]
-  MyBabySex: [String], //['boy', 'girl']
+  MyBabyOld: Date, //태어난 날짜
+  MyBabySex: Number, //['0, boy', '1, girl']
   MyBabyWeight: Number,
   MyBabyHeight: Number
 });
 
-module.exports = mongoose.model('Baby', Babyschema);
+module.exports = mongoose.model('Baby', BabySchema);
