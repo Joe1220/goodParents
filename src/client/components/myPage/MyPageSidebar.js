@@ -56,7 +56,8 @@ class MyPageSidebar extends React.Component {
       <div className="admin_sidebar_main">
         <Nav vertical>
           <NavItem className="admin_sidebar_main_text">
-            <i className="material-icons">chrome_reader_mode</i><Link to="/mypage/ordercheck"><p className="admin_sidebar_main_text_vertical">주문확인</p></Link>
+            <i className="material-icons">chrome_reader_mode</i>
+            <Link to="/mypage/ordercheck"><p className="admin_sidebar_main_text_vertical">주문확인</p></Link>
           </NavItem>
           <NavItem>
             <NavbarToggler
@@ -70,10 +71,10 @@ class MyPageSidebar extends React.Component {
             <Collapse isOpen={!this.state.collapsed1} navbar>
               <Nav navbar>
                 <NavItem className="admin_sidebar_main_text admin_sidebar_main_sub_text">
-                  <p>배송지확인</p>
+                  <Link to="/mypage/changecheck"><p>교환확인</p></Link>
                 </NavItem>
                 <NavItem className="admin_sidebar_main_text admin_sidebar_main_sub_text">
-                  <p>배송지수정</p>
+                  <Link to="/mypage/changeapply"><p>교환신청</p></Link>
                 </NavItem>
               </Nav>
             </Collapse>
@@ -90,10 +91,10 @@ class MyPageSidebar extends React.Component {
             <Collapse isOpen={!this.state.collapsed2} navbar>
               <Nav navbar>
                 <NavItem className="admin_sidebar_main_text admin_sidebar_main_sub_text">
-                  <p>배송지확인</p>
+                  <Link to="/mypage/placecheck"><p>배송지확인</p></Link>
                 </NavItem>
                 <NavItem className="admin_sidebar_main_text admin_sidebar_main_sub_text">
-                  <p>배송지수정</p>
+                  <Link to="/mypage/placechange"><p>배송지수정</p></Link>
                 </NavItem>
               </Nav>
             </Collapse>
@@ -110,10 +111,10 @@ class MyPageSidebar extends React.Component {
             <Collapse isOpen={!this.state.collapsed3} navbar>
               <Nav navbar>
                 <NavItem className="admin_sidebar_main_text admin_sidebar_main_sub_text">
-                  <p>아이정보</p>
+                  <Link to="/mypage/childinfo"><p>아이정보</p></Link>
                 </NavItem>
                 <NavItem className="admin_sidebar_main_text admin_sidebar_main_sub_text">
-                  <p>아이등록</p>
+                  <Link to="/mypage/childenrollment"><p>아이등록</p></Link>
                 </NavItem>
               </Nav>
             </Collapse>
@@ -130,10 +131,10 @@ class MyPageSidebar extends React.Component {
             <Collapse isOpen={!this.state.collapsed4} navbar>
               <Nav navbar>
                 <NavItem className="admin_sidebar_main_text admin_sidebar_main_sub_text">
-                  <p>결제정보확인</p>
+                  <Link to="/mypage/paycheck"><p>결제정보확인</p></Link>
                 </NavItem>
                 <NavItem className="admin_sidebar_main_text admin_sidebar_main_sub_text">
-                  <p>결제정보업데이트</p>
+                  <Link to="/mypage/payupdate"><p>결제정보업데이트</p></Link>
                 </NavItem>
               </Nav>
             </Collapse>
@@ -150,16 +151,17 @@ class MyPageSidebar extends React.Component {
             <Collapse isOpen={!this.state.collapsed5} navbar>
               <Nav navbar>
                 <NavItem className="admin_sidebar_main_text admin_sidebar_main_sub_text">
-                  <p>배송지확인</p>
+                  <Link to="/mypage/qnacheck"><p>질문확인</p></Link>
                 </NavItem>
                 <NavItem className="admin_sidebar_main_text admin_sidebar_main_sub_text">
-                  <p>배송지수정</p>
+                  <Link to="/mypage/qnaenrollment"><p>질문신청</p></Link>
                 </NavItem>
               </Nav>
             </Collapse>
           </NavItem>
           <NavItem className="admin_sidebar_main_text">
-            <i className="material-icons">build</i><p className="admin_sidebar_main_text_vertical">계정관리</p>
+            <i className="material-icons">build</i>
+            <Link to="/mypage/account"><p className="admin_sidebar_main_text_vertical">계정관리</p></Link>
           </NavItem>
         </Nav>
       </div>
