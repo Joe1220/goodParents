@@ -1,0 +1,85 @@
+.mypage_changeapply_main {
+  border: 1px solid white;
+  background-color: #DCDCDC;
+  line-height: 4.5em;
+  width: 100%;
+  height: 700px;
+  padding-top: 10px;
+  padding-left: 250px;
+}
+
+.mypage_changeapply_main_upper_Home_text {
+  opacity: 0.6;
+}
+
+.mypage_changeapply_main_description_box {
+  background-color: white;
+  width: 1220px;
+  height: 580px;
+  border-radius: 4px;
+  box-shadow: rgb(190, 190, 190) 1px 2px 1px 0px;
+}
+
+.mypage_changeapply_main_cause_select_form {
+  margin-left: 40px;
+  padding: 0;
+  height: 10px;
+}
+
+.mypage_changeapply_main_cause_select_form_head_text {
+  font-size: 12px;
+  font-family: HanSans;
+  font-weight: bold;
+  height: 10%;
+}
+
+.mypage_changeapply_main_cause_select_radios {
+  margin-top: 10px;
+}
+
+.mypage_changeapply_main_cause_select_radios_text {
+  font-size: 13px;
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 40px;
+}
+
+.mypage_changeapply_main_item_select_radios {
+  margin-top: 4px;
+  line-height: 80px;
+}
+
+.mypage_changeapply_main_item_select_radios_text {
+  font-size: 13px;
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 20px;
+}
+
+.mypage_changeapply_main_item_select_sub_radios {
+  padding-top: 0;
+  margin-left: 30px;
+  line-height: 20px;
+}
+
+.mypage_changeapply_main_item_select_sub_radios_text {
+  font-size: 13px;
+  display: inline;
+}
+
+#mypage_changeapply_main_textarea {
+  margin: 0;
+  width: 80%;
+}
+
+.mypage_changeapply_main_textarea_head {
+  height: 20%;
+}
+
+#mypage_changeapply_main_textarea_head {
+  font-size: 12px;
+  font-family: HanSans;
+  font-weight: bold;
+  height: 0;
+
+}
