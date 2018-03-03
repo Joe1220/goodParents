@@ -57,6 +57,7 @@ hr.mypage_ordercheck_main_hr{
 }
 
 .mypage_ordercheck_main_item_list {
+  margin-top: 50px;
   font-size: 12px;
   line-height: 16px;
 }
