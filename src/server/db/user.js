@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 const userSchema = new mongoose.Schema({
   name: { type: String, default: '회원' },
@@ -14,7 +14,7 @@ const userSchema = new mongoose.Schema({
 userSchema.statics.create = function (email, password) {
   const upperThis = this;
   const saltRounds = 10;
-  bcrypt.hash(password, saltRounds).then(function (hashed) {
+  return bcrypt.hash(password, saltRounds).then(function (hashed) {
     const user = new upperThis({
       email,
       password: hashed
