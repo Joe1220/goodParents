@@ -34,7 +34,7 @@ class MyPageChangeCheck extends React.Component {
   render() {
     return (
       <div className="mypage_changecheck_main">
-        <p className="mypage_changecheck_main_upper_Home_text"><Link to="/mypage/ordercheck">Home</Link> / 주문확인</p>
+        <p className="mypage_changecheck_main_upper_Home_text"><Link to="/mypage/ordercheck">Home</Link> / 교환확인</p>
         <div className="mypage_changecheck_main_description_box">
           <Row>
             <Col sm="1"></Col>
