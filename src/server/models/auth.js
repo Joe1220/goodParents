@@ -22,7 +22,7 @@ module.exports = {
     };
     // run when there is an error (email exists)
     const onError = error => {
-      res.status(409).json({
+      res.status(400).json({
         message: error.message
       });
     };
@@ -75,6 +75,12 @@ module.exports = {
     };
     // respond the token
     const respond = token => {
+      const options = {
+        maxAge: 1000 * 60 * 60, // would expire after 60 minutes
+        httpOnly: true, // The cookie only accessible by the web server
+        signed: true // Indicates if the cookie should be signed
+      };
+      res.cookie("token", token, options);
       res.json({
         message: "logged in successfully",
         token
