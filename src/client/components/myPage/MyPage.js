@@ -2,7 +2,6 @@ import React from 'react';
 import "../../public/style/MyPage.css";
 import MyPageSidebar from './MyPageSidebar';
 import MyPageUpNav from './MyPageUpNav';
-import { Route, Switch } from "react-router-dom";
 
 class MyPage extends React.Component {
 
