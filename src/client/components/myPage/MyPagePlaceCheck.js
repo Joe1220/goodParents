@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../public/style/MyPagePlaceCheck.css';
 import { Link } from 'react-router-dom';
-import { Col, Row, Table, Input, FormGroup } from 'reactstrap';
+import { Table, Input } from 'reactstrap';
 
 const MyPagePlaceCheck = () => {
   return (
