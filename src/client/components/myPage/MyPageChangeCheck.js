@@ -37,10 +37,8 @@ class MyPageChangeCheck extends React.Component {
         <p className="mypage_changecheck_main_upper_Home_text"><Link to="/mypage/ordercheck">Home</Link> / 주문확인</p>
         <div className="mypage_changecheck_main_description_box">
           <Row>
-            <Col sm="2">
-
-            </Col>
-            <Col sm="10">
+            <Col sm="1"></Col>
+            <Col sm="11">
               <Table size="sm" responsive bordered className="mypage_changecheck_main_table">
                 <thead>
                   <tr>
@@ -73,6 +71,17 @@ class MyPageChangeCheck extends React.Component {
               </Table>
             </Col>
           </Row>
+          <div className="mypage_changecheck_main_list_text">
+            <p className="mypage_changecheck_main_list_text_head">반품 상품</p>
+            <ol type="1">
+              <li>한우 버섯 조립 1개</li>
+              <li>닭고기 오이죽 2개</li>
+            </ol>
+          </div>
+          <div className="mypage_changecheck_main_cause_text">
+            <p className="mypage_changecheck_main_cause_text_head">반품 사유</p>
+            <p className="mypage_changecheck_main_cause_text_head_dec">아이가 닭고기를 싫어했는데 생각을 못하고 주문했었습니다. 교환 부탁드립니다.</p>
+          </div>
         </div>
       </div>
 

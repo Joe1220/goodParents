@@ -17,8 +17,8 @@
   background-color: white;
   width: 1220px;
   height: 500px;
-  border: 2px solid white;
-  border-radius: 5px;
+  border-radius: 4px;
+  box-shadow: rgb(190, 190, 190) 1px 2px 1px 0px;
 }
 
 .mypage_ordercheck_main_row {

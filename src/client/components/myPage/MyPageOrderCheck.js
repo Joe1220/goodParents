@@ -2,7 +2,7 @@ import React from 'react';
 import '../../public/style/MyPageOrderCheck.css';
 import { Link } from 'react-router-dom';
 import { TabContent, TabPane, Nav, NavItem, NavLink,
-         Row, Col, Container, Table, FormGroup, Label, Input } from 'reactstrap';
+         Row, Col, Container, Table } from 'reactstrap';
 import classnames from 'classnames';
 
 
