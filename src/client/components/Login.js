@@ -20,12 +20,12 @@ class Login extends Component {
   }
   onSubmit(){
     const upperThis = this;
-    const url = `/login`;
+    const url = `/api/login`;
     const data = {email:this.state.email, password: this.state.password}
     fetch(url, {
       method: 'POST',
       credentials: 'include',
-      body: JSON.stringify(data),
+      query: JSON.stringify(data),
       headers: new Headers({
         'Content-Type': 'application/json'
       })

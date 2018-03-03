@@ -85,7 +85,8 @@ class Nav extends React.Component {
           <Link to="/prime"><p className="head_obtions">프라임</p></Link>
           <Link to="/"><NavbarBrand><p id="my_head">goodparents</p></NavbarBrand></Link>
           <Link to="/about" ><p className="head_obtions">About</p></Link>
-          { this.props.authorize[1] === 1 ? this.renderUserRolePage() : this.renderLoginPart() }
+          <Link to="/login" ><p className="head_obtions">Log in</p></Link>
+          {/* { this.props.authorize[1] === 1 ? this.renderUserRolePage() : this.renderLoginPart() } */}
 
           <i id="Popover1" onClick={this.cartToggle} className="material-icons cart">add_shopping_cart</i>
           <Popover placement="bottom-end" isOpen={this.state.popOpen} target="Popover1" toggle={this.cartToggle}>
