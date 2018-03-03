@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { CardBody, CardTitle, InputGroup, Input, Button } from "reactstrap";
+import { CardBody, CardTitle, InputGroup, Input, Button, FormFeedback } from "reactstrap";
 
 class Login extends Component {
   constructor(props){
@@ -20,12 +20,12 @@ class Login extends Component {
   }
   onSubmit(){
     const upperThis = this;
-    const url = `/login`;
+    const url = `/api/login`;
     const data = {email:this.state.email, password: this.state.password}
     fetch(url, {
       method: 'POST',
       credentials: 'include',
-      body: JSON.stringify(data),
+      query: JSON.stringify(data),
       headers: new Headers({
         'Content-Type': 'application/json'
       })
@@ -36,6 +36,7 @@ class Login extends Component {
       if(data) {
         upperThis.props.onAuth(data);
       } else {
+        <FormFeedback>Oh noes! that name is already taken</FormFeedback>
 				this.setState({
 					email:'',
 					password:''

@@ -16,6 +16,18 @@ import CartMain from "./CartMain";
 import Login from "./Login";
 import Signup from "./Signup";
 import MyPage from "./myPage/MyPage";
+import MyPageOrderCheck from './myPage/MyPageOrderCheck';
+import MyPageChangeCheck from './myPage/MyPageChangeCheck';
+import MyPageChangeApply from './myPage/MyPageChangeApply';
+import MyPagePlaceCheck from './myPage/MyPagePlaceCheck';
+import MyPagePlaceChange from './myPage/MyPagePlaceChange';
+import MyPageChildInfo from './myPage/MyPageChildInfo';
+import MyPageChildEnrollment from './myPage/MyPageChildEnrollment';
+import MyPagePayCheck from './myPage/MyPagePayCheck';
+import MyPagePayUpdate from './myPage/MyPagePayUpdate';
+import MyPageQnACheck from './myPage/MyPageQnACheck';
+import MyPageQnAEnrollment from './myPage/MyPageQnAEnrollment';
+import MyPageAccount from './myPage/MyPageAccount';
 import NotFoundComponent from "./NotFoundComponent";
 
 class App extends Component {
@@ -212,7 +224,19 @@ class App extends Component {
   renderMyPage() {
     return (
       [
-        <Route exact path="/mypage" component={MyPage} />
+        // <Route exact path="/mypage" component={MyPage} />,
+        <Route exact path="/mypage/ordercheck" component={MyPageOrderCheck} />,
+        <Route exact path="/mypage/changecheck" component={MyPageChangeCheck} />,
+        <Route exact path="/mypage/changeapply" component={MyPageChangeApply} />,
+        <Route exact path="/mypage/placecheck" component={MyPagePlaceCheck} />,
+        <Route exact path="/mypage/placechange" component={MyPagePlaceChange} />,
+        <Route exact path="/mypage/childinfo" component={MyPageChildInfo} />,
+        <Route exact path="/mypage/childenrollment" component={MyPageChildEnrollment} />,
+        <Route exact path="/mypage/paycheck" component={MyPagePayCheck} />,
+        <Route exact path="/mypage/payupdate" component={MyPagePayUpdate} />,
+        <Route exact path="/mypage/qnacheck" component={MyPageQnACheck} />,
+        <Route exact path="/mypage/qnaenrollment" component={MyPageQnAEnrollment} />,
+        <Route exact path="/mypage/account" component={MyPageAccount} />
       ]
     )
   }
@@ -229,7 +253,7 @@ class App extends Component {
             updateQuantity={this.updateQuantity}
             authorize={this.state.authorize}
           />
-        ) : null }
+        ) : <MyPage /> }
 
         <Switch>
           <Route
@@ -284,7 +308,7 @@ class App extends Component {
           <Route exact
                  path="/login"
                  render={props => {
-                   return <Login onAuth={ this.onChangeAuth }/>
+                   return <Login onAuth={ this.onChangeAuth } />
                  }}
                  />
           <Route exact path="/signup" component={Signup} />
