@@ -21,14 +21,14 @@
 }
 
 #mypage_placecheck_main_head {
-  font-size: 22px;
+  font-size: 18px;
   color: rgb(158, 158, 158);
   line-height: 1.8em;
   padding: 30px 30px;
 }
 
 #mypage_placecheck_main_hr {
-  background-color: black;
+  background-color: grey;
   float: center;
 }
 
