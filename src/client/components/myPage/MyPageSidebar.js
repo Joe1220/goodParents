@@ -94,7 +94,7 @@ class MyPageSidebar extends React.Component {
                   <Link to="/mypage/placecheck"><p>배송지확인</p></Link>
                 </NavItem>
                 <NavItem className="admin_sidebar_main_text admin_sidebar_main_sub_text">
-                  <Link to="/mypage/placechange"><p>배송지수정</p></Link>
+                  <Link to="/mypage/placeadd"><p>배송지추가</p></Link>
                 </NavItem>
               </Nav>
             </Collapse>
