@@ -22,6 +22,8 @@ services:
       - ${FRONTPORT}:${FRONTPORT}
     environment:
       - PORT=${FRONTPORT}
+    volumes:
+      - ./build/:/var/www/build/:ro
     networks:
       - services
     restart: on-failure
@@ -35,6 +37,8 @@ services:
     environment:
       - PORT=${APIPORT}
       - MONGOPORT=${MONGOPORT}
+    volumes:
+      - ./src/server/:/var/www/server/
     networks:
       - services
     restart: on-failure
