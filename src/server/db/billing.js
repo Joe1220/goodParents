@@ -1,13 +1,11 @@
 const mongoose = require('mongoose');
 
 const Billingschema = new mongoose.Schema({
-  BillingInformationCardType: [String], // ['신용카드', '체크카드']
+  BillingInformationCardType: Number, //신용카드만 하자. 숫자 0으로
   BillingCardNumber: Number,
-  BillingExpirationDate: Date,//(월/연도)
+  BillingExpirationDate: String,//(월/연도)
   BillingName: String,
-  BillingDate: Number,
-  BillingMonth: Number,
-  BillingYear: Number
+  BillingDate: Date//내가 결제하는 날짜
 });
 
 module.exports = mongoose.model('Billing', Billingschema);

@@ -1,0 +1,46 @@
+.mypage_placeadd_main {
+  border: 1px solid white;
+  background-color: #DCDCDC;
+  line-height: 4.5em;
+  width: 100%;
+  height: 700px;
+  padding-top: 10px;
+  padding-left: 250px;
+}
+
+.mypage_placeadd_main_upper_Home_text {
+  opacity: 0.6;
+}
+
+.mypage_placeadd_main_description_box {
+  background-color: white;
+  width: 1220px;
+  height: 480px;
+  border-radius: 4px;
+  box-shadow: rgb(190, 190, 190) 1px 2px 1px 0px;
+}
+
+.mypage_placeadd_main_form {
+  padding-top: 40px;
+  margin-left: 100px;
+  line-height: 10px;
+}
+
+.mypage_placeadd_main_form_label {
+  padding: 0;
+  margin: 0;
+  font-size: 12px;
+}
+
+input.mypage_placeadd_main_placeholder::placeholder {
+  font-family: HanSans;
+  font-size: 12px;
+}
+
+#mypage_placeadd_main_form_button {
+  margin-top: 50px;
+}
+
+#zipcode_btn {
+  display: inline;
+}

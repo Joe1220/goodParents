@@ -26,7 +26,7 @@ app.use(helmet());
 // X-Powered-By 헤더는 사용하지 않도록 설정
 app.disable("x-powered-by");
 // 쿠키파서 미들웨어 연결
-app.use(cookieParser());
+app.use(cookieParser(config.secret));
 // 몽고디비 커넥션
 mongoose
   .connect(`mongodb://goodParents:abc123@mongodb:${mongoPort}/goodParents`)

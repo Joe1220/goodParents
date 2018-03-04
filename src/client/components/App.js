@@ -20,7 +20,7 @@ import MyPageOrderCheck from './myPage/MyPageOrderCheck';
 import MyPageChangeCheck from './myPage/MyPageChangeCheck';
 import MyPageChangeApply from './myPage/MyPageChangeApply';
 import MyPagePlaceCheck from './myPage/MyPagePlaceCheck';
-import MyPagePlaceChange from './myPage/MyPagePlaceChange';
+import MyPagePlaceAdd from './myPage/MyPagePlaceAdd';
 import MyPageChildInfo from './myPage/MyPageChildInfo';
 import MyPageChildEnrollment from './myPage/MyPageChildEnrollment';
 import MyPagePayCheck from './myPage/MyPagePayCheck';
@@ -55,7 +55,7 @@ class App extends Component {
   }
 
   foodDetailFetch() {
-    fetch(`/api/products?date=${this.state.fullDate}`)
+    fetch(`/api/products/list?date=${this.state.fullDate}`)
       .then(response => response.json())
       .then(data => this.setState({ products: data }))
       .catch(error => console.error(error));
@@ -229,7 +229,7 @@ class App extends Component {
         <Route exact path="/mypage/changecheck" component={MyPageChangeCheck} />,
         <Route exact path="/mypage/changeapply" component={MyPageChangeApply} />,
         <Route exact path="/mypage/placecheck" component={MyPagePlaceCheck} />,
-        <Route exact path="/mypage/placechange" component={MyPagePlaceChange} />,
+        <Route exact path="/mypage/placeadd" component={MyPagePlaceAdd} />,
         <Route exact path="/mypage/childinfo" component={MyPageChildInfo} />,
         <Route exact path="/mypage/childenrollment" component={MyPageChildEnrollment} />,
         <Route exact path="/mypage/paycheck" component={MyPagePayCheck} />,
