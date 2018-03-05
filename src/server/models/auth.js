@@ -3,18 +3,17 @@ const jwt = require("jsonwebtoken");
 
 module.exports = {
   register: async (req, res, callback) => {
-    const { email, password } = req.body;
+    const { email, name, password } = req.body;
     // create a new user if does not exist
     const create = results => {
       if (results) {
-        throw new Error("email exists");
+        throw new Error("user exists");
       } else {
-        return User.create(email, password);
+        return User.create(email, name, password);
       }
     };
     // respond to the client
     const respond = result => {
-      console.log(result);
       res.json({
         message: "registered successfully",
         admin: result.admin
@@ -28,7 +27,7 @@ module.exports = {
     };
     callback(
       null,
-      await User.findOneByEmail(email)
+      await User.findOneByEmailAndName(email, name)
         .then(create)
         .then(respond)
         .catch(onError)
@@ -39,7 +38,6 @@ module.exports = {
     const { email, password } = req.body;
     const secret = req.app.get("jwt-secret");
     // check the user info & generate the jwt
-
     const check = user => {
       if (!user) {
         // user does not exist
@@ -51,7 +49,6 @@ module.exports = {
           const p = new Promise((resolve, reject) => {
             jwt.sign(
               {
-                _id: user._id,
                 email: user.email,
                 admin: user.admin
               },
@@ -63,7 +60,12 @@ module.exports = {
               },
               (err, token) => {
                 if (err) reject(err);
-                resolve(token);
+                const result = {
+                  token: token,
+                  name: user.name,
+                  admin: user.admin
+                };
+                resolve(result);
               }
             );
           });
@@ -74,16 +76,17 @@ module.exports = {
       }
     };
     // respond the token
-    const respond = token => {
+    const respond = (result) => {
       const options = {
         maxAge: 1000 * 60 * 60, // would expire after 60 minutes
-        httpOnly: true, // The cookie only accessible by the web server
+        //httpOnly: true, // The cookie only accessible by the web server
         signed: true // Indicates if the cookie should be signed
       };
-      res.cookie("token", token, options);
+      res.cookie("token", result.token, options);
       res.json({
         message: "logged in successfully",
-        token
+        name: result.name,
+        admin: result.admin
       });
     };
     // error occured

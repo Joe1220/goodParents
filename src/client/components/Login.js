@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { CardBody, CardTitle, InputGroup, Input, Button, FormFeedback } from "reactstrap";
-
+import { CardBody, CardTitle, InputGroup, Input, Button } from "reactstrap";
+import { Route, Router, withRouter } from 'react-router-dom';
 class Login extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       email: '',
@@ -12,51 +12,56 @@ class Login extends Component {
     this.onChangePassword = this.onChangePassword.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
-  onChangeEmail(e){
-    this.setState({email: e.target.value})
+  onChangeEmail(e) {
+    this.setState({ email: e.target.value })
   }
-  onChangePassword(e){
-    this.setState({password: e.target.value})
+  onChangePassword(e) {
+    this.setState({ password: e.target.value })
   }
-  onSubmit(){
-    const upperThis = this;
-    const url = `/api/login`;
-    const data = {email:this.state.email, password: this.state.password}
+  onSubmit() {
+    const url = `/api/auth/login`;
+    const data = { email: this.state.email, password: this.state.password }
     fetch(url, {
       method: 'POST',
       credentials: 'include',
-      query: JSON.stringify(data),
-      headers: new Headers({
+      body: JSON.stringify(data),
+      headers: {
+        'Accept': 'application/json',
         'Content-Type': 'application/json'
+      },
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data.message === "logged in successfully") {
+          window.localStorage.setItem("name", data.name)
+          window.localStorage.setItem("auth", data.admin)
+          return data;
+        } else if (data.message === "login failed") {
+          this.props.history.push("/signup")
+        }
       })
-    })
-    .then(response => response.json())
-    // .then(data => upperThis.props.onAuth(data))
-    .then(data => {
-      if(data) {
-        upperThis.props.onAuth(data);
-      } else {
-        <FormFeedback>Oh noes! that name is already taken</FormFeedback>
-				this.setState({
-					email:'',
-					password:''
-				});
-      }
-    })
-    .catch(error => console.error(error));
+      .then(data => {
+        if (data) {
+          this.props.history.push("/")
+        }
+      })
+
+      // })
+      .catch(error => console.error(error));
   }
 
-  render(){
+  render() {
+    console.log("Login page", this.props)
     return (
-      <div className="mx-auto" style={{width: 20 + 'em', textAlign: "center"}}>
+      <div className="mx-auto" style={{ width: 20 + 'em', textAlign: "center", marginBottom: "280px" }}>
         <CardBody>
           <CardTitle className="font-weight-bold">로그인</CardTitle>
           <br />
           <InputGroup className="mb-3">
-            <Input placeholder="이메일 주소" type="email" onChange={this.onChangeEmail}/>
+            <Input placeholder="이메일 주소" type="email" onChange={this.onChangeEmail} />
           </InputGroup>
           <InputGroup>
-            <Input placeholder="비밀번호" type="password" onChange={this.onChangePassword}/>
+            <Input placeholder="비밀번호" type="password" onChange={this.onChangePassword} />
           </InputGroup>
           <hr />
           <Button color="primary" size="md" block onClick={this.onSubmit}>로그인하기</Button>
