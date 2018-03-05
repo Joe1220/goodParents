@@ -52,21 +52,18 @@ export default class Example extends React.Component {
         <UncontrolledDropdown nav inNavbar>
           <DropdownToggle nav caret>
             {window.sessionStorage.getItem("name")}님
-      </DropdownToggle>
+          </DropdownToggle>
           <DropdownMenu >
             <DropdownItem href="/mypage">
               마이페이지
-        </DropdownItem>
+            </DropdownItem>
             <DropdownItem href="/adminpage">
               관리자 페이지
-        </DropdownItem>
-            <DropdownItem href="/about">
-              계정관리
-        </DropdownItem>
+            </DropdownItem>
             <DropdownItem divider />
             <DropdownItem href="/about">
               로그아웃
-        </DropdownItem>
+            </DropdownItem>
           </DropdownMenu>
         </UncontrolledDropdown>
       )
@@ -75,18 +72,15 @@ export default class Example extends React.Component {
         <UncontrolledDropdown nav inNavbar>
           <DropdownToggle nav caret>
             {window.sessionStorage.getItem("name")}님
-    </DropdownToggle>
+          </DropdownToggle>
           <DropdownMenu >
             <DropdownItem href="/about">
               마이페이지
-      </DropdownItem>
-            <DropdownItem href="/about">
-              계정관리
-      </DropdownItem>
+            </DropdownItem>
             <DropdownItem divider />
             <DropdownItem href="/about">
               로그아웃
-      </DropdownItem>
+            </DropdownItem>
           </DropdownMenu>
         </UncontrolledDropdown>
       )
@@ -102,7 +96,7 @@ export default class Example extends React.Component {
     return (
       <div>
         <Container >
-          <Navbar style={{ paddingRight: "0", paddingTop: "13px" }} color="faded" light expand="md">
+          <Navbar style={{ paddingRight: "0", paddingTop: "13px", borderBottom: "0.5px solid rgb(224,224,224)" }} color="faded" light expand="md">
             <NavbarBrand style={style} href="/">goodParents</NavbarBrand>
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>

@@ -15,8 +15,8 @@ import FoodDetail from "./FoodDetail";
 import CartMain from "./CartMain";
 import Login from "./Login";
 import Signup from "./Signup";
-import MyPageSide from "./MyPageSide";
-import AdminPageSide from "./AdminPageSide";
+import MyPage from "./MyPage";
+import AdminPage from "./AdminPage";
 // import MyPage from "./myPage/MyPage";
 // import MyPageOrderCheck from './myPage/MyPageOrderCheck';
 // import MyPageChangeCheck from './myPage/MyPageChangeCheck';
@@ -265,8 +265,10 @@ class App extends Component {
           <Route exact path="/terms" component={Terms} />
           <Route exact path="/privacy" component={Privacy} />
           <Route exact path="/prime" component={Prime} />
-          {/* MyPage */}
-
+          {/* MyPage */} 
+          <Route path="/mypage" component={MyPage} />
+          {/* AdminPage */}
+          <Route path="/adminpage" component={AdminPage} />
           <Route
             exact
             path="/payment"
