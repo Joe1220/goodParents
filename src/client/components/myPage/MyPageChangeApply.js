@@ -17,60 +17,60 @@ class MyPageChangeApply extends React.Component {
           <Form className="mypage_changeapply_main_cause_select_form">
             <p className="mypage_changeapply_main_cause_select_form_head_text">반품 사유 선택</p>
             <FormGroup check inline className="mypage_changeapply_main_cause_select_radios">
-              <Label check className="mypage_changeapply_main_label">
-                <Input type="radio" name="radio1"></Input><p className="mypage_changeapply_main_cause_select_radios_text">오배송</p>
+              <Label check for="changeapply_cause">
+                <Input type="radio" name="changeapply_cause"></Input><p className="mypage_changeapply_main_cause_select_radios_text">오배송</p>
               </Label>
             </FormGroup>
             <FormGroup check inline>
               <Label check>
-                 <Input type="radio" name="radio1" /><p className="mypage_changeapply_main_cause_select_radios_text">배송지연</p>
+                 <Input type="radio" name="changeapply_cause" /><p className="mypage_changeapply_main_cause_select_radios_text">배송지연</p>
               </Label>
             </FormGroup>
             <FormGroup check inline>
               <Label check>
-                 <Input type="radio" name="radio1" /><p className="mypage_changeapply_main_cause_select_radios_text">아이가 먹지 않음</p>
+                 <Input type="radio" name="changeapply_cause" /><p className="mypage_changeapply_main_cause_select_radios_text">아이가 먹지 않음</p>
               </Label>
             </FormGroup>
             <FormGroup check inline>
               <Label check>
-                 <Input type="radio" name="radio1" /><p className="mypage_changeapply_main_cause_select_radios_text">상함</p>
+                 <Input type="radio" name="changeapply_cause" /><p className="mypage_changeapply_main_cause_select_radios_text">상함</p>
               </Label>
             </FormGroup>
             <FormGroup check inline>
               <Label check>
-                 <Input type="radio" name="radio1" /><p className="mypage_changeapply_main_cause_select_radios_text">변심</p>
+                 <Input type="radio" name="changeapply_cause" /><p className="mypage_changeapply_main_cause_select_radios_text">변심</p>
               </Label>
             </FormGroup>
 
             <p className="mypage_changeapply_main_cause_select_form_head_text">반품 상품 선택</p>
             <FormGroup check inline className="mypage_changeapply_main_item_select_radios">
-              <Label check>
-                <Input type="radio" name="radio1"></Input><p className="mypage_changeapply_main_item_select_radios_text">2018-2-18</p>
+              <Label check for="changeapply_day">
+                <Input type="radio" name="changeapply_day"></Input><p className="mypage_changeapply_main_item_select_radios_text">2018-2-18</p>
               </Label>
               <Label check>
-                 <Input type="radio" name="radio1" /><p className="mypage_changeapply_main_item_select_radios_text">2018-2-20</p>
+                 <Input type="radio" name="changeapply_day" /><p className="mypage_changeapply_main_item_select_radios_text">2018-2-20</p>
               </Label>
               <Label check>
-                 <Input type="radio" name="radio1" /><p className="mypage_changeapply_main_item_select_radios_text">2018-2-25</p>
+                 <Input type="radio" name="changeapply_day" /><p className="mypage_changeapply_main_item_select_radios_text">2018-2-25</p>
               </Label>
             </FormGroup>
 
             <FormGroup tag="fieldset">
               <FormGroup check className="mypage_changeapply_main_item_select_sub_radios">
-                <Label check>
-                  <Input type="radio" name="radio1"></Input><p className="mypage_changeapply_main_item_select_sub_radios_text">소고기 한우 버섯</p>
+                <Label check for="changeapply_item">
+                  <Input type="radio" name="changeapply_item"></Input><p className="mypage_changeapply_main_item_select_sub_radios_text">소고기 한우 버섯</p>
                 </Label>
               </FormGroup>
               <FormGroup check className="mypage_changeapply_main_item_select_sub_radios">
                 <Label check>
-                  <Input type="radio" name="radio1"></Input><p className="mypage_changeapply_main_item_select_sub_radios_text">소고기 한우 버섯</p>
+                  <Input type="radio" name="changeapply_item"></Input><p className="mypage_changeapply_main_item_select_sub_radios_text">소고기 한우 버섯</p>
                 </Label>
               </FormGroup>
             </FormGroup>
 
             <FormGroup>
-              <Label for="exampleText" id="mypage_changeapply_main_textarea_head">반품 사유 및 기타 메세지 입력</Label>
-              <Input type="textarea" name="text" id="mypage_changeapply_main_textarea" />
+              <Label for="changeapply_message" id="mypage_changeapply_main_textarea_head">반품 사유 및 기타 메세지 입력</Label>
+              <Input type="textarea" name="changeapply_message" id="changeapply_message" />
             </FormGroup>
 
             <p className="mypage_changeapply_main_cause_select_form_head_text">반품 상품 선택</p>

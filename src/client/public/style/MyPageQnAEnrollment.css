@@ -1,0 +1,72 @@
+.mypage_qnaenrol_main {
+  border: 1px solid white;
+  background-color: #DCDCDC;
+  line-height: 4.5em;
+  width: 100%;
+  height: 700px;
+  padding-top: 10px;
+  padding-left: 250px;
+}
+
+.mypage_qnaenrol_main_upper_Home_text {
+  opacity: 0.6;
+}
+
+.mypage_qnaenrol_main_description_box {
+  background-color: white;
+  width: 1220px;
+  height: 450px;
+  border-radius: 4px;
+  box-shadow: rgb(190, 190, 190) 1px 2px 1px 0px;
+}
+
+.mypage_qnaenrol_main_main_cause_select_form {
+  margin-left: 40px;
+  padding: 0;
+  height: 10px;
+}
+
+.mypage_qnaenrol_main_form_head_text {
+  font-size: 12px;
+  font-family: HanSans;
+  font-weight: bold;
+  height: 30%;
+}
+
+div.mypage_qnaenrol_main_form_group.form-check.form-check-inline {
+  height: 30px;
+}
+
+.mypage_qnaenrol_main_form_group_text {
+  font-size: 13px;
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 20px;
+}
+
+.mypage_qnaenrol_main_hr {
+  border-top: 1px solid #8c8b8b;
+  border-width: 2px;
+}
+
+#mypage_qnaenrol_main_textarea_head {
+  font-size: 12px;
+  font-family: HanSans;
+  font-weight: bold;
+  height: 0;
+}
+
+input.mypage_qnaenrol_main_placeholder {
+  font-family: HanSans;
+  font-size: 12px;
+}
+
+.mypage_qnaenrol_main_placeholder#description {
+  height: 150%;
+  font-size: 12px;
+}
+
+#mypage_qnaenrol_main_form_button {
+  margin-top: 60px;
+  width: 70%;
+}
