@@ -47,17 +47,17 @@ export default class Example extends React.Component {
   }
 
   checkLogged() {
-    if (window.localStorage.getItem("auth") === "true") {
+    if (window.sessionStorage.getItem("auth") === "true") {
       return (
         <UncontrolledDropdown nav inNavbar>
           <DropdownToggle nav caret>
-            {window.localStorage.getItem("name")}님
+            {window.sessionStorage.getItem("name")}님
       </DropdownToggle>
           <DropdownMenu >
-            <DropdownItem href="/about">
+            <DropdownItem href="/mypage">
               마이페이지
         </DropdownItem>
-            <DropdownItem href="/about">
+            <DropdownItem href="/adminpage">
               관리자 페이지
         </DropdownItem>
             <DropdownItem href="/about">
@@ -70,11 +70,11 @@ export default class Example extends React.Component {
           </DropdownMenu>
         </UncontrolledDropdown>
       )
-    } else if (window.localStorage.getItem("auth") === "false" && window.localStorage.getItem("name")) {
+    } else if (window.sessionStorage.getItem("auth") === "false" && window.sessionStorage.getItem("name")) {
       return (
         <UncontrolledDropdown nav inNavbar>
           <DropdownToggle nav caret>
-            {window.localStorage.getItem("name")}님
+            {window.sessionStorage.getItem("name")}님
     </DropdownToggle>
           <DropdownMenu >
             <DropdownItem href="/about">
