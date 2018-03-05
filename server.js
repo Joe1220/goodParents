@@ -6,6 +6,12 @@ const port = process.env.PORT || 3000;
 
 app.use("/", express.static(build));
 
+app.get("/*", function(req, res) {
+  res.sendFile(build + "/index.html", function(error) {
+    if (error) res.status(500).send(error);
+  });
+});
+
 app.listen(port, () => {
   console.log("App listening port " + port);
 });
