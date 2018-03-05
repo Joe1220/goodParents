@@ -3,13 +3,13 @@ const jwt = require("jsonwebtoken");
 
 module.exports = {
   register: async (req, res, callback) => {
-    const { email, password } = req.body;
+    const { email, name, password } = req.body;
     // create a new user if does not exist
     const create = results => {
       if (results) {
-        throw new Error("email exists");
+        throw new Error("user exists");
       } else {
-        return User.create(email, password);
+        return User.create(email, name, password);
       }
     };
     // respond to the client
@@ -28,7 +28,7 @@ module.exports = {
     };
     callback(
       null,
-      await User.findOneByEmail(email)
+      await User.findOneByEmailAndName(email, name)
         .then(create)
         .then(respond)
         .catch(onError)
@@ -37,10 +37,11 @@ module.exports = {
 
   login: async (req, res, callback) => {
     const { email, password } = req.body;
+    console.log(req.body);
     const secret = req.app.get("jwt-secret");
     // check the user info & generate the jwt
-
     const check = user => {
+      console.log(user)
       if (!user) {
         // user does not exist
         throw new Error("login failed");

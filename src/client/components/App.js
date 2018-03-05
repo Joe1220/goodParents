@@ -6,6 +6,7 @@ import About from "./About";
 import Area from "./Area";
 import Home from "./Home";
 import Nav from "./Nav";
+import Nav2 from "./Nav2"
 import Footer from "./Footer";
 import Terms from "./Terms";
 import Privacy from "./Privacy";
@@ -242,19 +243,23 @@ class App extends Component {
   }
 
   render() {
-    const isHeaderRoute = (window.location.pathname.includes('mypage') && this.state.authorize[1] === 1);
+    // const isHeaderRoute = (window.location.pathname.includes('mypage') && this.state.authorize[1] === 1);
 
     return (
       <div>
-        {!isHeaderRoute ? (
+        {/* {!isHeaderRoute ? (
           <Nav
             cartItems={this.state.cart}
             totalAmount={this.state.totalAmount}
             updateQuantity={this.updateQuantity}
             authorize={this.state.authorize}
           />
-        ) : <MyPage /> }
-
+        ) : <MyPage /> } */}
+        <Nav2 
+          cartItems={this.state.cart}
+          totalAmount={this.state.totalAmount}
+          updateQuantity={this.updateQuantity}
+          />
         <Switch>
           <Route
             exact
@@ -318,7 +323,8 @@ class App extends Component {
           {this.renderFoodDetail()}
           <Route component={NotFoundComponent} />
         </Switch>
-        {!isHeaderRoute ? <Footer /> : null}
+        {/* {!isHeaderRoute ? <Footer /> : null} */}
+        <Footer />
       </div>
     );
   }

@@ -19,36 +19,36 @@ class Login extends Component {
     this.setState({password: e.target.value})
   }
   onSubmit(){
-    const upperThis = this;
-    const url = `/api/login`;
+    const url = `/api/auth/login`;
     const data = {email:this.state.email, password: this.state.password}
     fetch(url, {
       method: 'POST',
       credentials: 'include',
-      query: JSON.stringify(data),
-      headers: new Headers({
+      body: JSON.stringify(data),
+      headers: {
+        'Accept': 'application/json',
         'Content-Type': 'application/json'
-      })
+      },
     })
     .then(response => response.json())
-    // .then(data => upperThis.props.onAuth(data))
-    .then(data => {
-      if(data) {
-        upperThis.props.onAuth(data);
-      } else {
-        <FormFeedback>Oh noes! that name is already taken</FormFeedback>
-				this.setState({
-					email:'',
-					password:''
-				});
-      }
-    })
+    .then(data => console.log(data))
+    // .then(data => {
+    //   if(data) {
+    //     this.props.onAuth(data);
+    //   } else {
+    //     <FormFeedback>Oh noes! that name is already taken</FormFeedback>
+		// 		this.setState({
+		// 			email:'',
+		// 			password:''
+		// 		});
+    //   }
+    // })
     .catch(error => console.error(error));
   }
 
   render(){
     return (
-      <div className="mx-auto" style={{width: 20 + 'em', textAlign: "center"}}>
+      <div className="mx-auto" style={{width: 20 + 'em', textAlign: "center", marginBottom: "280px"}}>
         <CardBody>
           <CardTitle className="font-weight-bold">로그인</CardTitle>
           <br />
