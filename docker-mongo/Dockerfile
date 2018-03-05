@@ -10,7 +10,7 @@ EXPOSE ${PORT}
 ENTRYPOINT \
 mongod --port 27017 --fork --logpath /data/db/mongodb.log --logappend && \
 mongoimport --host localhost --port 27017 --db goodParents --collection products --file mock_products.json --jsonArray && \
-# mongoimport --host localhost --port 27017 --db goodParents --collection users --file mock_users.json --jsonArray && \
+mongoimport --host localhost --port 27017 --db goodParents --collection users --file mock_users.json --jsonArray && \
 mongo --host localhost --port 27017 userset.js && \
 mongod --shutdown && \
 # rm *.json userset.js && \
