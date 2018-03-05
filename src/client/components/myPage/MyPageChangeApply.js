@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../public/style/MyPageChangeApply.css';
 import { Link } from 'react-router-dom';
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Form, FormGroup, Label, Input } from 'reactstrap';
 
 class MyPageChangeApply extends React.Component {
   render() {
@@ -10,7 +10,7 @@ class MyPageChangeApply extends React.Component {
         <p className="mypage_changeapply_main_upper_Home_text">
           <Link to="/mypage/ordercheck">Home </Link>
           / <Link to="/mypage/changecheck">교환확인 </Link>
-           / 주문확인
+           / 교환신청
          </p>
 
         <div className="mypage_changeapply_main_description_box">

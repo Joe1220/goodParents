@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../public/style/MyPagePlaceAdd.css';
 import { Link } from 'react-router-dom';
-import { Row, Col, InputGroup, Input, InputGroupAddon, Button,
+import { Row, Col, Input, Button,
         Form, FormGroup, Label } from 'reactstrap';
 
 class MyPagePlaceAdd extends React.Component {
