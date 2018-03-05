@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Row, Col, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Row, Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import '../../public/style/MyPageChildEnrollment.css';
 
 class MyPageChildEnrollment extends React.Component {

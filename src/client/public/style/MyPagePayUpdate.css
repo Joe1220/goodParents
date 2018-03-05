@@ -1,0 +1,70 @@
+.mypage_payupdate_main {
+  border: 1px solid white;
+  background-color: #DCDCDC;
+  line-height: 4.5em;
+  width: 100%;
+  height: 700px;
+  padding-top: 10px;
+  padding-left: 250px;
+}
+
+.mypage_payupdate_main_upper_Home_text {
+  opacity: 0.6;
+}
+
+.mypage_payupdate_main_description_box {
+  background-color: white;
+  width: 1220px;
+  height: 570px;
+  border-radius: 4px;
+  box-shadow: rgb(190, 190, 190) 1px 2px 1px 0px;
+}
+
+input.mypage_payupdate_main_placeholder {
+  font-family: HanSans;
+  font-size: 12px;
+}
+
+#mypage_payupdate_main_form {
+  margin-left: 20px;
+  width: 50%;
+  /* height: 20px; */
+}
+
+.mypage_payupdate_main_form_text {
+  font-size: 14px;
+  line-height: 2.2em;
+}
+
+#mypage_payupdate_main_head {
+  font-size: 18px;
+  color: rgb(158, 158, 158);
+  line-height: 0.3em;
+  padding: 30px 0 10px 20px;
+}
+
+#mypage_payupdate_main_hr {
+  background-color: grey;
+  float: center;
+}
+
+.mypage_payupdate_main_form_group {
+  height:50px;
+  overflow: visible;
+}
+
+.mypage_childenrol_main_placeholder::-webkit-inner-spin-button,
+.mypage_childenrol_main_placeholder::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+#card_expiration, #name {
+  width: 80%;
+}
+
+select.mypage_payupdate_main_select {
+  overflow-y: scroll;
+  height: 20px;
+  width: 60%;
+}
