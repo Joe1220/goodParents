@@ -1,11 +1,10 @@
 import React, { Component } from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 // import axios from "axios";
 
 import About from "./About";
 import Area from "./Area";
 import Home from "./Home";
-import Nav from "./Nav";
 import Nav2 from "./Nav2"
 import Footer from "./Footer";
 import Terms from "./Terms";
