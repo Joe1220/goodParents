@@ -1,28 +1,23 @@
 import React, { Component } from 'react';
-import { Container, Dropdown, DropdownMenu, DropdownToggle, DropdownItem } from 'reactstrap';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import { Container } from 'reactstrap';
 import { Route, Link } from 'react-router-dom';
 
-const MyPageLink = ({ match }) => {
-  return (
-    <div>
-      {match.params.id}
-    </div>
-  );
-};
+const Check = ({match}) => <h1>Check</h1>;
+const Cancle = ({match}) => <h1>Cancle</h1>;
+const ExChangeCheck = ({match}) => <h1>ExChangeCheck</h1>;
+const ExChangeCancle = ({match}) => <h1>ExChangeCancle</h1>;
+const DelivaryCheck = ({match}) => <h1>DelivaryCheck</h1>;
+const DelivaryUpdate = ({match}) => <h1>DelivaryUpdate</h1>;
+const BabyCheck = ({match}) => <h1>BabyCheck</h1>;
+const BabyUpdate = ({match}) => <h1>BabyUpdate</h1>;
+const PamentsCheck = ({match}) => <h1>PamentsCheck</h1>;
+const PamentsUpdate = ({match}) => <h1>PamentsUpdate</h1>;
+const CouncellingCheck = ({match}) => <h1>CouncellingCheck</h1>;
+const CouncellingRequest = ({match}) => <h1>CouncellingRequest</h1>;
+const Acount = ({match}) => <h1>Acount</h1>;
 
 export default class MyPage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      dropdownOpen: false
-    };
-    this.toggle = this.toggle.bind(this);
-  }
-  toggle() {
-    this.setState({
-      dropdownOpen: !this.state.dropdownOpen
-    });
-  }
   render() {
     const url = this.props.match.url;
     return (
@@ -76,7 +71,20 @@ export default class MyPage extends Component {
           </div>
           <div style={{ flex: 1, padding: "30px" }}>
             <Route exact path={url} render={() => (<h3>Please select any post</h3>)} />
-            <Route path={`${url}/:id`} component={MyPageLink} />
+            <Route path={`${url}/OrderCheck`} component={Check} />
+            <Route path={`${url}/OrderCancle`} component={Cancle} />
+            <Route path={`${url}/ExChangeCheck`} component={ExChangeCheck} />
+            <Route path={`${url}/ExChangeCancle`} component={Cancle} />
+            <Route path={`${url}/DelivaryCheck`} component={Cancle} />
+            <Route path={`${url}/DelivaryUpdate`} component={Cancle} />
+            <Route path={`${url}/BabyCheck`} component={Cancle} />
+            <Route path={`${url}/BabyUpdate`} component={Cancle} />
+            <Route path={`${url}/PamentsCheck`} component={Cancle} />
+            <Route path={`${url}/PamentsUpdate`} component={Cancle} />
+            <Route path={`${url}/CouncellingCheck`} component={Cancle} />
+            <Route path={`${url}/CouncellingRequest`} component={Cancle} />
+            <Route path={`${url}/Acount`} component={Cancle} />
+            {/* <Route path={`${url}/:id`} component={MyPageLink} /> */}
           </div>
         </div>
       </Container>
