@@ -2,7 +2,7 @@ FROM node:alpine
 
 COPY server.js /var/www/
 WORKDIR /var/www/
-RUN npm init -y && npm install -g nodemon && npm install express
+RUN npm init -y && npm install -g pm2@latest && npm install express
 
 EXPOSE ${PORT}
-ENTRYPOINT [ "nodemon", "server.js" ]
+ENTRYPOINT [ "pm2", "start", "server.js", "--watch", "--no-daemon" ]

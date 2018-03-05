@@ -1,7 +1,7 @@
 FROM node:alpine
 
 WORKDIR /var/www/server/
-RUN npm install -g nodemon
+RUN npm install -g pm2@latest
 
 EXPOSE ${PORT}
-ENTRYPOINT [ "nodemon", "server.js" ]
+ENTRYPOINT [ "pm2", "start", "server.js", "--watch", "--no-daemon" ]
