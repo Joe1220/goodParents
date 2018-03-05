@@ -44,7 +44,14 @@ class Signup extends Component {
       },
     })
     .then(response => response.json())
-    .then(data => console.log(data))
+    .then(data => {
+      if (data.message === "registered successfully") {
+        this.props.history.push("/login")
+        return data;
+      } else if (data.message === "login failed") {
+        this.props.history.push("/signup")
+      }
+    })
     .catch(error => console.error(error));
     } else {
       this.setState({else: true})
