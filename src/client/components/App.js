@@ -32,8 +32,8 @@ import MyPageAccount from './myPage/MyPageAccount';
 import NotFoundComponent from "./NotFoundComponent";
 
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       products: [],
       cart: [],
@@ -41,7 +41,6 @@ class App extends Component {
       totalAmount: 0,
       checked: true,
       fullDate: new Date().toISOString().slice(0, 10),
-      authorize: ['Guest', 1]
     };
     this.resetCart = this.resetCart.bind(this);
     this.handleAddToCart = this.handleAddToCart.bind(this);
@@ -52,7 +51,6 @@ class App extends Component {
     this.updateChecked = this.updateChecked.bind(this);
     this.updateCheckedAll = this.updateCheckedAll.bind(this);
     this.onChangeFullDate = this.onChangeFullDate.bind(this);
-    this.onChangeAuth = this.onChangeAuth.bind(this);
   }
 
   foodDetailFetch() {
@@ -216,10 +214,6 @@ class App extends Component {
   onChangeFullDate(fullDate) {
     this.setState({ fullDate: fullDate });
   }
-  onChangeAuth(auth) {
-    this.setState({ authorize: auth });
-    <Redirect to="/" />
-  }
 
   //일반 권한을 가졌을때 접근 가능한 route
   renderMyPage() {
@@ -243,22 +237,13 @@ class App extends Component {
   }
 
   render() {
-    // const isHeaderRoute = (window.location.pathname.includes('mypage') && this.state.authorize[1] === 1);
-
     return (
       <div>
-        {/* {!isHeaderRoute ? (
-          <Nav
-            cartItems={this.state.cart}
-            totalAmount={this.state.totalAmount}
-            updateQuantity={this.updateQuantity}
-            authorize={this.state.authorize}
-          />
-        ) : <MyPage /> } */}
-        <Nav2 
+        <Nav2
           cartItems={this.state.cart}
           totalAmount={this.state.totalAmount}
           updateQuantity={this.updateQuantity}
+          route={this.renderMyPage}
           />
         <Switch>
           <Route
@@ -310,20 +295,12 @@ class App extends Component {
             }}
           />
 
-          <Route exact
-                 path="/login"
-                 render={props => {
-                   return <Login onAuth={ this.onChangeAuth } />
-                 }}
-                 />
+          <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
-          {/* 유저 권한별 렌더링 함수 */}
-          { this.state.authorize[1] === 1 ?  this.renderMyPage() : null }
           {/* 각 음식들의 detail 페이지  */}
           {this.renderFoodDetail()}
           <Route component={NotFoundComponent} />
         </Switch>
-        {/* {!isHeaderRoute ? <Footer /> : null} */}
         <Footer />
       </div>
     );

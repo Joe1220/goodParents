@@ -35,6 +35,7 @@ export default class Example extends React.Component {
     };
     this.toggle = this.toggle.bind(this);
     this.OncartOver = this.OncartOver.bind(this);
+    this.checkLogged = this.checkLogged.bind(this);
   }
   toggle() {
     this.setState({
@@ -43,6 +44,59 @@ export default class Example extends React.Component {
   }
   OncartOver() {
     this.setState({ popOpen: !this.state.popOpen });
+  }
+
+  checkLogged() {
+    if (window.localStorage.getItem("auth") === "true") {
+      return (
+        <UncontrolledDropdown nav inNavbar>
+          <DropdownToggle nav caret>
+            {window.localStorage.getItem("name")}님
+      </DropdownToggle>
+          <DropdownMenu >
+            <DropdownItem href="/about">
+              마이페이지
+        </DropdownItem>
+            <DropdownItem href="/about">
+              관리자 페이지
+        </DropdownItem>
+            <DropdownItem href="/about">
+              계정관리
+        </DropdownItem>
+            <DropdownItem divider />
+            <DropdownItem href="/about">
+              로그아웃
+        </DropdownItem>
+          </DropdownMenu>
+        </UncontrolledDropdown>
+      )
+    } else if (window.localStorage.getItem("auth") === "false" && window.localStorage.getItem("name")) {
+      return (
+        <UncontrolledDropdown nav inNavbar>
+          <DropdownToggle nav caret>
+            {window.localStorage.getItem("name")}님
+    </DropdownToggle>
+          <DropdownMenu >
+            <DropdownItem href="/about">
+              마이페이지
+      </DropdownItem>
+            <DropdownItem href="/about">
+              계정관리
+      </DropdownItem>
+            <DropdownItem divider />
+            <DropdownItem href="/about">
+              로그아웃
+      </DropdownItem>
+          </DropdownMenu>
+        </UncontrolledDropdown>
+      )
+    } else {
+      return (
+        <NavItem>
+          <NavLink href="login">로그인</NavLink>
+        </NavItem>
+      )
+    }
   }
   render() {
     return (
@@ -56,7 +110,7 @@ export default class Example extends React.Component {
                 <NavItem>
                   <NavLink id="Popover1" onMouseOver={this.OncartOver} href="/cartmain">장바구니</NavLink>
                 </NavItem>
-                <Popover placement="bottom-end" isOpen={this.state.popOpen} target="Popover1" toggle={this.OncartOver}>
+                <Popover placement="bottom-end" isOpen={this.state.popOpen} target="Popover1" onMouseOver={this.OncartOver}>
                   <PopoverHeader><CartDate /></PopoverHeader>
                   <PopoverBody>
                     <CartPop
@@ -75,29 +129,7 @@ export default class Example extends React.Component {
                 <NavItem>
                   <NavLink href="prime">프라임</NavLink>
                 </NavItem>
-                <NavItem>
-                  <NavLink href="login">로그인</NavLink>
-                </NavItem>
-                <UncontrolledDropdown nav inNavbar>
-                  <DropdownToggle nav caret>
-                    김상훈님
-                  </DropdownToggle>
-                  <DropdownMenu >
-                    <DropdownItem href="/about">
-                      마이페이지
-                    </DropdownItem>
-                    <DropdownItem href="/about">
-                      관리자페이지
-                    </DropdownItem>
-                    <DropdownItem href="/about">
-                      계정관리
-                    </DropdownItem>
-                    <DropdownItem divider />
-                    <DropdownItem href="/about">
-                      로그아웃
-                    </DropdownItem>
-                  </DropdownMenu>
-                </UncontrolledDropdown>
+                {this.checkLogged()}
               </Nav>
             </Collapse>
           </Navbar>
