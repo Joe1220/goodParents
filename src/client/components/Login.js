@@ -33,8 +33,8 @@ class Login extends Component {
       .then(response => response.json())
       .then(data => {
         if (data.message === "logged in successfully") {
-          window.localStorage.setItem("name", data.name)
-          window.localStorage.setItem("auth", data.admin)
+          window.sessionStorage.setItem("name", data.name)
+          window.sessionStorage.setItem("auth", data.admin)
           return data;
         } else if (data.message === "login failed") {
           this.props.history.push("/signup")
