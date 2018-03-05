@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
 const userSchema = new mongoose.Schema({
-  name: { type: String, default: '회원' },
+  name: String ,
   telephone: { type: Number, default: null },
   email: String,
   userimg: { type: String, default: '' },
@@ -10,12 +10,13 @@ const userSchema = new mongoose.Schema({
   admin: { type: Boolean, default: false }
 });
 // create new User document
-userSchema.statics.create = function (email, password) {
+userSchema.statics.create = function (email, name, password) {
   const upperThis = this;
   const saltRounds = 10;
   return bcrypt.hash(password, saltRounds).then(function (hashed) {
     const user = new upperThis({
       email,
+      name,
       password: hashed
     });
     return user.save();
@@ -27,7 +28,12 @@ userSchema.statics.findOneByEmail = function (email) {
     email
   }).exec()
 }
-
+userSchema.statics.findOneByEmailAndName = function (email, name) {
+  return this.findOne({
+    email: email,
+    name: name
+  }).exec()
+}
 // verify the password of the User documment
 userSchema.methods.verify = function (password) {
   // return this.password === password;
