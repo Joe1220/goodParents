@@ -25,7 +25,7 @@ module.exports = {
   delete: (req, res) => {
     CartModels.delete(req, res, (error, result) => {
       if (error) res.status(500).send(error);
-      res.json(result);
+      res.status(204).json(result);
     });
   }
 };
