@@ -11,6 +11,7 @@ const UsersRouter = require("./routes/users");
 const ProductsRouter = require("./routes/products");
 const AuthRouter = require("./routes/auth");
 const AuthMiddleware = require("./middleware/auth");
+const CartRouter = require("./routes/cart");
 
 // jwt config
 const config = require("./config");
@@ -52,6 +53,7 @@ app.use("/api/users", AuthMiddleware);
 app.use("/api/users", UsersRouter);
 app.use("/api/products", ProductsRouter);
 app.use("/api/auth", AuthRouter);
+app.use("/api/cart", CartRouter);
 
 // app.get("/api", (req, res) => {
 //   res.send("api");
