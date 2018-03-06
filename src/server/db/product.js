@@ -2,27 +2,25 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const ProductSchema = new mongoose.Schema({
-  product: {
-    "_id": { _$id: ObjectId },
+  "_id": { _$id: Schema.Types.ObjectId },
+  "name": String,
+  "subname:": String,
+  "image": String,
+  "price": Number,
+  "calorie": Number,
+  "ingredients": [{
+    "_id": { _$id: Schema.Types.ObjectId},
     "name": String,
-    "subname:": String,
-    "image": String,
-    "price": Number,
-    "calorie": Number,
-    "ingredients": [{
-      "_id": { _$id: ObjectId},
-      "name": String,
-      "amounts": Number,
-      "isAllergie": Boolean,
-      "image": String
-    }],
-    "nutrients": [{
-      "_id": { _$id: ObjectId},
-      "name": String,
-      "amount": Number,
-      "image": String
-    }]
-  }
+    "amounts": Number,
+    "isAllergie": Boolean,
+    "image": String
+  }],
+  "nutrients": [{
+    "_id": { _$id: Schema.Types.ObjectId},
+    "name": String,
+    "amount": Number,
+    "image": String
+  }]
 });
 
 module.exports = mongoose.model('Product', ProductSchema);

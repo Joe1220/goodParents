@@ -39,7 +39,7 @@ app.use(cookieParser(config.secret));
 //     process.exit(1);
 //   });
 mongoose
-  .connect(`mongodb://localhost:27017/goodparents`)
+  .connect(`mongodb://localhost:27017/goodParents`)
   .then(() => {
     console.log("mongodb connected.");
   })
@@ -51,8 +51,11 @@ mongoose
 // 라우팅 연결
 app.use("/api/users", AuthMiddleware);
 app.use("/api/users", UsersRouter);
+
 app.use("/api/products", ProductsRouter);
 app.use("/api/auth", AuthRouter);
+
+app.use("/api/cart", AuthMiddleware);
 app.use("/api/cart", CartRouter);
 
 // app.get("/api", (req, res) => {
