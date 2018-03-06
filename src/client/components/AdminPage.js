@@ -16,10 +16,8 @@ const CouncellingCheck = ({match}) => <h1>CouncellingCheck</h1>;
 const CouncellingRequest = ({match}) => <h1>CouncellingRequest</h1>;
 const Acount = ({match}) => <h1>Acount</h1>;
 
+
 export default class AdminPage extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     const url = this.props.match.url;
     return (
@@ -76,17 +74,16 @@ export default class AdminPage extends Component {
             <Route path={`${url}/OrderCheck`} component={Check} />
             <Route path={`${url}/OrderCancle`} component={Cancle} />
             <Route path={`${url}/ExChangeCheck`} component={ExChangeCheck} />
-            <Route path={`${url}/ExChangeCancle`} component={Cancle} />
-            <Route path={`${url}/DelivaryCheck`} component={Cancle} />
-            <Route path={`${url}/DelivaryUpdate`} component={Cancle} />
-            <Route path={`${url}/BabyCheck`} component={Cancle} />
-            <Route path={`${url}/BabyUpdate`} component={Cancle} />
-            <Route path={`${url}/PamentsCheck`} component={Cancle} />
-            <Route path={`${url}/PamentsUpdate`} component={Cancle} />
-            <Route path={`${url}/CouncellingCheck`} component={Cancle} />
-            <Route path={`${url}/CouncellingRequest`} component={Cancle} />
-            <Route path={`${url}/Acount`} component={Cancle} />
-            {/* <Route path={`${url}/:id`} component={AdminPageLink} /> */}
+            <Route path={`${url}/ExChangeCancle`} component={ExChangeCancle} />
+            <Route path={`${url}/DelivaryCheck`} component={DelivaryCheck} />
+            <Route path={`${url}/DelivaryUpdate`} component={DelivaryUpdate} />
+            <Route path={`${url}/BabyCheck`} component={BabyCheck} />
+            <Route path={`${url}/BabyUpdate`} component={BabyUpdate} />
+            <Route path={`${url}/PamentsCheck`} component={PamentsCheck} />
+            <Route path={`${url}/PamentsUpdate`} component={PamentsUpdate} />
+            <Route path={`${url}/CouncellingCheck`} component={CouncellingCheck} />
+            <Route path={`${url}/CouncellingRequest`} component={CouncellingRequest} />
+            <Route path={`${url}/Acount`} component={Acount} />
           </div>
         </div>
       </Container>

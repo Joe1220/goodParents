@@ -1,9 +1,56 @@
 import React, { Component } from 'react';
+import {
+  Table,
+  TableBody,
+  TableHeader,
+  TableHeaderColumn,
+  TableRow,
+  TableRowColumn,
+} from 'material-ui/Table';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import { Container } from 'reactstrap';
 import { Route, Link } from 'react-router-dom';
 
-const Check = ({match}) => <h1>Check</h1>;
+const Check = ({match}) => (
+<MuiThemeProvider>
+<Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderColumn>ID</TableHeaderColumn>
+        <TableHeaderColumn>Name</TableHeaderColumn>
+        <TableHeaderColumn>Status</TableHeaderColumn>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableRowColumn>1</TableRowColumn>
+        <TableRowColumn>John Smith</TableRowColumn>
+        <TableRowColumn>Employed</TableRowColumn>
+      </TableRow>
+      <TableRow>
+        <TableRowColumn>2</TableRowColumn>
+        <TableRowColumn>Randal White</TableRowColumn>
+        <TableRowColumn>Unemployed</TableRowColumn>
+      </TableRow>
+      <TableRow>
+        <TableRowColumn>3</TableRowColumn>
+        <TableRowColumn>Stephanie Sanders</TableRowColumn>
+        <TableRowColumn>Employed</TableRowColumn>
+      </TableRow>
+      <TableRow>
+        <TableRowColumn>4</TableRowColumn>
+        <TableRowColumn>Steve Brown</TableRowColumn>
+        <TableRowColumn>Employed</TableRowColumn>
+      </TableRow>
+      <TableRow>
+        <TableRowColumn>5</TableRowColumn>
+        <TableRowColumn>Christopher Nolan</TableRowColumn>
+        <TableRowColumn>Unemployed</TableRowColumn>
+      </TableRow>
+    </TableBody>
+  </Table>
+</MuiThemeProvider>
+)
 const Cancle = ({match}) => <h1>Cancle</h1>;
 const ExChangeCheck = ({match}) => <h1>ExChangeCheck</h1>;
 const ExChangeCancle = ({match}) => <h1>ExChangeCancle</h1>;
@@ -74,17 +121,16 @@ export default class MyPage extends Component {
             <Route path={`${url}/OrderCheck`} component={Check} />
             <Route path={`${url}/OrderCancle`} component={Cancle} />
             <Route path={`${url}/ExChangeCheck`} component={ExChangeCheck} />
-            <Route path={`${url}/ExChangeCancle`} component={Cancle} />
-            <Route path={`${url}/DelivaryCheck`} component={Cancle} />
-            <Route path={`${url}/DelivaryUpdate`} component={Cancle} />
-            <Route path={`${url}/BabyCheck`} component={Cancle} />
-            <Route path={`${url}/BabyUpdate`} component={Cancle} />
-            <Route path={`${url}/PamentsCheck`} component={Cancle} />
-            <Route path={`${url}/PamentsUpdate`} component={Cancle} />
-            <Route path={`${url}/CouncellingCheck`} component={Cancle} />
-            <Route path={`${url}/CouncellingRequest`} component={Cancle} />
-            <Route path={`${url}/Acount`} component={Cancle} />
-            {/* <Route path={`${url}/:id`} component={MyPageLink} /> */}
+            <Route path={`${url}/ExChangeCancle`} component={ExChangeCancle} />
+            <Route path={`${url}/DelivaryCheck`} component={DelivaryCheck} />
+            <Route path={`${url}/DelivaryUpdate`} component={DelivaryUpdate} />
+            <Route path={`${url}/BabyCheck`} component={BabyCheck} />
+            <Route path={`${url}/BabyUpdate`} component={BabyUpdate} />
+            <Route path={`${url}/PamentsCheck`} component={PamentsCheck} />
+            <Route path={`${url}/PamentsUpdate`} component={PamentsUpdate} />
+            <Route path={`${url}/CouncellingCheck`} component={CouncellingCheck} />
+            <Route path={`${url}/CouncellingRequest`} component={CouncellingRequest} />
+            <Route path={`${url}/Acount`} component={Acount} />
           </div>
         </div>
       </Container>
