@@ -11,14 +11,14 @@ module.exports = {
   post: (req, res) => {
     CartModels.post(req, res, (error, result) => {
       if (error) res.status(500).send(error);
-      res.json(result);
+      res.status(201).json(result);
     });
   },
 
   put: (req, res) => {
     CartModels.put(req, res, (error, result) => {
       if (error) res.status(500).send(error);
-      res.json(result);
+      res.status(204).json(result);
     });
   },
 
