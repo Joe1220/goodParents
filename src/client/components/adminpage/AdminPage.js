@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import { Container } from 'reactstrap';
 import { Route, Link } from 'react-router-dom';
 
@@ -17,7 +16,8 @@ const CouncellingCheck = ({match}) => <h1>CouncellingCheck</h1>;
 const CouncellingRequest = ({match}) => <h1>CouncellingRequest</h1>;
 const Acount = ({match}) => <h1>Acount</h1>;
 
-export default class MyPage extends Component {
+
+export default class AdminPage extends Component {
   render() {
     const url = this.props.match.url;
     return (
@@ -29,43 +29,43 @@ export default class MyPage extends Component {
           }}>
             <ul style={{ listStyleType: "none" }}>
               <li style={{ marginBottom: "15px" }}>
-                <Link style={{ textDecoration: "none", color: "gray" }} to={`${url}/OrderCheck`}>주문확인</Link>
+                <Link style={{ textDecoration: "none", color: "gray" }} to={`${url}/OrderCheck`}>유저주문확인</Link>
               </li>
               <li style={{ marginBottom: "15px" }}>
-                <Link style={{ textDecoration: "none", color: "gray" }} to={`${url}/OrderCancle`}>주문취소</Link>
+                <Link style={{ textDecoration: "none", color: "gray" }} to={`${url}/OrderCancle`}>유저주문취소</Link>
               </li>
               <li style={{ marginBottom: "15px" }}>
-                <Link style={{ textDecoration: "none", color: "gray" }} to={`${url}/ExChangeCheck`}>교환신청</Link>
+                <Link style={{ textDecoration: "none", color: "gray" }} to={`${url}/ExChangeCheck`}>유저교환신청</Link>
               </li>
               <li style={{ marginBottom: "15px" }}>
-                <Link style={{ textDecoration: "none", color: "gray" }} to={`${url}/ExChangeCancle`}>교환신청</Link>
+                <Link style={{ textDecoration: "none", color: "gray" }} to={`${url}/ExChangeCancle`}>유저교환신청</Link>
               </li>
               <li style={{ marginBottom: "15px" }}>
-                <Link style={{ textDecoration: "none", color: "gray" }} to={`${url}/DelivaryCheck`}>배송지확인</Link>
+                <Link style={{ textDecoration: "none", color: "gray" }} to={`${url}/DelivaryCheck`}>유저배송지확인</Link>
               </li>
               <li style={{ marginBottom: "15px" }}>
-                <Link style={{ textDecoration: "none", color: "gray" }} to={`${url}/DelivaryUpdate`}>배송지추가</Link>
+                <Link style={{ textDecoration: "none", color: "gray" }} to={`${url}/DelivaryUpdate`}>유저배송지추가</Link>
               </li>
               <li style={{ marginBottom: "15px" }}>
-                <Link style={{ textDecoration: "none", color: "gray" }} to={`${url}/BabyCheck`}>아이정보</Link>
+                <Link style={{ textDecoration: "none", color: "gray" }} to={`${url}/BabyCheck`}>유저아이정보</Link>
               </li>
               <li style={{ marginBottom: "15px" }}>
-                <Link style={{ textDecoration: "none", color: "gray" }} to={`${url}/BabyUpdate`}>아이등록</Link>
+                <Link style={{ textDecoration: "none", color: "gray" }} to={`${url}/BabyUpdate`}>유저아이등록</Link>
               </li>
               <li style={{ marginBottom: "15px" }}>
-                <Link style={{ textDecoration: "none", color: "gray" }} to={`${url}/PamentsCheck`}>결제정보확인</Link>
+                <Link style={{ textDecoration: "none", color: "gray" }} to={`${url}/PamentsCheck`}>유저결제정보확인</Link>
               </li>
               <li style={{ marginBottom: "15px" }}>
-                <Link style={{ textDecoration: "none", color: "gray" }} to={`${url}/PamentsUpdate`}>결제정보업데이트</Link>
+                <Link style={{ textDecoration: "none", color: "gray" }} to={`${url}/PamentsUpdate`}>유저결제정보업데이트</Link>
               </li>
               <li style={{ marginBottom: "15px" }}>
-                <Link style={{ textDecoration: "none", color: "gray" }} to={`${url}/CouncellingCheck`}>1:1질문확인</Link>
+                <Link style={{ textDecoration: "none", color: "gray" }} to={`${url}/CouncellingCheck`}>유저 1:1질문확인</Link>
               </li>
               <li style={{ marginBottom: "15px" }}>
-                <Link style={{ textDecoration: "none", color: "gray" }} to={`${url}/CouncellingRequest`}>1:1질문신청</Link>
+                <Link style={{ textDecoration: "none", color: "gray" }} to={`${url}/CouncellingRequest`}>유저 1:1질문신청</Link>
               </li>
               <li style={{ marginBottom: "15px" }}>
-                <Link style={{ textDecoration: "none", color: "gray" }} to={`${url}/Acount`}>계정관리</Link>
+                <Link style={{ textDecoration: "none", color: "gray" }} to={`${url}/Acount`}>유저 계정관리</Link>
               </li>
             </ul>
           </div>
@@ -74,17 +74,16 @@ export default class MyPage extends Component {
             <Route path={`${url}/OrderCheck`} component={Check} />
             <Route path={`${url}/OrderCancle`} component={Cancle} />
             <Route path={`${url}/ExChangeCheck`} component={ExChangeCheck} />
-            <Route path={`${url}/ExChangeCancle`} component={Cancle} />
-            <Route path={`${url}/DelivaryCheck`} component={Cancle} />
-            <Route path={`${url}/DelivaryUpdate`} component={Cancle} />
-            <Route path={`${url}/BabyCheck`} component={Cancle} />
-            <Route path={`${url}/BabyUpdate`} component={Cancle} />
-            <Route path={`${url}/PamentsCheck`} component={Cancle} />
-            <Route path={`${url}/PamentsUpdate`} component={Cancle} />
-            <Route path={`${url}/CouncellingCheck`} component={Cancle} />
-            <Route path={`${url}/CouncellingRequest`} component={Cancle} />
-            <Route path={`${url}/Acount`} component={Cancle} />
-            {/* <Route path={`${url}/:id`} component={MyPageLink} /> */}
+            <Route path={`${url}/ExChangeCancle`} component={ExChangeCancle} />
+            <Route path={`${url}/DelivaryCheck`} component={DelivaryCheck} />
+            <Route path={`${url}/DelivaryUpdate`} component={DelivaryUpdate} />
+            <Route path={`${url}/BabyCheck`} component={BabyCheck} />
+            <Route path={`${url}/BabyUpdate`} component={BabyUpdate} />
+            <Route path={`${url}/PamentsCheck`} component={PamentsCheck} />
+            <Route path={`${url}/PamentsUpdate`} component={PamentsUpdate} />
+            <Route path={`${url}/CouncellingCheck`} component={CouncellingCheck} />
+            <Route path={`${url}/CouncellingRequest`} component={CouncellingRequest} />
+            <Route path={`${url}/Acount`} component={Acount} />
           </div>
         </div>
       </Container>
