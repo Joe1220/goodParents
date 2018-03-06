@@ -9,7 +9,10 @@ const userSchema = new mongoose.Schema({
   userimg: { type: String, default: '' },
   password: String,
   admin: { type: Boolean, default: false }
+}, {
+  collection: "users"
 });
+
 // create new User document
 userSchema.statics.create = function (email, name, password) {
   const upperThis = this;

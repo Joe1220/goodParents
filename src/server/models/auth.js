@@ -46,7 +46,7 @@ module.exports = {
     const check = user => {
       if (!user) {
         // user does not exist
-        throw new Error("login failed");
+        throw new Error("login failed. user does not exist.");
       } else {
         // user exists, check the password
         if (user.verify(password)) {
@@ -76,7 +76,7 @@ module.exports = {
           });
           return p;
         } else {
-          throw new Error("login failed");
+          throw new Error("login failed. wrong password.");
         }
       }
     };
@@ -84,7 +84,7 @@ module.exports = {
     const respond = result => {
       res.cookie("token", result.token, cookieOptions);
       res.json({
-        message: "logged in successfully",
+        message: "log in successfully",
         name: result.name,
         admin: result.admin
       });
