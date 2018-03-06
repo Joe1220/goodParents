@@ -53,6 +53,18 @@ app.use("/api/users", UsersRouter);
 app.use("/api/products", ProductsRouter);
 app.use("/api/auth", AuthRouter);
 
+// app.get("/api", (req, res) => {
+//   res.send("api");
+// });
+
+// app.get("/api/api", (req, res) => {
+//   res.send("apiapi");
+// });
+
+// app.get("/", (req, res) => {
+//   res.send("test");
+// });
+
 app.listen(port, () => {
   console.log("App listening on port " + port);
 });

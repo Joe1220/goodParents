@@ -5,10 +5,11 @@ const AuthController = require("../controllers/auth");
 const AuthMiddleware = require("../middleware/auth");
 
 router.post("/register", AuthController.register);
-
 router.post("/login", AuthController.login);
 
 router.use("/check", AuthMiddleware);
 router.get("/check", AuthController.check);
+
+router.get("/logout", AuthController.logout);
 
 module.exports = router;

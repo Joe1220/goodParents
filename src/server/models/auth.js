@@ -1,6 +1,12 @@
 const User = require("../db/user.js");
 const jwt = require("jsonwebtoken");
 
+const cookieOptions = {
+  maxAge: 1000 * 60 * 60, // would expire after 60 minutes
+  httpOnly: true, // The cookie only accessible by the web server
+  signed: true // Indicates if the cookie should be signed
+};
+
 module.exports = {
   register: async (req, res, callback) => {
     const { email, name, password } = req.body;
@@ -15,8 +21,7 @@ module.exports = {
     // respond to the client
     const respond = result => {
       res.json({
-        message: "registered successfully",
-        admin: result.admin
+        message: "registered successfully"
       });
     };
     // run when there is an error (email exists)
@@ -76,13 +81,8 @@ module.exports = {
       }
     };
     // respond the token
-    const respond = (result) => {
-      const options = {
-        maxAge: 1000 * 60 * 60, // would expire after 60 minutes
-        //httpOnly: true, // The cookie only accessible by the web server
-        signed: true // Indicates if the cookie should be signed
-      };
-      res.cookie("token", result.token, options);
+    const respond = result => {
+      res.cookie("token", result.token, cookieOptions);
       res.json({
         message: "logged in successfully",
         name: result.name,
@@ -103,6 +103,7 @@ module.exports = {
         .catch(onError)
     );
   },
+
   check: (req, res, callback) => {
     callback(
       null,
@@ -111,5 +112,11 @@ module.exports = {
         info: req.decoded
       })
     );
+  },
+
+  logout: (req, res, callback) => {
+    res.clearCookie("token", cookieOptions);
+    res.set("Content-Type", "text/javascript");
+    callback(null, "window.sessionStorage.clear();");
   }
 };

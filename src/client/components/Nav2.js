@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Collapse,
   Navbar,
@@ -15,16 +15,16 @@ import {
   Popover,
   PopoverHeader,
   PopoverBody
-} from 'reactstrap';
+} from "reactstrap";
 
-import CartPop from './CartPop';
-import CartDate from './CartDate';
+import CartPop from "./CartPop";
+import CartDate from "./CartDate";
 
 const style = {
   color: "rgb(25,25,221)",
   fontWeight: "bold",
   fontFamily: "PT Serif', serif"
-}
+};
 
 export default class Example extends React.Component {
   constructor(props) {
@@ -47,71 +47,80 @@ export default class Example extends React.Component {
   }
 
   checkLogged() {
-    if (window.localStorage.getItem("auth") === "true") {
+    if (window.sessionStorage.getItem("admin") === "true") {
       return (
         <UncontrolledDropdown nav inNavbar>
           <DropdownToggle nav caret>
-            {window.localStorage.getItem("name")}님
-      </DropdownToggle>
-          <DropdownMenu >
-            <DropdownItem href="/about">
-              마이페이지
-        </DropdownItem>
-            <DropdownItem href="/about">
-              관리자 페이지
-        </DropdownItem>
-            <DropdownItem href="/about">
-              계정관리
-        </DropdownItem>
+            {window.sessionStorage.getItem("name")}님
+          </DropdownToggle>
+          <DropdownMenu>
+            <DropdownItem href="/about">마이페이지</DropdownItem>
+            <DropdownItem href="/about">관리자 페이지</DropdownItem>
+            <DropdownItem href="/about">계정관리</DropdownItem>
             <DropdownItem divider />
-            <DropdownItem href="/about">
-              로그아웃
-        </DropdownItem>
+            <DropdownItem href="/about">로그아웃</DropdownItem>
           </DropdownMenu>
         </UncontrolledDropdown>
-      )
-    } else if (window.localStorage.getItem("auth") === "false" && window.localStorage.getItem("name")) {
+      );
+    } else if (
+      window.sessionStorage.getItem("admin") === "false" &&
+      window.sessionStorage.getItem("name")
+    ) {
       return (
         <UncontrolledDropdown nav inNavbar>
           <DropdownToggle nav caret>
-            {window.localStorage.getItem("name")}님
-    </DropdownToggle>
-          <DropdownMenu >
-            <DropdownItem href="/about">
-              마이페이지
-      </DropdownItem>
-            <DropdownItem href="/about">
-              계정관리
-      </DropdownItem>
+            {window.sessionStorage.getItem("name")}님
+          </DropdownToggle>
+          <DropdownMenu>
+            <DropdownItem href="/about">마이페이지</DropdownItem>
+            <DropdownItem href="/about">계정관리</DropdownItem>
             <DropdownItem divider />
-            <DropdownItem href="/about">
-              로그아웃
-      </DropdownItem>
+            <DropdownItem href="/about">로그아웃</DropdownItem>
           </DropdownMenu>
         </UncontrolledDropdown>
-      )
+      );
     } else {
       return (
         <NavItem>
           <NavLink href="login">로그인</NavLink>
         </NavItem>
-      )
+      );
     }
   }
   render() {
     return (
       <div>
-        <Container >
-          <Navbar style={{ paddingRight: "0", paddingTop: "13px" }} color="faded" light expand="md">
-            <NavbarBrand style={style} href="/">goodParents</NavbarBrand>
+        <Container>
+          <Navbar
+            style={{ paddingRight: "0", paddingTop: "13px" }}
+            color="faded"
+            light
+            expand="md"
+          >
+            <NavbarBrand style={style} href="/">
+              goodParents
+            </NavbarBrand>
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className="ml-auto" navbar>
                 <NavItem>
-                  <NavLink id="Popover1" onMouseOver={this.OncartOver} href="/cartmain">장바구니</NavLink>
+                  <NavLink
+                    id="Popover1"
+                    onMouseOver={this.OncartOver}
+                    href="/cartmain"
+                  >
+                    장바구니
+                  </NavLink>
                 </NavItem>
-                <Popover placement="bottom-end" isOpen={this.state.popOpen} target="Popover1" onMouseOver={this.OncartOver}>
-                  <PopoverHeader><CartDate /></PopoverHeader>
+                <Popover
+                  placement="bottom-end"
+                  isOpen={this.state.popOpen}
+                  target="Popover1"
+                  onMouseOver={this.OncartOver}
+                >
+                  <PopoverHeader>
+                    <CartDate />
+                  </PopoverHeader>
                   <PopoverBody>
                     <CartPop
                       cartItems={this.props.cartItems}

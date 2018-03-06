@@ -7,12 +7,14 @@ const apiPort = process.env.APIPORT || 3001;
 
 const app = express();
 
-app.use("/", proxy({
+app.use(proxy("/api", {
+  target: `http://back:${apiPort}`,
+  changeOrigin: true,
+}));
+
+app.use(proxy("/", {
   target: `http://front:${frontPort}`,
   changeOrigin: true,
-  router: {
-    "/api": `http://back:${apiPort}`
-  }
 }));
 
 app.listen(port, () => {
