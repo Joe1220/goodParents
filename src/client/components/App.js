@@ -14,8 +14,8 @@ import FoodDetail from "./FoodDetail";
 import CartMain from "./CartMain";
 import Login from "./Login";
 import Signup from "./Signup";
-import MyPage from "./MyPage";
-import AdminPage from "./AdminPage";
+import MyPage from "./mypage/MyPage";
+import AdminPage from "./adminpage/AdminPage";
 
 export default class App extends Component {
   constructor(props) {
