@@ -39,7 +39,7 @@ const About = () => {
           <Col sm="3">
           </Col>
           <Col sm="3">
-            <p className="header_sub abouts_text">간현판 주문</p>
+            <p className="header_sub abouts_text">간편한 주문</p>
             <p className="p_number abouts_text">2.</p>
             <p className="des abouts_text">듣는다 그것은 웅대한 관현악이며 미묘한 교향악이다 뼈 끝에 스며들어 가는 열락의 소리다이것은 피어나기 전인 유소년에게서 구하지 못할 바이며 시들어 가는 노년에게.</p>
           </Col>
