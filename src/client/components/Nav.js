@@ -74,7 +74,7 @@ export default class Example extends React.Component {
             {window.sessionStorage.getItem("name")}님
           </DropdownToggle>
           <DropdownMenu >
-            <DropdownItem href="/about">
+            <DropdownItem href="/mypage">
               마이페이지
             </DropdownItem>
             <DropdownItem divider />

@@ -22,7 +22,6 @@ module.exports = {
     const getUserOid = (email) => {
       return email._id
     }
-    // Cart.save({ _id: "5a8cd08bfc13ae14c7000ab8" })
     callback(null, await User.findOneByEmail(email)
       .then(result => getUserOid(result))
       .then((user) => {
@@ -30,15 +29,66 @@ module.exports = {
         const date = new Date().toISOString();
         const cartData = [
           { date: date, visible: visible },
-          [{ _id: item }, { qty: qty }]
+          [{ product: item, qty: qty }]
         ];
         return { user, cartData };
       })
       .then((data) => {
-        return Cart.update({ user: data.user }, { user: data.user, cart: data.cartData }, { upsert: true }).exec();
+        return Cart.update({ user: data.user }, { $push: { cart: [data.cartData] } }, { upsert: true }).exec();
       })
       .catch((error) => {
         throw new Error(error);
       }));
-  }
+  },
+  put: async (req, res, callback) => {
+    const email = req.decoded.email;
+    // refuse if not an admin
+    if (!req.decoded.email) {
+      return res.status(403).json({
+        message: 'you are not logged in'
+      })
+    }
+    const getUserOid = (email) => {
+      return email._id
+    }
+    callback(null, await User.findOneByEmail(email)
+      .then(results => getUserOid(results))
+      .then((user) => {
+        const { item, qty, visible } = req.body;
+        const cartData = [
+          { visible: visible },
+          [{ product: item, qty: qty }]
+        ];
+        return { user, cartData };
+      })
+      .then((data) => {
+        return Cart.update({ user: data.user }, { user: data.user, $set: { cart: data.cartData } }).exec();
+      }));
+  },
+  delete: async (req, res, callback) => {
+    const email = req.decoded.email;
+    // refuse if not an admin
+    if (!req.decoded.email) {
+      return res.status(403).json({
+        message: 'you are not logged in'
+      })
+    }
+    const getUserOid = (email) => {
+      return email._id
+    }
+    callback(null, await User.findOneByEmail(email)
+      .then(results => getUserOid(results))
+      .then((user) => {
+        const { item, qty, visible } = req.body;
+        const date = new Date().toISOString();
+        const cartData = [
+          { date: date, visible: visible },
+          [{ product: item, qty: qty }]
+        ];
+        return { user, cartData };
+      })
+      .then((data) => {
+        return Cart.remove({ user: data.user }).exec();
+      }));
+  },
 };

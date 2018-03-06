@@ -18,7 +18,7 @@ module.exports = {
   put: (req, res) => {
     CartModels.put(req, res, (error, result) => {
       if (error) res.status(500).send(error);
-      res.json(result);
+      res.status(204).json(result);
     });
   },
 
