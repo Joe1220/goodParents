@@ -51,8 +51,11 @@ mongoose
 // 라우팅 연결
 app.use("/api/users", AuthMiddleware);
 app.use("/api/users", UsersRouter);
+
 app.use("/api/products", ProductsRouter);
 app.use("/api/auth", AuthRouter);
+
+app.use("/api/cart", AuthMiddleware);
 app.use("/api/cart", CartRouter);
 
 // app.get("/api", (req, res) => {

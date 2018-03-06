@@ -1,8 +1,9 @@
-const pickItem = require("./pickItem");
+const DailyProduct = require('../db/dailyProducts');
 
 module.exports = {
-  get: function(req, callback) {
-    const date = req.query.date;
-    callback(null, pickItem(date));
+  get: async (req, callback) => {
+    let date = req.query.date;
+    date = new Date(date).toISOString();
+    callback(null, await DailyProduct.getByDate(date));
   }
 };

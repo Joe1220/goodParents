@@ -40,9 +40,9 @@ export default class App extends Component {
   }
 
   foodDetailFetch() {
-    fetch(`/api/products/list?date=${this.state.fullDate}`)
+    fetch(`/api/products?date=${this.state.fullDate}`)
       .then(response => response.json())
-      .then(data => this.setState({ products: data }))
+      .then(data => this.setState({ products: data[0].items }))
       .catch(error => console.error(error));
   }
 
@@ -202,6 +202,7 @@ export default class App extends Component {
   }
 
   render() {
+    console.log(this.state.products);
     return (
       <div>
         <Nav

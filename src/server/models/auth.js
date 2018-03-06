@@ -2,7 +2,7 @@ const User = require("../db/user.js");
 const jwt = require("jsonwebtoken");
 
 const cookieOptions = {
-  maxAge: 1000 * 60 * 60, // would expire after 60 minutes
+  maxAge: 1000 * 60 * 60 * 24, // would expire after 1 day
   httpOnly: true, // The cookie only accessible by the web server
   signed: true // Indicates if the cookie should be signed
 };
