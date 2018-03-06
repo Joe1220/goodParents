@@ -47,7 +47,7 @@ export default class Example extends React.Component {
   }
 
   checkLogged() {
-    if (window.sessionStorage.getItem("auth") === "true") {
+    if (window.sessionStorage.getItem("admin") === "true") {
       return (
         <UncontrolledDropdown nav inNavbar>
           <DropdownToggle nav caret>
@@ -67,7 +67,7 @@ export default class Example extends React.Component {
           </DropdownMenu>
         </UncontrolledDropdown>
       )
-    } else if (window.sessionStorage.getItem("auth") === "false" && window.sessionStorage.getItem("name")) {
+    } else if (window.sessionStorage.getItem("admin") === "false" && window.sessionStorage.getItem("name")) {
       return (
         <UncontrolledDropdown nav inNavbar>
           <DropdownToggle nav caret>

@@ -39,7 +39,7 @@ app.use(cookieParser(config.secret));
 //     process.exit(1);
 //   });
 mongoose
-  .connect(`mongodb://localhost:27017/goodparents`)
+  .connect(`mongodb://localhost:27017/goodParents`)
   .then(() => {
     console.log("mongodb connected.");
   })
