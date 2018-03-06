@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 const Exchangeschema = new mongoose.Schema({
   ExchangeType: Number, //[오배송, 배송지연, 아이가 먹지 않음, 상함, 변심]
