@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 const Orderschema = new mongoose.Schema({
   // OrderNumber:ObjectId로 사용

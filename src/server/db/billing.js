@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 const Billingschema = new mongoose.Schema({
   BillingInformationCardType: Number, //신용카드만 하자. 숫자 0으로
