@@ -63,31 +63,31 @@ class MyPagePayUpdate extends React.Component {
                 </Col>
              </FormGroup>
              <FormGroup row className="mypage_payupdate_main_form_group">
-               <Label for="name" sm={2}><p className="mypage_payupdate_main_form_text">이름*</p></Label>
+               <Label for="pay_name" sm={2}><p className="mypage_payupdate_main_form_text">이름*</p></Label>
                 <Col sm={6}>
-                  <Input className="mypage_payupdate_main_placeholder" type="text" name="name" id="name" placeholder="이름을 입력해주세요" />
+                  <Input className="mypage_payupdate_main_placeholder" type="text" name="pay_name" id="pay_name" placeholder="이름을 입력해주세요" />
                 </Col>
              </FormGroup>
              <FormGroup row className="mypage_payupdate_main_form_group">
-               <Label for="day" sm={2}><p className="mypage_payupdate_main_form_text">생일*</p></Label>
+               <Label for="pay_day" sm={2}><p className="mypage_payupdate_main_form_text">생일*</p></Label>
                 <Col sm={6}>
-                  <Input className="mypage_payupdate_main_select" type="select" name="day" id="day">
+                  <Input className="mypage_payupdate_main_select" type="select" name="pay_day" id="pay_day">
                     {this.renderDay()}
                   </Input>
                 </Col>
              </FormGroup>
              <FormGroup row className="mypage_payupdate_main_form_group">
-               <Label for="month" sm={2}><p className="mypage_payupdate_main_form_text">생월*</p></Label>
+               <Label for="pay_month" sm={2}><p className="mypage_payupdate_main_form_text">생월*</p></Label>
                 <Col sm={6}>
-                  <Input className="mypage_payupdate_main_select" type="select" name="month" id="month">
+                  <Input className="mypage_payupdate_main_select" type="select" name="pay_month" id="pay_month">
                     {this.renderMonth()}
                   </Input>
                 </Col>
              </FormGroup>
              <FormGroup row className="mypage_payupdate_main_form_group">
-               <Label for="year" sm={2}><p className="mypage_payupdate_main_form_text">생년*</p></Label>
+               <Label for="pay_year" sm={2}><p className="mypage_payupdate_main_form_text">생년*</p></Label>
                 <Col sm={6}>
-                  <Input className="mypage_payupdate_main_select" type="select" name="year" id="year">
+                  <Input className="mypage_payupdate_main_select" type="select" name="pay_year" id="pay_year">
                     {this.renderYear()}
                   </Input>
                 </Col>

@@ -59,7 +59,7 @@ input.mypage_payupdate_main_placeholder {
     margin: 0;
 }
 
-#card_expiration, #name {
+#card_expiration, #pay_name {
   width: 80%;
 }
 
