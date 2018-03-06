@@ -15,20 +15,22 @@ import FoodDetail from "./FoodDetail";
 import CartMain from "./CartMain";
 import Login from "./Login";
 import Signup from "./Signup";
-import MyPage from "./myPage/MyPage";
-import MyPageOrderCheck from './myPage/MyPageOrderCheck';
-import MyPageChangeCheck from './myPage/MyPageChangeCheck';
-import MyPageChangeApply from './myPage/MyPageChangeApply';
-import MyPagePlaceCheck from './myPage/MyPagePlaceCheck';
-import MyPagePlaceAdd from './myPage/MyPagePlaceAdd';
-import MyPageChildInfo from './myPage/MyPageChildInfo';
-import MyPageChildEnrollment from './myPage/MyPageChildEnrollment';
-import MyPagePayCheck from './myPage/MyPagePayCheck';
-import MyPagePayUpdate from './myPage/MyPagePayUpdate';
-import MyPageQnACheck from './myPage/MyPageQnACheck';
-import MyPageQnAEnrollment from './myPage/MyPageQnAEnrollment';
-import MyPageAccount from './myPage/MyPageAccount';
-import NotFoundComponent from "./NotFoundComponent";
+import MyPage from "./MyPage";
+import AdminPage from "./AdminPage";
+// import MyPage from "./myPage/MyPage";
+// import MyPageOrderCheck from './myPage/MyPageOrderCheck';
+// import MyPageChangeCheck from './myPage/MyPageChangeCheck';
+// import MyPageChangeApply from './myPage/MyPageChangeApply';
+// import MyPagePlaceCheck from './myPage/MyPagePlaceCheck';
+// import MyPagePlaceAdd from './myPage/MyPagePlaceAdd';
+// import MyPageChildInfo from './myPage/MyPageChildInfo';
+// import MyPageChildEnrollment from './myPage/MyPageChildEnrollment';
+// import MyPagePayCheck from './myPage/MyPagePayCheck';
+// import MyPagePayUpdate from './myPage/MyPagePayUpdate';
+// import MyPageQnACheck from './myPage/MyPageQnACheck';
+// import MyPageQnAEnrollment from './myPage/MyPageQnAEnrollment';
+// import MyPageAccount from './myPage/MyPageAccount';
+// import NotFoundComponent from "./NotFoundComponent";
 
 class App extends Component {
   constructor(props) {
@@ -215,25 +217,25 @@ class App extends Component {
   }
 
   //일반 권한을 가졌을때 접근 가능한 route
-  renderMyPage() {
-    return (
-      [
-        // <Route exact path="/mypage" component={MyPage} />,
-        <Route exact path="/mypage/ordercheck" component={MyPageOrderCheck} />,
-        <Route exact path="/mypage/changecheck" component={MyPageChangeCheck} />,
-        <Route exact path="/mypage/changeapply" component={MyPageChangeApply} />,
-        <Route exact path="/mypage/placecheck" component={MyPagePlaceCheck} />,
-        <Route exact path="/mypage/placeadd" component={MyPagePlaceAdd} />,
-        <Route exact path="/mypage/childinfo" component={MyPageChildInfo} />,
-        <Route exact path="/mypage/childenrollment" component={MyPageChildEnrollment} />,
-        <Route exact path="/mypage/paycheck" component={MyPagePayCheck} />,
-        <Route exact path="/mypage/payupdate" component={MyPagePayUpdate} />,
-        <Route exact path="/mypage/qnacheck" component={MyPageQnACheck} />,
-        <Route exact path="/mypage/qnaenrollment" component={MyPageQnAEnrollment} />,
-        <Route exact path="/mypage/account" component={MyPageAccount} />
-      ]
-    )
-  }
+  // renderMyPage() {
+  //   return (
+  //     [
+  //       // <Route exact path="/mypage" component={MyPage} />,
+  //       <Route exact path="/mypage/ordercheck" component={MyPageOrderCheck} />,
+  //       <Route exact path="/mypage/changecheck" component={MyPageChangeCheck} />,
+  //       <Route exact path="/mypage/changeapply" component={MyPageChangeApply} />,
+  //       <Route exact path="/mypage/placecheck" component={MyPagePlaceCheck} />,
+  //       <Route exact path="/mypage/placeadd" component={MyPagePlaceAdd} />,
+  //       <Route exact path="/mypage/childinfo" component={MyPageChildInfo} />,
+  //       <Route exact path="/mypage/childenrollment" component={MyPageChildEnrollment} />,
+  //       <Route exact path="/mypage/paycheck" component={MyPagePayCheck} />,
+  //       <Route exact path="/mypage/payupdate" component={MyPagePayUpdate} />,
+  //       <Route exact path="/mypage/qnacheck" component={MyPageQnACheck} />,
+  //       <Route exact path="/mypage/qnaenrollment" component={MyPageQnAEnrollment} />,
+  //       <Route exact path="/mypage/account" component={MyPageAccount} />
+  //     ]
+  //   )
+  // }
 
   render() {
     return (
@@ -263,7 +265,10 @@ class App extends Component {
           <Route exact path="/terms" component={Terms} />
           <Route exact path="/privacy" component={Privacy} />
           <Route exact path="/prime" component={Prime} />
-
+          {/* MyPage */} 
+          <Route path="/mypage" component={MyPage} />
+          {/* AdminPage */}
+          <Route path="/adminpage" component={AdminPage} />
           <Route
             exact
             path="/payment"
@@ -298,7 +303,6 @@ class App extends Component {
           <Route exact path="/signup" component={Signup} />
           {/* 각 음식들의 detail 페이지  */}
           {this.renderFoodDetail()}
-          <Route component={NotFoundComponent} />
         </Switch>
         <Footer />
       </div>

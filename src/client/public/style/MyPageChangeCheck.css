@@ -35,7 +35,7 @@ table.mypage_changecheck_main_table {
 }
 
 .mypage_changecheck_main_table thead tr {
-  background-color: rgb(158, 158, 158);
+  background-color: #DCDCDC;
 }
 
 .mypage_changecheck_main thead tr th:first-child {

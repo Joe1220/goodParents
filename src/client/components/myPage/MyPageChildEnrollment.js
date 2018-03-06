@@ -17,46 +17,46 @@ class MyPageChildEnrollment extends React.Component {
            <hr id="mypage_childenrol_main_hr"/>
            <Form action="post" id="mypage_childenrol_main_form">
              <FormGroup row>
-               <Label for="name" sm={2}><p className="mypage_childenrol_main_form_text">이름*</p></Label>
+               <Label for="childenrol_name" sm={2}><p className="mypage_childenrol_main_form_text">이름*</p></Label>
                 <Col sm={4}>
-                  <Input className="mypage_childenrol_main_placeholder" type="text" name="name" id="name" placeholder="이름을 입력하세요" />
+                  <Input className="mypage_childenrol_main_placeholder" type="text" name="childenrol_name" id="childenrol_name" placeholder="이름을 입력하세요" />
                 </Col>
              </FormGroup>
              <FormGroup row>
-               <Label for="age_year" sm={2}><p className="mypage_childenrol_main_form_text">나이*</p></Label>
+               <Label for="childenrol_year" sm={2}><p className="mypage_childenrol_main_form_text">나이*</p></Label>
                 <Col sm={3}>
-                  <Input className="mypage_childenrol_main_placeholder" type="number" min="2" max="6" name="age_year" id="age_year" placeholder="년도" />
+                  <Input className="mypage_childenrol_main_placeholder" type="number" min="2" max="6" name="childenrol_year" id="childenrol_year" placeholder="년도" />
                 </Col>
                 <Col sm={1}></Col>
-                <Label for="age_month" sm={2}><p className="mypage_childenrol_main_form_text">개월*</p></Label>
+                <Label for="childenrol_month" sm={2}><p className="mypage_childenrol_main_form_text">개월*</p></Label>
                 <Col sm={3}>
-                  <Input className="mypage_childenrol_main_placeholder" type="number" min="2" max="6" name="age_month" id="age_month" placeholder="개월" />
+                  <Input className="mypage_childenrol_main_placeholder" type="number" min="2" max="6" name="childenrol_month" id="childenrol_month" placeholder="개월" />
                 </Col>
              </FormGroup>
              <FormGroup row id="mypage_childenrol_main_gender_form">
-               <Label for="gender" sm={2}><p className="mypage_childenrol_main_gender_form_text">성별*</p></Label>
+               <Label for="childenrol_gender" sm={2}><p className="mypage_childenrol_main_gender_form_text">성별*</p></Label>
                 <Col sm={2}>
-                  <Input className="mypage_childenrol_main_radio" type="radio" name="gender" id="gender_male" />
+                  <Input className="mypage_childenrol_main_radio" type="radio" name="childenrol_gender" id="childenrol_gender_male" />
                   <p>남</p>
                 </Col>
                 <Col sm={2}>
-                  <Input className="mypage_childenrol_main_radio" type="radio" name="gender" id="gender_femail" />
+                  <Input className="mypage_childenrol_main_radio" type="radio" name="childenrol_gender" id="childenrol_gender_femail" />
                   <p>여</p>
                 </Col>
               </FormGroup>
               <FormGroup row id="mypage_childenrol_main_kg_form">
-                <Label for="kg" sm={2}><p className="mypage_childenrol_main_form_text">몸무게*</p></Label>
+                <Label for="childenrol_kg" sm={2}><p className="mypage_childenrol_main_form_text">몸무게*</p></Label>
                  <Col sm={4}>
-                   <Input className="mypage_childenrol_main_placeholder" type="number" name="kg" id="kg" placeholder="몸무게" />
+                   <Input className="mypage_childenrol_main_placeholder" type="number" name="childenrol_kg" id="childenrol_kg" placeholder="몸무게" />
                  </Col>
                  <Col sm={2}>
                    <p className="mypage_childenrol_main_form_sub_text">kg</p>
                  </Col>
               </FormGroup>
               <FormGroup row id="mypage_childenrol_main_cm_form">
-                <Label for="kg" sm={2}><p className="mypage_childenrol_main_form_text">키*</p></Label>
+                <Label for="childenrol_cm" sm={2}><p className="mypage_childenrol_main_form_text">키*</p></Label>
                  <Col sm={4}>
-                   <Input className="mypage_childenrol_main_placeholder" type="number" name="cm" id="cm" placeholder="키" />
+                   <Input className="mypage_childenrol_main_placeholder" type="number" name="childenrol_cm" id="childenrol_cm" placeholder="키" />
                  </Col>
                  <Col sm={2}>
                    <p className="mypage_childenrol_main_form_sub_text">cm</p>
