@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 
 const userSchema = new mongoose.Schema({
   name: String ,
-  telephone: { type: Number, default: null },
+  telephone: { type: String, default: null },
   email: String,
   userimg: { type: String, default: '' },
   password: String,
@@ -52,5 +52,10 @@ userSchema.methods.assignAdmin = function () {
   this.admin = true
   return this.save()
 }
-
+userSchema.methods.updateUser = function (userinfo) {
+  this.name = userinfo.name
+  this.telephone = userinfo.telephone;
+  this.email = userinfo.email;
+  return this.save()
+}
 module.exports = mongoose.model('User', userSchema);

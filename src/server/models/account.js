@@ -19,24 +19,16 @@ module.exports = {
     callback(
       null,
       await User.findOneByEmail(email)
-        .then(results => getUserOid(results))
-        .then(user => {
-          return Baby.update(
-            {
-              user: user,
-              baby: { $elemMatch: { _id: req.body.oid } }
-            },
-            {
-              $set: {
-                "baby.$.name": req.body.name,
-                "baby.$.date": req.body.date,
-                "baby.$.sex": req.body.sex,
-                "baby.$.weight": req.body.weight,
-                "baby.$.height": req.body.height
-              }
-            }
-          ).exec();
+        .then((userinfo) => {
+          const { name, telephone, email } = req.body
+          const info = { name, telephone, email }
+          userinfo.updateUser(info)
         })
+        .then(
+          res.json({
+            success: true
+          })
+        )
     );
   }
 };
