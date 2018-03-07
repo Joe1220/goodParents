@@ -1,6 +1,7 @@
 const express = require("express");
 const BabyController = require("../controllers/baby");
 const BillingController = require("../controllers/billing");
+const AccountController = require("../controllers/account");
 const router = express.Router();
 
 router.get("/baby", BabyController.get);
@@ -10,5 +11,8 @@ router.delete("/baby", BabyController.delete);
 
 router.get("/billing", BillingController.get);
 router.put("/billing", BillingController.put);
+
+router.get("/account", AccountController.get);
+router.put("/account", AccountController.put);
 
 module.exports = router;
