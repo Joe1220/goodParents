@@ -1,14 +1,19 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const CounselingSchema = new mongoose.Schema({
-  CounselingService: Number,
-  CounselingType: Number,
-  CounselingTitle: String,
-  Counselingtext: String,
-  CounselingRegistrationDate: new Date().now(),
-  CounselingWheterToAnswer: Boolean,
-  CounselingAdmin: { type: Schema.Types.ObjectId, ref: 'Admin' }
+  user: { type: Schema.Types.ObjectId, ref: "User" },
+  inquiry: [
+    {
+      category: Number,
+      subcategory: Number,
+      title: String,
+      body: String,
+      date: { type: Date, default: Date.now },
+      answered: { type: Boolean, default: false },
+      answerBody: { type: String, default: "" }
+    }
+  ]
 });
 
-module.exports = mongoose.model('Counseling', CounselingSchema);
+module.exports = mongoose.model("Counseling", CounselingSchema);
