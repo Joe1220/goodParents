@@ -36,6 +36,7 @@ export default class Example extends React.Component {
     this.toggle = this.toggle.bind(this);
     this.OncartOver = this.OncartOver.bind(this);
     this.checkLogged = this.checkLogged.bind(this);
+    this.checkCart = this.checkCart.bind(this);
   }
   toggle() {
     this.setState({
@@ -92,6 +93,17 @@ export default class Example extends React.Component {
       )
     }
   }
+  checkCart() {
+    if (window.sessionStorage.getItem("name")) {
+      return (
+        <NavItem>
+          <NavLink id="Popover1" onMouseOver={this.OncartOver} href="/cartmain">장바구니</NavLink>
+        </NavItem>
+      )
+    } else {
+      return '';
+    }
+  }
   render() {
     return (
       <div>
@@ -101,9 +113,7 @@ export default class Example extends React.Component {
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className="ml-auto" navbar>
-                <NavItem>
-                  <NavLink id="Popover1" onMouseOver={this.OncartOver} href="/cartmain">장바구니</NavLink>
-                </NavItem>
+              {this.checkCart()}
                 <Popover placement="bottom-end" isOpen={this.state.popOpen} target="Popover1" onMouseOver={this.OncartOver}>
                   <PopoverHeader><CartDate /></PopoverHeader>
                   <PopoverBody>
