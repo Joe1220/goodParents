@@ -54,6 +54,7 @@ app.use("/api/users", AuthMiddleware);
 app.use("/api/users", UsersRouter);
 
 app.use("/api/products", ProductsRouter);
+
 app.use("/api/auth", AuthRouter);
 
 app.use("/api/cart", AuthMiddleware);

@@ -8,19 +8,12 @@ const getUserOid = email => {
 module.exports = {
   get: async (req, res, callback) => {
     const email = req.decoded.email;
-    // if (!req.decoded.email) {
-    //   return res.status(403).json({
-    //     message: 'you are not logged in'
-    //   })
-    // }
     callback(
       null,
       await User.findOneByEmail(email)
         .then(result => getUserOid(result))
         .then(user =>
-          Cart.findOne({ user: user })
-            .populate("cart.product")
-            .exec()
+          Baby.findOne({ user: user }).exec()
         )
         .catch(error => {
           throw new Error(error);
@@ -35,17 +28,16 @@ module.exports = {
       await User.findOneByEmail(email)
         .then(result => getUserOid(result))
         .then(user => {
-          const { item, qty } = req.body;
-          const cartData = {
-            product: item,
-            qty
+          const { name, date, sex, weight, height } = req.body;
+          const babyData = {
+            name, date, sex, weight, height
           };
-          return { user, cartData };
+          return { user, babyData };
         })
         .then(data => {
-          return Cart.update(
+          return Baby.update(
             { user: data.user },
-            { $push: { cart: data.cartData } },
+            { $push: { baby: data.babyData } },
             { upsert: true }
           ).exec();
         })
@@ -62,21 +54,19 @@ module.exports = {
       await User.findOneByEmail(email)
         .then(results => getUserOid(results))
         .then(user => {
-          const { item, qty } = req.body;
-          const cartData = {
-            product: item,
-            qty
-          };
-          return { user, cartData };
-        })
-        .then(data => {
-          return Cart.update(
+          return Baby.update(
             {
-              user: data.user,
-              cart: { $elemMatch: { product: data.cartData.product } }
+              user: user,
+              baby: { $elemMatch: { _id: req.body.oid } }
             },
             {
-              $set: { "cart.$.qty": data.cartData.qty }
+              $set: {
+                "baby.$.name": req.body.name,
+                "baby.$.date": req.body.date,
+                "baby.$.sex": req.body.sex,
+                "baby.$.weight": req.body.weight,
+                "baby.$.height": req.body.height
+              }
             }
           ).exec();
         })
@@ -90,16 +80,16 @@ module.exports = {
       await User.findOneByEmail(email)
         .then(results => getUserOid(results))
         .then(user => {
-          const { item } = req.body;
-          return { user, item };
+          const { name } = req.body;
+          return { user, name };
         })
         .then(data => {
-          return Cart.update(
+          return Baby.update(
             {
-              user: data.user
+              user: data.user,
             },
             {
-              $pull: { cart: { product: data.item } }
+              $pull: { baby: { name: data.name } }
             }
           ).exec();
         })
