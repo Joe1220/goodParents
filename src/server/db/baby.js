@@ -5,16 +5,16 @@ const User = require("./user");
 const BabySchema = new mongoose.Schema(
   {
     user: { type: Schema.Types.ObjectId, ref: "User" },
-    baby: {
+    baby: [{
       name: String,
-      old: Date, //태어난 날짜
-      sex: Number, //['0, boy', '1, girl']
-      weight: Number,
-      height: Number,
-    }
+      date: String, //"2008-01-01"
+      sex: String, //['0, boy', '1, girl']
+      weight: Number, //kg
+      height: Number,//cm
+    }]
   },
   {
-    collection: "users"
+    collection: "babys"
   }
 );
 

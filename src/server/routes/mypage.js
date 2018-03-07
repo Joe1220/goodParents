@@ -2,6 +2,9 @@ const express = require("express");
 const BabyController = require("../controllers/baby");
 const BillingController = require("../controllers/billing");
 const CounselingController = require("../controllers/counseling");
+const AccountController = require("../controllers/account");
+const DeliveryController = require("../controllers/delivery");
+
 const router = express.Router();
 
 router.get("/baby", BabyController.get);
@@ -14,5 +17,13 @@ router.put("/billing", BillingController.put);
 
 router.get("/counseling", CounselingController.get);
 router.post("/counseling", CounselingController.post);
+
+router.get("/account", AccountController.get);
+router.put("/account", AccountController.put);
+
+router.get("/delivery", DeliveryController.get);
+router.post("/delivery", DeliveryController.post);
+router.put("/delivery", DeliveryController.put);
+router.delete("/delivery", DeliveryController.delete);
 
 module.exports = router;

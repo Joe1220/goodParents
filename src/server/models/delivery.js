@@ -1,4 +1,4 @@
-const Baby = require("../db/baby");
+const Delivery = require("../db/delivery");
 const User = require("../db/user");
 
 const getUserOid = email => {
@@ -13,7 +13,7 @@ module.exports = {
       await User.findOneByEmail(email)
         .then(result => getUserOid(result))
         .then(user =>
-          Baby.findOne({ user: user }).exec()
+          Delivery.findOne({ user: user }).exec()
         )
         .catch(error => {
           throw new Error(error);
@@ -28,16 +28,14 @@ module.exports = {
       await User.findOneByEmail(email)
         .then(result => getUserOid(result))
         .then(user => {
-          const { name, date, sex, weight, height } = req.body;
-          const babyData = {
-            name, date, sex, weight, height
-          };
-          return { user, babyData };
+          const { codeZip, address, addressDetail, checked } = req.body;
+          const deliveryData = { codeZip, address, addressDetail, checked };
+          return { user, deliveryData };
         })
         .then(data => {
-          return Baby.update(
+          return Delivery.update(
             { user: data.user },
-            { $push: { baby: data.babyData } },
+            { $push: { delivery: data.deliveryData } },
             { upsert: true }
           ).exec();
         })
@@ -49,28 +47,28 @@ module.exports = {
 
   put: async (req, res, callback) => {
     const email = req.decoded.email;
+    const { codeZip, address, addressDetail, checked } = req.body;
     callback(
       null,
       await User.findOneByEmail(email)
         .then(results => getUserOid(results))
         .then(user => {
-          return Baby.update(
+          return Delivery.update(
             {
               user: user,
-              baby: { $elemMatch: { _id: req.body.oid } }
+              delivery: { $elemMatch: { _id: req.body.oid } }
             },
             {
               $set: {
-                "baby.$.name": req.body.name,
-                "baby.$.date": req.body.date,
-                "baby.$.sex": req.body.sex,
-                "baby.$.weight": req.body.weight,
-                "baby.$.height": req.body.height
+                "delivery.$.codeZip": req.body.codeZip,
+                "delivery.$.address": req.body.address,
+                "delivery.$.addressDetail": req.body.addressDetail,
+                "delivery.$.checked": req.body.checked
               }
             }
           ).exec();
         })
-    );
+      );
   },
 
   delete: async (req, res, callback) => {
@@ -80,16 +78,16 @@ module.exports = {
       await User.findOneByEmail(email)
         .then(results => getUserOid(results))
         .then(user => {
-          const { name } = req.body;
-          return { user, name };
+          const { oid } = req.body;
+          return { user, oid };
         })
         .then(data => {
-          return Baby.update(
+          return Delivery.update(
             {
               user: data.user,
             },
             {
-              $pull: { baby: { name: data.name } }
+              $pull: { delivery: { _id: data.oid } }
             }
           ).exec();
         })
