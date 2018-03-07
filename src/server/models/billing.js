@@ -31,8 +31,8 @@ module.exports = {
             {
               // billingType: req.body.billingType,
               cardNumber: req.body.cardNumber,
-              expirationYear: req.body.expirationYear,
-              expirationMonth: req.body.expirationMonth,
+              expYear: req.body.expYear,
+              expMonth: req.body.expMonth,
               CVC: req.body.CVC,
               name: req.body.name
             },
