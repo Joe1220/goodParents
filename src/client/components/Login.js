@@ -32,11 +32,12 @@ class Login extends Component {
     })
       .then(response => response.json())
       .then(data => {
-        if (data.message === "logged in successfully") {
+        console.log(data)
+        if (data.message === "log in successfully") {
           window.sessionStorage.setItem("name", data.name);
           window.sessionStorage.setItem("admin", data.admin);
           return data;
-        } else if (data.message === "login failed") {
+        } else if (data.message === "login failed. user does not exist.") {
           this.props.history.push("/signup");
         }
       })
@@ -51,7 +52,6 @@ class Login extends Component {
   }
 
   render() {
-    console.log("Login page", this.props);
     return (
       <div
         className="mx-auto"
