@@ -4,9 +4,9 @@ const Schema = mongoose.Schema;
 const Billingschema = new mongoose.Schema({
   user: { type: Schema.Types.ObjectId, ref: "User" },
   billingType: { type: Number, default: 0 }, //신용카드만 하자. 숫자 0으로
-  cardNumber: String,
-  expirationYear: Number,
-  expirationMonth: String,
+  cardNumber: Number,
+  expYear: Number,
+  expMonth: String,
   CVC: Number,
   name: String
 });
