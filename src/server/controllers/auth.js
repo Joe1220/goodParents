@@ -10,6 +10,7 @@ module.exports = {
   login: (req, res) => {
     AuthModels.login(req, res, (error, result) => {
       if (error) res.status(500).send(error);
+      
       res.json(result);
     });
   },
