@@ -14,14 +14,25 @@ module.exports = {
       await User.findOneByEmail(email)
         .then(result => getUserOid(result))
         .then(user => {
-          return Cart.findOne({ user: user }).exec().then(result => {
-            return {
-              user: user,
-              result: result
+          // aggregate는 연산 처리가 추가된 쿼리이다. 특정한 조건을 준 쿼리를 처리하기 위해 쓰인다.
+          return Cart.aggregate([
+            { $match: { user: user } },
+            {
+              $project: {
+                user: user,
+                cart: {
+                  $filter: {
+                    input: "$cart",
+                    as: "item",
+                    cond: { $eq: ["$$item.checked", true] }
+                  }
+                }
+              }
             }
-          });
+          ]);
         })
-        .then((data) => {
+        .then(data => {
+          data = data[0];
           const info = {
             recipient: req.body.recipient,
             telephone: req.body.telephone,
@@ -34,14 +45,14 @@ module.exports = {
             expMonth: parseInt(req.body.expMonth),
             CVC: parseInt(req.body.CVC),
             name: req.body.name
-          }
-          return OrderHistory.insertMany(
-            [{
+          };
+          return OrderHistory.insertMany([
+            {
               user: data.user,
-              items: data.result.cart,
+              items: data.cart,
               ordererInfo: info
-            }]
-          );
+            }
+          ]);
         })
         .catch(error => {
           throw new Error(error);
