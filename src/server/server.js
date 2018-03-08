@@ -31,17 +31,8 @@ app.disable("x-powered-by");
 // 쿠키파서 미들웨어 연결
 app.use(cookieParser(config.secret));
 // 몽고디비 커넥션
-mongoose
-  .connect(`mongodb://goodParents:abc123@localhost:${mongoPort}/goodParents`)
-  .then(() => {
-    console.log("mongodb connected.");
-  })
-  .catch(() => {
-    console.error("DB connect error. Exit.");
-    process.exit(1);
-  });
 // mongoose
-//   .connect(`mongodb://localhost:27017/goodParents`)
+//   .connect(`mongodb://goodParents:abc123@localhost:${mongoPort}/goodParents`)
 //   .then(() => {
 //     console.log("mongodb connected.");
 //   })
@@ -49,6 +40,15 @@ mongoose
 //     console.error("DB connect error. Exit.");
 //     process.exit(1);
 //   });
+mongoose
+  .connect(`mongodb://localhost:27017/goodParents`)
+  .then(() => {
+    console.log("mongodb connected.");
+  })
+  .catch(() => {
+    console.error("DB connect error. Exit.");
+    process.exit(1);
+  });
 
 // 라우팅 연결
 app.use("/api/users", AuthMiddleware);
