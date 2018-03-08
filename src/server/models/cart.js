@@ -35,10 +35,11 @@ module.exports = {
       await User.findOneByEmail(email)
         .then(result => getUserOid(result))
         .then(user => {
-          const { item, qty } = req.body;
+          const { item, qty, checked } = req.body;
           const cartData = {
             product: item,
-            qty
+            qty,
+            checked
           };
           return { user, cartData };
         })
@@ -62,10 +63,11 @@ module.exports = {
       await User.findOneByEmail(email)
         .then(results => getUserOid(results))
         .then(user => {
-          const { item, qty } = req.body;
+          const { item, qty, checked } = req.body;
           const cartData = {
             product: item,
-            qty
+            qty,
+            checked
           };
           return { user, cartData };
         })
@@ -76,7 +78,10 @@ module.exports = {
               cart: { $elemMatch: { product: data.cartData.product } }
             },
             {
-              $set: { "cart.$.qty": data.cartData.qty }
+              $set: {
+                "cart.$.qty": data.cartData.qty,
+                "cart.$.checked": data.cartData.checked
+              }
             }
           ).exec();
         })

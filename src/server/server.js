@@ -13,6 +13,7 @@ const AuthRouter = require("./routes/auth");
 const AuthMiddleware = require("./middleware/auth");
 const CartRouter = require("./routes/cart");
 const MypageRouter = require("./routes/mypage");
+const PaymentRouter = require("./routes/payment");
 
 // jwt config
 const config = require("./config");
@@ -62,6 +63,9 @@ app.use("/api/cart", CartRouter);
 
 app.use("/api/mypage", AuthMiddleware);
 app.use("/api/mypage", MypageRouter);
+
+app.use("/api/payment", AuthMiddleware);
+app.use("/api/payment", PaymentRouter);
 
 // app.get("/api", (req, res) => {
 //   res.send("api");

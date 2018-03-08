@@ -4,6 +4,7 @@ const BillingController = require("../controllers/billing");
 const CounselingController = require("../controllers/counseling");
 const AccountController = require("../controllers/account");
 const DeliveryController = require("../controllers/delivery");
+const ExchangeController = require("../controllers/exchange");
 
 const router = express.Router();
 
@@ -25,5 +26,9 @@ router.get("/delivery", DeliveryController.get);
 router.post("/delivery", DeliveryController.post);
 router.put("/delivery", DeliveryController.put);
 router.delete("/delivery", DeliveryController.delete);
+
+router.get("/exchange", ExchangeController.get);
+router.post("/exchange", ExchangeController.post);
+router.delete("/exchange", ExchangeController.delete);
 
 module.exports = router;
