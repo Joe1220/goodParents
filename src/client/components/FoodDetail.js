@@ -35,10 +35,23 @@ class FoodDetail extends Component {
     });
   };
   toCart = () => {
+    const url = '/api/cart'
+    const data = { item: this.props.id, qty: 1, checked: true }
     if( !window.sessionStorage.getItem("name") ){
       this.props.history.push("/login");
     } else {
-      return;
+      return fetch(url,{
+        method: 'POST',
+        credentials: "include",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+      .then( res => {
+        return res.status;
+      })
+      .catch(err => console.error(err));
     }
   }
   render() {
