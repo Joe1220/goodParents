@@ -3,11 +3,11 @@ import React from 'react';
 import HomeDietDate from './HomeDietDate'
 import HomeDietFood from './HomeDietFood'
 
-const HomeDiet = ({products, addToCart, fullDate}) => {
+const HomeDiet = (props) => {
   return(
     <div className="HomeDiet">
-      <HomeDietDate fullDate={fullDate}/>
-      <HomeDietFood products={products} addToCart={addToCart}/>
+      <HomeDietDate fullDate={props.fullDate}/>
+      <HomeDietFood {...props} />
     </div>
   )
 };
