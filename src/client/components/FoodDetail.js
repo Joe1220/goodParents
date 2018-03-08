@@ -5,8 +5,9 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
 const styles = {
-  container: { display: "flex" },
-  image: { width: "457.5px", height: "703px", marginRight: "15px", marginTop: "15px"},
+  container: { display: "flex", marginBottom: "50px" },
+  imagecontainer: { width: "457.5px", height: "703px", marginRight: "15px", marginTop: "15px"},
+  image: { width: "457.5px", height: "703px" },
   detailcontainer: { width: "621px", height: "703px", marginLeft: "15px", marginTop: "15px" },
   date: { marginBottom: "5px", fontWeight: "bold" },
   when: { color: "rgb(25,25,221)" },
@@ -26,26 +27,37 @@ class FoodDetail extends Component {
     this.state = {
       value: 'a',
     }
+    this.toCart = this.toCart.bind(this);
   }
   handleChange = (value) => {
     this.setState({
       value: value,
     });
   };
+  toCart = () => {
+    if( !window.sessionStorage.getItem("name") ){
+      this.props.history.push("/login");
+    } else {
+      return;
+    }
+  }
   render() {
+    let fullDate = new Date(this.props.fullDate).toString();
+    let month = fullDate.slice(4, 7);
+    let date = this.props.fullDate.slice(8)
     return (
       <Container style={styles.container}>
-        <div style={styles.image} className="FoodDetail">image</div>
+        <div style={styles.imagecontainer} className="FoodDetail"><img style={styles.image} src={this.props.image} alt="food"/></div>
         <div style={styles.detailcontainer} className="FoodDetail">
-          <div style={styles.date}>Today, 08 March <span style={styles.when}>Lunch</span></div>
-          <div style={styles.title}>Roast Chicken Breast</div>
+          <div style={styles.date}>{date} {month}  <span style={styles.when}>Lunch</span></div>
+          <div style={styles.title}>{this.props.name}</div>
           <hr style={styles.hr} />
-          <div style={styles.fooddetail}>with mushroom & spinach barley risotto, market vegetables</div>
-          <div style={styles.price}>5,210 원 <span style={styles.delivery}>free delivery</span></div>
+          <div style={styles.fooddetail}>{this.props.subname}</div>
+          <div style={styles.price}>{this.props.price} 원 <span style={styles.delivery}>free delivery</span></div>
           <MuiThemeProvider>
-            <RaisedButton label="장바구니" primary={true} style={styles.cart}/>
+            <RaisedButton onClick={this.toCart}label="장바구니" primary={true} style={styles.cart}/>
           </MuiThemeProvider>
-          <Tabs>
+          <Tabs style={styles.tabs}>
             <TabList style={styles.tablist}>
               <Tab style={styles.tab}>재료<hr/></Tab>
               <Tab style={styles.tab}>영양소<hr/></Tab>

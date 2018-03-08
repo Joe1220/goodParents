@@ -32,7 +32,6 @@ class Login extends Component {
     })
       .then(response => response.json())
       .then(data => {
-        console.log(data)
         if (data.message === "log in successfully") {
           window.sessionStorage.setItem("name", data.name);
           window.sessionStorage.setItem("admin", data.admin);

@@ -8,9 +8,9 @@ import Nav from "./Nav"
 import Footer from "./Footer";
 import Terms from "./Terms";
 import Privacy from "./Privacy";
+import FoodDetail from './FoodDetail';
 import Prime from "./Prime";
 import Payment from "./Payment";
-import FoodDetail from "./FoodDetail";
 import CartMain from "./CartMain";
 import Login from "./Login";
 import Signup from "./Signup";
@@ -171,24 +171,28 @@ export default class App extends Component {
   }
 
   renderFoodDetail() {
-    return this.state.products.map(product => {
+    return this.state.products.map((product, index) => {
       return (
         <Route
           exact
-          path={`/foodDetail/${product._id.$oid}`}
-          render={props => {
+          path={`/foodDetail/${product._id}`}
+          key={index}
+          render={ (props) => {
             return (
               <FoodDetail
+                {...props}
                 addToCart={this.handleAddToCart}
                 productQuantity={this.state.quantity}
                 checked={this.state.checked}
                 image={product.image}
                 name={product.name}
                 price={product.price}
-                id={product._id.$oid}
+                id={product._id}
                 ingredients={product.ingredients}
                 nutrients={product.nutrients}
-                key={product.id}
+                fullDate={this.state.fullDate}
+                subname={product.subname}
+                calorie={product.calorie}
               />
             );
           }}
@@ -202,7 +206,6 @@ export default class App extends Component {
   }
 
   render() {
-    console.log(this.state.products);
     return (
       <div>
         <Nav
@@ -212,17 +215,13 @@ export default class App extends Component {
           route={this.renderMyPage}
           />
         <Switch>
-          <Route
-            exact
-            path="/"
-            render={props => {
-              return (
-                <Home
-                  products={this.state.products}
-                  onChangeFullDate={this.onChangeFullDate}
-                  fullDate={this.state.fullDate}
-                />
-              );
+          <Route exact path="/" render={ (props) => { return (
+              <Home
+                {...props}
+                products={this.state.products}
+                onChangeFullDate={this.onChangeFullDate}
+                fullDate={this.state.fullDate}
+              /> );
             }}
           />
           <Route exact path="/about" component={About} />
@@ -266,7 +265,7 @@ export default class App extends Component {
 
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
-          {/* 각 음식들의 detail 페이지  */}
+          {/* 음식 상세페이지 라우터 정의 */}
           {this.renderFoodDetail()}
         </Switch>
         <Footer />

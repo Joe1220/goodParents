@@ -5,8 +5,8 @@ class HomeDietFood extends Component {
   renderHomeDietFoodList() {
     return this.props.products.map((product, index) => {
       return (
-        <div className="HomeDietFood">
-          <Link className="HomeDietFoodImg" to={`/foodDetail/${product._id.$oid}`}><img src={product.image} alt="food"/></Link>
+        <div className="HomeDietFood" key={index}>
+          <Link className="HomeDietFoodImg" to={`/foodDetail/${product._id}`}><img src={product.image} alt="food"/></Link>
           <div className="HomeDietFoodFullText">
             <p className="HomeDietFoodFullTextTitle">{product.name}</p>
             <p className="HomeDietFoodFullTextSubtitle">{product.subname}</p>

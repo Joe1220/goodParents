@@ -55,6 +55,7 @@ class HomeDatepicker extends Component {
           month={item[1]}
           date={item[2]}
           day={item[3]}
+          key={idx}
         >
           <p>{item[4]}</p>
           <h3>{item[2]}</h3>
