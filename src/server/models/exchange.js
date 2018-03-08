@@ -1,4 +1,4 @@
-const OrderHistory = require("../db/orderHistory");
+const Exchange = require("../db/exchange");
 const User = require("../db/user");
 
 const getUserOid = email => {
@@ -13,8 +13,8 @@ module.exports = {
       await User.findOneByEmail(email)
         .then(result => getUserOid(result))
         .then(user =>
-          OrderHistory.findOne({ user: user }).populate("items.product").exec()
-        ).then((results)=>{
+          Exchange.findOne({ user: user }).populate("items.product").exec()
+        ).then((results) => {
           return { date: results.date, items: results.items }
         })
         .catch(error => {
@@ -30,44 +30,26 @@ module.exports = {
       await User.findOneByEmail(email)
         .then(result => getUserOid(result))
         .then(user => {
-          const { name, date, sex, weight, height } = req.body;
-          const babyData = {
-            name, date, sex, weight, height
-          };
-          return { user, babyData };
-        })
-        .then(data => {
-          return Baby.update(
-            { user: data.user },
-            { $push: { baby: data.babyData } },
+          return Exchange.update(
+            {},
+            {
+              user: user.user,
+              category: parseInt(req.body.category, 10),
+              reason: req.body.reason,
+              $push: { product: req.body.items, qty: parseInt(req.body.qty, 10) },
+              deliveryfirm: parseInt(req.body.deliveryfirm, 10),
+              deliveryinfo: {
+                name: req.body.name,
+                adress: req.body.address,
+                phone: req.body.phone,
+                homePhone: req.body.homePhone,
+              }
+            },
             { upsert: true }
           ).exec();
         })
         .catch(error => {
           throw new Error(error);
-        })
-    );
-  },
-
-  delete: async (req, res, callback) => {
-    const email = req.decoded.email;
-    callback(
-      null,
-      await User.findOneByEmail(email)
-        .then(results => getUserOid(results))
-        .then(user => {
-          const { name } = req.body;
-          return { user, name };
-        })
-        .then(data => {
-          return Baby.update(
-            {
-              user: data.user,
-            },
-            {
-              $pull: { baby: { name: data.name } }
-            }
-          ).exec();
         })
     );
   }
