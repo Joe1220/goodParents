@@ -14,10 +14,12 @@ module.exports = {
       await User.findOneByEmail(email)
         .then(result => getUserOid(result))
         .then(user => {
-          return {
-            user: user,
-            cart: Cart.findOne({ user: user }).exec()
-          }
+          return Cart.findOne({ user: user }).exec().then(result => {
+            return {
+              user: user,
+              result: result
+            }
+          });
         })
         .then((data) => {
           const info = {
@@ -36,7 +38,7 @@ module.exports = {
           return OrderHistory.insertMany(
             [{
               user: data.user,
-              items: data.cart,
+              items: data.result.cart,
               ordererInfo: info
             }]
           );

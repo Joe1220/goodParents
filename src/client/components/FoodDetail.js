@@ -103,9 +103,10 @@ class FoodDetail extends Component {
       <Container style={{ display: "flex"}}>
         <div style={{ border: "1px solid gray", width: "457.5px", height: "703px", marginRight: "15px" }} className="FoodDetail">image</div>
         <div style={{ border: "1px solid gray", width: "621px", height: "703px", marginLeft: "15px" }} className="FoodDetail">
-          <div>1</div>
-          <div>2</div>
-          <div>3</div>
+          <div style={{ marginBottom: "10px", fontWeight: "bold" }}>Today, 08 March Lunch</div>
+          <div style={{ fontSize: "28px", fontWeight: "bold" }}>Roast Chicken Breast</div>
+          <div>with mushroom & spinach barley risotto, market vegetables</div>
+          <div>5,210 원 <span>free delivery</span></div>
         </div>
       </Container>
     )

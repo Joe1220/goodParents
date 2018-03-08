@@ -1,16 +1,23 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const Exchangeschema = new mongoose.Schema({
-  ExchangeType: Number, //[오배송, 배송지연, 아이가 먹지 않음, 상함, 변심]
-  ExchangeItem: { type: Schema.Types.ObjectId, ref: 'Cart' }, //시스템이 생성한 카트 
-  ExchangeReason: String,
-  ExchangeFirm: String,
-  ExchangeInformation: [{name: String, adress: String, phone: String, homePhone: String}],
-  ExchangeRequestDate: new Date().now(),
-  ExchangeProcessingStatus: Number,//0,1,2 교환준비중, 교환 중, 교환 완료
-  ExchangeDeliveryStatus: Number,//0,1,2 준비중, 배송중, 배송완료
-  visible: { type: Boolean, default: true }
-});
+const ExchangeSchema = new mongoose.Schema(
+  {
+    user: { type: Schema.Types.ObjectId, ref: "User" },
+    category: Number,//[오배송, 배송지연, 아이가 먹지 않음, 상함, 변심]
+    reason: String,
+    items: [
+      { product: { type: Schema.Types.ObjectId, ref: "OrderHistory" }, qty: Number }
+    ],
+    deliveryfirm: Number,
+    deliveryinfo: { name: String, adress: String, phone: String, homePhone: String },
+    date: { type: Date, default: Date.now },
+    processingStatus: { type: Number, default: 0 },//0,1,2 교환준비중, 교환 중, 교환 완료
+    deliveryStatus: { type: Number, default: 0 },//0,1,2 준비중, 배송중, 배송완료
+  },
+  {
+    collection: "exchanges"
+  }
+);
 
-module.exports = mongoose.model('Exchange', Exchangeschema);
+module.exports = mongoose.model('Exchange', ExchangeSchema);

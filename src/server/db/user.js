@@ -2,16 +2,19 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const bcrypt = require('bcryptjs');
 
-const userSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema(
+  {
   name: String ,
   telephone: { type: String, default: null },
   email: String,
   userimg: { type: String, default: '' },
   password: String,
   admin: { type: Boolean, default: false }
-}, {
+  },
+  {
   collection: "users"
-});
+  }
+);
 
 // create new User document
 userSchema.statics.create = function (email, name, password) {
