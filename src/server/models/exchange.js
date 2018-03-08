@@ -13,10 +13,13 @@ module.exports = {
       await User.findOneByEmail(email)
         .then(result => getUserOid(result))
         .then(user =>
-          Exchange.findOne({ user: user }).populate("items.product").exec()
-        ).then((results) => {
-          return { date: results.date, items: results.items }
-        })
+          Exchange.find({ user: user })
+            .populate({
+              path: "items.product",
+              model: "Product"
+            })
+            .exec()
+        )
         .catch(error => {
           throw new Error(error);
         })
@@ -30,23 +33,21 @@ module.exports = {
       await User.findOneByEmail(email)
         .then(result => getUserOid(result))
         .then(user => {
-          return Exchange.update(
-            {},
+          return Exchange.insertMany([
             {
-              user: user.user,
+              user: user,
               category: parseInt(req.body.category, 10),
               reason: req.body.reason,
-              $push: { product: req.body.items, qty: parseInt(req.body.qty, 10) },
-              deliveryfirm: parseInt(req.body.deliveryfirm, 10),
-              deliveryinfo: {
+              items: req.body.items,
+              deliveryFirm: parseInt(req.body.deliveryFirm, 10),
+              deliveryInfo: {
                 name: req.body.name,
                 adress: req.body.address,
                 phone: req.body.phone,
-                homePhone: req.body.homePhone,
+                homePhone: req.body.homePhone
               }
-            },
-            { upsert: true }
-          ).exec();
+            }
+          ]);
         })
         .catch(error => {
           throw new Error(error);
