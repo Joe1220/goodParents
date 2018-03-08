@@ -1,112 +1,68 @@
 import React, { Component } from 'react';
-import { Container, Row, Col, Button, Nav, NavItem, NavLink, TabContent, TabPane } from 'reactstrap';
-import classnames from 'classnames';
-import FoodDetailBadge from './FoodDetailBadge';
-// import '../public/style/FoodDetail.css';
-import '../public/style/FoodDetail2.css';
-// import image from '../public/img/food_detail_2.jpg';
+import { Container } from 'reactstrap';
+import RaisedButton from 'material-ui/RaisedButton';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+
+const styles = {
+  container: { display: "flex" },
+  image: { width: "457.5px", height: "703px", marginRight: "15px", marginTop: "15px"},
+  detailcontainer: { width: "621px", height: "703px", marginLeft: "15px", marginTop: "15px" },
+  date: { marginBottom: "5px", fontWeight: "bold" },
+  when: { color: "rgb(25,25,221)" },
+  title: { fontSize: "28px", fontWeight: "bold" },
+  hr: { maxWidth: "40px", marginLeft: "0px", border: "1px solid black" },
+  fooddetail: { fontSize: "15px" },
+  price: { marginTop: "32px", fontSize: "17px", fontWeight: "bold" },
+  delivery: { fontSize: "10px", fontWeight: "normal" },
+  cart: { marginTop: "16px", marginBottom: "55px", padding: "4px, 10px, 2px, 10px", width: "200px" },
+  tablist: { listStyleType: "none", padding: "0 0 0 0"},
+  tab: { display: "inline-block", marginRight: "20px", fontSize: "15px"},
+}
 
 class FoodDetail extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
-      today: '오늘',
-      date: '3월 12일 수요일',
-      mealTime: ['아침','점심','저녁'],
-      activeTab: '1',
-      selectedProduct: {}
+      value: 'a',
     }
-    this.toggle = this.toggle.bind(this);
   }
-  addToCart(image, name, price, id,  quantity, checked) {
+  handleChange = (value) => {
     this.setState({
-      selectedProduct: {
-        image: image,
-        name: name,
-        price: price,
-        id: id,
-        quantity: quantity,
-        checked: checked
-      }
-    }, function() {
-      this.props.addToCart(this.state.selectedProduct);
-    })
-  }
+      value: value,
+    });
+  };
+  render() {
+    return (
+      <Container style={styles.container}>
+        <div style={styles.image} className="FoodDetail">image</div>
+        <div style={styles.detailcontainer} className="FoodDetail">
+          <div style={styles.date}>Today, 08 March <span style={styles.when}>Lunch</span></div>
+          <div style={styles.title}>Roast Chicken Breast</div>
+          <hr style={styles.hr} />
+          <div style={styles.fooddetail}>with mushroom & spinach barley risotto, market vegetables</div>
+          <div style={styles.price}>5,210 원 <span style={styles.delivery}>free delivery</span></div>
+          <MuiThemeProvider>
+            <RaisedButton label="장바구니" primary={true} style={styles.cart}/>
+          </MuiThemeProvider>
+          <Tabs>
+            <TabList style={styles.tablist}>
+              <Tab style={styles.tab}>재료<hr/></Tab>
+              <Tab style={styles.tab}>영양소<hr/></Tab>
+            </TabList>
 
-  toggle(tab) {
-    if(this.state.activeTab !== tab) {
-      this.setState({
-        activeTab: tab
-      })
-    }
-  }
-
-  render(){
-    let image = this.props.image;
-    let name = this.props.name;
-    let price = this.props.price;
-    let id = this.props.id;
-    let ingredients = this.props.ingredients;
-    let nutrients = this.props.nutrients;
-    let quantity = this.props.productQuantity;
-    let checked = this.props.checked;
-    // return (
-    //   <Container className="foodDetailContainer">
-    //     <div className="foodDetailInnerContainer">
-    //       <Row>
-    //         <Col sm="6">
-    //           <img className="foodDetailimg" src={image} alt="food"/>
-    //         </Col>
-    //         <Col sm="6">
-    //           <div className="foodDetailDate">
-    //             {this.state.today}<br />
-    //             {this.state.date}
-    //           </div>
-    //           <div className="foodDetailTime">
-    //           {this.state.mealTime[0]}
-    //           <hr align="left"/>
-    //           </div>
-    //           <div className="foodDetailItem">
-    //             {name}
-    //             <div className="foodDetailItemPrice"><p>{price.toLocaleString()}원</p></div>
-    //             <Button color="primary" onClick={this.addToCart.bind(this, image, name, price, id, quantity, checked)}>장바구니에 담기</Button>
-    //           </div>
-    //           <div className="foodDetailDescriptionButton">
-    //             <hr align="left"/>
-    //             <Nav tabs>
-    //               <NavItem>
-    //                 <NavLink className={classnames({ active: this.state.activeTab === '1' })} onClick={() => {this.toggle('1')}}>
-    //                   <Button color="link">재료</Button>
-    //                 </NavLink>
-    //               </NavItem>
-    //               <NavItem>
-    //                 <NavLink className={classnames({ active: this.state.activeTab === '2'})} onClick={() => {this.toggle('2')}}>
-    //                   <Button color="link">영양소</Button>
-    //                 </NavLink>
-    //               </NavItem>
-    //             </Nav>
-    //           </div>
-    //           <TabContent activeTab={this.state.activeTab}>
-    //             <TabPane tabId="1">
-    //               <FoodDetailBadge datas={ingredients} />
-    //             </TabPane>
-    //             <TabPane tabId="2">
-    //               <FoodDetailBadge datas={nutrients} />
-    //             </TabPane>
-    //           </TabContent>
-    //         </Col>
-    //       </Row>
-    //     </div>
-    //   </Container>
-    // )
-    return(
-      <Container style={{ display: "flex"}}>
-        <div style={{ border: "1px solid gray", width: "457.5px", height: "703px", marginRight: "15px" }} className="FoodDetail">image</div>
-        <div style={{ border: "1px solid gray", width: "621px", height: "703px", marginLeft: "15px" }} className="FoodDetail">
-          <div style={{ marginBottom: "10px", fontWeight: "bold" }}>Today, 08 March Lunch</div>
-          <div style={{ fontSize: "28px", fontWeight: "bold" }}>Roast Chicken Breast</div>
-          <div>with mushroom & spinach barley risotto, market vegetables</div>
-          <div>5,210 원 <span>free delivery</span></div>
+            <TabPanel >
+              <p>
+              Barley, Carrot, Mushroom, Olive Oil, Onions, Salt and Black Pepper, Spinach, Thyme
+              </p>
+            </TabPanel>
+            <TabPanel >
+              <p>
+              Our culinary wizards carefully craft our dishes in our halal-friendly kitchen. Please note that this dish may contain
+              </p>
+            </TabPanel>
+            <hr style={styles.hr}/>
+          </Tabs>
         </div>
       </Container>
     )

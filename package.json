@@ -26,6 +26,7 @@
     "react-scripts": "1.1.0",
     "react-selectize": "^3.0.1",
     "react-slick": "^0.18.1",
+    "react-tabs": "^2.2.1",
     "reactstrap": "^5.0.0-alpha.3"
   },
   "scripts": {
