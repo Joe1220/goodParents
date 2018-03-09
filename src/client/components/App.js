@@ -49,7 +49,7 @@ export default class App extends Component {
   }
   cartDelete(oid) {
     const url = '/api/cart';
-    const data = { item: oid };
+    const data = { item: oid.id, year: Number(oid.year), month: Number(oid.month), day: Number(oid.day) };
       fetch(url,{
       method: 'DELETE',
       credentials: "include",
@@ -61,18 +61,67 @@ export default class App extends Component {
     .then( res => {
       return res.status
     })
+    .then(()=>this.getCart())
     .catch(err => console.error(err));
-    this.getCart();
+    
   }
   updateCheck(oid) {
-    const url = '/api/cart/'
-    console.log(oid)
+    const url = '/api/cart';
+    for (let i in this.state.cart) {
+      if (this.state.cart[i]._id._id == oid.id && this.state.cart[i].year == oid.year && this.state.cart[i].month == oid.month && this.state.cart[i].day == oid.day) {
+        const stateCopy = Object.assign({}, this.state);
+        stateCopy.cart[i].checked = !stateCopy.cart[i].checked;
+        this.setState(stateCopy);
+        const data = { item: oid.id, year: Number(oid.year), month: Number(oid.month), day: Number(oid.day), checked: this.state.cart[i].checked };
+        fetch(url, {
+          method: "PUT",
+          credentials: "include",
+          body: JSON.stringify(data),
+          headers: {
+            "Content-Type": "application/json"
+          }
+        })
+        .then(res => res.status)
+        .then(()=> this.getCart());
+      }
+    }
   }
-  qtyRemove(qty) {
-    console.log(qty)
+
+  qtyRemove(oid) {
+    const url = '/api/cart/decrease';
+    for (let i in this.state.cart) {
+      if (this.state.cart[i]._id._id == oid.id && this.state.cart[i].year == oid.year && this.state.cart[i].month == oid.month && this.state.cart[i].day == oid.day) {
+        const data = { item: oid.id, year: Number(oid.year), month: Number(oid.month), day: Number(oid.day) };
+        fetch(url, {
+          method: "POST",
+          credentials: "include",
+          body: JSON.stringify(data),
+          headers: {
+            "Content-Type": "application/json"
+          }
+        })
+        .then(res => res.status)
+        .then(()=> this.getCart());
+      }
+    }
   }
-  qtyAdd(qty) {
-    console.log(qty)
+  qtyAdd(oid) {
+    const url = '/api/cart/increase';
+    for (let i in this.state.cart) {
+      if (this.state.cart[i]._id._id == oid.id && this.state.cart[i].year == oid.year && this.state.cart[i].month == oid.month && this.state.cart[i].day == oid.day) {
+        const data = { item: oid.id, year: Number(oid.year), month: Number(oid.month), day: Number(oid.day) };
+        fetch(url, {
+          method: "POST",
+          credentials: "include",
+          body: JSON.stringify(data),
+          headers: {
+            "Content-Type": "application/json"
+          }
+        })
+        .then(res => res.status)
+        .then(()=> this.getCart());
+      }
+    }
   }
   toPayment() {
     
