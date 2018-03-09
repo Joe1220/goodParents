@@ -27,5 +27,12 @@ module.exports = {
       if (error) res.status(500).send(error);
       res.status(204).json(result);
     });
+  },
+
+  count: (req, res) => {
+    CartModels.count(req, res, (error, result) => {
+      if (error) res.status(500).send(error);
+      res.json(result);
+    });
   }
 };
