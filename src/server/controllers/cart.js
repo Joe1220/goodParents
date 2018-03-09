@@ -27,5 +27,33 @@ module.exports = {
       if (error) res.status(500).send(error);
       res.status(204).json(result);
     });
+  },
+
+  increase: (req, res) => {
+    CartModels.increase(req, res, (error, result) => {
+      if (error) res.status(500).send(error);
+      res.json(result);
+    });
+  },
+
+  decrease: (req, res) => {
+    CartModels.decrease(req, res, (error, result) => {
+      if (error) res.status(500).send(error);
+      res.json(result);
+    });
+  },
+
+  checkTrue: (req, res) => {
+    CartModels.checkTrue(req, res, (error, result) => {
+      if (error) res.status(500).send(error);
+      res.json(result);
+    });
+  },
+
+  checkFalse: (req, res) => {
+    CartModels.checkFalse(req, res, (error, result) => {
+      if (error) res.status(500).send(error);
+      res.json(result);
+    });
   }
 };

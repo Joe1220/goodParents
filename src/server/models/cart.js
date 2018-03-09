@@ -122,6 +122,126 @@ module.exports = {
           return result.cart.length;
         })
     );
+  },
+
+  increase: async (req, res, callback) => {
+    const email = req.decoded.email;
+    callback(
+      null,
+      await User.findOneByEmail(email)
+        .then(results => getUserOid(results))
+        .then(user => {
+          return Cart.findOneAndUpdate(
+            {
+              user: user,
+              cart: {
+                $elemMatch: {
+                  _id: req.body.item,
+                  year: req.body.year,
+                  month: req.body.month,
+                  day: req.body.day
+                }
+              }
+            },
+            {
+              $inc: { "cart.$.qty": 1 }
+            }
+          );
+        })
+        .then(result => {
+          return result.cart.length;
+        })
+    );
+  },
+
+  decrease: async (req, res, callback) => {
+    const email = req.decoded.email;
+    callback(
+      null,
+      await User.findOneByEmail(email)
+        .then(results => getUserOid(results))
+        .then(user => {
+          return Cart.findOneAndUpdate(
+            {
+              user: user,
+              cart: {
+                $elemMatch: {
+                  _id: req.body.item,
+                  year: req.body.year,
+                  month: req.body.month,
+                  day: req.body.day
+                }
+              }
+            },
+            {
+              $inc: { "cart.$.qty": -1 }
+            }
+          );
+        })
+        .then(result => {
+          return result.cart.length;
+        })
+    );
+  },
+
+  checkTrue: async (req, res, callback) => {
+    const email = req.decoded.email;
+    callback(
+      null,
+      await User.findOneByEmail(email)
+        .then(results => getUserOid(results))
+        .then(user => {
+          return Cart.findOneAndUpdate(
+            {
+              user: user,
+              cart: {
+                $elemMatch: {
+                  _id: req.body.item,
+                  year: req.body.year,
+                  month: req.body.month,
+                  day: req.body.day
+                }
+              }
+            },
+            {
+              $set: { "cart.$.checked": true }
+            }
+          );
+        })
+        .then(result => {
+          return result.cart.length;
+        })
+    );
+  },
+
+  checkFalse: async (req, res, callback) => {
+    const email = req.decoded.email;
+    callback(
+      null,
+      await User.findOneByEmail(email)
+        .then(results => getUserOid(results))
+        .then(user => {
+          return Cart.findOneAndUpdate(
+            {
+              user: user,
+              cart: {
+                $elemMatch: {
+                  _id: req.body.item,
+                  year: req.body.year,
+                  month: req.body.month,
+                  day: req.body.day
+                }
+              }
+            },
+            {
+              $set: { "cart.$.checked": false }
+            }
+          );
+        })
+        .then(result => {
+          return result.cart.length;
+        })
+    );
   }
 
   // count: async (req, res, callback) => {
