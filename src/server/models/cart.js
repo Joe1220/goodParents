@@ -12,11 +12,15 @@ module.exports = {
       null,
       await User.findOneByEmail(email)
         .then(result => getUserOid(result))
-        .then(user =>
-          Cart.findOne({ user: user })
-            .populate("cart.product")
-            .exec()
-        )
+        .then(user => {
+          return Cart.aggregate([
+            { $match: { user: user } },
+            { $addFields: { count: { $size: "$cart" } } }
+          ]);
+        })
+        .then(result => {
+          return Cart.populate(result[0], { path: "cart.product" });
+        })
         .catch(error => {
           throw new Error(error);
         })
@@ -29,22 +33,50 @@ module.exports = {
       null,
       await User.findOneByEmail(email)
         .then(result => getUserOid(result))
+        // .then(user => {
+        //   const { item, checked } = req.body;
+        //   const cartData = {
+        //     _id: item,
+        //     checked
+        //   };
+        //   return { user, cartData };
+        // })
         .then(user => {
-          const { item, qty, checked } = req.body;
-          const cartData = {
-            product: item,
-            qty,
-            checked
-          };
-          return { user, cartData };
+          return Cart.findOneAndUpdate(
+            { user: user },
+            {
+              $addToSet: {
+                cart: {
+                  _id: req.body.item,
+                  checked: req.body.checked,
+                  year: req.body.year,
+                  month: req.body.month,
+                  day: req.body.day
+                }
+              }
+            },
+            { upsert: true, new: true }
+          );
         })
-        .then(data => {
-          return Cart.update(
-            { user: data.user },
-            { $push: { cart: data.cartData } },
-            { upsert: true }
-          ).exec();
+        .then(result => {
+          return result.cart.length;
+          // return result.aggregate([{ $addFields: { count: { $size: "$cart" } } }]);
         })
+        // .then(data => {
+        //   Cart.update(
+        //     { user: data.user },
+        //     { $push: { cart: data.cartData } },
+        //     { upsert: true }
+        //   ).exec();
+        //   return data.user;
+        // })
+        // .then(user => {
+        //   return Cart.aggregate([
+        //     { $match: { user: user } },
+        //     { $project: { _id: false, count: { $size: "$cart" } } }
+        //   ]);
+        // })
+        // .then(array => array[0].count)
         .catch(error => {
           throw new Error(error);
         })
@@ -60,7 +92,7 @@ module.exports = {
         .then(user => {
           const { item, qty, checked } = req.body;
           const cartData = {
-            product: item,
+            _id: item,
             qty,
             checked
           };
@@ -70,7 +102,7 @@ module.exports = {
           return Cart.update(
             {
               user: data.user,
-              cart: { $elemMatch: { product: data.cartData.product } }
+              cart: { $elemMatch: { _id: data.cartData._id } }
             },
             {
               $set: {
@@ -99,29 +131,29 @@ module.exports = {
               user: data.user
             },
             {
-              $pull: { cart: { product: data.item } }
+              $pull: { cart: { _id: data.item } }
             }
           ).exec();
         })
     );
-  },
-
-  count: async (req, res, callback) => {
-    const email = req.decoded.email;
-    callback(
-      null,
-      await User.findOneByEmail(email)
-        .then(result => getUserOid(result))
-        .then(user => {
-          return Cart.aggregate([
-            { $match: { user: user } },
-            { $project: { _id: false, count: { $size: "$cart" } } }
-          ]);
-        })
-        .then(array => array[0].count)
-        .catch(error => {
-          throw new Error(error);
-        })
-    );
   }
+
+  // count: async (req, res, callback) => {
+  //   const email = req.decoded.email;
+  //   callback(
+  //     null,
+  //     await User.findOneByEmail(email)
+  //       .then(result => getUserOid(result))
+  // .then(user => {
+  //   return Cart.aggregate([
+  //     { $match: { user: user } },
+  //     { $project: { _id: false, count: { $size: "$cart" } } }
+  //   ]);
+  // })
+  // .then(array => array[0].count)
+  //       .catch(error => {
+  //         throw new Error(error);
+  //       })
+  //   );
+  // }
 };
