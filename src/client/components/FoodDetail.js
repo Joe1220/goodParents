@@ -36,8 +36,11 @@ class FoodDetail extends Component {
     });
   };
   toCart = () => {
-    const url = '/api/cart'
-    const data = { item: this.props.id, qty: 1, checked: true }
+    const url = '/api/cart';
+    let year = parseInt(this.props.fullDate.slice(0, 4), 10);
+    let month = parseInt(this.props.fullDate.slice(5, 7), 10);
+    let date = parseInt(this.props.fullDate.slice(8), 10);
+    const data = { item: this.props.id, checked: true, year: year, month: month, date: date };
     if( !window.sessionStorage.getItem("name") ){
       this.props.history.push("/login");
     } else {
@@ -59,6 +62,7 @@ class FoodDetail extends Component {
     let fullDate = new Date(this.props.fullDate).toString();
     let month = fullDate.slice(4, 7);
     let date = this.props.fullDate.slice(8)
+    console.log("fooddetail", this.props)
     return (
       <Container style={styles.container} >
         <div style={styles.imagecontainer} className="FoodDetail"><img style={styles.image} src={this.props.image} alt="food"/></div>

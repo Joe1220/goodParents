@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Container } from 'reactstrap';
 import RaisedButton from 'material-ui/RaisedButton';
-import Paper from 'material-ui/Paper';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import Checkbox from 'material-ui/Checkbox';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
@@ -31,14 +30,20 @@ const styles = {
   deletecontainer: { width: "80px", height: "100px", display: "inline-block" },
   delete: { marginTop: "25px", textAlign: "center", fontWeight: "bold" },
   totaltitle: { width: "812px", height: "30px", display: "inline-block", marginRight: "15px", textAlign: "right", fontWeight: "bold"},
-  totalprice: { width: "100px", height: "30px", display: "inline-block", marginRight: "15px", textAlign: "right", fontWeight: "bold"}
+  totalprice: { width: "100px", height: "30px", display: "inline-block", marginRight: "15px", textAlign: "right", fontWeight: "bold"},
+  lasthr: { maxWidth: "300px", marginRight: "0px", border: "1px solid gray"},
 }
 
 
 export default class Cart extends Component {
-  state = {
-    checked: false,
+  constructor(props){
+    super(props)
+    this.state = {
+      checked: false,
+    }
+    this.renderCart = this.renderCart.bind(this);
   }
+
   updateCheck() {
     this.setState((oldState) => {
       return {
@@ -46,61 +51,76 @@ export default class Cart extends Component {
       };
     });
   }
+  renderCart(){
+    if(!this.props.cart){
+      return (
+        <div style={styles.cartcontainer} >
+        <div style={styles.innercart}>
+            <div style={{ fontWeight: "bold", fontSize: "35px", textAlign: "center", paddingTop: "80px"}}>장바구니에 상품이 없습니다</div>
+        </div>
+      </div>
+      )
+    } else {
+      return (
+        <MuiThemeProvider>
+        <div style={styles.cartcontainer} >
+          <div style={styles.innercart}>
+            <div style={styles.date}>SATURDAY, 10/03/18 <span style={styles.when}>LUNCH</span></div>
+            <hr style={styles.hr} />
+            <div style={{ display: "flex" }}>
+              <div style={styles.checkboxcontainer}>
+                <Checkbox
+                  checked={this.state.checked}
+                  onCheck={this.updateCheck.bind(this)}
+                  style={styles.checkbox}
+                />
+              </div>
+              <div style={styles.image}>image</div>
+              <div style={styles.titlecontainer}>
+                <div style={styles.itemtitle}>Otcom</div>
+              </div>
+              <div style={styles.removecontainer}>
+                <FloatingActionButton mini={true} style={{ marginTop: "25px" }}>
+                  <ContentRemove />
+                </FloatingActionButton>
+              </div>
+              <div style={styles.qtycontainer}>
+                <div style={styles.qty}>1</div>
+              </div>
+              <div style={styles.addcontainer}>
+                <FloatingActionButton mini={true} style={{ marginTop: "25px" }}>
+                  <ContentAdd />
+                </FloatingActionButton>
+              </div>
+              <div style={styles.pricecontainer}>
+                <div style={styles.price}>4,500 원</div>
+              </div>
+              <div style={styles.deletecontainer}>
+                <div style={styles.delete}>
+                  <FloatingActionButton mini={true} >
+                    <i class="material-icons">delete</i>
+                  </FloatingActionButton>
+                </div>
+              </div>
+            </div>
+            {/* <hr style={styles.lasthr}/>
+            <div style={{ display: "flex" }}>
+              <div style={styles.totaltitle} >총액: </div>
+              <div style={styles.totalprice}>4,500 원</div>
+            </div> */}
+          </div>
+        </div>
+        <RaisedButton label="선택 상품 주문하기" fullWidth={true} primary={true} />
+      </MuiThemeProvider>
+      )
+    }
+  }
   render() {
     return (
       <Container style={styles.container}>
         <div style={styles.content}>
           <div style={styles.title}>장바구니</div>
-          <MuiThemeProvider>
-            <div style={styles.cartcontainer} zDepth={1} >
-              <div style={styles.innercart}>
-                <div style={styles.date}>SATURDAY, 10/03/18 <span style={styles.when}>LUNCH</span></div>
-                <hr style={styles.hr} />
-                <div style={{ display: "flex" }}>
-                  <div style={styles.checkboxcontainer}>
-                    <Checkbox
-                      checked={this.state.checked}
-                      onCheck={this.updateCheck.bind(this)}
-                      style={styles.checkbox}
-                    />
-                  </div>
-                  <div style={styles.image}>image</div>
-                  <div style={styles.titlecontainer}>
-                    <div style={styles.itemtitle}>Otcom</div>
-                  </div>
-                  <div style={styles.removecontainer}>
-                    <FloatingActionButton mini={true} style={{ marginTop: "25px" }}>
-                      <ContentRemove />
-                    </FloatingActionButton>
-                  </div>
-                  <div style={styles.qtycontainer}>
-                    <div style={styles.qty}>1</div>
-                  </div>
-                  <div style={styles.addcontainer}>
-                    <FloatingActionButton mini={true} style={{ marginTop: "25px" }}>
-                      <ContentAdd />
-                    </FloatingActionButton>
-                  </div>
-                  <div style={styles.pricecontainer}>
-                    <div style={styles.price}>4,500 원</div>
-                  </div>
-                  <div style={styles.deletecontainer}>
-                    <div style={styles.delete}>
-                      <FloatingActionButton mini={true} >
-                        <i class="material-icons">delete</i>
-                      </FloatingActionButton>
-                    </div>
-                  </div>
-                </div>
-                <hr />
-                <div style={{ display: "flex" }}>
-                  <div style={styles.totaltitle}>총액: </div>
-                  <div style={styles.totalprice}>4,500 원</div>
-                </div>
-              </div>
-            </div>
-            <RaisedButton label="선택 상품 주문하기" fullWidth={true} primary={true} />
-          </MuiThemeProvider>
+          {this.renderCart()}
         </div>
       </Container>
     )
