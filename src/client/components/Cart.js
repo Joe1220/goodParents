@@ -48,16 +48,36 @@ export default class Cart extends Component {
   }
 
   updateCheck(e) {
-    this.props.updateCheck(e.target.getAttribute('id'));
+    this.props.updateCheck({
+      id: e.target.getAttribute('id'),
+      year: e.target.getAttribute('year'),
+      month: e.target.getAttribute('month'),
+      day: e.target.getAttribute('day')
+    });
   }
   cartDelete(e) {
-    this.props.cartDelete(e.target.getAttribute('id'));
+    this.props.cartDelete({
+      id: e.target.getAttribute('id'),
+      year: e.target.getAttribute('year'),
+      month: e.target.getAttribute('month'),
+      day: e.target.getAttribute('day')
+    });
   }
   qtyRemove(e) {
-    this.props.qtyRemove(e.target.getAttribute('value'));
+    this.props.qtyRemove({
+      id: e.target.getAttribute('id'),
+      year: e.target.getAttribute('year'),
+      month: e.target.getAttribute('month'),
+      day: e.target.getAttribute('day')
+    });
   }
   qtyAdd(e) {
-    this.props.qtyAdd(e.target.getAttribute('value'));
+    this.props.qtyAdd({
+      id: e.target.getAttribute('id'),
+      year: e.target.getAttribute('year'),
+      month: e.target.getAttribute('month'),
+      day: e.target.getAttribute('day')
+    });
   }
   toPayment() {
     // this.props.toPayment();
@@ -85,6 +105,9 @@ export default class Cart extends Component {
                   <Checkbox
                     checked={cart.checked}
                     id={cart._id._id}
+                    year={cart.year}
+                    month={cart.month}
+                    day={cart.day}
                     onCheck={this.updateCheck}
                     style={styles.checkbox}
                   />
@@ -94,16 +117,16 @@ export default class Cart extends Component {
                   <div style={styles.itemtitle}>{cart._id.name}</div>
                 </div>
                 <div style={styles.removecontainer}>
-                  <FloatingActionButton value={cart.qty} onClick={this.qtyRemove} mini={true} style={{ marginTop: "25px" }}>
-                    <ContentRemove />
+                  <FloatingActionButton  onClick={this.qtyRemove} mini={true} style={{ marginTop: "25px" }}>
+                    <ContentRemove id={cart._id._id} year={cart.year} month={cart.month} day={cart.day}/>
                   </FloatingActionButton>
                 </div>
                 <div style={styles.qtycontainer}>
                   <div style={styles.qty}>{cart.qty}</div>
                 </div>
                 <div style={styles.addcontainer}>
-                  <FloatingActionButton value={cart.qty} onClick={this.qtyAdd} mini={true} style={{ marginTop: "25px" }}>
-                    <ContentAdd />
+                  <FloatingActionButton   onClick={this.qtyAdd} mini={true} style={{ marginTop: "25px" }}>
+                    <ContentAdd id={cart._id._id} year={cart.year} month={cart.month} day={cart.day}/>
                   </FloatingActionButton>
                 </div>
                 <div style={styles.pricecontainer}>
@@ -112,7 +135,7 @@ export default class Cart extends Component {
                 <div style={styles.deletecontainer}>
                   <div style={styles.delete}>
                     <FloatingActionButton mini={true} onClick={this.cartDelete}>
-                      <i id={cart._id._id} class="material-icons" >delete</i>
+                      <i id={cart._id._id} year={cart.year} month={cart.month} day={cart.day} class="material-icons" >delete</i>
                     </FloatingActionButton>
                   </div>
                 </div>
