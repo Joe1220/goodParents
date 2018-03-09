@@ -33,14 +33,6 @@ module.exports = {
       null,
       await User.findOneByEmail(email)
         .then(result => getUserOid(result))
-        // .then(user => {
-        //   const { item, checked } = req.body;
-        //   const cartData = {
-        //     _id: item,
-        //     checked
-        //   };
-        //   return { user, cartData };
-        // })
         .then(user => {
           return Cart.findOneAndUpdate(
             { user: user },
@@ -55,28 +47,12 @@ module.exports = {
                 }
               }
             },
-            { upsert: true, new: true, sort: {"cart.month": 1} }
+            { upsert: true, new: true }
           );
         })
         .then(result => {
           return result.cart.length;
-          // return result.aggregate([{ $addFields: { count: { $size: "$cart" } } }]);
         })
-        // .then(data => {
-        //   Cart.update(
-        //     { user: data.user },
-        //     { $push: { cart: data.cartData } },
-        //     { upsert: true }
-        //   ).exec();
-        //   return data.user;
-        // })
-        // .then(user => {
-        //   return Cart.aggregate([
-        //     { $match: { user: user } },
-        //     { $project: { _id: false, count: { $size: "$cart" } } }
-        //   ]);
-        // })
-        // .then(array => array[0].count)
         .catch(error => {
           throw new Error(error);
         })
@@ -90,27 +66,28 @@ module.exports = {
       await User.findOneByEmail(email)
         .then(results => getUserOid(results))
         .then(user => {
-          const { item, qty, checked } = req.body;
-          const cartData = {
-            _id: item,
-            qty,
-            checked
-          };
-          return { user, cartData };
-        })
-        .then(data => {
-          return Cart.update(
+          return Cart.findOneAndUpdate(
             {
-              user: data.user,
-              cart: { $elemMatch: { _id: data.cartData._id } }
+              user: user,
+              cart: {
+                $elemMatch: {
+                  _id: req.body.item,
+                  year: req.body.year,
+                  month: req.body.month,
+                  day: req.body.day
+                }
+              }
             },
             {
               $set: {
-                "cart.$.qty": data.cartData.qty,
-                "cart.$.checked": data.cartData.checked
+                "cart.$.qty": req.body.qty,
+                "cart.$.checked": req.body.checked
               }
             }
-          ).exec();
+          );
+        })
+        .then(result => {
+          return result.cart.length;
         })
     );
   },
@@ -121,19 +98,28 @@ module.exports = {
       null,
       await User.findOneByEmail(email)
         .then(results => getUserOid(results))
+        // .then(user => {
+        //   const { item } = req.body;
+        //   return { user, item };
+        // })
         .then(user => {
-          const { item } = req.body;
-          return { user, item };
-        })
-        .then(data => {
-          return Cart.update(
+          return Cart.findOneAndUpdate(
             {
-              user: data.user
+              user: user,
+              cart: {
+                $elemMatch: {
+                  _id: req.body.item,
+                  year: req.body.year,
+                  month: req.body.month,
+                  day: req.body.day
+                }
+              }
             },
-            {
-              $pull: { cart: { _id: data.item } }
-            }
-          ).exec();
+            { $pull: { cart: { _id: req.body.item } } }
+          );
+        })
+        .then(result => {
+          return result.cart.length;
         })
     );
   }
