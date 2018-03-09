@@ -8,11 +8,6 @@ const getUserOid = email => {
 module.exports = {
   get: async (req, res, callback) => {
     const email = req.decoded.email;
-    // if (!req.decoded.email) {
-    //   return res.status(403).json({
-    //     message: 'you are not logged in'
-    //   })
-    // }
     callback(
       null,
       await User.findOneByEmail(email)
@@ -107,6 +102,25 @@ module.exports = {
               $pull: { cart: { product: data.item } }
             }
           ).exec();
+        })
+    );
+  },
+
+  count: async (req, res, callback) => {
+    const email = req.decoded.email;
+    callback(
+      null,
+      await User.findOneByEmail(email)
+        .then(result => getUserOid(result))
+        .then(user => {
+          return Cart.aggregate([
+            { $match: { user: user } },
+            { $project: { _id: false, count: { $size: "$cart" } } }
+          ]);
+        })
+        .then(array => array[0].count)
+        .catch(error => {
+          throw new Error(error);
         })
     );
   }

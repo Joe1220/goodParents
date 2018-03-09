@@ -7,4 +7,6 @@ router.post("/", CartController.post);
 router.put("/", CartController.put);
 router.delete("/", CartController.delete);
 
+router.get("/count", CartController.count);
+
 module.exports = router;
