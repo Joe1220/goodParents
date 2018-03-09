@@ -43,7 +43,7 @@ export default class App extends Component {
       credentials: "include"
     })
       .then(response => response.json())
-      .then(data => this.setState({ cart: data }))
+      .then(data => this.setState({ cart: data.cart }))
       .catch(error => console.error(error));
   }
 
