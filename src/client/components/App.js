@@ -23,13 +23,14 @@ export default class App extends Component {
     this.state = {
       products: [],
       cart: [],
-      quantity: 1,
-      totalAmount: 0,
-      checked: true,
       fullDate: new Date().toISOString().slice(0, 10),
     };
     this.onChangeFullDate = this.onChangeFullDate.bind(this);
     this.getCart = this.getCart.bind(this);
+    this.cartDelete = this.cartDelete.bind(this);
+    this.updateCheck = this.updateCheck.bind(this);
+    this.qtyRemove = this.qtyRemove.bind(this);
+    this.qtyAdd = this.qtyAdd.bind(this);
   }
 
   foodDetailFetch() {
@@ -46,7 +47,35 @@ export default class App extends Component {
       .then(data => this.setState({ cart: data.cart }))
       .catch(error => console.error(error));
   }
-
+  cartDelete(oid) {
+    const url = '/api/cart';
+    const data = { item: oid };
+      fetch(url,{
+      method: 'DELETE',
+      credentials: "include",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+    .then( res => {
+      return res.status
+    })
+    .catch(err => console.error(err));
+    this.getCart();
+  }
+  updateCheck(oid) {
+    console.log(oid)
+  }
+  qtyRemove(qty) {
+    console.log(qty)
+  }
+  qtyAdd(qty) {
+    console.log(qty)
+  }
+  toPayment() {
+    
+  }
   componentDidMount() {
     this.foodDetailFetch();
     this.getCart();
@@ -91,7 +120,6 @@ export default class App extends Component {
   onChangeFullDate(fullDate) {
     this.setState({ fullDate: fullDate });
   }
-
   render() {
     return (
       <div>
@@ -136,7 +164,17 @@ export default class App extends Component {
           <Route
             exact
             path="/cartmain"
-            render={(props) => { return <Cart { ...props } cart={this.state.cart}/> }}
+            render={(props) => { 
+              return <Cart 
+                      { ...props } 
+                      cart={this.state.cart}
+                      cartDelete={this.cartDelete}
+                      updateCheck={this.updateCheck}
+                      qtyRemove={this.qtyRemove}
+                      qtyAdd={this.qtyAdd}
+                      toPayment={this.toPayment}
+                      /> }
+              }
           />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
