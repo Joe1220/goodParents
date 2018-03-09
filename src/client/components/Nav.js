@@ -11,14 +11,8 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-  Container,
-  Popover,
-  PopoverHeader,
-  PopoverBody
+  Container
 } from 'reactstrap';
-
-import CartPop from './CartPop';
-import CartDate from './CartDate';
 
 const style = {
   color: "rgb(25,25,221)",
@@ -97,7 +91,7 @@ export default class Example extends React.Component {
     if (window.sessionStorage.getItem("name")) {
       return (
         <NavItem>
-          <NavLink id="Popover1" onMouseOver={this.OncartOver} href="/cartmain">장바구니</NavLink>
+          <NavLink href="/cartmain">장바구니</NavLink>
         </NavItem>
       )
     } else {
@@ -114,16 +108,6 @@ export default class Example extends React.Component {
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className="ml-auto" navbar>
               {this.checkCart()}
-                <Popover placement="bottom-end" isOpen={this.state.popOpen} target="Popover1" onMouseOver={this.OncartOver}>
-                  <PopoverHeader><CartDate /></PopoverHeader>
-                  <PopoverBody>
-                    <CartPop
-                      cartItems={this.props.cartItems}
-                      totalAmount={this.props.totalAmount}
-                      updateQuantity={this.props.updateQuantity}
-                    />
-                  </PopoverBody>
-                </Popover>
                 <NavItem>
                   <NavLink href="/about">About</NavLink>
                 </NavItem>

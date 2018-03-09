@@ -11,7 +11,7 @@ import Privacy from "./Privacy";
 import FoodDetail from './FoodDetail';
 import Prime from "./Prime";
 import Payment from "./Payment";
-import CartMain from "./CartMain";
+import Cart from "./Cart";
 import Login from "./Login";
 import Signup from "./Signup";
 import MyPage from "./mypage/MyPage";
@@ -23,20 +23,14 @@ export default class App extends Component {
     this.state = {
       products: [],
       cart: [],
-      quantity: 1,
-      totalAmount: 0,
-      checked: true,
       fullDate: new Date().toISOString().slice(0, 10),
     };
-    this.resetCart = this.resetCart.bind(this);
-    this.handleAddToCart = this.handleAddToCart.bind(this);
-    this.handleRemoveProduct = this.handleRemoveProduct.bind(this);
-    this.sumTotalAmount = this.sumTotalAmount.bind(this);
-    this.updateQuantity = this.updateQuantity.bind(this);
-    this.checkProduct = this.checkProduct.bind(this);
-    this.updateChecked = this.updateChecked.bind(this);
-    this.updateCheckedAll = this.updateCheckedAll.bind(this);
     this.onChangeFullDate = this.onChangeFullDate.bind(this);
+    this.getCart = this.getCart.bind(this);
+    this.cartDelete = this.cartDelete.bind(this);
+    this.updateCheck = this.updateCheck.bind(this);
+    this.qtyRemove = this.qtyRemove.bind(this);
+    this.qtyAdd = this.qtyAdd.bind(this);
   }
 
   foodDetailFetch() {
@@ -45,21 +39,46 @@ export default class App extends Component {
       .then(data => this.setState({ products: data[0].items }))
       .catch(error => console.error(error));
   }
-
+  getCart() {
+    fetch(`/api/cart`,{
+      credentials: "include"
+    })
+      .then(response => response.json())
+      .then(data => this.setState({ cart: data.cart }))
+      .catch(error => console.error(error));
+  }
+  cartDelete(oid) {
+    const url = '/api/cart';
+    const data = { item: oid };
+      fetch(url,{
+      method: 'DELETE',
+      credentials: "include",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+    .then( res => {
+      return res.status
+    })
+    .catch(err => console.error(err));
+    this.getCart();
+  }
+  updateCheck(oid) {
+    console.log(oid)
+  }
+  qtyRemove(qty) {
+    console.log(qty)
+  }
+  qtyAdd(qty) {
+    console.log(qty)
+  }
+  toPayment() {
+    
+  }
   componentDidMount() {
     this.foodDetailFetch();
-    //cart state가 local storage에 있으면 불러오기
-    let cart = localStorage.cart;
-    if (cart) {
-      this.setState(
-        prevState => ({
-          cart: JSON.parse(cart)
-        }),
-        function() {
-          this.sumTotalAmount();
-        }
-      );
-    }
+    this.getCart();
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -67,107 +86,6 @@ export default class App extends Component {
       this.foodDetailFetch();
     }
     localStorage.cart = JSON.stringify(this.state.cart);
-  }
-
-  resetCart() {
-    this.setState({
-      cart: []
-    });
-    alert("결제 완료");
-  }
-
-  handleAddToCart(selectedProducts) {
-    let cartItem = this.state.cart;
-    let productID = selectedProducts.id;
-    if (this.checkProduct(productID)) {
-      let index = cartItem.findIndex(item => {
-        return item.id === productID;
-      });
-      cartItem[index].quantity += 1;
-      this.setState({
-        cart: cartItem
-      });
-    } else {
-      cartItem.push(selectedProducts);
-      this.setState({
-        cart: cartItem,
-        quantity: 1
-      });
-    }
-    this.sumTotalAmount();
-  }
-
-  handleRemoveProduct(id) {
-    let cart = this.state.cart;
-    let index = cart.findIndex(item => {
-      return item.id === id;
-    });
-    cart.splice(index, 1);
-    this.setState({
-      cart: cart
-    });
-    this.sumTotalAmount();
-  }
-
-  sumTotalAmount() {
-    let cart = this.state.cart;
-    let total = 0;
-    for (let i = 0; i < cart.length; i++) {
-      if (cart[i].checked === true) {
-        total += cart[i].price * Number(cart[i].quantity);
-      }
-    }
-    this.setState({
-      totalAmount: total
-    });
-  }
-
-  updateQuantity(qty, id) {
-    let cart = this.state.cart;
-    let index = cart.findIndex(item => {
-      return item.id === id;
-    });
-    cart[index].quantity = qty;
-    this.setState({
-      cart: cart
-    });
-    this.sumTotalAmount();
-  }
-
-  updateChecked(id, checked) {
-    let cart = this.state.cart;
-    let index = cart.findIndex(item => {
-      return item.id === id;
-    });
-    cart[index].checked = checked;
-    this.setState({
-      cart: cart
-    });
-    this.sumTotalAmount();
-  }
-
-  updateCheckedAll(allChecked) {
-    let cart = this.state.cart;
-    if (allChecked === true) {
-      for (let i = 0; i < cart.length; i++) {
-        cart[i].checked = true;
-      }
-    } else {
-      for (let i = 0; i < cart.length; i++) {
-        cart[i].checked = false;
-      }
-    }
-    this.setState({
-      cart: cart
-    });
-    this.sumTotalAmount();
-  }
-
-  checkProduct(id) {
-    let cart = this.state.cart;
-    return cart.some(item => {
-      return item.id === id;
-    });
   }
 
   renderFoodDetail() {
@@ -181,8 +99,6 @@ export default class App extends Component {
             return (
               <FoodDetail
                 {...props}
-                addToCart={this.handleAddToCart}
-                productQuantity={this.state.quantity}
                 checked={this.state.checked}
                 image={product.image}
                 name={product.name}
@@ -204,7 +120,6 @@ export default class App extends Component {
   onChangeFullDate(fullDate) {
     this.setState({ fullDate: fullDate });
   }
-
   render() {
     return (
       <div>
@@ -249,20 +164,18 @@ export default class App extends Component {
           <Route
             exact
             path="/cartmain"
-            render={props => {
-              return (
-                <CartMain
-                  totalAmount={this.state.totalAmount}
-                  cartItems={this.state.cart}
-                  updateQuantity={this.updateQuantity}
-                  handleRemoveProduct={this.handleRemoveProduct}
-                  updateChecked={this.updateChecked}
-                  updateCheckedAll={this.updateCheckedAll}
-                />
-              );
-            }}
+            render={(props) => { 
+              return <Cart 
+                      { ...props } 
+                      cart={this.state.cart}
+                      cartDelete={this.cartDelete}
+                      updateCheck={this.updateCheck}
+                      qtyRemove={this.qtyRemove}
+                      qtyAdd={this.qtyAdd}
+                      toPayment={this.toPayment}
+                      /> }
+              }
           />
-
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
           {/* 음식 상세페이지 라우터 정의 */}
