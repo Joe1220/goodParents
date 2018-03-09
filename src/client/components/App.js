@@ -11,7 +11,7 @@ import Privacy from "./Privacy";
 import FoodDetail from './FoodDetail';
 import Prime from "./Prime";
 import Payment from "./Payment";
-import CartMain from "./CartMain";
+import Cart from "./Cart";
 import Login from "./Login";
 import Signup from "./Signup";
 import MyPage from "./mypage/MyPage";
@@ -249,20 +249,8 @@ export default class App extends Component {
           <Route
             exact
             path="/cartmain"
-            render={props => {
-              return (
-                <CartMain
-                  totalAmount={this.state.totalAmount}
-                  cartItems={this.state.cart}
-                  updateQuantity={this.updateQuantity}
-                  handleRemoveProduct={this.handleRemoveProduct}
-                  updateChecked={this.updateChecked}
-                  updateCheckedAll={this.updateCheckedAll}
-                />
-              );
-            }}
+            render={(props) => { return <Cart { ...props }/> }}
           />
-
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
           {/* 음식 상세페이지 라우터 정의 */}
