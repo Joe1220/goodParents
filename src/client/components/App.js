@@ -65,6 +65,7 @@ export default class App extends Component {
     this.getCart();
   }
   updateCheck(oid) {
+    const url = '/api/cart/'
     console.log(oid)
   }
   qtyRemove(qty) {
@@ -148,18 +149,7 @@ export default class App extends Component {
           <Route path="/mypage" component={MyPage} />
           {/* AdminPage */}
           <Route path="/adminpage" component={AdminPage} />
-          <Route
-            exact
-            path="/payment"
-            render={props => {
-              return (
-                <Payment
-                  cartItems={this.state.cart}
-                  totalAmount={this.state.totalAmount}
-                  resetCart={this.resetCart}
-                />
-              );
-            }}
+          <Route exact path="/payment" render={props => { return <Payment {...props} /> }}
           />
           <Route
             exact
