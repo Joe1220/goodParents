@@ -9,7 +9,5 @@ router.delete("/", CartController.delete);
 
 router.post("/increase", CartController.increase);
 router.post("/decrease", CartController.decrease);
-router.post("/checktrue", CartController.checkTrue);
-router.post("/checkfalse", CartController.checkFalse);
 
 module.exports = router;

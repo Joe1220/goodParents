@@ -79,10 +79,7 @@ module.exports = {
               }
             },
             {
-              $set: {
-                "cart.$.qty": req.body.qty,
-                "cart.$.checked": req.body.checked
-              }
+              $set: { "cart.$.checked": req.body.checked }
             }
           );
         })
@@ -175,66 +172,6 @@ module.exports = {
             },
             {
               $inc: { "cart.$.qty": -1 }
-            }
-          );
-        })
-        .then(result => {
-          return result.cart.length;
-        })
-    );
-  },
-
-  checkTrue: async (req, res, callback) => {
-    const email = req.decoded.email;
-    callback(
-      null,
-      await User.findOneByEmail(email)
-        .then(results => getUserOid(results))
-        .then(user => {
-          return Cart.findOneAndUpdate(
-            {
-              user: user,
-              cart: {
-                $elemMatch: {
-                  _id: req.body.item,
-                  year: req.body.year,
-                  month: req.body.month,
-                  day: req.body.day
-                }
-              }
-            },
-            {
-              $set: { "cart.$.checked": true }
-            }
-          );
-        })
-        .then(result => {
-          return result.cart.length;
-        })
-    );
-  },
-
-  checkFalse: async (req, res, callback) => {
-    const email = req.decoded.email;
-    callback(
-      null,
-      await User.findOneByEmail(email)
-        .then(results => getUserOid(results))
-        .then(user => {
-          return Cart.findOneAndUpdate(
-            {
-              user: user,
-              cart: {
-                $elemMatch: {
-                  _id: req.body.item,
-                  year: req.body.year,
-                  month: req.body.month,
-                  day: req.body.day
-                }
-              }
-            },
-            {
-              $set: { "cart.$.checked": false }
             }
           );
         })
