@@ -1,127 +1,83 @@
 import React from 'react';
-import { Container, Row, Col,
-         Button, Form, FormGroup, Label, Input } from 'reactstrap';
-import "../public/style/Payment.css";
-import PaymentInfo from './PaymentInfo';
-import PaymentInfoResult from './PaymentInfoResult';
+import { Container } from 'reactstrap';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import RaisedButton from 'material-ui/RaisedButton';
+import TextField from 'material-ui/TextField';
 
-const Payment = ({cartItems, totalAmount, resetCart}) => {
-  return (
-    <div>
-      <Container>
-        <Row>
-          <Col className="payment_head_text"><h3 className="text-center font-weight-bold">결제</h3></Col>
-        </Row>
-
-        <Row>
-          <Col sm="1"></Col>
-
-          <Col sm="7">
-            <p className="font-weight-bold">주문자 정보</p>
-            <hr />
-            {/* 결제 정보 입력폼 */}
-            <Form>
-              <FormGroup row>
-                <Label sm="2"><p className="form_label">수취인</p></Label>
-                <Col sm="5">
-                  <Input type="text" name="name" className="payment_placeholder" placeholder="수취인을 입력해주세요"/>
-                </Col>
-              </FormGroup>
-              <FormGroup row>
-                <Label sm="2"><p className="form_label">핸드폰 번호</p></Label>
-                <Col sm="5">
-                  <Input type="text" name="phone" className="payment_placeholder" placeholder="핸드폰 번호를 입력해주세요"/>
-                </Col>
-              </FormGroup>
-              <FormGroup row>
-                <Label sm="2"><p className="form_label">우편번호</p></Label>
-                <Col sm="5">
-                  <Input type="text" name="zipcode" className="payment_placeholder" placeholder="우편번호를 입력해주세요"/>
-                </Col>
-                <Button sm="4" size="sm">우편번호검색</Button>
-              </FormGroup>
-              <FormGroup row>
-                <Label sm="2"><p className="form_label">주소지</p></Label>
-                <Col sm="10">
-                  <Input type="text" name="address" className="payment_placeholder" placeholder="주소를 입력해주세요"/>
-                </Col>
-              </FormGroup>
-              <FormGroup row>
-                <Label sm="2"><p className="form_label">상세 주소</p></Label>
-                <Col sm="10">
-                  <Input type="text" name="address_detail" className="payment_placeholder" placeholder="상세주소를 입력해주세요"/>
-                </Col>
-              </FormGroup>
-              <FormGroup row>
-                <Label sm="2"><p className="form_label">배송 메세지</p></Label>
-                <Col sm="10">
-                  <Input type="text" name="message" className="payment_placeholder" placeholder="배송 메세지를 입력해주세요"/>
-                </Col>
-              </FormGroup>
-              {/* 쿠폰 관련 */}
-              <br />
-              <p className="font-weight-bold">쿠폰 정보</p>
-              <hr />
-              <FormGroup row>
-                <Label sm="2"><p className="form_label">수취인</p></Label>
-                <Col sm="5">
-                  <Input type="text" name="coupon" className="payment_placeholder" placeholder="우편번호를 입력해주세요"/>
-                </Col>
-                <Button sm="4" size="sm">쿠폰 적용</Button>
-              </FormGroup>
-              {/* 결제 방법 버튼 */}
-              <br />
-              <p className="font-weight-bold">결제 방법</p>
-              <hr />
-              <Row>
-                <Col sm="2"></Col>
-                <Button className="payment">
-                  <Row className="payment_obtion">
-                    <i className="material-icons md-2">touch_app</i>
-                  </Row>
-                  <p>간편 결제</p>
-                </Button>
-                <Button className="payment">
-                  <Row className="payment_obtion">
-                    <i class="material-icons md-2">credit_card</i>
-                  </Row>
-                  <p>카드 결제</p>
-                </Button>
-                <Button className="payment">
-                  <Row className="payment_obtion">
-                    <i class="material-icons md-2">call_to_action</i>
-                  </Row>
-                  <p>무통장 입금</p>
-                </Button>
-              </Row>
-            </Form>
-          </Col>
-
-          <Col sm="3">
-            <Container id="payment_info_box">
-              <p className="font-weight-bold">결제 상품 정보</p>
-              <hr />
-              {cartItems.map(item => {
-                if(item.checked) {
-                  return (
-                    <PaymentInfo key={item.id} name={item.name} image={item.image}/>
-                  )
-                } else {
-                  return <div>{" "}</div>
-                }
-              })}
-              <br />
-              <p className="font-weight-bold">결제 정보</p>
-              <hr />
-              <PaymentInfoResult totalAmount={totalAmount} resetCart={resetCart}/>
-            </Container>
-          </Col>
-
-          <Col sm="1"></Col>
-        </Row>
-      </Container>
-    </div>
-  )
+const styles = {
+  container: { width: "1110px", marginBottom: "100px" },
+  content: { width: "1050px", margin: "0 auto", paddingTop: "15px" },
+  title: { fontSize: "25px", fontWeight: "bold" },
+  paymentcontainer: {  marginTop: "15px", marginBottom: "15px" },
+  innerpayment: { padding: "15px" },
+  userinfo: { fontWeight: "bold", fontSize: "20px" },
+  hr: { marginTop: "10px", marginBottom: "23px" },
+  paymentinfo: { fontWeight: "bold", fontSize: "20px", marginTop: "20px" },
 }
 
-export default Payment;
+export default class Payment extends React.Component {
+  render(){
+    console.log(this.props)
+    return (
+      <Container style={styles.container}>
+        <div style={styles.content}>
+          <div style={styles.title}>결제</div>
+          <MuiThemeProvider>
+            <div style={styles.paymentcontainer} >
+              <div style={styles.innerpayment}>
+              <div style={styles.userinfo}>주문자정보</div>
+              <hr style={styles.hr} />
+              <TextField
+                hintText="수취인"
+              /><br />
+              <TextField
+                hintText="핸드폰번호"
+              /><br />
+              <TextField
+                hintText="우편번호"
+              /><br />
+              <TextField
+                hintText="주소지"
+                floatingLabelText="서울시 서초구 방배동"
+                floatingLabelFixed={true}
+              /><br />
+              <TextField
+                hintText="상세주소"
+                floatingLabelText="00아파트 00동 00호"
+                floatingLabelFixed={true}
+              /><br />
+              <TextField
+                hintText="배송메세지"
+                floatingLabelText="예) 사람 없으면 문앞에 두고 가주세요"
+                floatingLabelFixed={true}
+              /><br />
+              <div style={styles.paymentinfo}>결제정보</div>
+              <hr style={styles.hr} />
+              <TextField
+                hintText="Card Number"
+              /><br />
+              <TextField
+                hintText="유효연도"
+              /><br />
+              <TextField
+                hintText="유효월"
+              /><br />
+              <TextField
+                hintText="CVC"
+                floatingLabelText="CVC"
+                type="password"
+              /><br />
+              <TextField
+                hintText="성함"
+              /><br />
+              <RaisedButton onClick={this.toPayment}  label="결제하기" fullWidth={true} primary={true} />
+              </div>
+            </div>
+          </MuiThemeProvider>
+        </div>
+      </Container>
+    )
+  }
+}
+
+

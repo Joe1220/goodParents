@@ -48,8 +48,7 @@ export default class Cart extends Component {
   }
 
   updateCheck(e) {
-    console.log(e.target.getAttribute('id'))
-    // this.props.cartDelete(e.target.getAttribute('value'));
+    this.props.updateCheck(e.target.getAttribute('id'));
   }
   cartDelete(e) {
     this.props.cartDelete(e.target.getAttribute('id'));
@@ -61,7 +60,8 @@ export default class Cart extends Component {
     this.props.qtyAdd(e.target.getAttribute('value'));
   }
   toPayment() {
-    this.props.toPayment();
+    // this.props.toPayment();
+    this.props.history.push("/payment");
   }
   renderCart(){
     if(!this.props.cart.length){
@@ -84,7 +84,7 @@ export default class Cart extends Component {
                 <div style={styles.checkboxcontainer}>
                   <Checkbox
                     checked={cart.checked}
-                    id={cart.checked}
+                    id={cart._id._id}
                     onCheck={this.updateCheck}
                     style={styles.checkbox}
                   />
