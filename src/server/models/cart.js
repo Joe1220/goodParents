@@ -19,7 +19,7 @@ module.exports = {
           ]);
         })
         .then(result => {
-          return Cart.populate(result[0], { path: "cart.product" });
+          return Cart.populate(result[0], { path: "cart._id" });
         })
         .catch(error => {
           throw new Error(error);
@@ -55,7 +55,7 @@ module.exports = {
                 }
               }
             },
-            { upsert: true, new: true }
+            { upsert: true, new: true, sort: {"cart.month": 1} }
           );
         })
         .then(result => {
