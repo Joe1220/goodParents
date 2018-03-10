@@ -24,6 +24,7 @@ export default class App extends Component {
       products: [],
       cart: [],
       fullDate: new Date().toISOString().slice(0, 10),
+      account: []
     };
     this.onChangeFullDate = this.onChangeFullDate.bind(this);
     this.getCart = this.getCart.bind(this);
@@ -31,6 +32,7 @@ export default class App extends Component {
     this.updateCheck = this.updateCheck.bind(this);
     this.qtyRemove = this.qtyRemove.bind(this);
     this.qtyAdd = this.qtyAdd.bind(this);
+    this.getAccount = this.getAccount.bind(this);
   }
 
   foodDetailFetch() {
@@ -126,9 +128,19 @@ export default class App extends Component {
   toPayment() {
     
   }
+  getAccount(){
+    const url = "/api/mypage/account"
+    fetch(url,{
+      credentials: "include"
+    })
+    .then(response => response.json())
+    .then(data => this.setState({ account: data }))
+    .catch(error => console.error(error));
+  }
   componentDidMount() {
     this.foodDetailFetch();
     this.getCart();
+    this.getAccount();
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -195,7 +207,7 @@ export default class App extends Component {
           <Route exact path="/privacy" component={Privacy} />
           <Route exact path="/prime" component={Prime} />
           {/* MyPage */} 
-          <Route path="/mypage" component={MyPage} />
+          <Route path="/mypage" render={(props)=>{return <MyPage {...props} account={this.state.account}/>}} />
           {/* AdminPage */}
           <Route path="/adminpage" component={AdminPage} />
           <Route exact path="/payment" render={props => { return <Payment {...props} /> }}
