@@ -23,10 +23,6 @@ module.exports = {
   },
   put: async (req, res, callback) => {
     const email = req.decoded.email;
-    // const p = new Promise((resolve, reject) => {
-
-    // });
-    // return p;
     callback(
       null,
       await User.findOneByEmail(email)
