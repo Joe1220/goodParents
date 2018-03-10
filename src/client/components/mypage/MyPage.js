@@ -28,9 +28,13 @@ export default class MyPage extends Component {
   constructor(props){
     super(props);
     this.changeAccount = this.changeAccount.bind(this);
+    this.handleRequestClose = this.handleRequestClose.bind(this);
   }
   changeAccount(userinfo){
     this.props.changeAccount(userinfo);
+  }
+  handleRequestClose() {
+    this.props.handleRequestClose()
   }
   render() {
     const url = this.props.match.url;
@@ -100,8 +104,9 @@ export default class MyPage extends Component {
             <Route path={`${url}/BillingUpdate`} render={(props)=>{return <BillingUpdate {...props}/>}} />
             <Route path={`${url}/CouncellingCheck`} render={(props)=>{return <CouncellingCheck {...props}/>}} />
             <Route path={`${url}/CouncellingRequest`} render={(props)=>{return <CouncellingRequest {...props}/>}} />
-            <Route path={`${url}/AccountCheck`} render={(props)=>{return <AccountCheck {...props} account={this.props.account}/>}} />
-            <Route path={`${url}/AccountUpdate`} render={(props)=>{return <AccountUpdate {...props}  changeAccount={this.props.changeAccount}/>}} />
+            <Route path={`${url}/AccountCheck`} render={(props)=>{return <AccountCheck {...props} account={this.props.account} handleRequestClose={this.props.handleRequestClose}
+            snackbaropen={this.props.snackbaropen} />}} />
+            <Route path={`${url}/AccountUpdate`} render={(props)=>{return <AccountUpdate {...props}  changeAccount={this.props.changeAccount} />}} />
           </div>
         </div>
       </Container>

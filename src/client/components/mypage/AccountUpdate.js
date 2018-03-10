@@ -3,6 +3,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import Paper from 'material-ui/Paper';
+import Snackbar from 'material-ui/Snackbar';
 
 const styles = {
   container: { height: "400px" },
@@ -11,6 +12,7 @@ const styles = {
   textfield: { padding: "15px" },
   button: { marginLeft: "370px", marginTop: "20px" }
 }
+
 export default class AccountUpdate extends Component{
   constructor(props){
     super(props)
@@ -23,6 +25,11 @@ export default class AccountUpdate extends Component{
     this.onhandleName = this.onhandleName.bind(this);
     this.onhandleTelephone = this.onhandleTelephone.bind(this);
     this.onhandleEmail = this.onhandleEmail.bind(this);
+    this.handleRequestClose = this.handleRequestClose.bind(this)
+    console.log(this.props);
+  }
+  handleRequestClose(){
+    this.props.handleRequestClose();
   }
   onhandleName(e) {
     this.setState({name: e.target.value})
@@ -66,6 +73,12 @@ export default class AccountUpdate extends Component{
         /><br />
         <RaisedButton label="수정하기" primary={true} onClick={this.changeAccount}style={styles.button}/>
         </Paper>
+        <Snackbar
+          open={this.props.snackbaropen}
+          message="회원정보가 수정되었습니다"
+          autoHideDuration={4000}
+          onRequestClose={this.handleRequestClose}
+        />
       </MuiThemeProvider>
     )
   }
