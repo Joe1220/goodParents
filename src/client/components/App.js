@@ -27,12 +27,16 @@ class App extends Component {
       account: []
     };
     this.onChangeFullDate = this.onChangeFullDate.bind(this);
+    // 장바구니 관련 메소드
     this.getCart = this.getCart.bind(this);
     this.cartDelete = this.cartDelete.bind(this);
     this.updateCheck = this.updateCheck.bind(this);
     this.qtyRemove = this.qtyRemove.bind(this);
     this.qtyAdd = this.qtyAdd.bind(this);
+    // 마이페이지 계정관련 메소드
     this.getAccount = this.getAccount.bind(this);
+    this.putAccount = this.putAccount.bind(this);
+    this.changeAccount = this.changeAccount.bind(this);
     this.toPayment = this.toPayment.bind(this);
   }
 
@@ -42,6 +46,7 @@ class App extends Component {
       .then(data => this.setState({ products: data[0].items }))
       .catch(error => console.error(error));
   }
+  // 장바구니 관련 메소드
   getCart() {
     fetch(`/api/cart`, {
       credentials: "include"
@@ -175,6 +180,7 @@ class App extends Component {
       upperThis.props.history.push("/mypage/OrderCheck");
     });
   }
+  // 계정관리 관련 메소드
   getAccount() {
     const url = "/api/mypage/account";
     fetch(url, {
@@ -183,6 +189,22 @@ class App extends Component {
       .then(response => response.json())
       .then(data => this.setState({ account: data }))
       .catch(error => console.error(error));
+  }
+  changeAccount(userinfo) {
+    this.setState({account: userinfo})
+  }
+  putAccount() {
+    const url = "api/mypage/account"
+    const data = this.state.account;
+    fetch(url, {
+      method: "PUT",
+      credentials: "include",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+    .then(res => res.status)
   }
   componentDidMount() {
     this.foodDetailFetch();
@@ -194,7 +216,9 @@ class App extends Component {
     if (prevState.fullDate !== this.state.fullDate) {
       this.foodDetailFetch();
     }
-    localStorage.cart = JSON.stringify(this.state.cart);
+    if(prevState.account !== this.state.account) {
+      this.putAccount();
+    }
   }
 
   renderFoodDetail() {
@@ -258,6 +282,7 @@ class App extends Component {
           <Route exact path="/terms" component={Terms} />
           <Route exact path="/privacy" component={Privacy} />
           <Route exact path="/prime" component={Prime} />
+
           {/* MyPage */}
           <Route
             path="/mypage"
