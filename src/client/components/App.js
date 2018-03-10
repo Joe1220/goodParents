@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Route, Switch, withRouter } from "react-router-dom";
 
+
 import About from "./About";
 import Area from "./Area";
 import Home from "./Home";
@@ -24,16 +25,26 @@ class App extends Component {
       products: [],
       cart: [],
       fullDate: new Date().toISOString().slice(0, 10),
-      account: []
+      account: [],
+      snackbar: {
+        account: false,
+        fooddetail: false
+      }
     };
     this.onChangeFullDate = this.onChangeFullDate.bind(this);
+    // 장바구니 관련 메소드
     this.getCart = this.getCart.bind(this);
     this.cartDelete = this.cartDelete.bind(this);
     this.updateCheck = this.updateCheck.bind(this);
     this.qtyRemove = this.qtyRemove.bind(this);
     this.qtyAdd = this.qtyAdd.bind(this);
+    // 마이페이지 계정관련 메소드
     this.getAccount = this.getAccount.bind(this);
+    this.changeAccount = this.changeAccount.bind(this);
     this.toPayment = this.toPayment.bind(this);
+    // 스넥바 메소드
+    this.snackbarOpen = this.snackbarOpen.bind(this);
+    this.snackbarClose = this.snackbarClose.bind(this);
   }
 
   foodDetailFetch() {
@@ -42,6 +53,7 @@ class App extends Component {
       .then(data => this.setState({ products: data[0].items }))
       .catch(error => console.error(error));
   }
+  // 장바구니 관련 메소드
   getCart() {
     fetch(`/api/cart`, {
       credentials: "include"
@@ -128,8 +140,7 @@ class App extends Component {
             "Content-Type": "application/json"
           }
         })
-          // .then(res => res.status)
-          .then(() => this.getCart());
+        .then(() => this.getCart());
       }
     }
   }
@@ -156,13 +167,11 @@ class App extends Component {
             "Content-Type": "application/json"
           }
         })
-          // .then(res => res.status)
-          .then(() => this.getCart());
+        .then(() => this.getCart());
       }
     }
   }
   toPayment(data) {
-    console.log(data);
     const upperThis = this;
     fetch("/api/payment", {
       method: "POST",
@@ -175,6 +184,7 @@ class App extends Component {
       upperThis.props.history.push("/mypage/OrderCheck");
     });
   }
+  // 계정관리 관련 메소드
   getAccount() {
     const url = "/api/mypage/account";
     fetch(url, {
@@ -184,6 +194,7 @@ class App extends Component {
       .then(data => this.setState({ account: data }))
       .catch(error => console.error(error));
   }
+
   componentDidMount() {
     this.foodDetailFetch();
     this.getCart();
@@ -194,7 +205,6 @@ class App extends Component {
     if (prevState.fullDate !== this.state.fullDate) {
       this.foodDetailFetch();
     }
-    localStorage.cart = JSON.stringify(this.state.cart);
   }
 
   renderFoodDetail() {
@@ -218,6 +228,9 @@ class App extends Component {
                 fullDate={this.state.fullDate}
                 subname={product.subname}
                 calorie={product.calorie}
+                snackbar={this.state.snackbar.fooddetail}
+                snackbarOpen={this.snackbarOpen}
+                snackbarClose={this.snackbarClose}
               />
             );
           }}
@@ -228,6 +241,35 @@ class App extends Component {
 
   onChangeFullDate(fullDate) {
     this.setState({ fullDate: fullDate });
+  }
+  changeAccount(userinfo) {
+    this.setState({account: userinfo})
+    const upperThis = this;
+    const url = "/api/mypage/account"
+    fetch(url, {
+      method: "PUT",
+      credentials: "include",
+      body: JSON.stringify(userinfo),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+    .then(()=>{
+      window.sessionStorage.setItem("name", userinfo.name);
+      upperThis.props.history.push('/mypage/AccountCheck');
+      this.snackbarOpen('account');
+    })
+  }
+
+  snackbarOpen(name) {
+    const stateCopy = Object.assign({}, this.state);
+    stateCopy.snackbar[name] = true
+    this.setState(stateCopy);
+  }
+  snackbarClose(name) {
+    const stateCopy = Object.assign({}, this.state);
+    stateCopy.snackbar[name] = false
+    this.setState(stateCopy);
   }
   render() {
     return (
@@ -258,11 +300,17 @@ class App extends Component {
           <Route exact path="/terms" component={Terms} />
           <Route exact path="/privacy" component={Privacy} />
           <Route exact path="/prime" component={Prime} />
+
           {/* MyPage */}
           <Route
             path="/mypage"
             render={props => {
-              return <MyPage {...props} account={this.state.account} />;
+              return <MyPage
+              {...props} 
+              account={this.state.account}
+              changeAccount={this.changeAccount}
+              snackbar={this.state.snackbar.account}
+              snackbarClose={this.snackbarClose} />;
             }}
           />
           {/* AdminPage */}

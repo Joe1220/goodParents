@@ -13,6 +13,8 @@ import {
   DropdownItem,
   Container
 } from 'reactstrap';
+import Avatar from 'material-ui/Avatar';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
 const style = {
   color: "rgb(25,25,221)",
@@ -90,9 +92,21 @@ export default class Example extends React.Component {
   checkCart() {
     if (window.sessionStorage.getItem("name")) {
       return (
-        <NavItem>
-          <NavLink href="/cartmain">장바구니</NavLink>
-        </NavItem>
+        <MuiThemeProvider>
+          <NavItem>
+            <Avatar
+            color={"Black"}
+            backgroundColor={"Orange"}
+            size={20}
+            style={{marginRight: -5, marginTop: 5}}
+            >
+              {this.props.cartItems.length}
+            </Avatar>
+          </NavItem>
+          <NavItem>
+              <NavLink href="/cartmain">장바구니</NavLink>
+          </NavItem>
+        </MuiThemeProvider>
       )
     } else {
       return '';

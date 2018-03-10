@@ -15,7 +15,8 @@ import BillingCheck from './BillingCheck';
 import BillingUpdate from './BillingUpdate';
 import CouncellingCheck from './CouncellingCheck';
 import CouncellingRequest from './CouncellingRequest';
-import Account from './Account';
+import AccountCheck from './AccountCheck';
+import AccountUpdate from './AccountUpdate';
 
 const styles = {
   ul: { listStyleType: "none" },
@@ -26,11 +27,15 @@ const styles = {
 export default class MyPage extends Component {
   constructor(props){
     super(props);
-    // this.getAccount = this.getAccount.bind(this);
+    this.changeAccount = this.changeAccount.bind(this);
+    this.snackbarClose = this.snackbarClose.bind(this);
   }
-  // getAccount(){
-  //   this.props.getAccount()
-  // }
+  changeAccount(userinfo){
+    this.props.changeAccount(userinfo);
+  }
+  snackbarClose(name) {
+    this.props.snackbarClose(name);
+  }
   render() {
     const url = this.props.match.url;
     return (
@@ -78,7 +83,10 @@ export default class MyPage extends Component {
                 <Link style={styles.a} to={`${url}/CouncellingRequest`}>1:1질문신청</Link>
               </li>
               <li style={styles.li}>
-                <Link style={styles.a} to={`${url}/Account`} onClick={this.getAccount}>계정관리</Link>
+                <Link style={styles.a} to={`${url}/AccountCheck`} onClick={this.getAccount}>계정확인</Link>
+              </li>
+              <li style={styles.li}>
+                <Link style={styles.a} to={`${url}/AccountUpdate`} onClick={this.getAccount}>계정수정</Link>
               </li>
             </ul>
           </div>
@@ -96,7 +104,9 @@ export default class MyPage extends Component {
             <Route path={`${url}/BillingUpdate`} render={(props)=>{return <BillingUpdate {...props}/>}} />
             <Route path={`${url}/CouncellingCheck`} render={(props)=>{return <CouncellingCheck {...props}/>}} />
             <Route path={`${url}/CouncellingRequest`} render={(props)=>{return <CouncellingRequest {...props}/>}} />
-            <Route path={`${url}/Account`} render={(props)=>{return <Account {...props}  account={this.props.account}/>}} />
+            <Route path={`${url}/AccountCheck`} render={(props)=>{return <AccountCheck {...props} account={this.props.account} snackbarClose={this.props.snackbarClose}
+            snackbar={this.props.snackbar} />}} />
+            <Route path={`${url}/AccountUpdate`} render={(props)=>{return <AccountUpdate {...props}  changeAccount={this.props.changeAccount} />}} />
           </div>
         </div>
       </Container>
