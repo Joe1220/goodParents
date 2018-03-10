@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import TextField from 'material-ui/TextField';
 import Paper from 'material-ui/Paper';
+import Snackbar from 'material-ui/Snackbar';
 
 const styles = {
   container: { height: "400px" },
@@ -10,6 +11,15 @@ const styles = {
   textfield: { padding: "15px" },
 }
 export default class AccountCheck extends Component{
+  constructor(props) {
+    super(props);
+    this.handleRequestClose = this.handleRequestClose.bind(this);
+  }
+
+  handleRequestClose(){
+    this.props.handleRequestClose();
+  }
+
   render(){
     const {name, telephone, email} = this.props.account;
     return (
@@ -36,6 +46,12 @@ export default class AccountCheck extends Component{
           style={styles.textfield}
         /><br />
         </Paper>
+        <Snackbar
+          open={this.props.snackbaropen}
+          message="회원정보가 수정되었습니다"
+          autoHideDuration={4000}
+          onRequestClose={this.handleRequestClose}
+        />
       </MuiThemeProvider>
     )
   }

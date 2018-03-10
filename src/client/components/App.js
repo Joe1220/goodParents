@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Route, Switch, withRouter } from "react-router-dom";
 
+
 import About from "./About";
 import Area from "./Area";
 import Home from "./Home";
@@ -24,7 +25,8 @@ class App extends Component {
       products: [],
       cart: [],
       fullDate: new Date().toISOString().slice(0, 10),
-      account: []
+      account: [],
+      snackbaropen: false,
     };
     this.onChangeFullDate = this.onChangeFullDate.bind(this);
     // 장바구니 관련 메소드
@@ -35,9 +37,9 @@ class App extends Component {
     this.qtyAdd = this.qtyAdd.bind(this);
     // 마이페이지 계정관련 메소드
     this.getAccount = this.getAccount.bind(this);
-    this.putAccount = this.putAccount.bind(this);
     this.changeAccount = this.changeAccount.bind(this);
     this.toPayment = this.toPayment.bind(this);
+    this.handleRequestClose = this.handleRequestClose.bind(this);
   }
 
   foodDetailFetch() {
@@ -167,7 +169,7 @@ class App extends Component {
     }
   }
   toPayment(data) {
-    console.log(data);
+    // console.log(data);
     const upperThis = this;
     fetch("/api/payment", {
       method: "POST",
@@ -190,22 +192,7 @@ class App extends Component {
       .then(data => this.setState({ account: data }))
       .catch(error => console.error(error));
   }
-  changeAccount(userinfo) {
-    this.setState({account: userinfo})
-  }
-  putAccount() {
-    const url = "api/mypage/account"
-    const data = this.state.account;
-    fetch(url, {
-      method: "PUT",
-      credentials: "include",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })
-    .then(res => res.status)
-  }
+
   componentDidMount() {
     this.foodDetailFetch();
     this.getCart();
@@ -215,9 +202,6 @@ class App extends Component {
   componentDidUpdate(prevProps, prevState) {
     if (prevState.fullDate !== this.state.fullDate) {
       this.foodDetailFetch();
-    }
-    if(prevState.account !== this.state.account) {
-      this.putAccount();
     }
   }
 
@@ -253,6 +237,30 @@ class App extends Component {
   onChangeFullDate(fullDate) {
     this.setState({ fullDate: fullDate });
   }
+  changeAccount(userinfo) {
+    this.setState({account: userinfo})
+    const upperThis = this;
+    const url = "/api/mypage/account"
+    // const data = this.state.account;
+    fetch(url, {
+      method: "PUT",
+      credentials: "include",
+      body: JSON.stringify(userinfo),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+    .then(()=>{
+      window.sessionStorage.setItem("name", userinfo.name);
+      upperThis.props.history.push('/mypage/AccountCheck');
+      upperThis.setState({ snackbaropen: true });
+    })
+  }
+  handleRequestClose(){
+    this.setState({
+      snackbaropen: false
+    });
+  };
   render() {
     return (
       <div>
@@ -287,7 +295,12 @@ class App extends Component {
           <Route
             path="/mypage"
             render={props => {
-              return <MyPage {...props} account={this.state.account} />;
+              return <MyPage 
+              {...props} 
+              account={this.state.account}
+              changeAccount={this.changeAccount}
+              snackbaropen={this.state.snackbaropen}
+              handleRequestClose={this.handleRequestClose} />;
             }}
           />
           {/* AdminPage */}
