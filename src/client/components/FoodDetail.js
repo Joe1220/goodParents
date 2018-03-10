@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Container } from "reactstrap";
 import RaisedButton from "material-ui/RaisedButton";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import Snackbar from 'material-ui/Snackbar';
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 
 const styles = {
@@ -44,13 +45,16 @@ class FoodDetail extends Component {
       value: ""
     };
     this.toCart = this.toCart.bind(this);
+    this.snackbarClose = this.snackbarClose.bind(this);
   }
   handleChange = value => {
     this.setState({
       value: value
     });
   };
-
+  snackbarClose(){
+    this.props.snackbarClose('fooddetail');
+  }
   toCart = () => {
     const url = "/api/cart";
     let year = parseInt(this.props.fullDate.slice(0, 4), 10);
@@ -76,6 +80,7 @@ class FoodDetail extends Component {
         body: JSON.stringify(data)
       })
         .then(res => {
+          this.props.snackbarOpen('fooddetail');
           return res.status;
         })
         .catch(err => console.error(err));
@@ -142,6 +147,14 @@ class FoodDetail extends Component {
           <div>Calories</div>
           <div>{this.props.calorie} kcal</div>
         </div>
+        <MuiThemeProvider>
+          <Snackbar
+            open={this.props.snackbar}
+            message="장바구니에 추가되었습니다"
+            autoHideDuration={4000}
+            onRequestClose={this.snackbarClose}
+          />
+        </MuiThemeProvider>
       </Container>
     );
   }

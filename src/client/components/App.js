@@ -26,7 +26,10 @@ class App extends Component {
       cart: [],
       fullDate: new Date().toISOString().slice(0, 10),
       account: [],
-      snackbaropen: false,
+      snackbar: {
+        account: false,
+        fooddetail: false
+      }
     };
     this.onChangeFullDate = this.onChangeFullDate.bind(this);
     // 장바구니 관련 메소드
@@ -39,7 +42,9 @@ class App extends Component {
     this.getAccount = this.getAccount.bind(this);
     this.changeAccount = this.changeAccount.bind(this);
     this.toPayment = this.toPayment.bind(this);
-    this.handleRequestClose = this.handleRequestClose.bind(this);
+    // 스넥바 메소드
+    this.snackbarOpen = this.snackbarOpen.bind(this);
+    this.snackbarClose = this.snackbarClose.bind(this);
   }
 
   foodDetailFetch() {
@@ -135,8 +140,7 @@ class App extends Component {
             "Content-Type": "application/json"
           }
         })
-          // .then(res => res.status)
-          .then(() => this.getCart());
+        .then(() => this.getCart());
       }
     }
   }
@@ -163,13 +167,11 @@ class App extends Component {
             "Content-Type": "application/json"
           }
         })
-          // .then(res => res.status)
-          .then(() => this.getCart());
+        .then(() => this.getCart());
       }
     }
   }
   toPayment(data) {
-    // console.log(data);
     const upperThis = this;
     fetch("/api/payment", {
       method: "POST",
@@ -226,6 +228,9 @@ class App extends Component {
                 fullDate={this.state.fullDate}
                 subname={product.subname}
                 calorie={product.calorie}
+                snackbar={this.state.snackbar.fooddetail}
+                snackbarOpen={this.snackbarOpen}
+                snackbarClose={this.snackbarClose}
               />
             );
           }}
@@ -241,7 +246,6 @@ class App extends Component {
     this.setState({account: userinfo})
     const upperThis = this;
     const url = "/api/mypage/account"
-    // const data = this.state.account;
     fetch(url, {
       method: "PUT",
       credentials: "include",
@@ -253,14 +257,20 @@ class App extends Component {
     .then(()=>{
       window.sessionStorage.setItem("name", userinfo.name);
       upperThis.props.history.push('/mypage/AccountCheck');
-      upperThis.setState({ snackbaropen: true });
+      this.snackbarOpen('account');
     })
   }
-  handleRequestClose(){
-    this.setState({
-      snackbaropen: false
-    });
-  };
+
+  snackbarOpen(name) {
+    const stateCopy = Object.assign({}, this.state);
+    stateCopy.snackbar[name] = true
+    this.setState(stateCopy);
+  }
+  snackbarClose(name) {
+    const stateCopy = Object.assign({}, this.state);
+    stateCopy.snackbar[name] = false
+    this.setState(stateCopy);
+  }
   render() {
     return (
       <div>
@@ -295,12 +305,12 @@ class App extends Component {
           <Route
             path="/mypage"
             render={props => {
-              return <MyPage 
+              return <MyPage
               {...props} 
               account={this.state.account}
               changeAccount={this.changeAccount}
-              snackbaropen={this.state.snackbaropen}
-              handleRequestClose={this.handleRequestClose} />;
+              snackbar={this.state.snackbar.account}
+              snackbarClose={this.snackbarClose} />;
             }}
           />
           {/* AdminPage */}
