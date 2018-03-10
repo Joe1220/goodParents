@@ -32,7 +32,6 @@ export default class Payment extends React.Component {
     const name = target.name;
 
     this.setState({ [name]: value });
-    // console.log(this.state);
   }
 
   render() {
@@ -48,7 +47,7 @@ export default class Payment extends React.Component {
                 <hr style={styles.hr} />
                 <form
                   onSubmit={event => {
-                    // this.props.toPayment(this.state);
+                    this.props.toPayment(this.state);
                     event.preventDefault();
                   }}
                 >

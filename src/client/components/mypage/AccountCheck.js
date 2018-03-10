@@ -13,11 +13,11 @@ const styles = {
 export default class AccountCheck extends Component{
   constructor(props) {
     super(props);
-    this.handleRequestClose = this.handleRequestClose.bind(this);
+    this.snackbarClose = this.snackbarClose.bind(this);
   }
 
-  handleRequestClose(){
-    this.props.handleRequestClose();
+  snackbarClose(){
+    this.props.snackbarClose("account");
   }
 
   render(){
@@ -47,10 +47,10 @@ export default class AccountCheck extends Component{
         /><br />
         </Paper>
         <Snackbar
-          open={this.props.snackbaropen}
+          open={this.props.snackbar}
           message="회원정보가 수정되었습니다"
           autoHideDuration={4000}
-          onRequestClose={this.handleRequestClose}
+          onRequestClose={this.snackbarClose}
         />
       </MuiThemeProvider>
     )
