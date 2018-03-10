@@ -46,13 +46,24 @@ module.exports = {
             CVC: parseInt(req.body.CVC),
             name: req.body.name
           };
-          return OrderHistory.insertMany([
+          OrderHistory.insertMany([
             {
               user: data.user,
               items: data.cart,
               ordererInfo: info
             }
           ]);
+          return data.user;
+        }) // 결제된 이후에는 카트 내부 비우기
+        .then(user => {
+          return Cart.findOneAndUpdate(
+            { user: user },
+            { $set: { cart: [] } },
+            { new: true }
+          );
+        })
+        .then(result => {
+          return result.cart.length;
         })
         .catch(error => {
           throw new Error(error);

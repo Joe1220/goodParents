@@ -95,10 +95,6 @@ module.exports = {
       null,
       await User.findOneByEmail(email)
         .then(results => getUserOid(results))
-        // .then(user => {
-        //   const { item } = req.body;
-        //   return { user, item };
-        // })
         .then(user => {
           return Cart.findOneAndUpdate(
             {
