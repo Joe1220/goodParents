@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Route, Switch, withRouter } from "react-router-dom";
 
-
 import About from "./About";
 import Area from "./Area";
 import Home from "./Home";
@@ -26,6 +25,7 @@ class App extends Component {
       cart: [],
       fullDate: new Date().toISOString().slice(0, 10),
       account: [],
+      orderhistory: [],
       snackbar: {
         account: false,
         fooddetail: false
@@ -45,6 +45,7 @@ class App extends Component {
     // 스넥바 메소드
     this.snackbarOpen = this.snackbarOpen.bind(this);
     this.snackbarClose = this.snackbarClose.bind(this);
+    // 주문확인 메소드
   }
 
   foodDetailFetch() {
@@ -52,6 +53,16 @@ class App extends Component {
       .then(response => response.json())
       .then(data => this.setState({ products: data[0].items }))
       .catch(error => console.error(error));
+  }
+  // 주문확인
+  getOrderHistory() {
+    const url = "/api/mypage/order"
+    fetch(url,{
+      credentials: "include"
+    })
+    .then(response => response.json())
+    .then(data => this.setState({ orderhistory: data || [] }))
+    .catch(error => console.error(error));
   }
   // 장바구니 관련 메소드
   getCart() {
@@ -199,6 +210,7 @@ class App extends Component {
     this.foodDetailFetch();
     this.getCart();
     this.getAccount();
+    this.getOrderHistory();
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -310,7 +322,8 @@ class App extends Component {
               account={this.state.account}
               changeAccount={this.changeAccount}
               snackbar={this.state.snackbar.account}
-              snackbarClose={this.snackbarClose} />;
+              snackbarClose={this.snackbarClose}
+              orderhistory={this.state.orderhistory} />;
             }}
           />
           {/* AdminPage */}
