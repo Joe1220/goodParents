@@ -24,7 +24,10 @@ module.exports = {
           ]);
         })
         .then(result => {
-          return OrderHistory.populate(result, { path: "items.product" });
+          return OrderHistory.populate(result, {
+            path: "items._id",
+            model: "Product"
+          });
         })
         .catch(error => {
           throw new Error(error);
@@ -43,11 +46,11 @@ module.exports = {
             {
               user: user,
               _id: req.body.orderId,
-              items: { $elemMatch: { product: req.body.oldProduct } }
+              items: { $elemMatch: { _id: req.body.oldProduct } }
             },
             {
               $set: {
-                "items.$.product": req.body.newProduct,
+                "items.$._id": req.body.newProduct,
                 "items.$.qty": req.body.qty
               }
             }
@@ -70,7 +73,7 @@ module.exports = {
             {
               user: user,
               _id: req.body.orderId,
-              items: { $elemMatch: { product: req.body.product } }
+              items: { $elemMatch: { _id: req.body.product } }
             },
             {
               $set: {

@@ -15,7 +15,7 @@ module.exports = {
         .then(user =>
           Exchange.find({ user: user })
             .populate({
-              path: "items.product",
+              path: "items._id",
               model: "Product"
             })
             .exec()

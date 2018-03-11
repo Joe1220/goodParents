@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Route, Switch, withRouter } from "react-router-dom";
 
-
 import About from "./About";
 import Area from "./Area";
 import Home from "./Home";
@@ -140,7 +139,7 @@ class App extends Component {
             "Content-Type": "application/json"
           }
         })
-        .then(() => this.getCart());
+          .then(() => this.getCart());
       }
     }
   }
@@ -167,7 +166,7 @@ class App extends Component {
             "Content-Type": "application/json"
           }
         })
-        .then(() => this.getCart());
+          .then(() => this.getCart());
       }
     }
   }
@@ -180,7 +179,7 @@ class App extends Component {
       headers: {
         "Content-Type": "application/json"
       }
-    }).then(function() {
+    }).then(function () {
       upperThis.props.history.push("/mypage/OrderCheck");
     });
   }
@@ -243,7 +242,7 @@ class App extends Component {
     this.setState({ fullDate: fullDate });
   }
   changeAccount(userinfo) {
-    this.setState({account: userinfo})
+    this.setState({ account: userinfo })
     const upperThis = this;
     const url = "/api/mypage/account"
     fetch(url, {
@@ -254,11 +253,11 @@ class App extends Component {
         "Content-Type": "application/json"
       }
     })
-    .then(()=>{
-      window.sessionStorage.setItem("name", userinfo.name);
-      upperThis.props.history.push('/mypage/AccountCheck');
-      this.snackbarOpen('account');
-    })
+      .then(() => {
+        window.sessionStorage.setItem("name", userinfo.name);
+        upperThis.props.history.push('/mypage/AccountCheck');
+        this.snackbarOpen('account');
+      })
   }
 
   snackbarOpen(name) {
@@ -306,11 +305,11 @@ class App extends Component {
             path="/mypage"
             render={props => {
               return <MyPage
-              {...props} 
-              account={this.state.account}
-              changeAccount={this.changeAccount}
-              snackbar={this.state.snackbar.account}
-              snackbarClose={this.snackbarClose} />;
+                {...props}
+                account={this.state.account}
+                changeAccount={this.changeAccount}
+                snackbar={this.state.snackbar.account}
+                snackbarClose={this.snackbarClose} />;
             }}
           />
           {/* AdminPage */}
@@ -334,7 +333,7 @@ class App extends Component {
                   updateCheck={this.updateCheck}
                   qtyRemove={this.qtyRemove}
                   qtyAdd={this.qtyAdd}
-                  // toPayment={this.toPayment}
+                // toPayment={this.toPayment}
                 />
               );
             }}
