@@ -25,12 +25,12 @@ const styles = {
 }
 
 export default class MyPage extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.changeAccount = this.changeAccount.bind(this);
     this.snackbarClose = this.snackbarClose.bind(this);
   }
-  changeAccount(userinfo){
+  changeAccount(userinfo) {
     this.props.changeAccount(userinfo);
   }
   snackbarClose(name) {
@@ -92,21 +92,23 @@ export default class MyPage extends Component {
           </div>
           <div style={{ flex: 1, padding: "30px" }}>
             <Route exact path={url} render={() => (<h3>Please select any post</h3>)} />
-            <Route path={`${url}/OrderCheck`} render={(props)=>{return <Check {...props}orderhistory={this.props.orderhistory}/>}} />
-            <Route path={`${url}/OrderCancle`} render={(props)=>{return <Cancle {...props}/>}} />
-            <Route path={`${url}/ExchangeCheck`} render={(props)=>{return <ExchangeCheck {...props}/>}} />
-            <Route path={`${url}/ExchangeCancle`} render={(props)=>{return <ExchangeCancle {...props}/>}} />
-            <Route path={`${url}/DeliveryCheck`} render={(props)=>{return <DeliveryCheck {...props}/>}} />
-            <Route path={`${url}/DeliveryUpdate`} render={(props)=>{return <DeliveryUpdate {...props}/>}} />
-            <Route path={`${url}/BabyCheck`} render={(props)=>{return <BabyCheck {...props}/>}} />
-            <Route path={`${url}/BabyUpdate`} render={(props)=>{return <BabyUpdate {...props}/>}} />
-            <Route path={`${url}/BillingCheck`} render={(props)=>{return <BillingCheck {...props}/>}}/>
-            <Route path={`${url}/BillingUpdate`} render={(props)=>{return <BillingUpdate {...props}/>}} />
-            <Route path={`${url}/CouncellingCheck`} render={(props)=>{return <CouncellingCheck {...props}/>}} />
-            <Route path={`${url}/CouncellingRequest`} render={(props)=>{return <CouncellingRequest {...props}/>}} />
-            <Route path={`${url}/AccountCheck`} render={(props)=>{return <AccountCheck {...props} account={this.props.account} snackbarClose={this.props.snackbarClose}
-            snackbar={this.props.snackbar} />}} />
-            <Route path={`${url}/AccountUpdate`} render={(props)=>{return <AccountUpdate {...props}  changeAccount={this.props.changeAccount} />}} />
+            <Route path={`${url}/OrderCheck`} render={(props) => { return <Check {...props} /> }} />
+            <Route path={`${url}/OrderCancle`} render={(props) => { return <Cancle {...props} /> }} />
+            <Route path={`${url}/ExchangeCheck`} render={(props) => { return <ExchangeCheck {...props} /> }} />
+            <Route path={`${url}/ExchangeCancle`} render={(props) => { return <ExchangeCancle {...props} /> }} />
+            <Route path={`${url}/DeliveryCheck`} render={(props) => { return <DeliveryCheck {...props} /> }} />
+            <Route path={`${url}/DeliveryUpdate`} render={(props) => { return <DeliveryUpdate {...props} /> }} />
+            <Route path={`${url}/BabyCheck`} render={(props) => { return <BabyCheck {...props} /> }} />
+            <Route path={`${url}/BabyUpdate`} render={(props) => { return <BabyUpdate {...props} /> }} />
+            <Route path={`${url}/BillingCheck`} render={(props) => { return <BillingCheck {...props} /> }} />
+            <Route path={`${url}/BillingUpdate`} render={(props) => { return <BillingUpdate {...props} /> }} />
+            <Route path={`${url}/CouncellingCheck`} render={(props) => { return <CouncellingCheck {...props} /> }} />
+            <Route path={`${url}/CouncellingRequest`} render={(props) => { return <CouncellingRequest {...props} /> }} />
+            <Route path={`${url}/AccountCheck`} render={(props) => {
+              return <AccountCheck {...props} account={this.props.account} snackbarClose={this.props.snackbarClose}
+                snackbar={this.props.snackbar} />
+            }} />
+            <Route path={`${url}/AccountUpdate`} render={(props) => { return <AccountUpdate {...props} account={this.props.account} changeAccount={this.props.changeAccount} /> }} />
           </div>
         </div>
       </Container>

@@ -151,7 +151,7 @@ class App extends Component {
             "Content-Type": "application/json"
           }
         })
-        .then(() => this.getCart());
+          .then(() => this.getCart());
       }
     }
   }
@@ -178,7 +178,7 @@ class App extends Component {
             "Content-Type": "application/json"
           }
         })
-        .then(() => this.getCart());
+          .then(() => this.getCart());
       }
     }
   }
@@ -191,7 +191,7 @@ class App extends Component {
       headers: {
         "Content-Type": "application/json"
       }
-    }).then(function() {
+    }).then(function () {
       upperThis.props.history.push("/mypage/OrderCheck");
     });
   }
@@ -255,7 +255,7 @@ class App extends Component {
     this.setState({ fullDate: fullDate });
   }
   changeAccount(userinfo) {
-    this.setState({account: userinfo})
+    this.setState({ account: userinfo })
     const upperThis = this;
     const url = "/api/mypage/account"
     fetch(url, {
@@ -266,11 +266,11 @@ class App extends Component {
         "Content-Type": "application/json"
       }
     })
-    .then(()=>{
-      window.sessionStorage.setItem("name", userinfo.name);
-      upperThis.props.history.push('/mypage/AccountCheck');
-      this.snackbarOpen('account');
-    })
+      .then(() => {
+        window.sessionStorage.setItem("name", userinfo.name);
+        upperThis.props.history.push('/mypage/AccountCheck');
+        this.snackbarOpen('account');
+      })
   }
 
   snackbarOpen(name) {
@@ -347,7 +347,7 @@ class App extends Component {
                   updateCheck={this.updateCheck}
                   qtyRemove={this.qtyRemove}
                   qtyAdd={this.qtyAdd}
-                  // toPayment={this.toPayment}
+                // toPayment={this.toPayment}
                 />
               );
             }}
