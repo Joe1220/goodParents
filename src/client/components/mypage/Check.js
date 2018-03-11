@@ -13,7 +13,6 @@ const styles = {
 export default class Check extends Component{
   constructor(props){
     super(props);
-    // this.renderitems = this.renderitems.bind(this);
     this.renderorderhistory = this.renderorderhistory.bind(this);
   }
   renderorderhistory(){
@@ -46,7 +45,6 @@ export default class Check extends Component{
     })
   }
   render(){
-    console.log("check",this.props.orderhistory)
     return (
       <div>
         <MuiThemeProvider>
