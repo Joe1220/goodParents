@@ -4,7 +4,10 @@ const Product = require('./product');
 
 const DailyProductsSchema = new mongoose.Schema({
   date: String,
-  items: [{ type: Schema.Types.ObjectId, ref: "Product" }]
+  items: [{
+    type: Schema.Types.ObjectId,
+    ref: "Product"
+  }]
 }, {
   collection: "dailyProducts"
 });
@@ -12,7 +15,14 @@ const DailyProductsSchema = new mongoose.Schema({
 DailyProductsSchema.statics.getByDate = function (date) {
   return this.find({
     date: date
-  }).populate('items').exec();
+  }).populate({
+    path: "items",
+    options: {
+      sort: {
+        agezone: 1
+      }
+    }
+  }).exec();
 }
 
 module.exports = mongoose.model('DailyProduct', DailyProductsSchema);

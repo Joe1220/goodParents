@@ -8,6 +8,7 @@ const ProductSchema = new mongoose.Schema({
   "image": String,
   "price": Number,
   "calorie": Number,
+  "agezone": Number,
   "ingredients": [{
     "_id": { _$id: Schema.Types.ObjectId},
     "name": String,
