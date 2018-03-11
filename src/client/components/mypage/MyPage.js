@@ -92,7 +92,7 @@ export default class MyPage extends Component {
           </div>
           <div style={{ flex: 1, padding: "30px" }}>
             <Route exact path={url} render={() => (<h3>Please select any post</h3>)} />
-            <Route path={`${url}/OrderCheck`} render={(props)=>{return <Check {...props}/>}} />
+            <Route path={`${url}/OrderCheck`} render={(props)=>{return <Check {...props}orderhistory={this.props.orderhistory}/>}} />
             <Route path={`${url}/OrderCancle`} render={(props)=>{return <Cancle {...props}/>}} />
             <Route path={`${url}/ExchangeCheck`} render={(props)=>{return <ExchangeCheck {...props}/>}} />
             <Route path={`${url}/ExchangeCancle`} render={(props)=>{return <ExchangeCancle {...props}/>}} />
