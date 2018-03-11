@@ -46,6 +46,7 @@ class App extends Component {
     this.snackbarOpen = this.snackbarOpen.bind(this);
     this.snackbarClose = this.snackbarClose.bind(this);
     // 주문확인 메소드
+    this.getOrderHistory = this.getOrderHistory.bind(this);
   }
 
   foodDetailFetch() {
