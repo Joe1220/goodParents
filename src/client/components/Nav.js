@@ -95,21 +95,19 @@ export default class Example extends React.Component {
         <MuiThemeProvider>
           <NavItem>
             <Avatar
-            color={"Black"}
-            backgroundColor={"Orange"}
-            size={20}
-            style={{marginRight: -5, marginTop: 5}}
+              color={"Black"}
+              backgroundColor={"Orange"}
+              size={20}
+              style={{ marginRight: -5, marginTop: 5 }}
             >
               {this.props.cartItems.length}
             </Avatar>
           </NavItem>
           <NavItem>
-              <NavLink href="/cartmain">장바구니</NavLink>
+            <NavLink href="/cartmain">장바구니</NavLink>
           </NavItem>
         </MuiThemeProvider>
       )
-    } else {
-      return '';
     }
   }
   render() {
@@ -121,7 +119,7 @@ export default class Example extends React.Component {
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className="ml-auto" navbar>
-              {this.checkCart()}
+                {this.checkCart()}
                 <NavItem>
                   <NavLink href="/about">About</NavLink>
                 </NavItem>

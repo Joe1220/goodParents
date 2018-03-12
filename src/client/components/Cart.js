@@ -30,7 +30,6 @@ const styles = {
   },
   itemtitle: { marginTop: "35px", fontWeight: "bold" },
   image: {
-    border: "1px solid gray",
     width: "100px",
     height: "100px",
     display: "inline-block",
