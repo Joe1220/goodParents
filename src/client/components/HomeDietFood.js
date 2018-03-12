@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import Paper from 'material-ui/Paper';
 
 class HomeDietFood extends Component {
   render() {
     return (
-      <MuiThemeProvider>
+      <div>
         <div style={{ marginTop: "15px", marginBottom: "20px", padding: "15px", height: "480px" }}>
           <p style={{ fontWeight: "bold", fontSize: "10", color: "gray" }}>만 2세 식단</p>
           <hr style={{ maxWidth: "150px", marginLeft: "0px" }} />
@@ -24,7 +23,7 @@ class HomeDietFood extends Component {
             );
           })}
         </div>
-        <Paper style={{ marginTop: "15px", marginBottom: "20px", padding: "15px", height: "480px", backgroundColor: "#fafafa" }}>
+        <div style={{ marginTop: "15px", marginBottom: "20px", padding: "15px", height: "480px" }}>
           <p style={{ fontWeight: "bold", fontSize: "10", color: "gray" }}>만 3세 식단</p>
           <hr style={{ maxWidth: "150px", marginLeft: "0px" }} />
           {this.props.products.slice(5, 10).map((product, index) => {
@@ -40,7 +39,7 @@ class HomeDietFood extends Component {
               </div>
             );
           })}
-        </Paper>
+        </div>
         <div style={{ marginTop: "15px", marginBottom: "20px", padding: "15px", height: "480px" }}>
           <p style={{ fontWeight: "bold", fontSize: "10", color: "gray" }}>만 4세 식단</p>
           <hr style={{ maxWidth: "150px", marginLeft: "0px" }} />
@@ -58,7 +57,7 @@ class HomeDietFood extends Component {
             );
           })}
         </div>
-        <Paper style={{ marginTop: "15px", marginBottom: "20px", padding: "15px", height: "480px", backgroundColor: "#fafafa" }}>
+        <div style={{ marginTop: "15px", marginBottom: "20px", padding: "15px", height: "480px" }}>
           <p style={{ fontWeight: "bold", fontSize: "10", color: "gray" }}>만 5세 식단</p>
           <hr style={{ maxWidth: "150px", marginLeft: "0px" }} />
           {this.props.products.slice(15, 20).map((product, index) => {
@@ -74,8 +73,8 @@ class HomeDietFood extends Component {
               </div>
             );
           })}
-        </Paper>
-      </MuiThemeProvider>
+        </div>
+      </div>
     )
   }
 };

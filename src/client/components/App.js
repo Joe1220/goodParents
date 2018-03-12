@@ -31,7 +31,8 @@ class App extends Component {
       orderhistory: [],
       snackbar: {
         account: false,
-        fooddetail: false
+        fooddetail: false,
+        orderCheck: false
       }
     };
     this.onChangeFullDate = this.onChangeFullDate.bind(this);
@@ -61,20 +62,22 @@ class App extends Component {
   // 주문확인
   getOrderHistory() {
     const url = "/api/mypage/order"
-    fetch(url,{
+    fetch(url, {
       credentials: "include"
     })
-    .then(response => response.json())
-    .then(data => this.setState({ orderhistory: data || [] }))
-    .catch(error => console.error(error));
+      .then(response => response.json())
+      .then(data => this.setState({ orderhistory: data || [] }))
+      .catch(error => console.error(error));
   }
   // 장바구니 관련 메소드
   getCart() {
+    const upperThis = this;
     fetch(`/api/cart`, {
       credentials: "include"
     })
       .then(response => response.json())
       .then(data => this.setState({ cart: data.cart || [] }))
+      .then(() => { upperThis.forceUpdate(); })
       .catch(error => console.error(error));
   }
   cartDelete(oid) {
@@ -197,6 +200,8 @@ class App extends Component {
       }
     }).then(function () {
       upperThis.props.history.push("/mypage/OrderCheck");
+      upperThis.snackbarOpen("orderCheck");
+      upperThis.forceUpdate();
     });
   }
   // 계정관리 관련 메소드
@@ -322,12 +327,12 @@ class App extends Component {
             path="/mypage"
             render={props => {
               return <MyPage
-              {...props} 
-              account={this.state.account}
-              changeAccount={this.changeAccount}
-              snackbar={this.state.snackbar.account}
-              snackbarClose={this.snackbarClose}
-              orderhistory={this.state.orderhistory} />;
+                {...props}
+                account={this.state.account}
+                changeAccount={this.changeAccount}
+                snackbar={this.state.snackbar}
+                snackbarClose={this.snackbarClose}
+                orderhistory={this.state.orderhistory} />;
             }}
           />
           {/* AdminPage */}

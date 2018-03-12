@@ -59,7 +59,7 @@ module.exports = {
               },
               secret,
               {
-                expiresIn: "1d",
+                expiresIn: "7d",
                 issuer: "goodParents",
                 subject: "userInfo"
               },

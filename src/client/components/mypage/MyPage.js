@@ -91,7 +91,7 @@ export default class MyPage extends Component {
           </div>
           <div style={{ flex: 1, padding: "30px" }}>
             <Route exact path={url} render={() => (<h3>Please select any post</h3>)} />
-            <Route path={`${url}/OrderCheck`} render={(props) => { return <Check {...props} orderhistory={this.props.orderhistory}/> }} />
+            <Route path={`${url}/OrderCheck`} render={(props) => { return <Check {...props} orderhistory={this.props.orderhistory} snackbarClose={this.props.snackbarClose} snackbar={this.props.snackbar.orderCheck} /> }} />
             <Route path={`${url}/OrderCancle`} render={(props) => { return <Cancle {...props} /> }} />
             <Route path={`${url}/ExchangeCheck`} render={(props) => { return <ExchangeCheck {...props} /> }} />
             <Route path={`${url}/ExchangeCancle`} render={(props) => { return <ExchangeCancle {...props} /> }} />
@@ -105,7 +105,7 @@ export default class MyPage extends Component {
             <Route path={`${url}/CouncellingRequest`} render={(props) => { return <CouncellingRequest {...props} /> }} />
             <Route path={`${url}/AccountCheck`} render={(props) => {
               return <AccountCheck {...props} account={this.props.account} snackbarClose={this.props.snackbarClose}
-                snackbar={this.props.snackbar} />
+                snackbar={this.props.snackbar.account} />
             }} />
             <Route path={`${url}/AccountUpdate`} render={(props) => { return <AccountUpdate {...props} account={this.props.account} changeAccount={this.props.changeAccount} /> }} />
           </div>
