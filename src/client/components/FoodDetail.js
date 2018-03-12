@@ -13,7 +13,7 @@ const styles = {
     marginRight: "15px",
     marginTop: "15px"
   },
-  image: { width: "457.5px", height: "703px" },
+  image: { width: "457.5px", height: "703px", objectFit: "cover" },
   detailcontainer: {
     width: "621px",
     height: "703px",
@@ -52,7 +52,7 @@ class FoodDetail extends Component {
       value: value
     });
   };
-  snackbarClose(){
+  snackbarClose() {
     this.props.snackbarClose('fooddetail');
   }
   toCart = () => {
@@ -132,14 +132,14 @@ class FoodDetail extends Component {
 
             <TabPanel>
               <p >
-                {this.props.ingredients.map((ingredient, index)=>{
+                {this.props.ingredients.map((ingredient, index) => {
                   return <p key={index}>{ingredient.name} </p>
                 })}
               </p>
             </TabPanel>
             <TabPanel>
               <p >
-                {this.props.nutrients.map((nutrient, index)=>{
+                {this.props.nutrients.map((nutrient, index) => {
                   return <p key={index}>{nutrient.name} </p>
                 })}
               </p>
