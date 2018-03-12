@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import { Container } from 'reactstrap';
 import { Route, Link } from 'react-router-dom';
 
