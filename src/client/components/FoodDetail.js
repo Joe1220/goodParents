@@ -131,15 +131,17 @@ class FoodDetail extends Component {
             </TabList>
 
             <TabPanel>
-              <p style={{ height: "100px" }}>
-                Barley, Carrot, Mushroom, Olive Oil, Onions, Salt and Black
-                Pepper, Spinach, Thyme
+              <p >
+                {this.props.ingredients.map((ingredient, index)=>{
+                  return <p key={index}>{ingredient.name} </p>
+                })}
               </p>
             </TabPanel>
             <TabPanel>
-              <p style={{ height: "100px" }}>
-                Our culinary wizards carefully craft our dishes in our
-                halal-friendly kitchen. Please note that this dish may contain
+              <p >
+                {this.props.nutrients.map((nutrient, index)=>{
+                  return <p key={index}>{nutrient.name} </p>
+                })}
               </p>
             </TabPanel>
             <hr style={styles.hr} />

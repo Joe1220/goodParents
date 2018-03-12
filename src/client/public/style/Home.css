@@ -87,18 +87,19 @@ a.HomeDatePickerDay {
 /* Test */
 .HomeDietFood {
   display: inline-block;
-  width: 215.19px;
+  width: 209.19px;
   height: 410px;
   margin-right: 8px;
+  margin-bottom: 60px;
 }
 .HomeDietFood:last-child {
   display: inline-block;
-  width: 215.19px;
+  width: 209.19px;
   height: 410px;
   margin-right: 0px;
 }
 .HomeDietFoodImg img{
-  width: 215.19px;
+  width: 209.19px;
   height: 255px;
 }
 .HomeDietFoodFullTextTitle {

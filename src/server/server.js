@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require("path");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const helmet = require("helmet");
@@ -66,6 +67,8 @@ app.use("/api/mypage", MypageRouter);
 
 app.use("/api/payment", AuthMiddleware);
 app.use("/api/payment", PaymentRouter);
+
+// app.use("/foodPictures", express.static(path.join(__dirname, "foodPictures")));
 
 // app.get("/api", (req, res) => {
 //   res.send("api");
