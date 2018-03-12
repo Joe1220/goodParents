@@ -8,15 +8,15 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 const styles = {
   container: { display: "flex", marginBottom: "50px" },
   imagecontainer: {
-    width: "457.5px",
-    height: "703px",
+    width: "600px",
+    height: "700px",
     marginRight: "15px",
     marginTop: "15px"
   },
-  image: { width: "457.5px", height: "703px", objectFit: "cover" },
+  image: { width: "600px", height: "700px", objectFit: "cover" },
   detailcontainer: {
     width: "621px",
-    height: "703px",
+    height: "700px",
     marginLeft: "15px",
     marginTop: "15px"
   },
