@@ -7,8 +7,8 @@ class HomeDietFood extends Component {
   render(){
     return (
       <MuiThemeProvider>
-        <Paper style={{ marginTop: "15px", marginBottom: "20px", padding: "15px", height: "480px" }}>
-          <p style={{ fontWeight: "normal", fontSize: "10" }}>만 2세 식단</p>
+        <div style={{ marginTop: "15px", marginBottom: "20px", padding: "15px", height: "480px" }}>
+          <p style={{ fontWeight: "bold", fontSize: "10", color: "gray" }}>만 2세 식단</p>
           <hr style={{ maxWidth: "150px", marginLeft: "0px" }}/>
           {this.props.products.slice(0,5).map((product, index)=>{
             return (
@@ -23,9 +23,9 @@ class HomeDietFood extends Component {
               </div>
             );
           })}
-        </Paper>
-        <Paper style={{ marginTop: "15px", marginBottom: "20px", padding: "15px", height: "480px" }}>
-          <p style={{ fontWeight: "normal", fontSize: "10" }}>만 3세 식단</p>
+        </div>
+        <Paper style={{ marginTop: "15px", marginBottom: "20px", padding: "15px", height: "480px", backgroundColor: "#fafafa" }}>
+          <p style={{ fontWeight: "bold", fontSize: "10", color: "gray" }}>만 3세 식단</p>
           <hr style={{ maxWidth: "150px", marginLeft: "0px" }}/>
           {this.props.products.slice(5,10).map((product, index)=>{
             return (
@@ -41,8 +41,8 @@ class HomeDietFood extends Component {
             );
           })}
         </Paper>
-        <Paper style={{ marginTop: "15px", marginBottom: "20px", padding: "15px", height: "480px" }}>
-          <p style={{ fontWeight: "normal", fontSize: "10" }}>만 4세 식단</p>
+        <div style={{ marginTop: "15px", marginBottom: "20px", padding: "15px", height: "480px" }}>
+          <p style={{ fontWeight: "bold", fontSize: "10", color: "gray" }}>만 4세 식단</p>
           <hr style={{ maxWidth: "150px", marginLeft: "0px" }}/>
           {this.props.products.slice(10,15).map((product, index)=>{
             return (
@@ -57,9 +57,9 @@ class HomeDietFood extends Component {
               </div>
             );
           })}
-        </Paper>
-        <Paper style={{ marginTop: "15px", marginBottom: "20px", padding: "15px", height: "480px" }}>
-          <p style={{ fontWeight: "normal", fontSize: "10" }}>만 5세 식단</p>
+        </div>
+        <Paper style={{ marginTop: "15px", marginBottom: "20px", padding: "15px", height: "480px", backgroundColor: "#fafafa"}}>
+          <p style={{ fontWeight: "bold", fontSize: "10", color: "gray" }}>만 5세 식단</p>
           <hr style={{ maxWidth: "150px", marginLeft: "0px" }}/>
           {this.props.products.slice(15,20).map((product, index)=>{
             return (

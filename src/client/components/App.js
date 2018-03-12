@@ -285,7 +285,6 @@ class App extends Component {
     this.setState(stateCopy);
   }
   render() {
-    console.log(this.state.products)
     return (
       <div>
         <Nav

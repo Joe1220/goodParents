@@ -7,9 +7,9 @@ class HomeCarousel extends Component {
   render(){
     var settings = {
       dots: false,
-      arrows: false,
+      arrows: true,
       slidesToShow: 1,
-      slidesToScroll: 1
+      slidesToScroll: 3
     };
     return(
       <div>
