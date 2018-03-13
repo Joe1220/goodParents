@@ -234,6 +234,9 @@ class App extends Component {
     if (prevState.fullDate !== this.state.fullDate) {
       this.foodDetailFetch();
     }
+    if (prevState.cart !== this.state.cart) {
+      this.getCart();
+    }
   }
 
   renderFoodDetail() {
