@@ -50,9 +50,9 @@ module.exports = {
             { upsert: true, new: true }
           );
         })
-        .then(result => {
-          return result.cart.length;
-        })
+        // .then(result => {
+        //   return result.cart.length;
+        // })
         .catch(error => {
           throw new Error(error);
         })
@@ -83,9 +83,9 @@ module.exports = {
             }
           );
         })
-        .then(result => {
-          return result.cart.length;
-        })
+        // .then(result => {
+        //   return result//.cart.length;
+        // })
     );
   },
 
@@ -111,9 +111,9 @@ module.exports = {
             { $pull: { cart: { _id: req.body.item } } }
           );
         })
-        .then(result => {
-          return result.cart.length;
-        })
+        // .then(result => {
+        //   return result//.cart.length;
+        // })
     );
   },
 
@@ -141,9 +141,9 @@ module.exports = {
             }
           );
         })
-        .then(result => {
-          return result.cart.length;
-        })
+        // .then(result => {
+        //   return result.cart.length;
+        // })
     );
   },
 
@@ -171,9 +171,9 @@ module.exports = {
             }
           );
         })
-        .then(result => {
-          return result.cart.length;
-        })
+        // .then(result => {
+        //   return result.cart.length;
+        // })
     );
   }
 
