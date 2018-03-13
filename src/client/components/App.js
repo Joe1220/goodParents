@@ -59,6 +59,7 @@ class App extends Component {
       .then(data => this.setState({ products: data[0].items }))
       .catch(error => console.error(error));
   }
+
   // 주문확인
   getOrderHistory() {
     const url = "/api/mypage/order"
@@ -67,8 +68,10 @@ class App extends Component {
     })
       .then(response => response.json())
       .then(data => this.setState({ orderhistory: data || [] }))
+      .then(() => {this.forceUpdate();})
       .catch(error => console.error(error));
   }
+
   // 장바구니 관련 메소드
   getCart() {
     const upperThis = this;
@@ -80,6 +83,7 @@ class App extends Component {
       .then(() => { upperThis.forceUpdate(); })
       .catch(error => console.error(error));
   }
+
   cartDelete(oid) {
     const url = "/api/cart";
     const data = {
@@ -102,6 +106,7 @@ class App extends Component {
       .then(() => this.getCart())
       .catch(err => console.error(err));
   }
+
   updateCheck(oid) {
     const url = "/api/cart";
     for (let i in this.state.cart) {
@@ -162,6 +167,7 @@ class App extends Component {
       }
     }
   }
+
   qtyAdd(oid) {
     const url = "/api/cart/increase";
     for (let i in this.state.cart) {
@@ -189,6 +195,7 @@ class App extends Component {
       }
     }
   }
+
   toPayment(data) {
     const upperThis = this;
     fetch("/api/payment", {
@@ -204,6 +211,7 @@ class App extends Component {
       upperThis.forceUpdate();
     });
   }
+
   // 계정관리 관련 메소드
   getAccount() {
     const url = "/api/mypage/account";
@@ -225,6 +233,9 @@ class App extends Component {
   componentDidUpdate(prevProps, prevState) {
     if (prevState.fullDate !== this.state.fullDate) {
       this.foodDetailFetch();
+    }
+    if (prevState.cart !== this.state.cart) {
+      this.getCart();
     }
   }
 
@@ -263,6 +274,7 @@ class App extends Component {
   onChangeFullDate(fullDate) {
     this.setState({ fullDate: fullDate });
   }
+
   changeAccount(userinfo) {
     this.setState({ account: userinfo })
     const upperThis = this;
@@ -287,11 +299,13 @@ class App extends Component {
     stateCopy.snackbar[name] = true
     this.setState(stateCopy);
   }
+
   snackbarClose(name) {
     const stateCopy = Object.assign({}, this.state);
     stateCopy.snackbar[name] = false
     this.setState(stateCopy);
   }
+
   render() {
     return (
       <div>
@@ -332,7 +346,8 @@ class App extends Component {
                 changeAccount={this.changeAccount}
                 snackbar={this.state.snackbar}
                 snackbarClose={this.snackbarClose}
-                orderhistory={this.state.orderhistory} />;
+                orderhistory={this.state.orderhistory}
+                getOrderHistory={this.getOrderHistory} />;
             }}
           />
           {/* AdminPage */}

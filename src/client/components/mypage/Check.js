@@ -16,6 +16,7 @@ export default class Check extends Component {
     super(props);
     this.renderorderhistory = this.renderorderhistory.bind(this);
     this.snackbarClose = this.snackbarClose.bind(this);
+    props.getOrderHistory();
   }
 
   snackbarClose() {
@@ -51,6 +52,7 @@ export default class Check extends Component {
       )
     })
   }
+
   render() {
     return (
       <div>
