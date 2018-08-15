@@ -33,7 +33,7 @@ app.disable("x-powered-by");
 app.use(cookieParser(config.secret));
 // 몽고디비 커넥션
 mongoose
-  .connect(`mongodb://goodParents:abc123@localhost:${mongoPort}/goodParents`)
+  .connect(`mongodb://@localhost:${mongoPort}/goodParents`, { useNewUrlParser: true })
   .then(() => {
     console.log("mongodb connected.");
   })
