@@ -111,10 +111,10 @@ class App extends Component {
     const url = "/api/cart";
     for (let i in this.state.cart) {
       if (
-        this.state.cart[i]._id._id == oid.id &&
-        this.state.cart[i].year == oid.year &&
-        this.state.cart[i].month == oid.month &&
-        this.state.cart[i].day == oid.day
+        this.state.cart[i]._id._id === oid.id &&
+        this.state.cart[i].year === oid.year &&
+        this.state.cart[i].month === oid.month &&
+        this.state.cart[i].day === oid.day
       ) {
         const stateCopy = Object.assign({}, this.state);
         stateCopy.cart[i].checked = !stateCopy.cart[i].checked;
@@ -144,10 +144,10 @@ class App extends Component {
     const url = "/api/cart/decrease";
     for (let i in this.state.cart) {
       if (
-        this.state.cart[i]._id._id == oid.id &&
-        this.state.cart[i].year == oid.year &&
-        this.state.cart[i].month == oid.month &&
-        this.state.cart[i].day == oid.day
+        this.state.cart[i]._id._id === oid.id &&
+        this.state.cart[i].year === oid.year &&
+        this.state.cart[i].month === oid.month &&
+        this.state.cart[i].day === oid.day
       ) {
         const data = {
           item: oid.id,
@@ -172,10 +172,10 @@ class App extends Component {
     const url = "/api/cart/increase";
     for (let i in this.state.cart) {
       if (
-        this.state.cart[i]._id._id == oid.id &&
-        this.state.cart[i].year == oid.year &&
-        this.state.cart[i].month == oid.month &&
-        this.state.cart[i].day == oid.day
+        this.state.cart[i]._id._id === oid.id &&
+        this.state.cart[i].year === oid.year &&
+        this.state.cart[i].month === oid.month &&
+        this.state.cart[i].day === oid.day
       ) {
         const data = {
           item: oid.id,

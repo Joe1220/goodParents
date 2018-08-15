@@ -35,7 +35,7 @@ export default class Payment extends React.Component {
   }
 
   render() {
-    const upperThis = this;
+    // const upperThis = this;
     return (
       <Container style={styles.container}>
         <div style={styles.content}>

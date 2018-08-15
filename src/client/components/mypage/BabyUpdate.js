@@ -3,7 +3,7 @@ import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import TextField from "material-ui/TextField";
 import RaisedButton from "material-ui/RaisedButton";
 import Paper from "material-ui/Paper";
-import Checkbox from "material-ui/Checkbox";
+// import Checkbox from "material-ui/Checkbox";
 
 const styles = {
   container: { height: "550px" },
