@@ -96,10 +96,16 @@ class App extends Component {
   getCart() {
     // const upperThis = this;
     fetch(`/api/cart`, {
+      Method: "GET",
       credentials: "include"
     })
-    .then(response => response.json())
-    .then(data => this.setState({ cart: data.cart || [] }))
+    .then(response => response.text())
+    .then(data => {
+      if(data) {
+        this.setState({ cart: data.cart })
+      }
+      console.log('데이타: ',data)
+    })
     // .then(() => { upperThis.forceUpdate(); })
     .catch(error => console.error(error));
   }
