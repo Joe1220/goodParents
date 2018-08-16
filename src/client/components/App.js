@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Route, Switch, withRouter } from "react-router-dom";
 import { withCookies, Cookies } from 'react-cookie';
-import cookie from 'react-cookies'
 import { instanceOf } from 'prop-types';
 
 
@@ -89,20 +88,20 @@ class App extends Component {
           return null;
         }
       })
-      .then(() => {this.forceUpdate();})
+      // .then(() => {this.forceUpdate();})
       .catch(error => console.error(error));
   }
 
   // 장바구니 관련 메소드
   getCart() {
-    const upperThis = this;
+    // const upperThis = this;
     fetch(`/api/cart`, {
       credentials: "include"
     })
-      .then(response => response.json())
-      .then(data => this.setState({ cart: data.cart || [] }))
-      .then(() => { upperThis.forceUpdate(); })
-      .catch(error => console.error(error));
+    .then(response => response.json())
+    .then(data => this.setState({ cart: data.cart || [] }))
+    // .then(() => { upperThis.forceUpdate(); })
+    .catch(error => console.error(error));
   }
 
   cartDelete(oid) {
@@ -229,7 +228,7 @@ class App extends Component {
     }).then(function () {
       upperThis.props.history.push("/mypage/OrderCheck");
       upperThis.snackbarOpen("orderCheck");
-      upperThis.forceUpdate();
+      // upperThis.forceUpdate();
     });
   }
 
@@ -246,9 +245,11 @@ class App extends Component {
 
   componentDidMount() {
     this.foodDetailFetch();
-    // this.getCart();
-    // this.getAccount();
-    // this.getOrderHistory();
+    if(this.state.token) {
+      this.getCart();
+      this.getAccount();
+      this.getOrderHistory();
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
