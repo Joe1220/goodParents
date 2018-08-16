@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 
 const cookieOptions = {
   maxAge: 1000 * 60 * 60 * 24, // would expire after 1 day
-  httpOnly: true, // The cookie only accessible by the web server
+  httpOnly: false, // The cookie only accessible by the web server
   signed: true // Indicates if the cookie should be signed
 };
 

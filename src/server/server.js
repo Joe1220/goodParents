@@ -4,6 +4,8 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const helmet = require("helmet");
 const cookieParser = require("cookie-parser");
+var morgan = require('morgan')
+const cookiesMiddleware = require('universal-cookie-express');
 
 const port = process.env.PORT || 3001;
 const mongoPort = process.env.MONGOPORT || 27017;
@@ -31,6 +33,7 @@ app.use(helmet());
 app.disable("x-powered-by");
 // 쿠키파서 미들웨어 연결
 app.use(cookieParser(config.secret));
+app.use(morgan())
 // 몽고디비 커넥션
 mongoose
   .connect(process.env.MONGO_URL || `mongodb://joe1220:c159789c@ds119692.mlab.com:19692/heroku_t87150df`, { useNewUrlParser: true })

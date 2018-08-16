@@ -18,5 +18,5 @@ app.use(proxy("/", {
 }));
 
 app.listen(port, () => {
-  console.log("App listening port " + port);
+  console.log("App listening port " + apiPort);
 });

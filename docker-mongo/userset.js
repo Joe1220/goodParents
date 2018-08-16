@@ -16,12 +16,12 @@ try {
   db = db.getSiblingDB("goodParents");
 
   db.createUser({
-    user: "goodParents",
-    pwd: "abc123",
+    user: "joe1220",
+    pwd: "c159789c",
     roles: [
       {
         role: "dbOwner",
-        db: "goodParents"
+        db: "heroku_t87150df"
       }
     ]
   });

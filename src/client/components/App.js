@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 import { Route, Switch, withRouter } from "react-router-dom";
+import { withCookies, Cookies } from 'react-cookie';
+import cookie from 'react-cookies'
+import { instanceOf } from 'prop-types';
+
 
 import About from "./About";
 import Area from "./Area";
@@ -21,8 +25,12 @@ import AdminPage from "./adminpage/AdminPage";
 import 'file-loader?name=/public/foodPictures/[name].[ext]';
 
 class App extends Component {
+  static propTypes = {
+    cookies: instanceOf(Cookies).isRequired
+  };
   constructor(props) {
     super(props);
+    const { cookies } = props;
     this.state = {
       products: [],
       cart: [],
@@ -33,8 +41,9 @@ class App extends Component {
         account: false,
         fooddetail: false,
         orderCheck: false
-      }
-    };
+      },
+      token: cookies.cookies["token"]
+    }; 
     this.onChangeFullDate = this.onChangeFullDate.bind(this);
     // 장바구니 관련 메소드
     this.getCart = this.getCart.bind(this);
@@ -56,7 +65,13 @@ class App extends Component {
   foodDetailFetch() {
     fetch(`/api/products?date=${this.state.fullDate}`)
       .then(response => response.json())
-      .then(data => this.setState({ products: data[0].items }))
+      .then(data => {
+        if(data.length) {
+          return this.setState({ products: data[0].items })
+        } else {
+          return null;
+        }
+      })
       .catch(error => console.error(error));
   }
 
@@ -67,7 +82,13 @@ class App extends Component {
       credentials: "include"
     })
       .then(response => response.json())
-      .then(data => this.setState({ orderhistory: data || [] }))
+      .then(data => {
+        if(data.length) {
+          this.setState({ orderhistory: data || [] })
+        } else {
+          return null;
+        }
+      })
       .then(() => {this.forceUpdate();})
       .catch(error => console.error(error));
   }
@@ -225,9 +246,9 @@ class App extends Component {
 
   componentDidMount() {
     this.foodDetailFetch();
-    this.getCart();
-    this.getAccount();
-    this.getOrderHistory();
+    // this.getCart();
+    // this.getAccount();
+    // this.getOrderHistory();
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -307,6 +328,7 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.state)
     return (
       <div>
         <Nav
@@ -387,4 +409,4 @@ class App extends Component {
   }
 }
 
-export default withRouter(App);
+export default withRouter((withCookies(App)));
