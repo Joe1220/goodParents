@@ -98,7 +98,6 @@ class App extends Component {
       if(data) {
         this.setState({ cart: data.cart })
       }
-      console.log('데이타: ',data)
     })
     // .then(() => { upperThis.forceUpdate(); })
     .catch(error => console.error(error));
@@ -329,7 +328,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state)
     return (
       <div>
         <Nav
