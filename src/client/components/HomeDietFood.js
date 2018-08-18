@@ -6,10 +6,10 @@ class HomeDietFood extends Component {
   render() {
     return (
       <div>
-        <div style={{ marginTop: "15px", marginBottom: "20px", padding: "15px", height: "480px" }}>
+        <div style={{ marginTop: "15px", marginBottom: "20px", padding: "15px", height: "480px"}}>
           <p style={{ fontWeight: "bold", fontSize: "10", color: "gray" }}>만 2세 식단</p>
           <hr style={{ maxWidth: "150px", marginLeft: "0px" }} />
-          {this.props.products.slice(0, 5).map((product, index) => {
+          {this.props.products.slice(0, 4).map((product, index) => {
             return (
               <div className="HomeDietFood" key={index}>
                 <Link className="HomeDietFoodImg" to={`/foodDetail/${product._id}`}><img src={product.image} style={{ objectFit: "cover" }} alt="food" /></Link>
@@ -26,7 +26,7 @@ class HomeDietFood extends Component {
         <div style={{ marginTop: "15px", marginBottom: "20px", padding: "15px", height: "480px" }}>
           <p style={{ fontWeight: "bold", fontSize: "10", color: "gray" }}>만 3세 식단</p>
           <hr style={{ maxWidth: "150px", marginLeft: "0px" }} />
-          {this.props.products.slice(5, 10).map((product, index) => {
+          {this.props.products.slice(5, 9).map((product, index) => {
             return (
               <div className="HomeDietFood" key={index}>
                 <Link className="HomeDietFoodImg" to={`/foodDetail/${product._id}`}><img src={product.image} style={{ objectFit: "cover" }} alt="food" /></Link>
@@ -36,14 +36,14 @@ class HomeDietFood extends Component {
                 </div>
                 <hr />
                 <p className="HomeDietFoodPrice">{product.price.toLocaleString()} 원</p>
-              </div>
+              </div> 
             );
           })}
         </div>
         <div style={{ marginTop: "15px", marginBottom: "20px", padding: "15px", height: "480px" }}>
           <p style={{ fontWeight: "bold", fontSize: "10", color: "gray" }}>만 4세 식단</p>
           <hr style={{ maxWidth: "150px", marginLeft: "0px" }} />
-          {this.props.products.slice(10, 15).map((product, index) => {
+          {this.props.products.slice(9, 14).map((product, index) => {
             return (
               <div className="HomeDietFood" key={index}>
                 <Link className="HomeDietFoodImg" to={`/foodDetail/${product._id}`}><img src={product.image} style={{ objectFit: "cover" }} alt="food" /></Link>
