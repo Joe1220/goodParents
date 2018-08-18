@@ -36,7 +36,7 @@ app.use(cookieParser(config.secret));
 app.use(morgan())
 // 몽고디비 커넥션
 mongoose
-  .connect(process.env.MONGO_URL || `mongodb://joe1220:c159789c@ds119692.mlab.com:19692/heroku_t87150df`, { useNewUrlParser: true })
+  .connect(`mongodb://joe1220:c159789c@ds119692.mlab.com:19692/heroku_t87150df`, { useNewUrlParser: true })
   .then(() => {
     console.log("mongodb connected.");
   })
