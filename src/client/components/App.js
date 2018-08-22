@@ -20,9 +20,6 @@ import Signup from "./Signup";
 import MyPage from "./mypage/MyPage";
 import AdminPage from "./adminpage/AdminPage";
 
-// 음식 사진 뿌려주기 위한 static file 설정.
-import 'file-loader?name=/public/foodPictures/[name].[ext]';
-
 class App extends Component {
   static propTypes = {
     cookies: instanceOf(Cookies).isRequired
