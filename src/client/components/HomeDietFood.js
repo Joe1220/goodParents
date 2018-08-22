@@ -6,7 +6,7 @@ class HomeDietFood extends Component {
   render() {
     return (
       <div>
-        <div style={{ marginTop: "15px", marginBottom: "20px", padding: "15px", height: "480px"}}>
+        <div style={{ marginTop: "15px", marginBottom: "20px", padding: "15px", height: "480px", display: "inline-block",minWidth: "100%"}}>
           <p style={{ fontWeight: "bold", fontSize: "10", color: "gray" }}>만 2세 식단</p>
           <hr style={{ maxWidth: "150px", marginLeft: "0px" }} />
           {this.props.products.slice(0, 4).map((product, index) => {
