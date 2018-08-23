@@ -35,6 +35,7 @@ app.disable("x-powered-by");
 app.use(cookieParser(config.secret));
 app.use(morgan())
 // 몽고디비 커넥션
+mongoose.Promise = global.Promise;
 mongoose
   .connect(`mongodb://joe1220:c159789c@ds119692.mlab.com:19692/heroku_t87150df`, { useNewUrlParser: true })
   .then(() => {
