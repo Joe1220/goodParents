@@ -1,3 +1,0 @@
-# .dockerignore file
-*
-!server.js
