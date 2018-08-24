@@ -16,7 +16,7 @@
         "clean": "concurrently \"rimraf node_modules\" \"cd client && rimraf node_modules build\" \"cd server && rimraf node_modules build\"",
         "heroku-postbuild": "yarn build",
         "install": "(cd client && yarn) && (cd ..) && (cd server && yarn)",
-        "start": "concurrently \"cd client && PORT=3000 yarn start\"  \"cd ..\" \"cd server && PORT=3001 yarn start\"",
+        "start": "concurrently \"cd client && yarn start\"  \"cd server && yarn start\"",
         "start:prod": "cd server && yarn start:prod"
     }
   }
