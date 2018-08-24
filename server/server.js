@@ -5,10 +5,10 @@ const bodyParser = require("body-parser");
 const helmet = require("helmet");
 const cookieParser = require("cookie-parser");
 var morgan = require('morgan')
-const cookiesMiddleware = require('universal-cookie-express');
+// const cookiesMiddleware = require('universal-cookie-express');
 
 const port = process.env.PORT || 3001;
-const mongoPort = process.env.MONGOPORT || 27017;
+// const mongoPort = process.env.MONGOPORT || 27017;
 
 const UsersRouter = require("./routes/users");
 const ProductsRouter = require("./routes/products");
@@ -22,6 +22,8 @@ const PaymentRouter = require("./routes/payment");
 const config = require("./config");
 // 익스프레스 연결
 const app = express();
+const staticFiles = express.static(path.join(__dirname, '../../client/build'))
+app.use(staticFiles)
 // 바디파서 연결
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -85,6 +87,8 @@ app.use("/api/payment", PaymentRouter);
 // app.get("/", (req, res) => {
 //   res.send("test");
 // });
+
+app.use('/*', staticFiles)
 
 app.listen(port, () => {
   console.log("App listening on port " + port);
