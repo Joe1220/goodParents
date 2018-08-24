@@ -22,7 +22,7 @@ const PaymentRouter = require("./routes/payment");
 const config = require("./config");
 // 익스프레스 연결
 const app = express();
-const staticFiles = express.static(path.join(__dirname, '../client/build'))
+const staticFiles = express.static(path.join(__dirname, '../../client/build'))
 app.use(staticFiles)
 
 // 바디파서 연결
