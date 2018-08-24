@@ -37,7 +37,7 @@ app.use(morgan())
 // 몽고디비 커넥션
 mongoose.Promise = global.Promise;
 mongoose
-  .connect(`mongodb://joe1220:c159789c@ds119692.mlab.com:19692/heroku_t87150df`, { useNewUrlParser: true })
+  .connect(`mongodb://joe1220:c159789c@ds131942.mlab.com:31942/goodparents`, { useNewUrlParser: true })
   .then(() => {
     console.log("mongodb connected.");
   })
