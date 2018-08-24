@@ -1,0 +1,122 @@
+/* HomeCarousel img */
+.carousel-inner{
+  width:100%;
+  max-height: 350px !important;
+}
+
+.carousel-inner img {
+  margin: 0 auto;
+}
+/* HomeDatepicker */
+.HomeDatePickerContainer {
+  margin: 0 auto;
+  padding: 0 25px 0 25px;
+  width: 90%;
+}
+.HomeDatePickerContainer hr.HomeDatePickerHr_1 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.HomeDatePickerContainer hr.HomeDatePickerHr_2 {
+  margin-top: 0;
+}
+a.slick-slide.slick-active.HomeDatePickerDay {
+  text-decoration: none;
+}
+.HomeDatePickerDay {
+  margin-top: 0px;
+}
+.HomeDatePickerDay.clicked {
+  background-color: #f3f3f3;
+  border-width: 0px 0px 4px 0;
+  border-style: solid;
+  border-color: rgb(25, 25, 221);
+}
+.HomeDatePickerDay h3:hover,
+.HomeDatePickerDay p:hover
+{
+  color: rgb(25,25,221);
+}
+.HomeDatePickerDay p {
+  padding: 9px;
+}
+.slick-next:before,
+.slick-prev:before {
+  font-size: 20px;
+  line-height: 1;
+  opacity: .75;
+  color: rgb(25,25,221);
+}
+/* p.Mon:hover,
+p.Tue:hover,
+p.Wen:hover,
+p.Thu:hover,
+p.Fri:hover,
+p.Sat:hover,
+p.Sun:hover
+{
+  color: rgb(25,25,221);
+} */
+a.HomeDatePickerDay {
+  text-align: center;
+  font-family: SofiaProLight;
+}
+.HomeDatePickerDay p {
+  text-transform: uppercase;
+  color: #8b898d;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.HomeDatePickerDay h3 {
+  color: black;
+  font-size: 18px;
+}
+/* HomeDiet */
+.HomeDiet {
+  margin: 0 auto;
+  margin-top: 50px;
+  margin-bottom: 100px;
+}
+.HomeDietDate {
+  font-size: 22px;
+  font-weight: bold;
+  padding: 0 0px 0 0px;
+  margin-bottom: 10px;
+}
+/* Test */
+.HomeDietFood {
+  display: inline-block;
+  width: 209.19px;
+  height: 410px;
+  margin-right: 8px;
+  margin-bottom: 60px;
+}
+.HomeDietFood:last-child {
+  display: inline-block;
+  width: 209.19px;
+  height: 410px;
+  margin-right: 0px;
+}
+.HomeDietFoodImg img{
+  width: 209.19px;
+  height: 255px;
+}
+.HomeDietFoodFullTextTitle {
+  margin-top: 10px;
+  font-family: SofiaProLight;
+  font-weight: bold;
+  font-size: 16px;
+}
+.HomeDietFoodFullTextSubtitle {
+  font-family: SofiaProLight;
+  font-size: 14px;
+  color: #8b898d;
+}
+.HomeDietFood hr {
+  margin: 3px 0 3px 0;
+}
+.HomeDietFoodPrice {
+  padding-top: 10px;
+}
+
