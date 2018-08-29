@@ -52,15 +52,15 @@ export default class Example extends React.Component {
             {window.sessionStorage.getItem("name")}님
           </DropdownToggle>
           <DropdownMenu >
-            <DropdownItem href="/mypage">
-              마이페이지
+            <DropdownItem>
+              <Link to="/mypage">마이페이지</Link>
             </DropdownItem>
-            <DropdownItem href="/adminpage">
-              관리자 페이지
+            <DropdownItem>
+               <Link to="/adminpage">페이지 관리자</Link>
             </DropdownItem>
             <DropdownItem divider />
-            <DropdownItem href="/about">
-              로그아웃
+            <DropdownItem>
+              <Link to="/about">로그아웃</Link>
             </DropdownItem>
           </DropdownMenu>
         </UncontrolledDropdown>
@@ -72,12 +72,12 @@ export default class Example extends React.Component {
             {window.sessionStorage.getItem("name")}님
           </DropdownToggle>
           <DropdownMenu >
-            <DropdownItem href="/mypage">
-              마이페이지
+            <DropdownItem>
+              <Link to="/mypage">마이페이지</Link>
             </DropdownItem>
             <DropdownItem divider />
-            <DropdownItem href="/about">
-              로그아웃
+            <DropdownItem>
+              <Link to="/about">로그아웃</Link>
             </DropdownItem>
           </DropdownMenu>
         </UncontrolledDropdown>
@@ -101,7 +101,7 @@ export default class Example extends React.Component {
               size={20}
               style={{ marginRight: -5, marginTop: 5 }}
             >
-              {this.props.cartItems.length}
+              {this.props.cartItems.length ? this.props.cartItems.length : 0}
             </Avatar>
           </NavItem>
           <NavItem>
