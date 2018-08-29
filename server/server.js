@@ -22,8 +22,8 @@ const PaymentRouter = require("./routes/payment");
 const config = require("./config");
 // 익스프레스 연결
 const app = express();
-const staticFiles = express.static(path.join(__dirname, '../../client/build'))
-app.use(staticFiles)
+const staticFiles = express.static(path.join(__dirname, '../../client/build'));
+app.use(staticFiles);
 
 // 바디파서 연결
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -89,7 +89,7 @@ app.use("/api/payment", PaymentRouter);
 //   res.send("test");
 // });
 
-app.use('/*', staticFiles)
+app.use('/*', staticFiles);
 
 app.listen(port, () => {
   console.log("App listening on port " + port);
