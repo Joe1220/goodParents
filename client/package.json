@@ -36,6 +36,9 @@
     "universal-cookie": "^2.2.0",
     "universal-cookie-express": "^2.2.0"
   },
+  "engines": {
+    "node": "8.11.3"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
