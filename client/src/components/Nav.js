@@ -94,19 +94,22 @@ export default class Example extends React.Component {
     if (window.sessionStorage.getItem("name")) {
       return (
         <MuiThemeProvider>
-          <NavItem>
-            <Avatar
-              color={"Black"}
-              backgroundColor={"Orange"}
-              size={20}
-              style={{ marginRight: -5, marginTop: 5 }}
-            >
-              {this.props.cartItems.length ? this.props.cartItems.length : 0}
-            </Avatar>
-          </NavItem>
-          <NavItem>
-            <Link to="/cartmain">장바구니</Link>
-          </NavItem>
+          <div>
+            <NavItem>
+              <Avatar
+                color={"Black"}
+                backgroundColor={"Orange"}
+                size={20}
+                style={{ marginRight: -5, marginTop: 5 }}
+              >
+                <span>{this.props.cartItems.length}</span>
+              </Avatar>
+            </NavItem>
+            <NavItem>
+              <Link to="/cartmain">장바구니</Link>
+            </NavItem>
+          </div>
+          
         </MuiThemeProvider>
       )
     }
