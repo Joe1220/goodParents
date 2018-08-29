@@ -131,18 +131,18 @@ class FoodDetail extends Component {
             </TabList>
 
             <TabPanel>
-              <p >
+              <span>
                 {this.props.ingredients.map((ingredient, index) => {
                   return <p key={index}>{ingredient.name} </p>
                 })}
-              </p>
+              </span>
             </TabPanel>
             <TabPanel>
-              <p >
+              <span>
                 {this.props.nutrients.map((nutrient, index) => {
                   return <p key={index}>{nutrient.name} </p>
                 })}
-              </p>
+              </span>
             </TabPanel>
             <hr style={styles.hr} />
           </Tabs>
