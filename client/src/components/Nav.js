@@ -6,15 +6,16 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
   Container
 } from 'reactstrap';
+import { Link } from 'react-router-dom';
 import Avatar from 'material-ui/Avatar';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import '../public/style/Nav.css';
 
 const style = {
   color: "rgb(25,25,221)",
@@ -84,7 +85,7 @@ export default class Example extends React.Component {
     } else {
       return (
         <NavItem>
-          <NavLink href="login">로그인</NavLink>
+          <Link to="/login">로그인</Link>
         </NavItem>
       )
     }
@@ -104,7 +105,7 @@ export default class Example extends React.Component {
             </Avatar>
           </NavItem>
           <NavItem>
-            <NavLink href="/cartmain">장바구니</NavLink>
+            <Link to="/cartmain">장바구니</Link>
           </NavItem>
         </MuiThemeProvider>
       )
@@ -121,13 +122,13 @@ export default class Example extends React.Component {
               <Nav className="ml-auto" navbar>
                 {this.checkCart()}
                 <NavItem>
-                  <NavLink href="/about">About</NavLink>
+                  <Link to="/about">About</Link>
                 </NavItem>
                 <NavItem>
-                  <NavLink href="area">배달구역</NavLink>
+                  <Link to="/area">배달구역</Link>
                 </NavItem>
                 <NavItem>
-                  <NavLink href="prime">프라임</NavLink>
+                  <Link to="/prime">프라임</Link>
                 </NavItem>
                 {this.checkLogged()}
               </Nav>
