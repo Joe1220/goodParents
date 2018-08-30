@@ -39,3 +39,9 @@
   color: rgba(0,0,0,.5);
   text-decoration: none;
 }
+
+li.nav-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

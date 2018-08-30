@@ -109,7 +109,7 @@ export default class Example extends React.Component {
                 size={20}
                 style={{ marginRight: -5, marginTop: 5 }}
               >
-                {this.state.count}
+                <span>{this.state.count}</span>
               </Avatar>
             </NavItem>
             <NavItem>
