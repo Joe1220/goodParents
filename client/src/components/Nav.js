@@ -35,7 +35,13 @@ export default class Example extends React.Component {
     this.OncartOver = this.OncartOver.bind(this);
     this.checkLogged = this.checkLogged.bind(this);
     this.checkCart = this.checkCart.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
   }
+  handleLogout() {
+    window.sessionStorage.removeItem("name")
+    window.sessionStorage.removeItem("admim")
+  }
+
   toggle() {
     this.setState({
       isOpen: !this.state.isOpen
@@ -60,8 +66,8 @@ export default class Example extends React.Component {
                <Link to="/adminpage">페이지 관리자</Link>
             </DropdownItem>
             <DropdownItem divider />
-            <DropdownItem>
-              <Link to="/about">로그아웃</Link>
+            <DropdownItem onClick={this.handleLogout}>
+              <Link to="/">로그아웃</Link>
             </DropdownItem>
           </DropdownMenu>
         </UncontrolledDropdown>
@@ -77,8 +83,8 @@ export default class Example extends React.Component {
               <Link to="/mypage">마이페이지</Link>
             </DropdownItem>
             <DropdownItem divider />
-            <DropdownItem>
-              <Link to="/about">로그아웃</Link>
+            <DropdownItem onClick={this.handleLogout}>
+              <Link to="/">로그아웃</Link>
             </DropdownItem>
           </DropdownMenu>
         </UncontrolledDropdown>

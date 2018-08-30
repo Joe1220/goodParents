@@ -1,8 +1,5 @@
 import React, { Component } from "react";
 import { Route, Switch, withRouter } from "react-router-dom";
-import { withCookies, Cookies } from 'react-cookie';
-import { instanceOf } from 'prop-types';
-
 
 import About from "./About";
 import Area from "./Area";
@@ -20,13 +17,12 @@ import Signup from "./Signup";
 import MyPage from "./mypage/MyPage";
 import AdminPage from "./adminpage/AdminPage";
 
+// 음식 사진 뿌려주기 위한 static file 설정.
+import 'file-loader?name=/public/foodPictures/[name].[ext]';
+
 class App extends Component {
-  static propTypes = {
-    cookies: instanceOf(Cookies).isRequired
-  };
   constructor(props) {
     super(props);
-    const { cookies } = props;
     this.state = {
       products: [],
       cart: [],
@@ -37,9 +33,8 @@ class App extends Component {
         account: false,
         fooddetail: false,
         orderCheck: false
-      },
-      token: cookies.cookies["token"]
-    }; 
+      }
+    };
     this.onChangeFullDate = this.onChangeFullDate.bind(this);
     // 장바구니 관련 메소드
     this.getCart = this.getCart.bind(this);
@@ -72,14 +67,8 @@ class App extends Component {
       credentials: "include"
     })
       .then(response => response.json())
-      .then(data => {
-        if(data.length) {
-          this.setState({ orderhistory: data || [] })
-        } else {
-          return null;
-        }
-      })
-      // .then(() => {this.forceUpdate();})
+      .then(data => this.setState({ orderhistory: data || [] }))
+      .then(() => {this.forceUpdate();})
       .catch(error => console.error(error));
   }
 
@@ -87,17 +76,12 @@ class App extends Component {
   getCart() {
     const upperThis = this;
     fetch(`/api/cart`, {
-      method: "GET",
       credentials: "include"
     })
-    .then(response => response.text())
-    .then(data => {
-      if(data) {
-        this.setState({ cart: data.cart })
-      }
-    })
-    .then(() => { upperThis.forceUpdate(); })
-    .catch(error => console.error(error));
+      .then(response => response.json())
+      .then(data => this.setState({ cart: data.cart || [] }))
+      .then(() => { upperThis.forceUpdate(); })
+      .catch(error => console.error(error));
   }
 
   cartDelete(oid) {
@@ -224,7 +208,7 @@ class App extends Component {
     }).then(function () {
       upperThis.props.history.push("/mypage/OrderCheck");
       upperThis.snackbarOpen("orderCheck");
-      // upperThis.forceUpdate();
+      upperThis.forceUpdate();
     });
   }
 
@@ -241,11 +225,12 @@ class App extends Component {
 
   componentDidMount() {
     this.foodDetailFetch();
+    this.getCart();
+    this.getAccount();
     if(window.sessionStorage.getItem("name")) {
-      this.getCart();
-      this.getAccount();
       this.getOrderHistory();
     }
+    
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -405,4 +390,4 @@ class App extends Component {
   }
 }
 
-export default withRouter((withCookies(App)));
+export default withRouter(App);
