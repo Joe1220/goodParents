@@ -123,7 +123,7 @@ export default class Cart extends Component {
     this.props.history.push("/payment");
   }
   renderCart() {
-    if (!this.props.cart.length) {
+    if (this.props.cart === [] || !this.props.cart) {
       return (
         <div style={styles.cartcontainer}>
           <div style={styles.innercart}>
@@ -237,7 +237,7 @@ export default class Cart extends Component {
     }
   }
   renderPaymentBotton() {
-    if (!this.props.cart.length) {
+    if (!this.props.cart) {
       return (
         <MuiThemeProvider>
           <RaisedButton

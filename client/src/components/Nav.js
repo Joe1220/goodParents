@@ -28,7 +28,8 @@ export default class Example extends React.Component {
     super(props);
     this.state = {
       isOpen: false,
-      popOpen: false
+      popOpen: false,
+      count: this.props.cartItems.length
     };
     this.toggle = this.toggle.bind(this);
     this.OncartOver = this.OncartOver.bind(this);
@@ -102,7 +103,7 @@ export default class Example extends React.Component {
                 size={20}
                 style={{ marginRight: -5, marginTop: 5 }}
               >
-                <span>{this.props.cartItems.length}</span>
+                {this.state.count}
               </Avatar>
             </NavItem>
             <NavItem>

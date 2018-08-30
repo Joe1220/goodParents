@@ -85,9 +85,9 @@ class App extends Component {
 
   // 장바구니 관련 메소드
   getCart() {
-    // const upperThis = this;
+    const upperThis = this;
     fetch(`/api/cart`, {
-      Method: "GET",
+      method: "GET",
       credentials: "include"
     })
     .then(response => response.text())
@@ -96,7 +96,7 @@ class App extends Component {
         this.setState({ cart: data.cart })
       }
     })
-    // .then(() => { upperThis.forceUpdate(); })
+    .then(() => { upperThis.forceUpdate(); })
     .catch(error => console.error(error));
   }
 
@@ -241,7 +241,7 @@ class App extends Component {
 
   componentDidMount() {
     this.foodDetailFetch();
-    if(this.state.token) {
+    if(window.sessionStorage.getItem("name")) {
       this.getCart();
       this.getAccount();
       this.getOrderHistory();
