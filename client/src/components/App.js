@@ -247,10 +247,12 @@ class App extends Component {
   }
 
   componentDidMount() {
+    if(window.sessionStorage.getItem("name")) {
+      this.getCart();
+      this.getAccount();
+      this.getOrderHistory();
+    }
     this.foodDetailFetch();
-    this.getCart();
-    this.getAccount();
-    this.getOrderHistory();
     this.sumTotalItems();
   }
 
