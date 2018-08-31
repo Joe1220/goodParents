@@ -31,7 +31,7 @@ class App extends Component {
         fooddetail: false,
         orderCheck: false
       },
-      cartCount: 0
+      totalItems: 0
     };
     this.onChangeFullDate = this.onChangeFullDate.bind(this);
     // 장바구니 관련 메소드
@@ -49,7 +49,7 @@ class App extends Component {
     this.snackbarClose = this.snackbarClose.bind(this);
     // 주문확인 메소드
     this.getOrderHistory = this.getOrderHistory.bind(this);
-    this.handleCount = this.handleCount.bind(this);
+    this.sumTotalItems = this.sumTotalItems.bind(this);
   }
 
   foodDetailFetch() {
@@ -222,9 +222,12 @@ class App extends Component {
       .catch(error => console.error(error));
   }
 
-  handleCount() {
+  sumTotalItems(){
+    let total = 0;
+    let cart = this.state.cart;
+    total = cart.length;
     this.setState({
-      cartCount: this.state.cart.length
+      totalItems: total
     })
   }
 
@@ -233,7 +236,7 @@ class App extends Component {
     this.getCart();
     this.getAccount();
     this.getOrderHistory();
-    this.handleCount();
+    this.sumTotalItems();
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -242,7 +245,7 @@ class App extends Component {
     }
     if (prevState.cart !== this.state.cart) {
       // this.getCart();
-      this.handleCount()
+      this.sumTotalItems()
     }
   }
 
@@ -320,7 +323,7 @@ class App extends Component {
           cartItems={this.state.cart}
           totalAmount={this.state.totalAmount}
           updateQuantity={this.updateQuantity}
-          cartCount={this.state.cartCount}
+          totalItems={this.state.totalItems}
           route={this.renderMyPage}
         />
         <Switch>

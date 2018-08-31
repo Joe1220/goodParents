@@ -28,8 +28,7 @@ export default class Example extends React.Component {
     super(props);
     this.state = {
       isOpen: false,
-      popOpen: false,
-      count: 0
+      popOpen: false
     };
     this.toggle = this.toggle.bind(this);
     this.OncartOver = this.OncartOver.bind(this);
@@ -98,6 +97,7 @@ export default class Example extends React.Component {
       )
     }
   }
+  
   checkCart() {
     if (window.sessionStorage.getItem("name")) {
       return (
@@ -110,7 +110,7 @@ export default class Example extends React.Component {
                 size={20}
                 style={{ marginRight: -5, marginTop: 5 }}
               >
-                <span>{this.props.cartCount}</span>
+                <span>{this.props.totalItems}</span>
               </Avatar>
             </NavItem>
             <NavItem>

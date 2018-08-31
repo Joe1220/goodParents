@@ -23,7 +23,7 @@ class HomeDietFood extends Component {
             );
           })}
         </div>
-        <div style={{ marginTop: "15px", marginBottom: "20px", padding: "15px", height: "480px" }}>
+        <div style={{ marginTop: "15px", marginBottom: "20px", padding: "15px", height: "480px", display: "inline-block",minWidth: "100%"}}>
           <p style={{ fontWeight: "bold", fontSize: "10", color: "gray" }}>만 3세 식단</p>
           <hr style={{ maxWidth: "150px", marginLeft: "0px" }} />
           {this.props.products.slice(5, 9).map((product, index) => {
@@ -40,7 +40,7 @@ class HomeDietFood extends Component {
             );
           })}
         </div>
-        <div style={{ marginTop: "15px", marginBottom: "20px", padding: "15px", height: "480px" }}>
+        <div style={{ marginTop: "15px", marginBottom: "20px", padding: "15px", height: "480px", display: "inline-block",minWidth: "100%"}}>
           <p style={{ fontWeight: "bold", fontSize: "10", color: "gray" }}>만 4세 식단</p>
           <hr style={{ maxWidth: "150px", marginLeft: "0px" }} />
           {this.props.products.slice(9, 14).map((product, index) => {
