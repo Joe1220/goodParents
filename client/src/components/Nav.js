@@ -29,7 +29,7 @@ export default class Example extends React.Component {
     this.state = {
       isOpen: false,
       popOpen: false,
-      count: this.props.cartItems.length
+      count: 0
     };
     this.toggle = this.toggle.bind(this);
     this.OncartOver = this.OncartOver.bind(this);
@@ -37,6 +37,7 @@ export default class Example extends React.Component {
     this.checkCart = this.checkCart.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
   }
+  
   handleLogout() {
     window.sessionStorage.removeItem("name")
     window.sessionStorage.removeItem("admim")
@@ -109,7 +110,7 @@ export default class Example extends React.Component {
                 size={20}
                 style={{ marginRight: -5, marginTop: 5 }}
               >
-                <span>{this.state.count}</span>
+                <span>{this.props.cartCount}</span>
               </Avatar>
             </NavItem>
             <NavItem>
@@ -121,6 +122,7 @@ export default class Example extends React.Component {
       )
     }
   }
+
   render() {
     return (
       <div>

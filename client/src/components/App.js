@@ -30,7 +30,8 @@ class App extends Component {
         account: false,
         fooddetail: false,
         orderCheck: false
-      }
+      },
+      cartCount: 0
     };
     this.onChangeFullDate = this.onChangeFullDate.bind(this);
     // 장바구니 관련 메소드
@@ -48,6 +49,7 @@ class App extends Component {
     this.snackbarClose = this.snackbarClose.bind(this);
     // 주문확인 메소드
     this.getOrderHistory = this.getOrderHistory.bind(this);
+    this.handleCount = this.handleCount.bind(this);
   }
 
   foodDetailFetch() {
@@ -108,10 +110,10 @@ class App extends Component {
     const url = "/api/cart";
     for (let i in this.state.cart) {
       if (
-        this.state.cart[i]._id._id === oid.id &&
-        this.state.cart[i].year === oid.year &&
-        this.state.cart[i].month === oid.month &&
-        this.state.cart[i].day === oid.day
+        this.state.cart[i]._id._id == oid.id &&
+        this.state.cart[i].year == oid.year &&
+        this.state.cart[i].month == oid.month &&
+        this.state.cart[i].day == oid.day
       ) {
         const stateCopy = Object.assign({}, this.state);
         stateCopy.cart[i].checked = !stateCopy.cart[i].checked;
@@ -141,10 +143,10 @@ class App extends Component {
     const url = "/api/cart/decrease";
     for (let i in this.state.cart) {
       if (
-        this.state.cart[i]._id._id === oid.id &&
-        this.state.cart[i].year === oid.year &&
-        this.state.cart[i].month === oid.month &&
-        this.state.cart[i].day === oid.day
+        this.state.cart[i]._id._id == oid.id &&
+        this.state.cart[i].year == oid.year &&
+        this.state.cart[i].month == oid.month &&
+        this.state.cart[i].day == oid.day
       ) {
         const data = {
           item: oid.id,
@@ -169,10 +171,10 @@ class App extends Component {
     const url = "/api/cart/increase";
     for (let i in this.state.cart) {
       if (
-        this.state.cart[i]._id._id === oid.id &&
-        this.state.cart[i].year === oid.year &&
-        this.state.cart[i].month === oid.month &&
-        this.state.cart[i].day === oid.day
+        this.state.cart[i]._id._id == oid.id &&
+        this.state.cart[i].year == oid.year &&
+        this.state.cart[i].month == oid.month &&
+        this.state.cart[i].day == oid.day
       ) {
         const data = {
           item: oid.id,
@@ -220,11 +222,18 @@ class App extends Component {
       .catch(error => console.error(error));
   }
 
+  handleCount() {
+    this.setState({
+      cartCount: this.state.cart.length
+    })
+  }
+
   componentDidMount() {
     this.foodDetailFetch();
     this.getCart();
     this.getAccount();
     this.getOrderHistory();
+    this.handleCount();
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -233,6 +242,7 @@ class App extends Component {
     }
     if (prevState.cart !== this.state.cart) {
       // this.getCart();
+      this.handleCount()
     }
   }
 
@@ -310,6 +320,7 @@ class App extends Component {
           cartItems={this.state.cart}
           totalAmount={this.state.totalAmount}
           updateQuantity={this.updateQuantity}
+          cartCount={this.state.cartCount}
           route={this.renderMyPage}
         />
         <Switch>
