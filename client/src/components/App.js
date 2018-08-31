@@ -31,7 +31,8 @@ class App extends Component {
         fooddetail: false,
         orderCheck: false
       },
-      totalItems: 0
+      totalItems: 0,
+      totalAmount: 0
     };
     this.onChangeFullDate = this.onChangeFullDate.bind(this);
     // 장바구니 관련 메소드
@@ -49,7 +50,9 @@ class App extends Component {
     this.snackbarClose = this.snackbarClose.bind(this);
     // 주문확인 메소드
     this.getOrderHistory = this.getOrderHistory.bind(this);
+
     this.sumTotalItems = this.sumTotalItems.bind(this);
+    this.sumTotalAmount = this.sumTotalAmount.bind(this);
   }
 
   foodDetailFetch() {
@@ -106,6 +109,17 @@ class App extends Component {
       .catch(err => console.error(err));
   }
 
+  sumTotalAmount(){
+    let total = 0;
+    let cart = this.state.cart;
+    for (var i=0; i<cart.length; i++) {
+        total += cart[i].price * parseInt(cart[i].quantity);
+    }
+    this.setState({
+      totalAmount: total
+    })
+  }
+
   updateCheck(oid) {
     const url = "/api/cart";
     for (let i in this.state.cart) {
@@ -146,7 +160,8 @@ class App extends Component {
         this.state.cart[i]._id._id == oid.id &&
         this.state.cart[i].year == oid.year &&
         this.state.cart[i].month == oid.month &&
-        this.state.cart[i].day == oid.day
+        this.state.cart[i].day == oid.day &&
+        this.state.cart[i]['qty'] >= 0
       ) {
         const data = {
           item: oid.id,
@@ -315,7 +330,6 @@ class App extends Component {
     stateCopy.snackbar[name] = false
     this.setState(stateCopy);
   }
-
   render() {
     return (
       <div>

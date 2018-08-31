@@ -143,6 +143,7 @@ export default class Cart extends Component {
       );
     } else {
       return this.props.cart.map((cart, index) => {
+        console.log('cart?',cart)
         return (
           <MuiThemeProvider key={index}>
             <div style={styles.cartcontainer}>
@@ -173,8 +174,8 @@ export default class Cart extends Component {
                     <div style={styles.itemtitle}>{cart._id.name}</div>
                   </div>
                   <div style={styles.removecontainer}>
-                    <FloatingActionButton
-                      onClick={this.qtyRemove}
+                    {cart.qty > 0 && <FloatingActionButton
+                      onClick={cart.qty >= 0 ? this.qtyRemove: null}
                       mini={true}
                       style={{ marginTop: "25px" }}
                     >
@@ -184,7 +185,20 @@ export default class Cart extends Component {
                         month={cart.month}
                         day={cart.day}
                       />
-                    </FloatingActionButton>
+                    </FloatingActionButton>}
+                    {cart.qty <= 0 && <FloatingActionButton
+                      disabled
+                      onClick={null}
+                      mini={true}
+                      style={{ marginTop: "25px" }}
+                    >
+                      <ContentRemove
+                        id={cart._id._id}
+                        year={cart.year}
+                        month={cart.month}
+                        day={cart.day}
+                      />
+                    </FloatingActionButton>}
                   </div>
                   <div style={styles.qtycontainer}>
                     <div style={styles.qty}>{cart.qty}</div>
