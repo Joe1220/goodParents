@@ -224,10 +224,7 @@ class App extends Component {
     this.foodDetailFetch();
     this.getCart();
     this.getAccount();
-    if(window.sessionStorage.getItem("name")) {
-      this.getOrderHistory();
-    }
-    
+    this.getOrderHistory();
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -235,7 +232,7 @@ class App extends Component {
       this.foodDetailFetch();
     }
     if (prevState.cart !== this.state.cart) {
-      this.getCart();
+      // this.getCart();
     }
   }
 

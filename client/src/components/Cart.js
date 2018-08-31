@@ -30,6 +30,7 @@ const styles = {
   },
   itemtitle: { marginTop: "35px", fontWeight: "bold" },
   image: {
+    border: "1px solid gray",
     width: "100px",
     height: "100px",
     display: "inline-block",
@@ -123,7 +124,7 @@ export default class Cart extends Component {
     this.props.history.push("/payment");
   }
   renderCart() {
-    if (this.props.cart === [] || !this.props.cart) {
+    if (!this.props.cart.length) {
       return (
         <div style={styles.cartcontainer}>
           <div style={styles.innercart}>
@@ -143,7 +144,7 @@ export default class Cart extends Component {
     } else {
       return this.props.cart.map((cart, index) => {
         return (
-          <MuiThemeProvider>
+          <MuiThemeProvider key={index}>
             <div style={styles.cartcontainer}>
               <div style={styles.innercart}>
                 <div style={styles.date}>
@@ -221,7 +222,7 @@ export default class Cart extends Component {
                           year={cart.year}
                           month={cart.month}
                           day={cart.day}
-                          class="material-icons"
+                          className="material-icons"
                         >
                           delete
                         </i>
@@ -237,7 +238,7 @@ export default class Cart extends Component {
     }
   }
   renderPaymentBotton() {
-    if (!this.props.cart) {
+    if (!this.props.cart.length) {
       return (
         <MuiThemeProvider>
           <RaisedButton
