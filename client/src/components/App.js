@@ -53,6 +53,17 @@ class App extends Component {
 
     this.sumTotalItems = this.sumTotalItems.bind(this);
     this.sumTotalAmount = this.sumTotalAmount.bind(this);
+
+    this.updateCount = this.updateCount.bind(this);
+    this.updateQuantity = this.updateQuantity.bind(this);
+  }
+
+  updateCount() {
+    this.setState(prevState => ({
+      totalItems: Number(prevState.totalItems) + 1
+    }), function(){
+      this.sumTotalItems();
+    });
   }
 
   foodDetailFetch() {
@@ -76,13 +87,12 @@ class App extends Component {
 
   // 장바구니 관련 메소드
   getCart() {
-    const upperThis = this;
     fetch(`/api/cart`, {
       credentials: "include"
     })
       .then(response => response.json())
       .then(data => this.setState({ cart: data.cart || [] }))
-      .then(() => { upperThis.forceUpdate(); })
+      .then(() => { this.forceUpdate(); })
       .catch(error => console.error(error));
   }
 
@@ -183,6 +193,7 @@ class App extends Component {
   }
 
   qtyAdd(oid) {
+    this.updateCount();
     const url = "/api/cart/increase";
     for (let i in this.state.cart) {
       if (
@@ -245,6 +256,13 @@ class App extends Component {
       totalItems: total
     })
   }
+  //Reset Quantity
+	updateQuantity(qty){
+		console.log("quantity added...")
+		this.setState({
+      totalItems: qty
+		})
+	}
 
   componentDidMount() {
     if(window.sessionStorage.getItem("name")) {
@@ -290,6 +308,8 @@ class App extends Component {
                 snackbar={this.state.snackbar.fooddetail}
                 snackbarOpen={this.snackbarOpen}
                 snackbarClose={this.snackbarClose}
+                totalItems={this.state.totalItems}
+                updateQuantity={this.updateQuantity}
               />
             );
           }}
@@ -337,9 +357,9 @@ class App extends Component {
       <div>
         <Nav
           cartItems={this.state.cart}
-          totalAmount={this.state.totalAmount}
           updateQuantity={this.updateQuantity}
           totalItems={this.state.totalItems}
+          sumTotalItems={this.sumTotalItems}
           route={this.renderMyPage}
         />
         <Switch>
@@ -398,6 +418,8 @@ class App extends Component {
                   updateCheck={this.updateCheck}
                   qtyRemove={this.qtyRemove}
                   qtyAdd={this.qtyAdd}
+                  totalItems={this.totalItems}
+                  sumTotalItems={this.sumTotalItems}
                 // toPayment={this.toPayment}
                 />
               );

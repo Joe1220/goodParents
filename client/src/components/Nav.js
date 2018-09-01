@@ -28,13 +28,23 @@ export default class Example extends React.Component {
     super(props);
     this.state = {
       isOpen: false,
-      popOpen: false
+      popOpen: false,
+      count: this.props.totalItems
     };
     this.toggle = this.toggle.bind(this);
     this.OncartOver = this.OncartOver.bind(this);
     this.checkLogged = this.checkLogged.bind(this);
     this.checkCart = this.checkCart.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
+    this.updateCount = this.updateCount.bind(this);
+  }
+
+  updateCount() {
+    this.setState(prevState => ({
+      count: Number(prevState.count) + 1
+    }), function(){
+      this.props.sumTotalItems();
+  });
   }
   
   handleLogout() {
@@ -97,6 +107,12 @@ export default class Example extends React.Component {
       )
     }
   }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      count: nextProps.totalItems
+    })
+  };
   
   checkCart() {
     if (window.sessionStorage.getItem("name")) {
@@ -110,14 +126,13 @@ export default class Example extends React.Component {
                 size={20}
                 style={{ marginRight: -5, marginTop: 5 }}
               >
-                <span>{this.props.totalItems}</span>
+                <span>{this.state.count}</span>
               </Avatar>
             </NavItem>
             <NavItem>
               <Link to="/cartmain">장바구니</Link>
             </NavItem>
           </div>
-          
         </MuiThemeProvider>
       )
     }

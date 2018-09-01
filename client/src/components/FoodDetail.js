@@ -47,15 +47,11 @@ class FoodDetail extends Component {
     this.toCart = this.toCart.bind(this);
     this.snackbarClose = this.snackbarClose.bind(this);
   }
-  handleChange = value => {
-    this.setState({
-      value: value
-    });
-  };
   snackbarClose() {
     this.props.snackbarClose('fooddetail');
   }
-  toCart = () => {
+  toCart () {
+    this.props.updateQuantity(Number(this.props.totalItems + 1));
     const url = "/api/cart";
     let year = parseInt(this.props.fullDate.slice(0, 4), 10);
     let month = parseInt(this.props.fullDate.slice(5, 7), 10);

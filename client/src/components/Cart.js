@@ -76,7 +76,8 @@ export default class Cart extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      checked: false
+      checked: false,
+      count: this.props.totalItems
     };
     this.renderPaymentBotton = this.renderPaymentBotton.bind(this);
     this.renderCart = this.renderCart.bind(this);
