@@ -254,8 +254,9 @@ class App extends Component {
     total = cart.length;
     this.setState({
       totalItems: total
-    })
-  }
+    });
+    this.getCart();
+  };
   //Reset Quantity
 	updateQuantity(qty){
 		console.log("quantity added...")

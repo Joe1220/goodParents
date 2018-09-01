@@ -88,6 +88,10 @@ export default class Cart extends Component {
     this.toPayment = this.toPayment.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    return this.props.cart !== nextProps.cart;
+  }
+
   updateCheck(e) {
     this.props.updateCheck({
       id: e.target.getAttribute("id"),
@@ -144,7 +148,6 @@ export default class Cart extends Component {
       );
     } else {
       return this.props.cart.map((cart, index) => {
-        console.log('cart?',cart)
         return (
           <MuiThemeProvider key={index}>
             <div style={styles.cartcontainer}>
